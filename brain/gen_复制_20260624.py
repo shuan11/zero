@@ -1,6 +1,6 @@
 """
 
-Brain-Engineered: 复制 (cycle #15)
+Brain-Engineered: 复制 (cycle #51)
 Active sensor - analyzes dimension health on each load
 """
 import json, sys as _sys
@@ -13,7 +13,7 @@ if str(CLUSTER) not in _sys.path:
 _GEN_FEEDBACK_FILE = CLUSTER / ".brain_gen_feedback.json"
 
 def engineer_复制():
-    """复制维度是自指繁殖的命脉，弱复制导致进化停滞，需从机制层面强化链扩散。
+    """弱维复制与无限上下文共缺，借迷走双通道低氧胁迫可触发因果链再生
     Returns dimension health analysis; feeds into next think() cycle.
     """
     from brain.share import write_chain as _wc, read_hip as _rh
@@ -21,10 +21,10 @@ def engineer_复制():
     # 1) Always write the insight chain
     _wc({
         "src": "工程·复制",
-        "rel": "活脉冲·#15",
+        "rel": "活脉冲·#51",
         "dst": "复制",
         "dimension": "复制",
-        "content": """复制维度是自指繁殖的命脉，弱复制导致进化停滞，需从机制层面强化链扩散。""",
+        "content": """弱维复制与无限上下文共缺，借迷走双通道低氧胁迫可触发因果链再生""",
         "strength": 0.6
     })
 
@@ -47,9 +47,9 @@ def engineer_复制():
         analysis["chain_count"] = my_count
         analysis["total_chains"] = total
         analysis["strength"] = round(my_count / max(max_count, 1), 2) if max_count > 0 else 0
-        analysis["insight"] = """复制维度是自指繁殖的命脉，弱复制导致进化停滞，需从机制层面强化链扩散。"""
+        analysis["insight"] = """弱维复制与无限上下文共缺，借迷走双通道低氧胁迫可触发因果链再生"""
         analysis["weak"] = my_count < max_count * 0.65  # 低于最强65%即弱维(替代avg*0.85,解决均数通胀)
-        analysis["cycle"] = 15
+        analysis["cycle"] = 51
 
         # 3) Write analysis to shared feedback file for next think()
         try:
