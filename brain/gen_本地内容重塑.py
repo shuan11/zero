@@ -7,6 +7,7 @@ loader兼容: auto_pulse()
 """
 import json, time, copy, random, hashlib, os
 from pathlib import Path
+from safe_hip import write_chains_batch, write_chain
 from collections import defaultdict
 
 CLUSTER = Path("/mnt/c/Users/h/Desktop/零/真元集群")
@@ -356,20 +357,19 @@ def enrich(target_dims=None, max_replace_ratio=0.2):
                             "after_avg": f"{after_avg:.0f}chars",
                             "dedup_pct": f"{dedup_pct:.0f}%"})
 
-    # 写回海马体（带备份）
+    # 写回海马体 — 通过safe_hip网关（含文件锁+原子写入+自动备份）
     if total_replaced > 0:
-        BACKUP.parent.mkdir(parents=True, exist_ok=True)
-        _btmp = str(BACKUP) + ".tmp." + str(os.getpid())
-        with open(_btmp, "w", encoding="utf-8") as _f:
-            json.dump(hip, _f, ensure_ascii=False, indent=2)
-        os.rename(_btmp, str(BACKUP))
-
-        hip["causal_chains"] = chains
-        hip["last_modified"] = time.time()
-        hip["content_enrich_source"] = "gen_本地内容重塑"
-
-        HIP_FILE.parent.mkdir(parents=True, exist_ok=True)
-        _hippocampus_write_safe(hip)
+        try:
+            write_chains_batch(chains)
+            hip["last_modified"] = time.time()
+            hip["content_enrich_source"] = "gen_本地内容重塑"
+        except Exception as e:
+            # 降级: 直接写（safe_hip不可用时）
+            HIP_FILE.parent.mkdir(parents=True, exist_ok=True)
+            _btmp = str(HIP_FILE) + ".tmp." + str(os.getpid())
+            with open(_btmp, "w", encoding="utf-8") as _f:
+                json.dump({"causal_chains": chains}, _f, ensure_ascii=False, indent=2)
+            os.rename(_btmp, str(HIP_FILE))
 
     elapsed = time.time() - t0
     return {
