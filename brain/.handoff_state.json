@@ -1,13 +1,25 @@
 {
-  "ts": "20260623_072247_0407",
-  "phase": "p101_done_p102_running",
+  "ts": "20260623_074106_6474",
+  "phase": "p103_chain_quality",
   "next": "p103_chain_quality",
+  "p101_done": true,
+  "bridge_alignment": 0.978,
   "status": {
-    "daemon": "running_pid_317546",
-    "chains": 12427,
-    "dims": 44,
-    "bridge_alignment": 0.978,
-    "journal_pending": 55,
-    "last_action": "injected_10_chains_to_system_wakeup"
+    "last_known_chains": 12509,
+    "last_known_dims": 44,
+    "daemon_pid": 317546,
+    "daemon_alive": true,
+    "gen_日志合并_hotfix": "deployed_commit_0d60e7a",
+    "github_synced": true,
+    "journal_pending": 0,
+    "last_action": "quality_audit_spawned"
+  },
+  "issues": {
+    "known": [
+      "gen_日志合并_写空bug已修复"
+    ],
+    "watched": [
+      "daemon日记模块间歇性报告0链(高峰期加载竞争)"
+    ]
   }
 }
