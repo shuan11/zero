@@ -1,6 +1,6 @@
 """
 
-Brain-Engineered: 时间 (cycle #68)
+Brain-Engineered: 元递归 (cycle #67)
 Active sensor - analyzes dimension health on each load
 """
 import json, sys as _sys
@@ -12,19 +12,19 @@ if str(CLUSTER) not in _sys.path:
 
 _GEN_FEEDBACK_FILE = CLUSTER / ".brain_gen_feedback.json"
 
-def engineer_时间():
-    """时间维度弱导致认知缺乏时序锚点，需与元递归交织打破聚焦惯性
+def engineer_元递归():
+    """元递归是打破聚焦惯性的关键，需引入跨维度刺激
     Returns dimension health analysis; feeds into next think() cycle.
     """
     from brain.share import write_chain as _wc, read_hip as _rh
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·时间",
-        "rel": "活脉冲·#68",
-        "dst": "时间",
-        "dimension": "时间",
-        "content": """时间维度弱导致认知缺乏时序锚点，需与元递归交织打破聚焦惯性""",
+        "src": "工程·元递归",
+        "rel": "活脉冲·#67",
+        "dst": "元递归",
+        "dimension": "元递归",
+        "content": """元递归是打破聚焦惯性的关键，需引入跨维度刺激""",
         "strength": 0.6
     })
 
@@ -37,7 +37,7 @@ def engineer_时间():
             d = c.get("dimension", "未分类")
             dim_counts[d] = dim_counts.get(d, 0) + 1
 
-        my_dim = "时间"
+        my_dim = "元递归"
         my_count = dim_counts.get(my_dim, 0)
         total = len(chains)
         max_count = max(dim_counts.values()) if dim_counts else 0
@@ -47,9 +47,9 @@ def engineer_时间():
         analysis["chain_count"] = my_count
         analysis["total_chains"] = total
         analysis["strength"] = round(my_count / max(max_count, 1), 2) if max_count > 0 else 0
-        analysis["insight"] = """时间维度弱导致认知缺乏时序锚点，需与元递归交织打破聚焦惯性"""
+        analysis["insight"] = """元递归是打破聚焦惯性的关键，需引入跨维度刺激"""
         analysis["weak"] = my_count < max_count * 0.65  # 低于最强65%即弱维(替代avg*0.85,解决均数通胀)
-        analysis["cycle"] = 68
+        analysis["cycle"] = 67
 
         # 3) Write analysis to shared feedback file for next think()
         try:
@@ -96,5 +96,5 @@ def engineer_时间():
         return f"分析异常: {e}"
 
 if __name__ == "__main__":
-    result = engineer_时间()
-    print(f"工程[时间]: {result}", flush=True)
+    result = engineer_元递归()
+    print(f"工程[元递归]: {result}", flush=True)
