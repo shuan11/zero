@@ -182,9 +182,9 @@ def check_quality(hip_path=None):
     sorted_dims = sorted(dim_avg.items(), key=lambda x: x[1])
     return sorted_dims
 
-def pulse(cycle_num, interval=10):
-    """每interval周期执行一次内容纯化"""
-    if cycle_num % interval != 0:
+def pulse(cycle_num=None, interval=10):
+    """每interval周期执行一次内容纯化（支持loader无参调用，此时每次运行）"""
+    if cycle_num is not None and cycle_num % interval != 0:
         return {"status": "skipped", "reason": f"not my cycle (cycle%{interval}!=0)"}
     
     hip_path = CLUSTER / "hippocampus_memory.json"
@@ -229,8 +229,8 @@ def pulse(cycle_num, interval=10):
             )
             new_entry = {
                 "src": c.get('src', '内容纯化'),
-                "rel": c.get('rel', f'深度#{cycle_num}'),
-                "dst": c.get('dst', dim),
+                "rel": c.get('rel', f'深度#{cycle_num}') + f'##',
+                "dst": c.get('dst', dim) + f'@{cycle_num}' if cycle_num else c.get('dst', dim),
                 "dimension": dim,
                 "content": deep_content,
                 "strength": 0.7,

@@ -380,8 +380,8 @@ def enrich(target_dims=None, max_replace_ratio=0.2):
     }
 
 
-def pulse(cycle_num):
-    if cycle_num % 5 != 0:
+def pulse(cycle_num=None):
+    if cycle_num is not None and cycle_num % 5 != 0:
         return {"status": "skipped", "reason": "not my cycle"}
 
     report = _get_quality_report(_load_hippocampus())
