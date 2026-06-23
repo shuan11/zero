@@ -1,5 +1,5 @@
 """
-Brain-Engineered: 师 (generation 1782253150972)
+Brain-Engineered: 师 (generation 1782254681872)
 管道自动检测弱维<师>并生成v3工程
 """
 import json, sys as _sys, time as _time
@@ -19,7 +19,7 @@ def engineer_师():
     # ── 1. 写入洞察链(永久记忆) ──
     _wc({
         "src": "工程·师",
-        "rel": "基因表达·#1782253150972",
+        "rel": "基因表达·#1782254681872",
         "dst": "师",
         "dimension": "师",
         "content": "管道自动检测弱维<师>并生成v3工程",
@@ -65,7 +65,7 @@ def engineer_师():
             # 同时注入自愈链(强度高,会被验证器检查)
             _wc({
                 "src": "自愈·师",
-                "rel": "基因表达·#1782253150972",
+                "rel": "基因表达·#1782254681872",
                 "dst": "师",
                 "dimension": "师",
                 "content": "师偏弱({dim_count}条/总{total}条)自动注入夯实",
@@ -75,7 +75,7 @@ def engineer_师():
         # 4b. 强维时注册巩固动作
         if not _is_weak and dim_count > 0:
             _ra("write_chain", {"src": f"巩固·师",
-                "rel": f"基因表达·#1782253150972", "dst": "师",
+                "rel": f"基因表达·#1782254681872", "dst": "师",
                 "content": f"师维度健康({dim_count}条),脉冲巩固",
                 "dimension": "师", "strength": 0.5},
                 priority=8, source="gene:师")
