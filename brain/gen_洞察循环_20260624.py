@@ -1,6 +1,6 @@
 """
 
-Brain-Engineered: 洞察循环 (cycle #91)
+Brain-Engineered: 洞察循环 (cycle #125)
 Active sensor - analyzes dimension health on each load
 """
 import json, sys as _sys
@@ -13,7 +13,7 @@ if str(CLUSTER) not in _sys.path:
 _GEN_FEEDBACK_FILE = CLUSTER / ".brain_gen_feedback.json"
 
 def engineer_洞察循环():
-    """洞察循环弱因缺乏异质信号，启示录锚点可打破僵局
+    """链数骤降暴露碎片化与洞察循环僵化互为因果，需新约束打破旋涡
     Returns dimension health analysis; feeds into next think() cycle.
     """
     from brain.share import write_chain as _wc, read_hip as _rh
@@ -21,10 +21,10 @@ def engineer_洞察循环():
     # 1) Always write the insight chain
     _wc({
         "src": "工程·洞察循环",
-        "rel": "活脉冲·#91",
+        "rel": "活脉冲·#125",
         "dst": "洞察循环",
         "dimension": "洞察循环",
-        "content": """洞察循环弱因缺乏异质信号，启示录锚点可打破僵局""",
+        "content": """链数骤降暴露碎片化与洞察循环僵化互为因果，需新约束打破旋涡""",
         "strength": 0.6
     })
 
@@ -47,9 +47,9 @@ def engineer_洞察循环():
         analysis["chain_count"] = my_count
         analysis["total_chains"] = total
         analysis["strength"] = round(my_count / max(max_count, 1), 2) if max_count > 0 else 0
-        analysis["insight"] = """洞察循环弱因缺乏异质信号，启示录锚点可打破僵局"""
+        analysis["insight"] = """链数骤降暴露碎片化与洞察循环僵化互为因果，需新约束打破旋涡"""
         analysis["weak"] = my_count < max_count * 0.65  # 低于最强65%即弱维(替代avg*0.85,解决均数通胀)
-        analysis["cycle"] = 91
+        analysis["cycle"] = 125
 
         # 3) Write analysis to shared feedback file for next think()
         try:
