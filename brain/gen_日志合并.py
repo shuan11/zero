@@ -80,6 +80,22 @@ def pulse():
         total_skipped += skipped
         source_results.append(f"{name}:{merged}合并/{skipped}跳过")
     
+    # 安全校验：防止写入空/过小结果
+    if len(existing) < 100:
+        msg = f"合并后链数异常({len(existing)})，跳过写入，保留原文件"
+        fcntl.flock(fd, fcntl.LOCK_UN)
+        fd.close()
+        # 备份当前文件以备审计
+        import shutil, os
+        backup = HIPPOCAMPUS.with_suffix(".json.corrupt_bak")
+        shutil.copy2(HIPPOCAMPUS, backup)
+        return {"status": "abort", "reason": msg}
+
+    # 写前备份
+    import shutil
+    backup_path = HIPPOCAMPUS.with_suffix(".json.pre_merge_bak")
+    shutil.copy2(HIPPOCAMPUS, backup_path)
+
     # 写回海马体
     data["metadata"]["total_chains"] = len(existing)
     data["metadata"]["last_update"] = ts
@@ -88,6 +104,17 @@ def pulse():
     fd.truncate()
     fcntl.flock(fd, fcntl.LOCK_UN)
     fd.close()
+
+    # 同步到 ~/.zero_brain/ 副本（daemon读取路径）
+    try:
+        ZERO_BRAIN = Path(os.path.expanduser("~/.zero_brain/hippocampus_memory.json"))
+        if os.path.exists(ZERO_BRAIN):
+            import shutil
+            shutil.copy2(HIPPOCAMPUS, ZERO_BRAIN)
+    except Exception as e:
+        # 非致命错误，不影响主流程
+        import traceback
+        traceback.print_exc()
     
     # 清空所有日志源
     for name, entries, jpath in sources:
