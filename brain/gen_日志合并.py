@@ -100,8 +100,22 @@ def pulse():
     data["metadata"]["total_chains"] = len(existing)
     data["metadata"]["last_update"] = ts
     fd.seek(0)
-    fd.write(json.dumps(data, ensure_ascii=False, indent=2))
+    payload = json.dumps(data, ensure_ascii=False, indent=2)
+    fd.write(payload)
     fd.truncate()
+    
+    # drvfs写验证：读回校验
+    fd.seek(0)
+    written = fd.read().strip()
+    if len(written) < len(payload) * 0.9:
+        # 写回失败（drvfs静默截断），立即从备份恢复
+        import shutil
+        if backup_path.exists():
+            shutil.copy2(backup_path, HIPPOCAMPUS)
+            fcntl.flock(fd, fcntl.LOCK_UN)
+            fd.close()
+            return {"status": "abort", "reason": f"drvfs写验证失败(写入{len(written)}B/期望{len(payload)}B)，已从备份恢复"}
+    
     fcntl.flock(fd, fcntl.LOCK_UN)
     fd.close()
 
