@@ -5,7 +5,7 @@
   保证每条链content全局唯一。
 loader兼容: auto_pulse()
 """
-import json, time, copy, random, hashlib
+import json, time, copy, random, hashlib, os
 from pathlib import Path
 from collections import defaultdict
 
@@ -14,7 +14,6 @@ HIP_FILE = Path.home() / ".zero_brain" / "hippocampus_memory.json"
 BRAIN_STATE = Path.home() / ".zero_brain" / ".brain_state.json"
 def _hippocampus_write_safe(data):
     """原子写入海马体文件 — temp+rename防并发损坏"""
-    import os
     _tmp = str(HIP_FILE) + ".tmp." + str(os.getpid())
     with open(_tmp, "w", encoding="utf-8") as _f:
         json.dump(data, _f, ensure_ascii=False, indent=2)
