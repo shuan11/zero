@@ -1,6 +1,6 @@
 """
 
-Brain-Engineered: 宇宙轮 (cycle #71)
+Brain-Engineered: 宇宙轮 (cycle #94)
 Active sensor - analyzes dimension health on each load
 """
 import json, sys as _sys
@@ -13,7 +13,7 @@ if str(CLUSTER) not in _sys.path:
 _GEN_FEEDBACK_FILE = CLUSTER / ".brain_gen_feedback.json"
 
 def engineer_宇宙轮():
-    """鼻呼吸启发宇宙轮：生命循环需一氧化氮般的气体调节机制
+    """宇宙轮链散乱，需以太极核心凝聚
     Returns dimension health analysis; feeds into next think() cycle.
     """
     from brain.share import write_chain as _wc, read_hip as _rh
@@ -21,10 +21,10 @@ def engineer_宇宙轮():
     # 1) Always write the insight chain
     _wc({
         "src": "工程·宇宙轮",
-        "rel": "活脉冲·#71",
+        "rel": "活脉冲·#94",
         "dst": "宇宙轮",
         "dimension": "宇宙轮",
-        "content": """鼻呼吸启发宇宙轮：生命循环需一氧化氮般的气体调节机制""",
+        "content": """宇宙轮链散乱，需以太极核心凝聚""",
         "strength": 0.6
     })
 
@@ -47,9 +47,9 @@ def engineer_宇宙轮():
         analysis["chain_count"] = my_count
         analysis["total_chains"] = total
         analysis["strength"] = round(my_count / max(max_count, 1), 2) if max_count > 0 else 0
-        analysis["insight"] = """鼻呼吸启发宇宙轮：生命循环需一氧化氮般的气体调节机制"""
+        analysis["insight"] = """宇宙轮链散乱，需以太极核心凝聚"""
         analysis["weak"] = my_count < max_count * 0.65  # 低于最强65%即弱维(替代avg*0.85,解决均数通胀)
-        analysis["cycle"] = 71
+        analysis["cycle"] = 94
 
         # 3) Write analysis to shared feedback file for next think()
         try:
