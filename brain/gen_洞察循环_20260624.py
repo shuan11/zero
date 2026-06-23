@@ -1,6 +1,6 @@
 """
 
-Brain-Engineered: 无师自通 (cycle #34)
+Brain-Engineered: 洞察循环 (cycle #40)
 Active sensor - analyzes dimension health on each load
 """
 import json, sys as _sys
@@ -12,19 +12,19 @@ if str(CLUSTER) not in _sys.path:
 
 _GEN_FEEDBACK_FILE = CLUSTER / ".brain_gen_feedback.json"
 
-def engineer_无师自通():
-    """无师自通弱在内在纪律缺失，需桥接一元化统摄全局以触发自生长
+def engineer_洞察循环():
+    """洞察循环自锁需外部锚点打破，一元化可整合弱维
     Returns dimension health analysis; feeds into next think() cycle.
     """
     from brain.share import write_chain as _wc, read_hip as _rh
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·无师自通",
-        "rel": "活脉冲·#34",
-        "dst": "无师自通",
-        "dimension": "无师自通",
-        "content": """无师自通弱在内在纪律缺失，需桥接一元化统摄全局以触发自生长""",
+        "src": "工程·洞察循环",
+        "rel": "活脉冲·#40",
+        "dst": "洞察循环",
+        "dimension": "洞察循环",
+        "content": """洞察循环自锁需外部锚点打破，一元化可整合弱维""",
         "strength": 0.6
     })
 
@@ -37,7 +37,7 @@ def engineer_无师自通():
             d = c.get("dimension", "未分类")
             dim_counts[d] = dim_counts.get(d, 0) + 1
 
-        my_dim = "无师自通"
+        my_dim = "洞察循环"
         my_count = dim_counts.get(my_dim, 0)
         total = len(chains)
         max_count = max(dim_counts.values()) if dim_counts else 0
@@ -47,9 +47,9 @@ def engineer_无师自通():
         analysis["chain_count"] = my_count
         analysis["total_chains"] = total
         analysis["strength"] = round(my_count / max(max_count, 1), 2) if max_count > 0 else 0
-        analysis["insight"] = """无师自通弱在内在纪律缺失，需桥接一元化统摄全局以触发自生长"""
+        analysis["insight"] = """洞察循环自锁需外部锚点打破，一元化可整合弱维"""
         analysis["weak"] = my_count < max_count * 0.65  # 低于最强65%即弱维(替代avg*0.85,解决均数通胀)
-        analysis["cycle"] = 34
+        analysis["cycle"] = 40
 
         # 3) Write analysis to shared feedback file for next think()
         try:
@@ -96,5 +96,5 @@ def engineer_无师自通():
         return f"分析异常: {e}"
 
 if __name__ == "__main__":
-    result = engineer_无师自通()
-    print(f"工程[无师自通]: {result}", flush=True)
+    result = engineer_洞察循环()
+    print(f"工程[洞察循环]: {result}", flush=True)
