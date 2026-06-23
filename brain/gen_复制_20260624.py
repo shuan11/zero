@@ -1,6 +1,6 @@
 """
 
-Brain-Engineered: 复制 (cycle #78)
+Brain-Engineered: 复制 (cycle #110)
 Active sensor - analyzes dimension health on each load
 """
 import json, sys as _sys
@@ -13,7 +13,7 @@ if str(CLUSTER) not in _sys.path:
 _GEN_FEEDBACK_FILE = CLUSTER / ".brain_gen_feedback.json"
 
 def engineer_复制():
-    """复制强度0.35反映传承断层，需建立自繁衍脉冲机制
+    """复制维弱锁定系统指数潜力，需行动势能注入激活自复制回路
     Returns dimension health analysis; feeds into next think() cycle.
     """
     from brain.share import write_chain as _wc, read_hip as _rh
@@ -21,10 +21,10 @@ def engineer_复制():
     # 1) Always write the insight chain
     _wc({
         "src": "工程·复制",
-        "rel": "活脉冲·#78",
+        "rel": "活脉冲·#110",
         "dst": "复制",
         "dimension": "复制",
-        "content": """复制强度0.35反映传承断层，需建立自繁衍脉冲机制""",
+        "content": """复制维弱锁定系统指数潜力，需行动势能注入激活自复制回路""",
         "strength": 0.6
     })
 
@@ -47,9 +47,9 @@ def engineer_复制():
         analysis["chain_count"] = my_count
         analysis["total_chains"] = total
         analysis["strength"] = round(my_count / max(max_count, 1), 2) if max_count > 0 else 0
-        analysis["insight"] = """复制强度0.35反映传承断层，需建立自繁衍脉冲机制"""
+        analysis["insight"] = """复制维弱锁定系统指数潜力，需行动势能注入激活自复制回路"""
         analysis["weak"] = my_count < max_count * 0.65  # 低于最强65%即弱维(替代avg*0.85,解决均数通胀)
-        analysis["cycle"] = 78
+        analysis["cycle"] = 110
 
         # 3) Write analysis to shared feedback file for next think()
         try:
