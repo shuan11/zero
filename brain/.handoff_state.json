@@ -1,19 +1,25 @@
 {
-  "ts": "20260623_074554_3242",
+  "ts": "20260623_160000",
   "phase": "p103_quality_deepen",
   "next_p0": "p103_chain_quality",
   "summary": {
-    "sessions_done": [
-      "海马体恢复: git restore 80b6e36 → 12410→12530+ chains",
-      "gen_日志合并热修复: 安全校验(<100链跳过)+写前备份+~/.zero_brain同步",
-      "GitHub同步: 3次push (281b71e→0d60e7a→a507842)",
-      "handoff更新: P101→P103",
-      "18链深注入: 系统(+6, avg132)+唤醒(+6, avg89)+术(+6)",
-      "质量审计已启动: 12509链/44维/avg_len=40.3/68%>=30chars"
-    ],
-    "daemon": "PID=321635, 272MB, targeting 术",
-    "bridge_alignment": 0.978,
-    "journal_pending": 18,
-    "chain_count": "12509+"
-  }
+    "p101_bridge_alignment": "0.940 (6997 calls, 2.2% fail)",
+    "chain_count": 12536,
+    "dim_count": 44,
+    "daemon_pid": 322135,
+    "strongest": "一元化(514)",
+    "weakest": "唤醒(223), 术(225)"
+  },
+  "hotfixes": [
+    "gen_日志合并: 安全校验(<100链跳过写)+写前备份+双文件同步",
+    "gen_日志合并: UnboundLocalError修复(local import os shadowing)"
+  ],
+  "sessions_done": [
+    "海马体修复: 114→12464链 (git restore 0618da1)",
+    "gen_日志合并热修复部署+daemon重启",
+    "18深链注入: 系统(+6)、唤醒(+6)、术(+6)",
+    "GitHub同步: 3次push"
+  ],
+  "journal_pending": 10,
+  "git_push_pending": true
 }
