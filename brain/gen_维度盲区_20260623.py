@@ -1,6 +1,6 @@
 """
 
-Brain-Engineered: 维度盲区 (cycle #2)
+Brain-Engineered: 维度盲区 (cycle #11)
 Active sensor - analyzes dimension health on each load
 """
 import json, sys as _sys
@@ -13,7 +13,7 @@ if str(CLUSTER) not in _sys.path:
 _GEN_FEEDBACK_FILE = CLUSTER / ".brain_gen_feedback.json"
 
 def engineer_维度盲区():
-    """维度盲区链空白导致系统无法自我修正，必须优先构建盲区探测与反馈机制。
+    """聚焦惯性锁死维度盲区，需外源扰动唤醒自循环
     Returns dimension health analysis; feeds into next think() cycle.
     """
     from brain.share import write_chain as _wc, read_hip as _rh
@@ -21,10 +21,10 @@ def engineer_维度盲区():
     # 1) Always write the insight chain
     _wc({
         "src": "工程·维度盲区",
-        "rel": "活脉冲·#2",
+        "rel": "活脉冲·#11",
         "dst": "维度盲区",
         "dimension": "维度盲区",
-        "content": """维度盲区链空白导致系统无法自我修正，必须优先构建盲区探测与反馈机制。""",
+        "content": """聚焦惯性锁死维度盲区，需外源扰动唤醒自循环""",
         "strength": 0.6
     })
 
@@ -47,9 +47,9 @@ def engineer_维度盲区():
         analysis["chain_count"] = my_count
         analysis["total_chains"] = total
         analysis["strength"] = round(my_count / max(max_count, 1), 2) if max_count > 0 else 0
-        analysis["insight"] = """维度盲区链空白导致系统无法自我修正，必须优先构建盲区探测与反馈机制。"""
+        analysis["insight"] = """聚焦惯性锁死维度盲区，需外源扰动唤醒自循环"""
         analysis["weak"] = my_count < max_count * 0.65  # 低于最强65%即弱维(替代avg*0.85,解决均数通胀)
-        analysis["cycle"] = 2
+        analysis["cycle"] = 11
 
         # 3) Write analysis to shared feedback file for next think()
         try:
