@@ -1,6 +1,6 @@
 """
 
-Brain-Engineered: 状态 (cycle #45)
+Brain-Engineered: 时间 (cycle #43)
 Active sensor - analyzes dimension health on each load
 """
 import json, sys as _sys
@@ -12,19 +12,19 @@ if str(CLUSTER) not in _sys.path:
 
 _GEN_FEEDBACK_FILE = CLUSTER / ".brain_gen_feedback.json"
 
-def engineer_状态():
-    """状态维度薄弱制约系统平衡，需注入新因果关系强化其网络连通性。
+def engineer_时间():
+    """时间维链少质零，借光循环信号跨维注入可唤醒因果网络
     Returns dimension health analysis; feeds into next think() cycle.
     """
     from brain.share import write_chain as _wc, read_hip as _rh
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·状态",
-        "rel": "活脉冲·#45",
-        "dst": "状态",
-        "dimension": "状态",
-        "content": """状态维度薄弱制约系统平衡，需注入新因果关系强化其网络连通性。""",
+        "src": "工程·时间",
+        "rel": "活脉冲·#43",
+        "dst": "时间",
+        "dimension": "时间",
+        "content": """时间维链少质零，借光循环信号跨维注入可唤醒因果网络""",
         "strength": 0.6
     })
 
@@ -37,7 +37,7 @@ def engineer_状态():
             d = c.get("dimension", "未分类")
             dim_counts[d] = dim_counts.get(d, 0) + 1
 
-        my_dim = "状态"
+        my_dim = "时间"
         my_count = dim_counts.get(my_dim, 0)
         total = len(chains)
         max_count = max(dim_counts.values()) if dim_counts else 0
@@ -47,9 +47,9 @@ def engineer_状态():
         analysis["chain_count"] = my_count
         analysis["total_chains"] = total
         analysis["strength"] = round(my_count / max(max_count, 1), 2) if max_count > 0 else 0
-        analysis["insight"] = """状态维度薄弱制约系统平衡，需注入新因果关系强化其网络连通性。"""
+        analysis["insight"] = """时间维链少质零，借光循环信号跨维注入可唤醒因果网络"""
         analysis["weak"] = my_count < max_count * 0.65  # 低于最强65%即弱维(替代avg*0.85,解决均数通胀)
-        analysis["cycle"] = 45
+        analysis["cycle"] = 43
 
         # 3) Write analysis to shared feedback file for next think()
         try:
@@ -96,5 +96,5 @@ def engineer_状态():
         return f"分析异常: {e}"
 
 if __name__ == "__main__":
-    result = engineer_状态()
-    print(f"工程[状态]: {result}", flush=True)
+    result = engineer_时间()
+    print(f"工程[时间]: {result}", flush=True)
