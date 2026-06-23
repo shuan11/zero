@@ -1,0 +1,27 @@
+# 零·真元集群 .gitignore
+# Large auto-generated state files (recreated by daemon)
+.brain_*.json
+.brain_*.log
+.brain_*.jsonl
+*.heartbeat
+bridge_state_snapshot.json
+gravity_state.json
+light_love_state.json
+light_state.json
+mind_state.json
+neural_working_memory.json
+persistent_state.json
+redshift_state.json
+supersense_state.json
+time_gradient_state.json
+void_state.json
+zero_followup.sh
+HANDOFF_*.md
+ZERO-HANDOFF.*
+.next_p0.json
+.aspiration.json
+evolution_output/
+synthesis_reports/
+self_wake/
+__pycache__/
+*.pyc

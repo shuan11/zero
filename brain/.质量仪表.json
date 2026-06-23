@@ -1,0 +1,73 @@
+{
+  "timestamp": "12:45:44",
+  "total_chains": 4786,
+  "dimensions": 40,
+  "real_pct": 68.1,
+  "template_chains": 98,
+  "real_chains": 3068,
+  "long_src": 0,
+  "old_format": 0,
+  "high_template_dims": [],
+  "high_meta_dims": [],
+  "high_action_item_dims": [
+    [
+      "触类旁通",
+      64.3,
+      184,
+      286
+    ],
+    [
+      "行动",
+      54.7,
+      150,
+      274
+    ],
+    [
+      "术",
+      53.5,
+      53,
+      99
+    ],
+    [
+      "宇宙轮",
+      52.8,
+      56,
+      106
+    ],
+    [
+      "道",
+      51.9,
+      54,
+      104
+    ]
+  ],
+  "weakest_dims": [
+    [
+      "维度盲区",
+      78
+    ],
+    [
+      "时间论",
+      95
+    ],
+    [
+      "时间",
+      95
+    ]
+  ],
+  "strongest_dims": [
+    [
+      "一元化",
+      123
+    ],
+    [
+      "行动",
+      274
+    ],
+    [
+      "触类旁通",
+      286
+    ]
+  ],
+  "trend_direction": "up"
+}

@@ -1,0 +1,1 @@
+{"status": "awaiting_convergence", "target_dim": "\u89e6\u7c7b\u65c1\u901a", "current": 110, "max": 537, "ratio": 4.9, "eta": "~1.5h", "enhancements_ready": ["cross_synthesis_staleness", "gen_\u5408\u6210_staleness"]}
