@@ -8,7 +8,7 @@ from pathlib import Path
 from collections import defaultdict
 
 CLUSTER = Path(__file__).resolve().parent.parent
-HIP_FILE = CLUSTER / "hippocampus_memory.json"
+HIP_FILE = Path.home() / ".zero_brain" / "hippocampus_memory.json"
 MIN_CHAINS_PER_DIM = 5
 ALIGN_THRESHOLD = 0.9  # 桥对齐度阈值
 

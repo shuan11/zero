@@ -10,7 +10,7 @@ import json, time, random
 from pathlib import Path
 
 CLUSTER = Path(__file__).resolve().parent.parent
-HIP_FILE = CLUSTER / "hippocampus_memory.json"
+HIP_FILE = Path.home() / ".zero_brain" / "hippocampus_memory.json"
 
 def _load_hip():
     if HIP_FILE.exists():

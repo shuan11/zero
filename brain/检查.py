@@ -16,7 +16,7 @@ from pathlib import Path
 from collections import Counter
 
 CLUSTER = Path("/mnt/c/Users/h/Desktop/零/真元集群")
-HIP_FILE = CLUSTER / "hippocampus_memory.json"
+HIP_FILE = Path.home() / ".zero_brain" / "hippocampus_memory.json"
 REPORT_FILE = CLUSTER / ".brain_check_report.json"
 
 _A = "断链"
