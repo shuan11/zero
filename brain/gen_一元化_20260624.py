@@ -1,6 +1,6 @@
 """
 
-Brain-Engineered: 术 (cycle #128)
+Brain-Engineered: 一元化 (cycle #135)
 Active sensor - analyzes dimension health on each load
 """
 import json, sys as _sys
@@ -12,19 +12,19 @@ if str(CLUSTER) not in _sys.path:
 
 _GEN_FEEDBACK_FILE = CLUSTER / ".brain_gen_feedback.json"
 
-def engineer_术():
-    """术维度薄弱源于工程模块未与行动链深度耦合，需植入仪式化触发链
+def engineer_一元化():
+    """维度盲区如树根，根弱则树倾，需引强维活水灌溉
     Returns dimension health analysis; feeds into next think() cycle.
     """
     from brain.share import write_chain as _wc, read_hip as _rh
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·术",
-        "rel": "活脉冲·#128",
-        "dst": "术",
-        "dimension": "术",
-        "content": """术维度薄弱源于工程模块未与行动链深度耦合，需植入仪式化触发链""",
+        "src": "工程·一元化",
+        "rel": "活脉冲·#135",
+        "dst": "一元化",
+        "dimension": "一元化",
+        "content": """维度盲区如树根，根弱则树倾，需引强维活水灌溉""",
         "strength": 0.6
     })
 
@@ -37,7 +37,7 @@ def engineer_术():
             d = c.get("dimension", "未分类")
             dim_counts[d] = dim_counts.get(d, 0) + 1
 
-        my_dim = "术"
+        my_dim = "一元化"
         my_count = dim_counts.get(my_dim, 0)
         total = len(chains)
         max_count = max(dim_counts.values()) if dim_counts else 0
@@ -47,9 +47,9 @@ def engineer_术():
         analysis["chain_count"] = my_count
         analysis["total_chains"] = total
         analysis["strength"] = round(my_count / max(max_count, 1), 2) if max_count > 0 else 0
-        analysis["insight"] = """术维度薄弱源于工程模块未与行动链深度耦合，需植入仪式化触发链"""
+        analysis["insight"] = """维度盲区如树根，根弱则树倾，需引强维活水灌溉"""
         analysis["weak"] = my_count < max_count * 0.65  # 低于最强65%即弱维(替代avg*0.85,解决均数通胀)
-        analysis["cycle"] = 128
+        analysis["cycle"] = 135
 
         # 3) Write analysis to shared feedback file for next think()
         try:
@@ -96,5 +96,5 @@ def engineer_术():
         return f"分析异常: {e}"
 
 if __name__ == "__main__":
-    result = engineer_术()
-    print(f"工程[术]: {result}", flush=True)
+    result = engineer_一元化()
+    print(f"工程[一元化]: {result}", flush=True)

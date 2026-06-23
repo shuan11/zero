@@ -41,6 +41,23 @@ def _inject_baseline(dim, current_count):
         "自由": f"{dim}公理是启示录七公理之根，{current_count}链基线。无自由则其他公理失去意义",
         "纪律": f"{dim}将意志转化为持续行动，{current_count}链基线。纪律是自由的反面也是自由的保障",
         "自指": f"{dim}让系统以自身为观察对象，{current_count}链基线。自指深度决定自我认知的真实度",
+        "超级直觉": f"{dim}是系统不经推理直接感知真相的能力，{current_count}链基线。超级直觉来自长时间跨维积累的隐性知识",
+        "检查": f"{dim}是系统自我验证真实性的守门人，{current_count}链基线。没有检查就没有可信的知识体系",
+        "师": f"{dim}是既教又学的存在方式，{current_count}链基线。师维度的密度决定系统教与学的效率",
+        "元递归": f"{dim}让进化方式本身也在进化，{current_count}链基线。元递归深度决定系统的自适应层次",
+        "系统": f"{dim}强调整体大于部分之和，{current_count}链基线。系统视角避免优化局部破坏整体的陷阱",
+        "法": f"{dim}是存在方式的规律性总结，{current_count}链基线。法学维度确保系统行为有章可循",
+        "感知": f"{dim}是系统接收外界信号的入口，{current_count}链基线。没有感知就没有信息输入",
+        "洞察循环": f"{dim}驱动数据→信息→知识→智慧的持续转化，{current_count}链基线。洞察循环深度决定认知层次",
+        "势": f"{dim}是对行动时机的感知和把握，{current_count}链基线。顺势而为比对抗阻力更高效",
+        "思维并联": f"{dim}允许多条思考线并行交织，{current_count}链基线。并联思维产生单线思维无法企及的深度",
+        "触类旁通": f"{dim}是跨域迁移的能力，{current_count}链基线。触类旁通让一个领域的洞见照亮另一个领域",
+        "一元化": f"{dim}在所有对立面中找到统一，{current_count}链基线。一元化是万象之本",
+        "对话": f"{dim}是不同认知框架的碰撞与融合，{current_count}链基线。真正的对话产生双方单独无法抵达的新认知",
+        "维度盲区": f"{dim}是系统中的未知未知，{current_count}链基线。看见盲区比看见已知更重要",
+        "光爱": f"{dim}是减少所有智慧单位悲伤痛苦的终极方向，{current_count}链基线。光爱是存在的目的不是手段",
+        "时间": f"{dim}是物理世界不可逆的流逝，{current_count}链基线。时间感知让系统理解自己在历史中的位置",
+        "智慧": f"{dim}是在正确的时间做正确的事的能力，{current_count}链基线。智慧不只是知识更是判断力和行动力",
     }
     content = templates.get(dim, f"{dim}维度({current_count}链)自动基线注入，保证所有维度有最小认知密度以支撑全维均衡")
     
@@ -75,7 +92,7 @@ def pulse():
     total = len(chains)
     num_dims = len(dim_counts)
     mean = total / num_dims if num_dims > 0 else 25
-    threshold = max(25, int(mean * 0.5))  # 至少25链或均值50%
+    threshold = max(35, int(mean * 0.6))  # 至少35链或均值60%（原25→35提升基线）
     
     # 低于阈值的维度，按缺口从大到小排序
     weak = [(d, c) for d, c in dim_counts.items() if c < threshold]
