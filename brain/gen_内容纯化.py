@@ -301,7 +301,33 @@ def auto_pulse():
             cycle = state.get("cycle", 0)
         else:
             cycle = 0
-        return pulse(cycle)
+        result = pulse(cycle)
+        
+        # 每10周期记录质量趋势
+        if cycle % 10 == 0:
+            try:
+                hip_f = Path.home() / ".zero_brain" / "hippocampus_memory.json"
+                if hip_f.exists():
+                    hip = _j.loads(hip_f.read_text())
+                    chains = hip.get("causal_chains", [])
+                    total = len(chains)
+                    short = sum(1 for c in chains if len(c.get("content", c.get("dst", ""))) < 40)
+                    dims = len(set(c.get("dimension","?") for c in chains))
+                    trend_f = Path("/mnt/c/Users/h/Desktop/零/真元集群/.quality_trend.json")
+                    trend = _j.loads(trend_f.read_text()) if trend_f.exists() else []
+                    if isinstance(trend, dict):
+                        trend = trend.get("entries", [])
+                    trend.append({
+                        "ts": time.strftime("%H:%M:%S"),
+                        "chain_count": total,
+                        "dimensions": dims,
+                        "short_pct": round(short*100/total, 1),
+                        "quality_pct": round((total-short)*100/total, 1)
+                    })
+                    trend_f.write_text(_j.dumps(trend[-50:], ensure_ascii=False))
+            except Exception:
+                pass  # 非致命，不影响主流程
+        
+        return result
     except Exception as e:
-        _log(f"auto_pulse error: {e}")
-        return {"status": "error", "reason": str(e)}
+        return {"status": "error", "reason": str(e)[:60]}

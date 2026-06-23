@@ -8,5 +8,12 @@
     "ratio": 2.24,
     "strongest": "一元化",
     "weakest": "术"
+  },
+  {
+    "ts": "17:18:36",
+    "chain_count": 13118,
+    "dimensions": 44,
+    "short_pct": 52.4,
+    "quality_pct": 47.6
   }
 ]
