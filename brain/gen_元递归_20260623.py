@@ -1,6 +1,6 @@
 """
-Brain-Engineered: 时间 (generation 1782196549590)
-管道自动检测弱维<时间>并生成v3工程
+Brain-Engineered: 元递归 (generation 1782196549602)
+管道自动检测弱维<元递归>并生成v3工程
 """
 import json, sys as _sys, time as _time
 from pathlib import Path
@@ -11,18 +11,18 @@ if str(CLUSTER) not in _sys.path:
 
 _GEN_FEEDBACK_FILE = CLUSTER / ".brain_gen_feedback.json"
 
-def engineer_时间():
-    """管道自动检测弱维<时间>并生成v3工程 — 含完整管道集成"""
+def engineer_元递归():
+    """管道自动检测弱维<元递归>并生成v3工程 — 含完整管道集成"""
     from brain.share import write_chain as _wc
     _now = _time.time()
     
     # ── 1. 写入洞察链(永久记忆) ──
     _wc({
-        "src": "工程·时间",
-        "rel": "基因表达·#1782196549590",
-        "dst": "时间",
-        "dimension": "时间",
-        "content": "管道自动检测弱维<时间>并生成v3工程",
+        "src": "工程·元递归",
+        "rel": "基因表达·#1782196549602",
+        "dst": "元递归",
+        "dimension": "元递归",
+        "content": "管道自动检测弱维<元递归>并生成v3工程",
         "strength": 0.6
     })
     
@@ -33,7 +33,7 @@ def engineer_时间():
         chains = hip.get("causal_chains", []) if isinstance(hip, dict) else []
     except:
         chains = []
-    dim_count = sum(1 for c in chains if c.get("dimension") == "时间")
+    dim_count = sum(1 for c in chains if c.get("dimension") == "元递归")
     total = len(chains)
     
     # ── 3. 相对弱维计算 (与系统其他维度比较) ──
@@ -44,7 +44,7 @@ def engineer_时间():
         for c in chains:
             d = c.get("dimension", "未分类")
             _all_dims[d] = _all_dims.get(d, 0) + 1
-        _other_counts = [c for d,c in _all_dims.items() if d != "时间" and d not in ("系统","未分类")]
+        _other_counts = [c for d,c in _all_dims.items() if d != "元递归" and d not in ("系统","未分类")]
         if _other_counts:
             _max_other = max(_other_counts)
         _threshold = int(_max_other * 0.65)
@@ -58,27 +58,27 @@ def engineer_时间():
         
         # 4a. 弱维时注册调优动作
         if _is_weak:
-            _ra("update_genome", {"changes": {}, "dimension": "时间",
+            _ra("update_genome", {"changes": {}, "dimension": "元递归",
                 "reason": f"{dim_name}偏弱({dim_count}/max={_max_other})"},
-                priority=5, source="gene:时间")
+                priority=5, source="gene:元递归")
             
             # 同时注入自愈链(强度高,会被验证器检查)
             _wc({
-                "src": "自愈·时间",
-                "rel": "基因表达·#1782196549590",
-                "dst": "时间",
-                "dimension": "时间",
-                "content": "时间偏弱({dim_count}条/总{total}条)自动注入夯实",
+                "src": "自愈·元递归",
+                "rel": "基因表达·#1782196549602",
+                "dst": "元递归",
+                "dimension": "元递归",
+                "content": "元递归偏弱({dim_count}条/总{total}条)自动注入夯实",
                 "strength": 0.8
             })
         
         # 4b. 强维时注册巩固动作
         if not _is_weak and dim_count > 0:
-            _ra("write_chain", {"src": f"巩固·时间",
-                "rel": f"基因表达·#1782196549590", "dst": "时间",
-                "content": f"时间维度健康({dim_count}条),脉冲巩固",
-                "dimension": "时间", "strength": 0.5},
-                priority=8, source="gene:时间")
+            _ra("write_chain", {"src": f"巩固·元递归",
+                "rel": f"基因表达·#1782196549602", "dst": "元递归",
+                "content": f"元递归维度健康({dim_count}条),脉冲巩固",
+                "dimension": "元递归", "strength": 0.5},
+                priority=8, source="gene:元递归")
     except:
         pass
     
@@ -86,13 +86,13 @@ def engineer_时间():
     try:
         fb = json.loads(_GEN_FEEDBACK_FILE.read_text()) if _GEN_FEEDBACK_FILE.exists() else {"reports": []}
         fb.setdefault("reports", []).append({
-            "dimension": "时间",
+            "dimension": "元递归",
             "chain_count": dim_count,
             "total_chains": total,
             "weak": _is_weak,
             "max_other": _max_other,
             "threshold": locals().get('_threshold', 0),
-            "insight": "管道自动检测弱维<时间>并生成v3工程",
+            "insight": "管道自动检测弱维<元递归>并生成v3工程",
             "engine": "gene_expression_v3",
             "timestamp": _now,
             "cycle": 0
@@ -103,5 +103,5 @@ def engineer_时间():
         pass
     
     if _is_weak:
-        return f"[弱] 时间={dim_count}/{total} (max={_max_other})"
-    return f"[稳] 时间={dim_count}/{total}"
+        return f"[弱] 元递归={dim_count}/{total} (max={_max_other})"
+    return f"[稳] 元递归={dim_count}/{total}"

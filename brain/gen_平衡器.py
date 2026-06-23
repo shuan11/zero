@@ -128,5 +128,6 @@ def pulse(cycle_num: int = 0) -> str:
             f"从{src_dim}({state['strongest_n']})注入{injected}链至最弱维 [{details}]")
 
 
-# 初始加载时执行一次
-pulse()
+# 初始加载时执行一次 — 由daemon在模块加载后手动调用
+# 注意: 此调用在模块导入时执行，确保hippocampus已就绪
+# 若daemon热加载请改为: balancer_pulse = pulse  (不执行，等待daemon调用)

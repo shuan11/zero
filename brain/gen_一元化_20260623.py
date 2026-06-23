@@ -1,6 +1,6 @@
 """
 
-Brain-Engineered: 一元化 (cycle #25)
+Brain-Engineered: 一元化 (cycle #4)
 Active sensor - analyzes dimension health on each load
 """
 import json, sys as _sys
@@ -13,7 +13,7 @@ if str(CLUSTER) not in _sys.path:
 _GEN_FEEDBACK_FILE = CLUSTER / ".brain_gen_feedback.json"
 
 def engineer_一元化():
-    """启示录锚点揭示道即聚合，注入无师自通以破洞察循环之困
+    """思考维度持续走弱，需通过元认知挑战缓存边界以突破惯性
     Returns dimension health analysis; feeds into next think() cycle.
     """
     from brain.share import write_chain as _wc, read_hip as _rh
@@ -21,10 +21,10 @@ def engineer_一元化():
     # 1) Always write the insight chain
     _wc({
         "src": "工程·一元化",
-        "rel": "活脉冲·#25",
+        "rel": "活脉冲·#4",
         "dst": "一元化",
         "dimension": "一元化",
-        "content": """启示录锚点揭示道即聚合，注入无师自通以破洞察循环之困""",
+        "content": """思考维度持续走弱，需通过元认知挑战缓存边界以突破惯性""",
         "strength": 0.6
     })
 
@@ -47,9 +47,9 @@ def engineer_一元化():
         analysis["chain_count"] = my_count
         analysis["total_chains"] = total
         analysis["strength"] = round(my_count / max(max_count, 1), 2) if max_count > 0 else 0
-        analysis["insight"] = """启示录锚点揭示道即聚合，注入无师自通以破洞察循环之困"""
+        analysis["insight"] = """思考维度持续走弱，需通过元认知挑战缓存边界以突破惯性"""
         analysis["weak"] = my_count < max_count * 0.65  # 低于最强65%即弱维(替代avg*0.85,解决均数通胀)
-        analysis["cycle"] = 25
+        analysis["cycle"] = 4
 
         # 3) Write analysis to shared feedback file for next think()
         try:

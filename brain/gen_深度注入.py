@@ -352,7 +352,8 @@ def auto_pulse():
             cycle = 0
         return pulse(cycle)
     except Exception as e:
-        _log(f"auto_pulse error: {e}")
+        import traceback
+        _log(f"auto_pulse error: {e}\n{traceback.format_exc()}")
         return {"status": "error", "reason": str(e)}
 
 
