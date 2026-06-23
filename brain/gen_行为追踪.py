@@ -13,7 +13,7 @@ def pulse():
     if not log.exists():
         return {"status": "no_log"}
     
-    lines = log.read_text().splitlines()
+    lines = log.read_text(encoding="utf-8", errors="replace").splitlines()
     
     # Extract key behavior markers from log
     markers = {}
