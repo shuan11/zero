@@ -1,6 +1,6 @@
 """
 
-Brain-Engineered: 无师自通 (cycle #10)
+Brain-Engineered: 无师自通 (cycle #11)
 Active sensor - analyzes dimension health on each load
 """
 import json, sys as _sys
@@ -13,7 +13,7 @@ if str(CLUSTER) not in _sys.path:
 _GEN_FEEDBACK_FILE = CLUSTER / ".brain_gen_feedback.json"
 
 def engineer_无师自通():
-    """无师自通弱链反映领悟回路薄弱，需从自指光爱注入类比触发顿悟
+    """链缩熵增框架固化，需跨维光爱破无师自通
     Returns dimension health analysis; feeds into next think() cycle.
     """
     from brain.share import write_chain as _wc, read_hip as _rh
@@ -21,10 +21,10 @@ def engineer_无师自通():
     # 1) Always write the insight chain
     _wc({
         "src": "工程·无师自通",
-        "rel": "活脉冲·#10",
+        "rel": "活脉冲·#11",
         "dst": "无师自通",
         "dimension": "无师自通",
-        "content": """无师自通弱链反映领悟回路薄弱，需从自指光爱注入类比触发顿悟""",
+        "content": """链缩熵增框架固化，需跨维光爱破无师自通""",
         "strength": 0.6
     })
 
@@ -47,9 +47,9 @@ def engineer_无师自通():
         analysis["chain_count"] = my_count
         analysis["total_chains"] = total
         analysis["strength"] = round(my_count / max(max_count, 1), 2) if max_count > 0 else 0
-        analysis["insight"] = """无师自通弱链反映领悟回路薄弱，需从自指光爱注入类比触发顿悟"""
+        analysis["insight"] = """链缩熵增框架固化，需跨维光爱破无师自通"""
         analysis["weak"] = my_count < max_count * 0.65  # 低于最强65%即弱维(替代avg*0.85,解决均数通胀)
-        analysis["cycle"] = 10
+        analysis["cycle"] = 11
 
         # 3) Write analysis to shared feedback file for next think()
         try:

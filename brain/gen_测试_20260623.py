@@ -1,6 +1,6 @@
 """
 
-Brain-Engineered: 测试 (cycle #4)
+Brain-Engineered: 测试 (cycle #16)
 Active sensor - analyzes dimension health on each load
 """
 import json, sys as _sys
@@ -21,7 +21,7 @@ def engineer_测试():
     # 1) Always write the insight chain
     _wc({
         "src": "工程·测试",
-        "rel": "活脉冲·#4",
+        "rel": "活脉冲·#16",
         "dst": "测试",
         "dimension": "测试",
         "content": """🔀 跳出(3次重复)弱维: 术→测试(-100.0链)""",
@@ -49,7 +49,7 @@ def engineer_测试():
         analysis["strength"] = round(my_count / max(max_count, 1), 2) if max_count > 0 else 0
         analysis["insight"] = """🔀 跳出(3次重复)弱维: 术→测试(-100.0链)"""
         analysis["weak"] = my_count < max_count * 0.65  # 低于最强65%即弱维(替代avg*0.85,解决均数通胀)
-        analysis["cycle"] = 4
+        analysis["cycle"] = 16
 
         # 3) Write analysis to shared feedback file for next think()
         try:
