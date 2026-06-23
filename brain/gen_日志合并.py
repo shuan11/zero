@@ -74,6 +74,8 @@ def pulse():
     total_skipped = 0
     source_results = []
     
+    import shutil
+    
     for name, entries, jpath in sources:
         merged, skipped = _merge_entries(entries, existing, existing_keys)
         total_merged += merged
@@ -86,13 +88,11 @@ def pulse():
         fcntl.flock(fd, fcntl.LOCK_UN)
         fd.close()
         # 备份当前文件以备审计
-        import shutil, os
         backup = HIPPOCAMPUS.with_suffix(".json.corrupt_bak")
         shutil.copy2(HIPPOCAMPUS, backup)
         return {"status": "abort", "reason": msg}
 
     # 写前备份
-    import shutil
     backup_path = HIPPOCAMPUS.with_suffix(".json.pre_merge_bak")
     shutil.copy2(HIPPOCAMPUS, backup_path)
 
