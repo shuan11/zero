@@ -7,12 +7,12 @@ daemon loader自动发现并执行。不依赖API外部燃料，纯本地链沉�
 """
 import json, random, pathlib, time
 
-HIP_FILE = pathlib.Path(__file__).parent / "hippocampus_memory.json"
+from brain.share import HIP_FILE
 MIN_CHAINS_PER_DIM = 130  # 确保最低130链
 WEAK_WINDOW = 5  # 每周期处理最弱5维
 LOG_TAG = "[弱维注入]"
 
-def get_dim_counts(chains):
+def _get_dim_counts(chains):
     dims = {}
     for c in chains:
         d = c.get("dimension", "?")
@@ -50,7 +50,7 @@ def run():
         print(f"{LOG_TAG} 空链")
         return False
 
-    dims = get_dim_counts(chains)
+    dims = _get_dim_counts(chains)
     sorted_dims = sorted(dims.items(), key=lambda x: x[1])
     strongest = sorted_dims[-1][1] if sorted_dims else 1
 
@@ -92,7 +92,7 @@ def run():
         json.dump({"causal_chains": chains}, _f, ensure_ascii=False, indent=2)
     os.rename(_tmp, str(HIP_FILE))
 
-    after = get_dim_counts(chains)
+    after = _get_dim_counts(chains)
     cost = time.time() - start
     print(f"{LOG_TAG} +{len(new_chains)}链/{cost:.1f}s | 弱维: {[(d,after.get(d,0)) for d,_ in target_dims]} | 强比: {after.get(target_dims[0][0],0)/strongest:.1%}")
     return True

@@ -1,6 +1,6 @@
 """
 
-Brain-Engineered: 一元化 (cycle #66)
+Brain-Engineered: 一元化 (cycle #6)
 Active sensor - analyzes dimension health on each load
 """
 import json, sys as _sys
@@ -13,7 +13,7 @@ if str(CLUSTER) not in _sys.path:
 _GEN_FEEDBACK_FILE = CLUSTER / ".brain_gen_feedback.json"
 
 def engineer_一元化():
-    """测试维度仅1链，反馈循环断裂，需以社会矛盾为验注入验证闭环
+    """对抗稀释链不足导致维度多样性下降，需从光爱维抽取异质模式注入
     Returns dimension health analysis; feeds into next think() cycle.
     """
     from brain.share import write_chain as _wc, read_hip as _rh
@@ -21,10 +21,10 @@ def engineer_一元化():
     # 1) Always write the insight chain
     _wc({
         "src": "工程·一元化",
-        "rel": "活脉冲·#66",
+        "rel": "活脉冲·#6",
         "dst": "一元化",
         "dimension": "一元化",
-        "content": """测试维度仅1链，反馈循环断裂，需以社会矛盾为验注入验证闭环""",
+        "content": """对抗稀释链不足导致维度多样性下降，需从光爱维抽取异质模式注入""",
         "strength": 0.6
     })
 
@@ -47,9 +47,9 @@ def engineer_一元化():
         analysis["chain_count"] = my_count
         analysis["total_chains"] = total
         analysis["strength"] = round(my_count / max(max_count, 1), 2) if max_count > 0 else 0
-        analysis["insight"] = """测试维度仅1链，反馈循环断裂，需以社会矛盾为验注入验证闭环"""
+        analysis["insight"] = """对抗稀释链不足导致维度多样性下降，需从光爱维抽取异质模式注入"""
         analysis["weak"] = my_count < max_count * 0.65  # 低于最强65%即弱维(替代avg*0.85,解决均数通胀)
-        analysis["cycle"] = 66
+        analysis["cycle"] = 6
 
         # 3) Write analysis to shared feedback file for next think()
         try:

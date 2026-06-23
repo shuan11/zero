@@ -7,12 +7,12 @@ gen_弱强交叉_20260621.py — 弱维×强维交叉注入模块
 """
 import json, pathlib, random, time
 
-HIP_FILE = pathlib.Path(__file__).parent / "hippocampus_memory.json"
+from brain.share import HIP_FILE
 WEAK_THRESHOLD = 130
 STRONG_THRESHOLD = 200
 PAIRS_PER_DIM = 2
 
-def get_dim_counts(chains):
+def _get_dim_counts(chains):
     dims = {}
     for c in chains:
         d = c.get("dimension", "?")
@@ -100,7 +100,7 @@ def run():
         return False
 
     chains = json.loads(HIP_FILE.read_bytes()).get("causal_chains", [])
-    dims = get_dim_counts(chains)
+    dims = _get_dim_counts(chains)
 
     # 最弱5维 (< 阈值)
     weak = sorted(dims.items(), key=lambda x: x[1])[:10]
@@ -132,7 +132,7 @@ def run():
     chains.extend(new_chains)
     HIP_FILE.write_text(json.dumps({"causal_chains": chains}, ensure_ascii=False, indent=2))
 
-    after = get_dim_counts(chains)
+    after = _get_dim_counts(chains)
     cost = time.time() - start
     print(f"[弱强交叉] +{len(new_chains)}链/{cost:.1f}s")
     for wd, wc in weak_targets:
