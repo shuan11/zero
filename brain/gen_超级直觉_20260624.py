@@ -1,5 +1,5 @@
 """
-Brain-Engineered: 超级直觉 (generation 1782295066358)
+Brain-Engineered: 超级直觉 (generation 1782296301055)
 管道自动检测弱维<超级直觉>并生成v3工程
 """
 import json, sys as _sys, time as _time
@@ -19,7 +19,7 @@ def engineer_超级直觉():
     # ── 1. 写入洞察链(永久记忆) ──
     _wc({
         "src": "工程·超级直觉",
-        "rel": "基因表达·#1782295066358",
+        "rel": "基因表达·#1782296301055",
         "dst": "超级直觉",
         "dimension": "超级直觉",
         "content": "管道自动检测弱维<超级直觉>并生成v3工程",
@@ -65,7 +65,7 @@ def engineer_超级直觉():
             # 同时注入自愈链(强度高,会被验证器检查)
             _wc({
                 "src": "自愈·超级直觉",
-                "rel": "基因表达·#1782295066358",
+                "rel": "基因表达·#1782296301055",
                 "dst": "超级直觉",
                 "dimension": "超级直觉",
                 "content": "超级直觉偏弱({dim_count}条/总{total}条)自动注入夯实",
@@ -75,7 +75,7 @@ def engineer_超级直觉():
         # 4b. 强维时注册巩固动作
         if not _is_weak and dim_count > 0:
             _ra("write_chain", {"src": f"巩固·超级直觉",
-                "rel": f"基因表达·#1782295066358", "dst": "超级直觉",
+                "rel": f"基因表达·#1782296301055", "dst": "超级直觉",
                 "content": f"超级直觉维度健康({dim_count}条),脉冲巩固",
                 "dimension": "超级直觉", "strength": 0.5},
                 priority=8, source="gene:超级直觉")
