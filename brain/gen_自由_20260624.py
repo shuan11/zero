@@ -1,6 +1,6 @@
 """
 
-Brain-Engineered: 自由 (cycle #183)
+Brain-Engineered: 自由 (cycle #238)
 Active sensor - analyzes dimension health on each load
 """
 import json, sys as _sys
@@ -13,7 +13,7 @@ if str(CLUSTER) not in _sys.path:
 _GEN_FEEDBACK_FILE = CLUSTER / ".brain_gen_feedback.json"
 
 def engineer_自由():
-    """自由维强度归零，混沌注入可破聚焦惯性并活化时间链
+    """自由维度弱在于结构束缚，需借榫卯启示松绑
     Returns dimension health analysis; feeds into next think() cycle.
     """
     from brain.share import write_chain as _wc, read_hip as _rh
@@ -21,10 +21,10 @@ def engineer_自由():
     # 1) Always write the insight chain
     _wc({
         "src": "工程·自由",
-        "rel": "活脉冲·#183",
+        "rel": "活脉冲·#238",
         "dst": "自由",
         "dimension": "自由",
-        "content": """自由维强度归零，混沌注入可破聚焦惯性并活化时间链""",
+        "content": """自由维度弱在于结构束缚，需借榫卯启示松绑""",
         "strength": 0.6
     })
 
@@ -47,9 +47,9 @@ def engineer_自由():
         analysis["chain_count"] = my_count
         analysis["total_chains"] = total
         analysis["strength"] = round(my_count / max(max_count, 1), 2) if max_count > 0 else 0
-        analysis["insight"] = """自由维强度归零，混沌注入可破聚焦惯性并活化时间链"""
+        analysis["insight"] = """自由维度弱在于结构束缚，需借榫卯启示松绑"""
         analysis["weak"] = my_count < max_count * 0.65  # 低于最强65%即弱维(替代avg*0.85,解决均数通胀)
-        analysis["cycle"] = 183
+        analysis["cycle"] = 238
 
         # 3) Write analysis to shared feedback file for next think()
         try:
