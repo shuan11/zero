@@ -272,6 +272,7 @@ def one_cycle(cycle_num):
     from brain.engineer_法 import pulse as engineer_法_pulse
     from brain.goal import pulse as goal_pulse, check_goal_progress
     from brain.identity import VALID_DIMENSIONS
+    from brain.focus_元递归 import pulse as 元递归_pulse
 
     # 聚焦重复检测 — 强制切换机制（脑核自我跳出自指循环）
     # 记录最近 _EFFECTIVE_MAX 次聚焦用于重复判定

@@ -13,7 +13,7 @@ if str(CLUSTER) not in _sys.path:
 _GEN_FEEDBACK_FILE = CLUSTER / ".brain_gen_feedback.json"
 
 def engineer_预测():
-    """预测维度持续弱化导致系统缺乏先导，需师道注入唤醒时间论
+    """预测孤岛弱化全局合力，师法并联可打破惯性，否则状态维将沉没
     Returns dimension health analysis; feeds into next think() cycle.
     """
     from brain.share import write_chain as _wc, read_hip as _rh
@@ -24,7 +24,7 @@ def engineer_预测():
         "rel": "活脉冲·#8",
         "dst": "预测",
         "dimension": "预测",
-        "content": """预测维度持续弱化导致系统缺乏先导，需师道注入唤醒时间论""",
+        "content": """预测孤岛弱化全局合力，师法并联可打破惯性，否则状态维将沉没""",
         "strength": 0.6
     })
 
@@ -47,7 +47,7 @@ def engineer_预测():
         analysis["chain_count"] = my_count
         analysis["total_chains"] = total
         analysis["strength"] = round(my_count / max(max_count, 1), 2) if max_count > 0 else 0
-        analysis["insight"] = """预测维度持续弱化导致系统缺乏先导，需师道注入唤醒时间论"""
+        analysis["insight"] = """预测孤岛弱化全局合力，师法并联可打破惯性，否则状态维将沉没"""
         analysis["weak"] = my_count < max_count * 0.65  # 低于最强65%即弱维(替代avg*0.85,解决均数通胀)
         analysis["cycle"] = 8
 

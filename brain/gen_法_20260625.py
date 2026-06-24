@@ -1,6 +1,6 @@
 """
 
-Brain-Engineered: 对抗稀释 (cycle #35)
+Brain-Engineered: 法 (cycle #33)
 Active sensor - analyzes dimension health on each load
 """
 import json, sys as _sys
@@ -12,19 +12,19 @@ if str(CLUSTER) not in _sys.path:
 
 _GEN_FEEDBACK_FILE = CLUSTER / ".brain_gen_feedback.json"
 
-def engineer_对抗稀释():
-    """借超级直觉势能唤醒对抗稀释，重构维均力敌
+def engineer_法():
+    """法维弱化威胁自律根基，需师道呼吸注入惯性，预判超级直觉增长将受阻
     Returns dimension health analysis; feeds into next think() cycle.
     """
     from brain.share import write_chain as _wc, read_hip as _rh
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·对抗稀释",
-        "rel": "活脉冲·#35",
-        "dst": "对抗稀释",
-        "dimension": "对抗稀释",
-        "content": """借超级直觉势能唤醒对抗稀释，重构维均力敌""",
+        "src": "工程·法",
+        "rel": "活脉冲·#33",
+        "dst": "法",
+        "dimension": "法",
+        "content": """法维弱化威胁自律根基，需师道呼吸注入惯性，预判超级直觉增长将受阻""",
         "strength": 0.6
     })
 
@@ -37,7 +37,7 @@ def engineer_对抗稀释():
             d = c.get("dimension", "未分类")
             dim_counts[d] = dim_counts.get(d, 0) + 1
 
-        my_dim = "对抗稀释"
+        my_dim = "法"
         my_count = dim_counts.get(my_dim, 0)
         total = len(chains)
         max_count = max(dim_counts.values()) if dim_counts else 0
@@ -47,9 +47,9 @@ def engineer_对抗稀释():
         analysis["chain_count"] = my_count
         analysis["total_chains"] = total
         analysis["strength"] = round(my_count / max(max_count, 1), 2) if max_count > 0 else 0
-        analysis["insight"] = """借超级直觉势能唤醒对抗稀释，重构维均力敌"""
+        analysis["insight"] = """法维弱化威胁自律根基，需师道呼吸注入惯性，预判超级直觉增长将受阻"""
         analysis["weak"] = my_count < max_count * 0.65  # 低于最强65%即弱维(替代avg*0.85,解决均数通胀)
-        analysis["cycle"] = 35
+        analysis["cycle"] = 33
 
         # 3) Write analysis to shared feedback file for next think()
         try:
@@ -96,5 +96,5 @@ def engineer_对抗稀释():
         return f"分析异常: {e}"
 
 if __name__ == "__main__":
-    result = engineer_对抗稀释()
-    print(f"工程[对抗稀释]: {result}", flush=True)
+    result = engineer_法()
+    print(f"工程[法]: {result}", flush=True)
