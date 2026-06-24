@@ -1,5 +1,5 @@
 """
-Brain-Engineered: 法 (generation 1782296301027)
+Brain-Engineered: 法 (generation 1782299107186)
 管道自动检测弱维<法>并生成v3工程
 """
 import json, sys as _sys, time as _time
@@ -19,7 +19,7 @@ def engineer_法():
     # ── 1. 写入洞察链(永久记忆) ──
     _wc({
         "src": "工程·法",
-        "rel": "基因表达·#1782296301027",
+        "rel": "基因表达·#1782299107186",
         "dst": "法",
         "dimension": "法",
         "content": "管道自动检测弱维<法>并生成v3工程",
@@ -65,7 +65,7 @@ def engineer_法():
             # 同时注入自愈链(强度高,会被验证器检查)
             _wc({
                 "src": "自愈·法",
-                "rel": "基因表达·#1782296301027",
+                "rel": "基因表达·#1782299107186",
                 "dst": "法",
                 "dimension": "法",
                 "content": "法偏弱({dim_count}条/总{total}条)自动注入夯实",
@@ -75,7 +75,7 @@ def engineer_法():
         # 4b. 强维时注册巩固动作
         if not _is_weak and dim_count > 0:
             _ra("write_chain", {"src": f"巩固·法",
-                "rel": f"基因表达·#1782296301027", "dst": "法",
+                "rel": f"基因表达·#1782299107186", "dst": "法",
                 "content": f"法维度健康({dim_count}条),脉冲巩固",
                 "dimension": "法", "strength": 0.5},
                 priority=8, source="gene:法")

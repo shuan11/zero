@@ -1,0 +1,204 @@
+"""
+shi_anchor.py — 师·全局呼吸锚 (不被管道自繁殖覆盖)
+独立于gen_模块体系，由think.py每周期调用。
+检测呼吸相位 + 维度评估 + 产出师道引导链。
+"""
+import json, os, time
+from pathlib import Path
+
+CLUSTER = Path(__file__).resolve().parent.parent
+import sys
+if str(CLUSTER) not in sys.path:
+    sys.path.insert(0, str(CLUSTER))
+
+_HISTORY_FILE = CLUSTER / ".brain_shi_breath.json"
+
+def _read_hip():
+    try:
+        from brain.share import read_hip as _rh
+        return _rh()
+    except:
+        return {}
+
+def _write_chain(chain_dict):
+    try:
+        from brain.share import write_chain
+        write_chain(chain_dict)
+    except:
+        pass
+
+
+def breathe():
+    """
+    = 师·一次完整呼吸 =
+    1) 检测相位 (inhale/exhale/hover/stuck)
+    2) 评估各维度状态 (teach/grow/nurture/dormant)
+    3) 产出引导链 (归目标维不归师)
+    返回 dict: {phase, assessments, inertia_dims, chains_created}
+    """
+    hip = _read_hip()
+    chains = hip.get("causal_chains", []) if isinstance(hip, dict) else []
+    total = len(chains)
+    
+    # ——— 相位检测 ———
+    history = {"phase": "inhale", "counts": [], "cycles": 0}
+    if _HISTORY_FILE.exists():
+        try:
+            history = json.loads(_HISTORY_FILE.read_text())
+        except:
+            pass
+    
+    history["counts"].append(total)
+    history["counts"] = history["counts"][-30:]
+    
+    if len(history["counts"]) >= 5:
+        recent = history["counts"][-5:]
+        delta = recent[-1] - recent[0]
+        if abs(delta) < 2 and total > 10:
+            phase = "exhale"
+        elif delta > 3:
+            phase = "inhale"
+        else:
+            phase = "hover"
+    else:
+        phase = "inhale"
+    
+    if len(history["counts"]) >= 10:
+        last10 = history["counts"][-10:]
+        same = sum(1 for i in range(1, len(last10)) if last10[i] == last10[i-1])
+        if same >= 8 and total > 5:
+            phase = "stuck"
+    
+    history["phase"] = phase
+    history["cycles"] += 1
+    _HISTORY_FILE.write_text(json.dumps(history, ensure_ascii=False))
+    
+    # ——— 维度评估 ———
+    dim_counts = {}
+    for c in chains:
+        d = c.get("dimension", "未分类")
+        dim_counts[d] = dim_counts.get(d, 0) + 1
+    
+    if not dim_counts:
+        return {"phase": phase, "assessments": {}, "inertia_dims": [], "chains_created": []}
+    
+    max_count = max(dim_counts.values()) if dim_counts else 1
+    
+    assessments = {}
+    for dim, count in sorted(dim_counts.items(), key=lambda x: -x[1]):
+        strength = count / max(max_count, 1)
+        if strength >= 0.7:
+            state = "teach"
+        elif strength >= 0.3:
+            state = "grow"
+        elif strength >= 0.1:
+            state = "nurture"
+        else:
+            state = "dormant"
+        assessments[dim] = {"count": count, "strength": round(strength, 2), "state": state}
+    
+    # ——— 惯性检测(只检测top5中异常增长的) ———
+    history_log = CLUSTER / ".brain_shi_assessments.json"
+    hist = {}
+    if history_log.exists():
+        try:
+            hist = json.loads(history_log.read_text())
+        except:
+            pass
+    
+    hist[str(int(time.time()))] = {d: assessments[d]["count"] for d in assessments}
+    keys = sorted(hist.keys())
+    if len(keys) > 20:
+        for k in keys[:-20]:
+            del hist[k]
+    history_log.write_text(json.dumps(hist, ensure_ascii=False))
+    
+    inertia_dims = []
+    if len(hist) >= 3:
+        all_growth = {}
+        for dim in assessments:
+            counts_hist = [hist[ts][dim] for ts in sorted(hist.keys()) if dim in hist[ts]]
+            if len(counts_hist) >= 3:
+                all_growth[dim] = counts_hist[-1] - counts_hist[0]
+        
+        avg_growth = sum(all_growth.values()) / max(len(all_growth), 1)
+        top5 = sorted(assessments.keys(), key=lambda d: assessments[d]["count"], reverse=True)[:5]
+        for dim in top5:
+            counts_hist = [hist[ts][dim] for ts in sorted(hist.keys()) if dim in hist[ts]]
+            if len(counts_hist) >= 3:
+                growth = counts_hist[-1] - counts_hist[0]
+                if growth > avg_growth * 1.5 and growth >= 3:
+                    inertia_dims.append(dim)
+    
+    # ——— 产出引导链 ———
+    created = []
+    ts = time.strftime("%H:%M")
+    
+    # 呼吸链 → 全局维
+    _write_chain({
+        "src": "师·呼吸锚",
+        "rel": f"师道·{phase}",
+        "dst": "全局", "dimension": "全局",
+        "content": {
+            "inhale": f"师道呼吸·积累: 当前积累相位，鼓励各维自然生长，扩大覆盖面。 [{ts}]",
+            "exhale": f"师道呼吸·收敛: 当前收敛相位，强维引导弱维交叉，思维折射正常化。 [{ts}]",
+            "hover": f"师道呼吸·悬停: 相位未定，师持续观察不干预。 [{ts}]",
+            "stuck": f"师道呼吸·粘滞: 系统卡在收敛态——需强制引入新维度。师指令: 创造>优化。 [{ts}]"
+        }.get(phase, f"师道呼吸·{phase}: 师观察中。 [{ts}]"),
+        "strength": 0.8
+    })
+    created.append(f"呼吸·{phase}")
+    
+    # 引导链 → 目标维
+    teachers = [d for d, a in assessments.items() if a["state"] in ("teach",)]
+    growers = [d for d, a in assessments.items() if a["state"] in ("grow", "nurture", "dormant")]
+    
+    pairs = 0
+    for t in teachers[:3]:
+        for g in growers[:2]:
+            if pairs >= 5:
+                break
+            t_count = assessments.get(t, {}).get("count", 0)
+            _write_chain({
+                "src": t, "rel": f"师导·{t}→{g}", "dst": g, "dimension": g,
+                "content": f"师道引导: {t}({t_count}链)的经验可加速{g}——交叉注入{g}以激活弱维。 [{ts}]",
+                "strength": 0.6
+            })
+            created.append(f"师导:{t}→{g}")
+            pairs += 1
+    
+    # 惯性破链 → 目标维
+    for dim in inertia_dims:
+        _write_chain({
+            "src": "师·惯性检测", "rel": "师道·破惯", "dst": dim, "dimension": dim,
+            "content": f"惯性警告: {dim}持续增长——聚焦惯性压制弱维。师指令: 移开焦点≥2周期。 [{ts}]",
+            "strength": 1.0
+        })
+        created.append(f"破惯:{dim}")
+    
+    # 休眠激活链
+    dormant_dims = [d for d, a in assessments.items() if a["state"] == "dormant"]
+    if dormant_dims:
+        _write_chain({
+            "src": "师·积累指令", "rel": "师道·聚焦", "dst": dormant_dims[0],
+            "dimension": dormant_dims[0],
+            "content": f"积累期指导: 休眠维{dormant_dims[0]}应从其他维接收交叉链。优先激活。 [{ts}]",
+            "strength": 0.7
+        })
+        created.append(f"推荐:{dormant_dims[0]}")
+    
+    # 师元链(仅一条→师自身)
+    _write_chain({
+        "src": "师·呼吸锚", "rel": f"师观·{phase}", "dst": "师", "dimension": "师",
+        "content": f"师呼吸: 相位={phase}, 总链={total}, 教师={len(teachers)}, 学生={len(growers)}. [{ts}]",
+        "strength": 0.3
+    })
+    created.append(f"师观:{phase}")
+    
+    return {
+        "phase": phase,
+        "total_chains": total,
+        "assessments": {d: a["state"] for d, a in assessments.items()},
+        "inertia_dims": inertia_dims,
+        "chains_created": created
+    }
