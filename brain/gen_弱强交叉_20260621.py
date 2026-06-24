@@ -19,7 +19,7 @@ def _get_dim_counts(chains):
         dims[d] = dims.get(d, 0) + 1
     return dims
 
-def make_chain(src, rel, dst, dim, strength=0.85):
+def _make_chain(src, rel, dst, dim, strength=0.85):
     content = f"{src}→{rel}→{dst[:40]}"
     return {
         "src": str(src)[:40],
@@ -120,7 +120,7 @@ def run():
                 continue
             insights = CROSS_INSIGHTS[key]
             for src, rel, dst in insights:
-                chain = make_chain(src, rel, dst, wd)
+                chain = _make_chain(src, rel, dst, wd)
                 if chain["content"] not in existing_contents:
                     new_chains.append(chain)
                     existing_contents.add(chain["content"])
