@@ -199,7 +199,15 @@ def _generate_deep_content(dim, src, rel, dst, original_content):
     for k, v in replacements.items():
         template = template.replace(k, v)
     
-    return template[:150]
+    # 关键：保证每条富集后的链唯一——附加源链的短指纹
+    # 即使模板无变量替换，不同源链也产生不同内容
+    sig = original_content.strip()[:24]
+    if sig:
+        # 对部分通用模板，直接用源链开头替换模板尾部
+        # 对长度超出模板上限的，替换为更紧凑格式
+        template = template[:130] + f" ── {sig}"
+    
+    return template[:160]
 
 def check_quality(hip_path=None):
     """质量审计 — 返回各维平均链长报告"""

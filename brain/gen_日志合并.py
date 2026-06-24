@@ -121,6 +121,8 @@ def pulse():
     shutil.copy2(HIPPOCAMPUS, backup_path)
 
     # 写回主海马体（ext4，安全）
+    if "metadata" not in data:
+        data["metadata"] = {"version": 1}
     data["metadata"]["total_chains"] = len(existing)
     data["metadata"]["last_update"] = ts
     fd.seek(0)
