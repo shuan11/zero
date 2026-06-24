@@ -244,7 +244,7 @@ def check_quality(hip_path=None):
     sorted_dims = sorted(dim_avg.items(), key=lambda x: x[1])
     return sorted_dims
 
-def pulse(cycle_num=None, interval=10):
+def pulse(cycle_num=None, interval=5):
     """每interval周期执行一次内容纯化（支持loader无参调用，此时每次运行）"""
     if cycle_num is not None and cycle_num % interval != 0:
         return {"status": "skipped", "reason": f"not my cycle (cycle%{interval}!=0)"}
@@ -278,7 +278,7 @@ def pulse(cycle_num=None, interval=10):
         journal_entries = jd if isinstance(jd, list) else jd.get("entries", [])
     
     new_entries = []
-    for dim in worst_dims[:3]:
+    for dim in worst_dims[:5]:
         dim_chains = chains_by_dim.get(dim, [])
         # 找<40字符的
         short_chains = [c for c in dim_chains if len(c.get('content', '')) < 40]
