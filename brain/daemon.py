@@ -1002,6 +1002,32 @@ def one_cycle(cycle_num):
     _ab_msgs = analogical_bridge_pulse(cycle_num) or []
     for _m in _ab_msgs:
         log(f"  非对称桥: {_m}")
+    # 元递归强制焦点消费（P106: 读取brain_next_focus.json → 应用强制焦点切换）
+    _next_focus_file = CLUSTER / ".brain_next_focus.json"
+    if _next_focus_file.exists():
+        try:
+            _nf = json.loads(_next_focus_file.read_text())
+            _forced = _nf.get("forced_focus")
+            _reason = _nf.get("reason", "元递归检测")
+            if _forced:
+                # 读取当前焦点
+                _ff = CLUSTER / ".brain_focus.json"
+                _cur_focus = {}
+                if _ff.exists():
+                    _cur_focus = json.loads(_ff.read_text())
+                _cur_focus["focus"] = _forced
+                _cur_focus["insight"] = f"⚡元递归强制切换→{_forced}: {_reason}"
+                _cur_focus["source"] = "engineer_法·元递归"
+                _cur_focus["forced_at"] = time.time()
+                _ff.write_text(json.dumps(_cur_focus, ensure_ascii=False, indent=2))
+                log(f"  元递归突变: 焦点{_nf.get('origin_focus','?')}→{_forced} ({_reason})")
+                # 消费后删除
+                _next_focus_file.unlink()
+        except Exception as _nf_e:
+            log(f"  元递归消费异常: {_nf_e}")
+            try:
+                _next_focus_file.unlink()
+            except: pass
     # 焦点动作消费（每5周期检测并持久化新焦点动作）
     _fc_msgs = focus_consumer_pulse(cycle_num) or []
     for _m in _fc_msgs:
