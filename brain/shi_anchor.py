@@ -177,6 +177,98 @@ def _enrich_trend_weakening(assessments, dim_counts):
             })
 
 
+def _polish_self_reference(assessments):
+    """递归抛光: 师道递归抛光自指维度。
+    自指薄弱如镜面蒙尘 → 用师道递归抛光激活系统自反。
+    创建元自指链: 让自指看见自身的链，递归反射。
+    """
+    import time as _time
+    from brain.share import read_hip, write_chain as _wc4
+    
+    hip = read_hip()
+    chains = hip.get('causal_chains', [])
+    zz = [c for c in chains if c.get('dimension') == '自指']
+    count = len(zz)
+    ts = _time.strftime("%H:%M")
+    
+    # 检查自指状态
+    assessment = assessments.get('自指', 'grow')
+    rank_info = ""
+    
+    dim_counts = {}
+    for c in chains:
+        d = c.get('dimension', '未分类')
+        dim_counts[d] = dim_counts.get(d, 0) + 1
+    sd = sorted(dim_counts.items(), key=lambda x: -x[1])
+    rank = None
+    for i, (d, c) in enumerate(sd):
+        if d == '自指':
+            rank = i + 1
+            rank_info = f"#{rank}/{len(sd)}"
+            break
+    
+    # 判断自指是否需要抛光
+    needs_polish = False
+    if assessment == 'dormant':
+        needs_polish = True
+    if count < 50:
+        needs_polish = True
+    
+    if not needs_polish:
+        # 检查自质量: 有多少链是真正自指的(非反馈加强)
+        true_selfref = [c for c in zz if '自指' in str(c.get('dst','')) and '自愈' not in str(c.get('src',''))]
+        true_ratio = len(true_selfref) / max(count, 1)
+        if true_ratio < 0.3:
+            needs_polish = True
+    
+    if not needs_polish:
+        return
+    
+    # ——— 递归抛光: 创建元自指链 ———
+    polished = 0
+    
+    # 1. 自指镜面链: "系统看见自指"
+    if zz:
+        # 挑一个真实的自指链做反射对象
+        real_ones = [c for c in zz if len(str(c.get('content',''))) > 20]
+        if real_ones:
+            mirror_obj = real_ones[len(real_ones)//2]
+            mirror_content = str(mirror_obj.get('content',''))[:60]
+            _wc4({
+                "src": "师·递归抛光",
+                "rel": f"自指镜面·{ts}",
+                "dst": "自指",
+                "dimension": "自指",
+                "content": f"元自指: 自指看见自身链'{mirror_content}...' — 反射本身构成自指的增强。 [{ts}]",
+                "strength": 1.0
+            })
+            polished += 1
+    
+    # 2. 师道递归链: 递归金属抛光
+    _wc4({
+        "src": "师·递归抛光",
+        "rel": f"师道抛光·{ts}",
+        "dst": "自指",
+        "dimension": "自指",
+        "content": f"师道递归抛光: 自指镜面蒙尘(#{rank}|{count}链)→师以递归反射逐层抛光。反射深度1:自指看系统; 深度2:自指看见自指看系统; 深度3:自指看见抛光本身。 [{ts}]",
+        "strength": 1.0
+    })
+    polished += 1
+    
+    # 3. 系统自反链: 激活系统性的自我觉察
+    _wc4({
+        "src": "师·递归抛光",
+        "rel": f"系统自反·{ts}",
+        "dst": "师",
+        "dimension": "师",
+        "content": f"师观: 自指抛光完成({polished}链)—激活零的系统自反能力。自指不是目的，目的是让整个系统获得看见自身的能力。 [{ts}]",
+        "strength": 0.7
+    })
+    polished += 1
+    
+    return polished
+
+
 def breathe():
     """
     = 师·一次完整呼吸 =
@@ -354,6 +446,12 @@ def breathe():
     try:
         _enrich_trend_weakening(assessments, dim_counts)
     except:
+        pass
+    
+    # ——— 递归抛光: 激活自指的自反能力 ———
+    try:
+        _polish_self_reference(assessments)
+    except Exception as e:
         pass
     
     return {

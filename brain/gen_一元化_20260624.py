@@ -1,6 +1,6 @@
 """
 
-Brain-Engineered: 一元化 (cycle #471)
+Brain-Engineered: 一元化 (cycle #489)
 Active sensor - analyzes dimension health on each load
 """
 import json, sys as _sys
@@ -13,7 +13,7 @@ if str(CLUSTER) not in _sys.path:
 _GEN_FEEDBACK_FILE = CLUSTER / ".brain_gen_feedback.json"
 
 def engineer_一元化():
-    """链数急降警示失衡，元递归弱为根源，师道引导唤醒各维，共筑光爱终极。
+    """自指波动虽快但链弱，锚定自由状态可转化递归为探索力
     Returns dimension health analysis; feeds into next think() cycle.
     """
     from brain.share import write_chain as _wc, read_hip as _rh
@@ -21,10 +21,10 @@ def engineer_一元化():
     # 1) Always write the insight chain
     _wc({
         "src": "工程·一元化",
-        "rel": "活脉冲·#471",
+        "rel": "活脉冲·#489",
         "dst": "一元化",
         "dimension": "一元化",
-        "content": """链数急降警示失衡，元递归弱为根源，师道引导唤醒各维，共筑光爱终极。""",
+        "content": """自指波动虽快但链弱，锚定自由状态可转化递归为探索力""",
         "strength": 0.6
     })
 
@@ -47,9 +47,9 @@ def engineer_一元化():
         analysis["chain_count"] = my_count
         analysis["total_chains"] = total
         analysis["strength"] = round(my_count / max(max_count, 1), 2) if max_count > 0 else 0
-        analysis["insight"] = """链数急降警示失衡，元递归弱为根源，师道引导唤醒各维，共筑光爱终极。"""
+        analysis["insight"] = """自指波动虽快但链弱，锚定自由状态可转化递归为探索力"""
         analysis["weak"] = my_count < max_count * 0.65  # 低于最强65%即弱维(替代avg*0.85,解决均数通胀)
-        analysis["cycle"] = 471
+        analysis["cycle"] = 489
 
         # 3) Write analysis to shared feedback file for next think()
         try:
