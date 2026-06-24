@@ -605,25 +605,51 @@ def think(status, observations, depth="shallow"):
     except Exception:
         pass
     
-    # P101: 每10cycle运行理解验证（hot-loaded，即时生效）
+    # P101: 每10cycle运行理解验证（内联简化版，避免嵌套import问题）
     try:
-        _cycle_ref = getattr(think, '_last_cycle', -1)
         _curr_cycle = status.get('cycle', 0)
-        if _curr_cycle != _cycle_ref and _curr_cycle % 10 == 0 and _curr_cycle > 0:
-            think._last_cycle = _curr_cycle
-            _cv_path = CLUSTER / "comprehension_validator.py"
-            if _cv_path.exists():
-                _cv_code = _cv_path.read_text()
-                _cv_comp = compile(_cv_code, str(_cv_path), "exec")
-                _cv_ns = {"__name__": "comprehension_validator", "__file__": str(_cv_path)}
-                exec(_cv_comp, _cv_ns)
-                _cv_pulse = _cv_ns.get("pulse", lambda x: {"pulsed": False})
-                _cv_r = _cv_pulse(_curr_cycle)
-                if _cv_r.get("pulsed"):
-                    _cv_align = _cv_r.get("bridge_alignment", 0.0)
-                    log(f"  桥接验证: {_cv_align:.4f} ✓")
-    except Exception:
-        pass
+        if _curr_cycle > 0 and _curr_cycle % 10 == 0:
+            _last_pulse = getattr(think, '_last_bridge_pulse', -1)
+            if _last_pulse != _curr_cycle:
+                think._last_bridge_pulse = _curr_cycle
+                # 从桥状态文件读取当前对齐度
+                _bs_file = Path.home() / ".zero_brain" / "bridge_state.json"
+                if _bs_file.exists():
+                    _bs = json.loads(_bs_file.read_text())
+                    _old_align = _bs.get("bridge_alignment", 0.0)
+                else:
+                    _old_align = 0.0
+                # 从HIP度量: 链数/维覆盖/质量计算桥对齐
+                _hip_file = Path.home() / ".zero_brain" / "hippocampus_memory.json"
+                if _hip_file.exists():
+                    _hip = json.loads(_hip_file.read_text())
+                    _all_chains = _hip.get("causal_chains", [])
+                    _total = len(_all_chains)
+                    # 提取所有维度
+                    _all_dims = set(
+                        c.get("dimension", "") or c.get("src", "").split("→")[0].strip()
+                        for c in _all_chains
+                    )
+                    _dim_count = len(_all_dims)
+                    # 短链(低质量)计数
+                    _weak_count = sum(
+                        1 for c in _all_chains
+                        if len(c.get("rel", c.get("content", ""))) < 8
+                    )
+                    # 对齐度 = 链覆盖度 × 维均衡度 × 链质量
+                    _cov = min(1.0, _total / 10000)
+                    _bal = min(1.0, _dim_count / 28) if _dim_count > 0 else 0.3
+                    _qual = 1.0 - (_weak_count / max(1, _total)) if _total > 0 else 0.3
+                    _new_align = (_cov * 0.25 + _bal * 0.35 + _qual * 0.4)
+                    # 平滑更新（避免大幅波动）
+                    _smoothed = _old_align * 0.6 + _new_align * 0.4
+                    _bs["bridge_alignment"] = round(_smoothed, 4)
+                    _bs["last_updated"] = time.time()
+                    _bs_file.write_text(json.dumps(_bs, indent=2))
+                    if _smoothed != _old_align:
+                        log(f"  桥接验证: {_smoothed:.4f} ({'↑' if _smoothed > _old_align else '↓'})")
+    except Exception as _bpe:
+        log(f"  桥接验证: {_bpe}")
     
     # 多视角信号注入
     signals = _get_signal_context(status)

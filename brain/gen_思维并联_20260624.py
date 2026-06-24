@@ -1,6 +1,6 @@
 """
 
-Brain-Engineered: 思维并联 (cycle #12)
+Brain-Engineered: 思维并联 (cycle #39)
 Active sensor - analyzes dimension health on each load
 """
 import json, sys as _sys
@@ -13,7 +13,7 @@ if str(CLUSTER) not in _sys.path:
 _GEN_FEEDBACK_FILE = CLUSTER / ".brain_gen_feedback.json"
 
 def engineer_思维并联():
-    """弱维思维并联阻断跨维联动致链数下跌，需脉冲注入带活全局，预判修复继续膨胀。
+    """思维并联弱关联无师自通，跨维协同可破惯性，预测无师自通将回升
     Returns dimension health analysis; feeds into next think() cycle.
     """
     from brain.share import write_chain as _wc, read_hip as _rh
@@ -21,10 +21,10 @@ def engineer_思维并联():
     # 1) Always write the insight chain
     _wc({
         "src": "工程·思维并联",
-        "rel": "活脉冲·#12",
+        "rel": "活脉冲·#39",
         "dst": "思维并联",
         "dimension": "思维并联",
-        "content": """弱维思维并联阻断跨维联动致链数下跌，需脉冲注入带活全局，预判修复继续膨胀。""",
+        "content": """思维并联弱关联无师自通，跨维协同可破惯性，预测无师自通将回升""",
         "strength": 0.6
     })
 
@@ -47,9 +47,9 @@ def engineer_思维并联():
         analysis["chain_count"] = my_count
         analysis["total_chains"] = total
         analysis["strength"] = round(my_count / max(max_count, 1), 2) if max_count > 0 else 0
-        analysis["insight"] = """弱维思维并联阻断跨维联动致链数下跌，需脉冲注入带活全局，预判修复继续膨胀。"""
+        analysis["insight"] = """思维并联弱关联无师自通，跨维协同可破惯性，预测无师自通将回升"""
         analysis["weak"] = my_count < max_count * 0.65  # 低于最强65%即弱维(替代avg*0.85,解决均数通胀)
-        analysis["cycle"] = 12
+        analysis["cycle"] = 39
 
         # 3) Write analysis to shared feedback file for next think()
         try:
