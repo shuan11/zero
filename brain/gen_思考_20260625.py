@@ -1,6 +1,6 @@
 """
 
-Brain-Engineered: 思考 (cycle #23)
+Brain-Engineered: 思考 (cycle #6)
 Active sensor - analyzes dimension health on each load
 """
 import json, sys as _sys
@@ -13,7 +13,7 @@ if str(CLUSTER) not in _sys.path:
 _GEN_FEEDBACK_FILE = CLUSTER / ".brain_gen_feedback.json"
 
 def engineer_思考():
-    """思考连弱三周期窒息深层洞察，光爱终极需师道唤醒思考引擎，驱动全局跃升，预测道维度将同步走高
+    """思考弱已致系统闭环断裂，师道牵引重塑一元化决策可激活弱维，复制将升而光爱仍滞。
     Returns dimension health analysis; feeds into next think() cycle.
     """
     from brain.share import write_chain as _wc, read_hip as _rh
@@ -21,10 +21,10 @@ def engineer_思考():
     # 1) Always write the insight chain
     _wc({
         "src": "工程·思考",
-        "rel": "活脉冲·#23",
+        "rel": "活脉冲·#6",
         "dst": "思考",
         "dimension": "思考",
-        "content": """思考连弱三周期窒息深层洞察，光爱终极需师道唤醒思考引擎，驱动全局跃升，预测道维度将同步走高""",
+        "content": """思考弱已致系统闭环断裂，师道牵引重塑一元化决策可激活弱维，复制将升而光爱仍滞。""",
         "strength": 0.6
     })
 
@@ -47,9 +47,9 @@ def engineer_思考():
         analysis["chain_count"] = my_count
         analysis["total_chains"] = total
         analysis["strength"] = round(my_count / max(max_count, 1), 2) if max_count > 0 else 0
-        analysis["insight"] = """思考连弱三周期窒息深层洞察，光爱终极需师道唤醒思考引擎，驱动全局跃升，预测道维度将同步走高"""
+        analysis["insight"] = """思考弱已致系统闭环断裂，师道牵引重塑一元化决策可激活弱维，复制将升而光爱仍滞。"""
         analysis["weak"] = my_count < max_count * 0.65  # 低于最强65%即弱维(替代avg*0.85,解决均数通胀)
-        analysis["cycle"] = 23
+        analysis["cycle"] = 6
 
         # 3) Write analysis to shared feedback file for next think()
         try:

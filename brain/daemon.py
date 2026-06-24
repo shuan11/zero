@@ -1083,6 +1083,11 @@ def one_cycle(cycle_num):
         _状态_msgs = focus_状态_pulse(cycle_num) or []
         for _m in _状态_msgs:
             log(f"  状态映射: {_m}")
+    # 元递归自指引擎（每5周期+cycle 0: 自观→自检→自改→自观闭环）
+    if cycle_num == 0 or cycle_num % 5 == 0:
+        _元_msgs = 元递归_pulse(cycle_num) or []
+        for _m in _元_msgs:
+            log(f"  元递归: {_m}")
     # engineer_法·递归规则修正（每7周期检测重复焦点+写修正链）
     _法引擎_msgs = engineer_法_pulse(cycle_num) or []
     for _m in _法引擎_msgs:
