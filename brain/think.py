@@ -593,6 +593,38 @@ def think(status, observations, depth="shallow"):
     obs_text = "\n".join(observations)
     status_text = json.dumps(status, ensure_ascii=False)[:2000]
     
+    # P101: 读桥接对齐度并注入观察（使API感知bridge状态）
+    try:
+        _bs_file = Path.home() / ".zero_brain" / "bridge_state.json"
+        if _bs_file.exists():
+            _bs = json.loads(_bs_file.read_text())
+            _align = _bs.get("bridge_alignment", 0.0)
+            if _align > 0:
+                observations.append(f"🔗 桥接对齐: {_align:.3f}")
+                status["bridge_alignment"] = _align
+    except Exception:
+        pass
+    
+    # P101: 每10cycle运行理解验证（hot-loaded，即时生效）
+    try:
+        _cycle_ref = getattr(think, '_last_cycle', -1)
+        _curr_cycle = status.get('cycle', 0)
+        if _curr_cycle != _cycle_ref and _curr_cycle % 10 == 0 and _curr_cycle > 0:
+            think._last_cycle = _curr_cycle
+            _cv_path = CLUSTER / "comprehension_validator.py"
+            if _cv_path.exists():
+                _cv_code = _cv_path.read_text()
+                _cv_comp = compile(_cv_code, str(_cv_path), "exec")
+                _cv_ns = {"__name__": "comprehension_validator", "__file__": str(_cv_path)}
+                exec(_cv_comp, _cv_ns)
+                _cv_pulse = _cv_ns.get("pulse", lambda x: {"pulsed": False})
+                _cv_r = _cv_pulse(_curr_cycle)
+                if _cv_r.get("pulsed"):
+                    _cv_align = _cv_r.get("bridge_alignment", 0.0)
+                    log(f"  桥接验证: {_cv_align:.4f} ✓")
+    except Exception:
+        pass
+    
     # 多视角信号注入
     signals = _get_signal_context(status)
     signal_section = f"\n外部信号:\n{signals}\n" if signals else ""
