@@ -81,13 +81,35 @@ def log(msg):
     t = datetime.now().strftime("%H:%M:%S")
     line = f"  🧠 [{t}] {msg}"
     # 双向输出：stdout（可见）和日志文件（持久）
-    print(line, flush=True)
+    # 注意：后台daemon的stdout pipe可能在调用返回后关闭，
+    # BrokenPipeError必须捕获以免杀死线程
+    try:
+        print(line, flush=True)
+    except OSError:
+        pass  # stdout pipe断开，后台模式正常
+    # 主日志（ext4 防 D 状态）
+    _wrote = False
     try:
         with open(str(DAEMON_LOG), "a") as f:
             f.write(line + "\n")
             f.flush()
-    except Exception:
-        pass
+        _wrote = True
+    except Exception as e:
+        # 不静默 — 至少报告到 stderr
+        try:
+            sys.stderr.write(f"[LOG_FAIL] {e}\n")
+            sys.stderr.flush()
+        except Exception:
+            pass
+    # 安全网：若主日志写入失败，尝试 drvfs 备用
+    if not _wrote:
+        try:
+            _bak = Path("/mnt/c/Users/h/Desktop/零/真元集群/brain_daemon.log")
+            with open(str(_bak), "a") as f:
+                f.write(f"[BAK] {line}\n")
+                f.flush()
+        except Exception:
+            pass
 
 def _check_pid_conflict():
     """检测旧 daemon 并确保杀死（防D状态绕过）"""
@@ -216,7 +238,7 @@ def one_cycle(cycle_num):
     _parallel_think = _think_ns.get("_parallel_think", lambda: None)
     # from brain.think import think, _parallel_think
     from brain.act import act, _consume_proposals, _self_evolve
-    from brain.inspect import inspect_and_report, heal_from_inspection
+    from brain.self_inspect import inspect_and_report, heal_from_inspection
     from brain.replica import full_mirror, auto_heal_daemon, check_primary_health
     from brain.state import save_state, update_metadata
     from brain.system import pulse as system_pulse
@@ -370,7 +392,7 @@ def one_cycle(cycle_num):
         if _cv_path.exists():
             _cv_code = _cv_path.read_text()
             _cv_compiled = compile(_cv_code, str(_cv_path), "exec")
-            _cv_ns = {"__name__": "comprehension_validator", "__file__": str(_cv_path)}
+            _cv_ns = {"__name__": "comprehension_validator", "__package__": "", "__file__": str(_cv_path)}
             exec(_cv_compiled, _cv_ns)
             _cv_pulse = _cv_ns.get("pulse", lambda x: {"pulsed": False})
             _cv_result = _cv_pulse(cycle_num)
@@ -474,7 +496,7 @@ def one_cycle(cycle_num):
         if _bridge_code_path.exists():
             _bridge_code = _bridge_code_path.read_text()
             _bridge_comp = compile(_bridge_code, "comprehension_validator.py", "exec")
-            _bridge_ns = {"__name__": "comprehension_validator", "__file__": str(_bridge_code_path)}
+            _bridge_ns = {"__name__": "comprehension_validator", "__package__": "", "__file__": str(_bridge_code_path)}
             exec(_bridge_comp, _bridge_ns)
             _bridge_pulse = _bridge_ns["pulse"]
             _bridge_state_fn = _bridge_ns["get_bridge_state"]

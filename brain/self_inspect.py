@@ -15,8 +15,8 @@ brain/inspect.py — 系统化自我检查模块
 
 import json, os, sys, time, subprocess
 from pathlib import Path
-from .share import CLUSTER, log, write_chain, read_hip
-from .identity import VALID_DIMENSIONS, sanitize_dim, is_identity_intact
+from brain.share import CLUSTER, log, write_chain, read_hip
+from brain.identity import VALID_DIMENSIONS, sanitize_dim, is_identity_intact
 
 def check_daemon():
     """1) 脑核守护进程健康"""

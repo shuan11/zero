@@ -31,7 +31,7 @@ STATE_FILES = [
 # 需要备份的关键代码文件
 CODE_FILES = [
     "brain/daemon.py", "brain/think.py", "brain/act.py",
-    "brain/share.py", "brain/identity.py", "brain/inspect.py",
+    "brain/share.py", "brain/identity.py", "brain/self_inspect.py",
     "brain/replica.py", "brain/state.py",
     "boot.py", "brain_watchdog.sh",
 ]

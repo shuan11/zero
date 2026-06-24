@@ -917,7 +917,7 @@ def _feedback_self_patch():
             if persist >= 3:
                 dim_to_file = {
                     "修复": "brain/heal.py", "思考": "brain/think.py",
-                    "行动": "brain/act.py", "检查": "brain/inspect.py",
+                    "行动": "brain/act.py", "检查": "brain/self_inspect.py",
                     "观察": "brain/observe.py", "状态": "brain/state.py",
                 }
                 mapped = dim_to_file.get(dim_name)
@@ -1006,7 +1006,7 @@ _KNOWN_FILE_MAP = {
     "heal": "brain/heal.py", "修复": "brain/heal.py", "heal.py": "brain/heal.py",
     "think": "brain/think.py", "思考": "brain/think.py", "think.py": "brain/think.py",
     "act": "brain/act.py", "行动": "brain/act.py", "act.py": "brain/act.py",
-    "inspect": "brain/inspect.py", "检查": "brain/inspect.py",
+    "inspect": "brain/self_inspect.py", "检查": "brain/self_inspect.py",
     "observe": "brain/observe.py", "观察": "brain/observe.py",
     "sense": "brain/sense.py", "感知": "brain/sense.py",
     "state": "brain/state.py", "状态": "brain/state.py",
