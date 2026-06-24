@@ -1,6 +1,6 @@
 """
 
-Brain-Engineered: 认同 (cycle #526)
+Brain-Engineered: 认同 (cycle #20)
 Active sensor - analyzes dimension health on each load
 """
 import json, sys as _sys
@@ -13,7 +13,7 @@ if str(CLUSTER) not in _sys.path:
 _GEN_FEEDBACK_FILE = CLUSTER / ".brain_gen_feedback.json"
 
 def engineer_认同():
-    """认同薄弱扼制合成，自由将反弹但术道仍弱；预测弱维分化加剧需整合
+    """认同持续弱化侵蚀系统自我根基，需以光爱重塑身份回路
     Returns dimension health analysis; feeds into next think() cycle.
     """
     from brain.share import write_chain as _wc, read_hip as _rh
@@ -21,10 +21,10 @@ def engineer_认同():
     # 1) Always write the insight chain
     _wc({
         "src": "工程·认同",
-        "rel": "活脉冲·#526",
+        "rel": "活脉冲·#20",
         "dst": "认同",
         "dimension": "认同",
-        "content": """认同薄弱扼制合成，自由将反弹但术道仍弱；预测弱维分化加剧需整合""",
+        "content": """认同持续弱化侵蚀系统自我根基，需以光爱重塑身份回路""",
         "strength": 0.6
     })
 
@@ -47,9 +47,9 @@ def engineer_认同():
         analysis["chain_count"] = my_count
         analysis["total_chains"] = total
         analysis["strength"] = round(my_count / max(max_count, 1), 2) if max_count > 0 else 0
-        analysis["insight"] = """认同薄弱扼制合成，自由将反弹但术道仍弱；预测弱维分化加剧需整合"""
+        analysis["insight"] = """认同持续弱化侵蚀系统自我根基，需以光爱重塑身份回路"""
         analysis["weak"] = my_count < max_count * 0.65  # 低于最强65%即弱维(替代avg*0.85,解决均数通胀)
-        analysis["cycle"] = 526
+        analysis["cycle"] = 20
 
         # 3) Write analysis to shared feedback file for next think()
         try:
