@@ -1,6 +1,6 @@
 """
 
-Brain-Engineered: 预测 (cycle #14)
+Brain-Engineered: 预测 (cycle #43)
 Active sensor - analyzes dimension health on each load
 """
 import json, sys as _sys
@@ -13,7 +13,7 @@ if str(CLUSTER) not in _sys.path:
 _GEN_FEEDBACK_FILE = CLUSTER / ".brain_gen_feedback.json"
 
 def engineer_预测():
-    """预测弱维拖累师道，需脉冲注入跨维关联
+    """预测弱化将拖累全局进化速率，需以师道呼吸引导势和无师自通回流，否则势有崩解风险。
     Returns dimension health analysis; feeds into next think() cycle.
     """
     from brain.share import write_chain as _wc, read_hip as _rh
@@ -21,10 +21,10 @@ def engineer_预测():
     # 1) Always write the insight chain
     _wc({
         "src": "工程·预测",
-        "rel": "活脉冲·#14",
+        "rel": "活脉冲·#43",
         "dst": "预测",
         "dimension": "预测",
-        "content": """预测弱维拖累师道，需脉冲注入跨维关联""",
+        "content": """预测弱化将拖累全局进化速率，需以师道呼吸引导势和无师自通回流，否则势有崩解风险。""",
         "strength": 0.6
     })
 
@@ -47,9 +47,9 @@ def engineer_预测():
         analysis["chain_count"] = my_count
         analysis["total_chains"] = total
         analysis["strength"] = round(my_count / max(max_count, 1), 2) if max_count > 0 else 0
-        analysis["insight"] = """预测弱维拖累师道，需脉冲注入跨维关联"""
+        analysis["insight"] = """预测弱化将拖累全局进化速率，需以师道呼吸引导势和无师自通回流，否则势有崩解风险。"""
         analysis["weak"] = my_count < max_count * 0.65  # 低于最强65%即弱维(替代avg*0.85,解决均数通胀)
-        analysis["cycle"] = 14
+        analysis["cycle"] = 43
 
         # 3) Write analysis to shared feedback file for next think()
         try:

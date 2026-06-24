@@ -631,10 +631,12 @@ def think(status, observations, depth="shallow"):
                         for c in _all_chains
                     )
                     _dim_count = len(_all_dims)
-                    # 短链(低质量)计数
+                    # 短链(低质量)计数 - 仅真正空白/模板链
                     _weak_count = sum(
                         1 for c in _all_chains
-                        if len(c.get("rel", c.get("content", ""))) < 8
+                        if len(c.get("rel", c.get("content", ""))) < 5
+                        or any(_tp in c.get("rel", c.get("content", ""))
+                               for _tp in ["##", "弱维自愈#", "反馈加强#"])
                     )
                     # 对齐度 = 链覆盖度 × 维均衡度 × 链质量
                     _cov = min(1.0, _total / 10000)
