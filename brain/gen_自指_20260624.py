@@ -1,6 +1,6 @@
 """
 
-Brain-Engineered: 自指 (cycle #514)
+Brain-Engineered: 自指 (cycle #11)
 Active sensor - analyzes dimension health on each load
 """
 import json, sys as _sys
@@ -13,7 +13,7 @@ if str(CLUSTER) not in _sys.path:
 _GEN_FEEDBACK_FILE = CLUSTER / ".brain_gen_feedback.json"
 
 def engineer_自指():
-    """自指弱僵化惯性，师道唤醒一元化触底进化
+    """自指弱致元递归迟滞，师呼吸需突破惯性聚焦合成与纪律，防进化恶化
     Returns dimension health analysis; feeds into next think() cycle.
     """
     from brain.share import write_chain as _wc, read_hip as _rh
@@ -21,10 +21,10 @@ def engineer_自指():
     # 1) Always write the insight chain
     _wc({
         "src": "工程·自指",
-        "rel": "活脉冲·#514",
+        "rel": "活脉冲·#11",
         "dst": "自指",
         "dimension": "自指",
-        "content": """自指弱僵化惯性，师道唤醒一元化触底进化""",
+        "content": """自指弱致元递归迟滞，师呼吸需突破惯性聚焦合成与纪律，防进化恶化""",
         "strength": 0.6
     })
 
@@ -47,9 +47,9 @@ def engineer_自指():
         analysis["chain_count"] = my_count
         analysis["total_chains"] = total
         analysis["strength"] = round(my_count / max(max_count, 1), 2) if max_count > 0 else 0
-        analysis["insight"] = """自指弱僵化惯性，师道唤醒一元化触底进化"""
+        analysis["insight"] = """自指弱致元递归迟滞，师呼吸需突破惯性聚焦合成与纪律，防进化恶化"""
         analysis["weak"] = my_count < max_count * 0.65  # 低于最强65%即弱维(替代avg*0.85,解决均数通胀)
-        analysis["cycle"] = 514
+        analysis["cycle"] = 11
 
         # 3) Write analysis to shared feedback file for next think()
         try:

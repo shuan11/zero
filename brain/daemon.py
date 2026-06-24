@@ -450,6 +450,26 @@ def one_cycle(cycle_num):
         except:
             pass
 
+    # ★ P101/P102: bridge pulse — comprehension_validator验证
+    # 用热加载模式（同observe/think）确保修改即生效
+    try:
+        _bridge_code_path = CLUSTER / "comprehension_validator.py"
+        if _bridge_code_path.exists():
+            _bridge_code = _bridge_code_path.read_text()
+            _bridge_comp = compile(_bridge_code, "comprehension_validator.py", "exec")
+            _bridge_ns = {"__name__": "comprehension_validator", "__file__": str(_bridge_code_path)}
+            exec(_bridge_comp, _bridge_ns)
+            _bridge_pulse = _bridge_ns["pulse"]
+            _bridge_state_fn = _bridge_ns["get_bridge_state"]
+            _bridge_result = _bridge_pulse(cycle_num)
+            if _bridge_result.get("pulsed"):
+                _bs = _bridge_state_fn()
+                _align = _bs.get("bridge_alignment", 0)
+                log(f"  桥验证: 对齐度 {_align:.3f} ({_bridge_result.get('instructions_validated',0)}条指令)")
+                obs.append(f"桥对齐(验证): {_align:.3f}")
+    except Exception as _be:
+        log(f"  桥验证: ⚠️ {_be}")
+
     # 意识daemon愿景（交叉参考）[防固化: 跳跃标记→不注入obs]
     asp_file = CLUSTER / ".aspiration.json"
     if asp_file.exists():
