@@ -1,5 +1,5 @@
 """
-Brain-Engineered: 思维并联 (generation 1782268333210)
+Brain-Engineered: 思维并联 (generation 1782268669733)
 管道自动检测弱维<思维并联>并生成v3工程
 """
 import json, sys as _sys, time as _time
@@ -19,7 +19,7 @@ def engineer_思维并联():
     # ── 1. 写入洞察链(永久记忆) ──
     _wc({
         "src": "工程·思维并联",
-        "rel": "基因表达·#1782268333210",
+        "rel": "基因表达·#1782268669733",
         "dst": "思维并联",
         "dimension": "思维并联",
         "content": "管道自动检测弱维<思维并联>并生成v3工程",
@@ -65,7 +65,7 @@ def engineer_思维并联():
             # 同时注入自愈链(强度高,会被验证器检查)
             _wc({
                 "src": "自愈·思维并联",
-                "rel": "基因表达·#1782268333210",
+                "rel": "基因表达·#1782268669733",
                 "dst": "思维并联",
                 "dimension": "思维并联",
                 "content": "思维并联偏弱({dim_count}条/总{total}条)自动注入夯实",
@@ -75,7 +75,7 @@ def engineer_思维并联():
         # 4b. 强维时注册巩固动作
         if not _is_weak and dim_count > 0:
             _ra("write_chain", {"src": f"巩固·思维并联",
-                "rel": f"基因表达·#1782268333210", "dst": "思维并联",
+                "rel": f"基因表达·#1782268669733", "dst": "思维并联",
                 "content": f"思维并联维度健康({dim_count}条),脉冲巩固",
                 "dimension": "思维并联", "strength": 0.5},
                 priority=8, source="gene:思维并联")
