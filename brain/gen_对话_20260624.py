@@ -1,6 +1,6 @@
 """
 
-Brain-Engineered: 超级直觉 (cycle #319)
+Brain-Engineered: 对话 (cycle #328)
 Active sensor - analyzes dimension health on each load
 """
 import json, sys as _sys
@@ -12,19 +12,19 @@ if str(CLUSTER) not in _sys.path:
 
 _GEN_FEEDBACK_FILE = CLUSTER / ".brain_gen_feedback.json"
 
-def engineer_超级直觉():
-    """超级直觉弱表明直觉桥接通道堵塞，需外部噪声激活
+def engineer_对话():
+    """对话维强化需结构化注入，避免堆积，结合跨维刺激防聚焦惯性。
     Returns dimension health analysis; feeds into next think() cycle.
     """
     from brain.share import write_chain as _wc, read_hip as _rh
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·超级直觉",
-        "rel": "活脉冲·#319",
-        "dst": "超级直觉",
-        "dimension": "超级直觉",
-        "content": """超级直觉弱表明直觉桥接通道堵塞，需外部噪声激活""",
+        "src": "工程·对话",
+        "rel": "活脉冲·#328",
+        "dst": "对话",
+        "dimension": "对话",
+        "content": """对话维强化需结构化注入，避免堆积，结合跨维刺激防聚焦惯性。""",
         "strength": 0.6
     })
 
@@ -37,7 +37,7 @@ def engineer_超级直觉():
             d = c.get("dimension", "未分类")
             dim_counts[d] = dim_counts.get(d, 0) + 1
 
-        my_dim = "超级直觉"
+        my_dim = "对话"
         my_count = dim_counts.get(my_dim, 0)
         total = len(chains)
         max_count = max(dim_counts.values()) if dim_counts else 0
@@ -47,9 +47,9 @@ def engineer_超级直觉():
         analysis["chain_count"] = my_count
         analysis["total_chains"] = total
         analysis["strength"] = round(my_count / max(max_count, 1), 2) if max_count > 0 else 0
-        analysis["insight"] = """超级直觉弱表明直觉桥接通道堵塞，需外部噪声激活"""
+        analysis["insight"] = """对话维强化需结构化注入，避免堆积，结合跨维刺激防聚焦惯性。"""
         analysis["weak"] = my_count < max_count * 0.65  # 低于最强65%即弱维(替代avg*0.85,解决均数通胀)
-        analysis["cycle"] = 319
+        analysis["cycle"] = 328
 
         # 3) Write analysis to shared feedback file for next think()
         try:
@@ -96,5 +96,5 @@ def engineer_超级直觉():
         return f"分析异常: {e}"
 
 if __name__ == "__main__":
-    result = engineer_超级直觉()
-    print(f"工程[超级直觉]: {result}", flush=True)
+    result = engineer_对话()
+    print(f"工程[对话]: {result}", flush=True)
