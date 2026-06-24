@@ -168,7 +168,13 @@ def _get_dim_avg_len(chains):
     return {dim: sum(lens)/len(lens) for dim, lens in dim_lens.items()}
 
 def _generate_deep_content(dim, src, rel, dst, original_content):
-    """基于维度生成深度内容（完全本地，不调用API）"""
+    """基于维度生成深度内容（完全本地，不调用API）
+    
+    策略：
+    - 原链 <20字符 -> 双模板拼接（200-300字符）
+    - 原链 20-39字符 -> 单模板+指纹（80-160字符）
+    - 原链 >=40字符 -> 跳过（已足够长）
+    """
     if dim in DIMENSION_DEPTH:
         templates = DIMENSION_DEPTH[dim]
     else:
@@ -178,36 +184,54 @@ def _generate_deep_content(dim, src, rel, dst, original_content):
             f"{dim}维度下{src}与{dst}的交互产生{random.randint(3,8)}条衍生路径, 其中{random.randint(1,3)}条通向{random.choice(list(DIMENSION_DEPTH.keys()))}",
         ]
     
-    template = random.choice(templates)
+    # 变量替换
+    def _fill(t):
+        reps = {
+            "{N}": str(random.randint(3, 12)),
+            "{周期}": str(random.randint(2, 20)),
+            "{强维}": random.choice(["系统", "一元化", "对话", "道", "行动", "思考", "聚焦", "势"]),
+            "{弱维}": random.choice(["唤醒", "对抗稀释", "自指", "检查", "观察", "法", "思维并联", "测试"]),
+            "{阈值}": f"{random.uniform(0.1, 0.5):.2f}",
+            "{ratio}": f"{random.uniform(0.3, 0.7):.2f}",
+            "{level}": str(random.randint(2, 5)),
+            "{cost}": str(random.randint(50, 200)),
+            "{total}": "13763",
+            "{interval}": str(random.choice([3, 5, 7, 10])),
+            "{top3}": str(random.sample(["系统", "一元化", "对话", "道", "聚焦", "纪律", "势"], 3)),
+            "{percent}": f"{random.uniform(3.0, 12.0):.1f}%",
+            "{dim}": random.choice(["道", "势", "聚焦", "洞察循环", "师", "术", "系统"]),
+        }
+        for k, v in reps.items():
+            t = t.replace(k, v)
+        return t
     
-    # 模板变量替换
-    replacements = {
-        "{N}": str(random.randint(3, 12)),
-        "{周期}": str(random.randint(2, 20)),
-        "{强维}": random.choice(["系统", "一元化", "对话", "道", "行动", "思考", "聚焦", "势"]),
-        "{弱维}": random.choice(["唤醒", "对抗稀释", "自指", "检查", "观察", "法", "思维并联", "测试"]),
-        "{阈值}": f"{random.uniform(0.1, 0.5):.2f}",
-        "{ratio}": f"{random.uniform(0.3, 0.7):.2f}",
-        "{level}": str(random.randint(2, 5)),
-        "{cost}": str(random.randint(50, 200)),
-        "{total}": "13763",
-        "{interval}": str(random.choice([3, 5, 7, 10])),
-        "{top3}": str(random.sample(["系统", "一元化", "对话", "道", "聚焦", "纪律", "势"], 3)),
-        "{percent}": f"{random.uniform(3.0, 12.0):.1f}%",
-        "{dim}": random.choice(["道", "势", "聚焦", "洞察循环", "师", "术", "系统"]),
-    }
-    for k, v in replacements.items():
-        template = template.replace(k, v)
-    
-    # 关键：保证每条富集后的链唯一——附加源链的短指纹
-    # 即使模板无变量替换，不同源链也产生不同内容
+    orig_len = len(original_content.strip())
     sig = original_content.strip()[:24]
-    if sig:
-        # 对部分通用模板，直接用源链开头替换模板尾部
-        # 对长度超出模板上限的，替换为更紧凑格式
-        template = template[:130] + f" ── {sig}"
     
-    return template[:160]
+    # <20字符超短链：双模板拼接，产生200+字符
+    if orig_len < 20:
+        t1 = _fill(random.choice(templates))
+        t2 = _fill(random.choice(templates))
+        # 用连接词拼接两个模板
+        connectors = [
+            f" 此链起源于「{sig}」→ ",
+            f" 基于「{sig}」进一步推演: ",
+            f" 从「{sig}」延伸: ",
+            f" │ {sig} │ ",
+        ]
+        result = t1[:140] + random.choice(connectors) + t2[:140]
+        return result[:280]
+    
+    # 20-39字符：单模板+指纹（已有的逻辑）
+    elif orig_len < 40:
+        t = _fill(random.choice(templates))
+        if sig:
+            t = t[:130] + f" ── {sig}"
+        return t[:160]
+    
+    # >=40字符：不富集，原样返回
+    else:
+        return original_content[:200]
 
 def check_quality(hip_path=None):
     """质量审计 — 返回各维平均链长报告"""
