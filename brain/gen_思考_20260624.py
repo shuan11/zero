@@ -1,5 +1,5 @@
 """
-Brain-Engineered: 思考 (generation 1782299600095)
+Brain-Engineered: 思考 (generation 1782299888331)
 管道自动检测弱维<思考>并生成v3工程
 """
 import json, sys as _sys, time as _time
@@ -19,7 +19,7 @@ def engineer_思考():
     # ── 1. 写入洞察链(永久记忆) ──
     _wc({
         "src": "工程·思考",
-        "rel": "基因表达·#1782299600095",
+        "rel": "基因表达·#1782299888331",
         "dst": "思考",
         "dimension": "思考",
         "content": "管道自动检测弱维<思考>并生成v3工程",
@@ -65,7 +65,7 @@ def engineer_思考():
             # 同时注入自愈链(强度高,会被验证器检查)
             _wc({
                 "src": "自愈·思考",
-                "rel": "基因表达·#1782299600095",
+                "rel": "基因表达·#1782299888331",
                 "dst": "思考",
                 "dimension": "思考",
                 "content": "思考偏弱({dim_count}条/总{total}条)自动注入夯实",
@@ -75,7 +75,7 @@ def engineer_思考():
         # 4b. 强维时注册巩固动作
         if not _is_weak and dim_count > 0:
             _ra("write_chain", {"src": f"巩固·思考",
-                "rel": f"基因表达·#1782299600095", "dst": "思考",
+                "rel": f"基因表达·#1782299888331", "dst": "思考",
                 "content": f"思考维度健康({dim_count}条),脉冲巩固",
                 "dimension": "思考", "strength": 0.5},
                 priority=8, source="gene:思考")

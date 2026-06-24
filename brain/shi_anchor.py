@@ -28,6 +28,155 @@ def _write_chain(chain_dict):
         pass
 
 
+def _enrich_perception(assessments, current_phase):
+    """从系统真实状态提取感知内容，替代模板链。
+    读取daemon最新洞察 → 写入真实感知链。
+    """
+    import json, os, time, subprocess
+    
+    CLUSTER = Path(__file__).resolve().parent.parent
+    
+    # 检查感知维质量
+    from brain.share import read_hip as _rh
+    hip = _rh()
+    chains = hip.get("causal_chains", []) if isinstance(hip, dict) else []
+    percept_chains = [c for c in chains if c.get("dimension") == "感知"]
+    if not percept_chains:
+        return
+    
+    # 模板检测
+    templates = [c for c in percept_chains if any(
+        p in str(c.get("src","")) for p in ["反馈加强", "弱维自愈", "脉冲到", "被动注入"]
+    )]
+    template_ratio = len(templates) / len(percept_chains)
+    if template_ratio < 0.2:
+        return  # 质量合格，不需校准
+    
+    # 从daemon日志提取最新洞察
+    log_file = CLUSTER / ".brain_daemon.log"
+    insights = []
+    if log_file.exists():
+        try:
+            raw = log_file.read_text(encoding="utf-8", errors="replace")
+            for line in raw.split("\n")[-200:]:
+                if "洞察:" in line or "观察:" in line:
+                    parts = line.split("洞察:") if "洞察:" in line else line.split("观察:")
+                    if len(parts) > 1:
+                        insight = parts[1].split("→")[0].split("|")[0].strip()[:120]
+                        if insight and len(insight) > 10:
+                            insights.append(insight)
+        except:
+            pass
+    
+    ts = time.strftime("%H:%M")
+    created = 0
+    limit = min(5, int(len(percept_chains) * 0.1) + 1)  # 注入10%真实链
+    
+    for insight in insights[:limit]:
+        if not insight:
+            continue
+        from brain.share import write_chain
+        write_chain({
+            "src": f"感知·信号/{ts}",
+            "rel": "感知·真",
+            "dst": "感知",
+            "dimension": "感知",
+            "content": f"【真实感知】{insight}",
+            "strength": 0.8
+        })
+        created += 1
+    
+    # 记录校准
+    from brain.share import write_chain as _wc2
+    _wc2({
+        "src": "师·感知校准",
+        "rel": f"校准·{ts}",
+        "dst": "感知", "dimension": "感知",
+        "content": f"感知校准: 模板率{template_ratio:.0%}→注入{created}条真实链。 [{ts}]",
+        "strength": 0.5
+    })
+
+
+def _enrich_trend_weakening(assessments, dim_counts):
+    """趋势检测: 找出增长速率慢于系统均值的维度。
+    智慧预测弱化是当前焦点。
+    """
+    import time, json
+    from pathlib import Path
+    
+    CLUSTER = Path(__file__).resolve().parent.parent
+    hist_file = CLUSTER / ".brain_shi_assessments.json"
+    if not hist_file.exists():
+        return
+    
+    try:
+        hist = json.loads(hist_file.read_text())
+    except:
+        return
+    
+    if len(hist) < 3:
+        return
+    
+    # 计算系统平均增速
+    all_growth = {}
+    for dim, _ in dim_counts.items():
+        counts_hist = [hist[ts][dim] for ts in sorted(hist.keys())[-5:] if dim in hist.get(ts, {})]
+        if len(counts_hist) >= 2:
+            all_growth[dim] = counts_hist[-1] - counts_hist[0]
+    
+    if not all_growth:
+        return
+    
+    avg_growth = sum(all_growth.values()) / len(all_growth)
+    
+    # 找出增速低于均值50%的维度
+    weakened = []
+    for dim, growth in sorted(all_growth.items(), key=lambda x: x[1]):
+        if growth < avg_growth * 0.5 and growth < 5:
+            weakened.append(dim)
+            if len(weakened) >= 3:
+                break
+    
+    if not weakened:
+        return
+    
+    ts = time.strftime("%H:%M")
+    
+    # 为每个弱趋势维注入师导链
+    from brain.share import write_chain as _wc3
+    # 先找最强的teacher维
+    teachers = []
+    for d in sorted(assessments.keys(), key=lambda x: assessments[x]['count'], reverse=True)[:2]:
+        teachers.append(d)
+    
+    for weak_dim in weakened:
+        # 师导趋势链 → 弱趋势维
+        msg_parts = []
+        if "智慧" == weak_dim:
+            msg_parts.append("智慧趋势弱化预判成立——需师道呼吸注入全局均衡")
+        else:
+            msg_parts.append(f"{weak_dim}增速({all_growth.get(weak_dim,0)})低于均值({avg_growth:.1f})")
+            msg_parts.append("师指令: 接收交叉链以恢复增速")
+        
+        _wc3({
+            "src": "师·趋势检测",
+            "rel": f"师导·{teachers[0] if teachers else '系统'}→{weak_dim}",
+            "dst": weak_dim, "dimension": weak_dim,
+            "content": f"趋势警告: {'; '.join(msg_parts)} [{ts}]",
+            "strength": 0.9
+        })
+        
+        # 给教师维一条指令
+        if teachers:
+            _wc3({
+                "src": "师·趋势检测",
+                "rel": f"师导·趋势",
+                "dst": teachers[0], "dimension": teachers[0],
+                "content": f"趋势任务: 交叉链注入{weak_dim}——扭转弱趋势。 [{ts}]",
+                "strength": 0.7
+            })
+
+
 def breathe():
     """
     = 师·一次完整呼吸 =
@@ -194,6 +343,18 @@ def breathe():
         "strength": 0.3
     })
     created.append(f"师观:{phase}")
+    
+    # ——— 感知校准: 真实感知链替代模板链 ———
+    try:
+        _enrich_perception(assessments, phase)
+    except:
+        pass
+    
+    # ——— 趋势检测: 增速弱于系统均值的维 ———
+    try:
+        _enrich_trend_weakening(assessments, dim_counts)
+    except:
+        pass
     
     return {
         "phase": phase,
