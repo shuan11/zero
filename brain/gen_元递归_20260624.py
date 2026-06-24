@@ -1,6 +1,6 @@
 """
 
-Brain-Engineered: 元递归 (cycle #251)
+Brain-Engineered: 元递归 (cycle #309)
 Active sensor - analyzes dimension health on each load
 """
 import json, sys as _sys
@@ -13,7 +13,7 @@ if str(CLUSTER) not in _sys.path:
 _GEN_FEEDBACK_FILE = CLUSTER / ".brain_gen_feedback.json"
 
 def engineer_元递归():
-    """元递归弱持续，需引入深层递归循环生成新因果链
+    """元递归弱化限制自我审视深度，需注入循环强化
     Returns dimension health analysis; feeds into next think() cycle.
     """
     from brain.share import write_chain as _wc, read_hip as _rh
@@ -21,10 +21,10 @@ def engineer_元递归():
     # 1) Always write the insight chain
     _wc({
         "src": "工程·元递归",
-        "rel": "活脉冲·#251",
+        "rel": "活脉冲·#309",
         "dst": "元递归",
         "dimension": "元递归",
-        "content": """元递归弱持续，需引入深层递归循环生成新因果链""",
+        "content": """元递归弱化限制自我审视深度，需注入循环强化""",
         "strength": 0.6
     })
 
@@ -47,9 +47,9 @@ def engineer_元递归():
         analysis["chain_count"] = my_count
         analysis["total_chains"] = total
         analysis["strength"] = round(my_count / max(max_count, 1), 2) if max_count > 0 else 0
-        analysis["insight"] = """元递归弱持续，需引入深层递归循环生成新因果链"""
+        analysis["insight"] = """元递归弱化限制自我审视深度，需注入循环强化"""
         analysis["weak"] = my_count < max_count * 0.65  # 低于最强65%即弱维(替代avg*0.85,解决均数通胀)
-        analysis["cycle"] = 251
+        analysis["cycle"] = 309
 
         # 3) Write analysis to shared feedback file for next think()
         try:
