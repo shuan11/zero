@@ -1,6 +1,6 @@
 """
 
-Brain-Engineered: 一元化 (cycle #420)
+Brain-Engineered: 一元化 (cycle #428)
 Active sensor - analyzes dimension health on each load
 """
 import json, sys as _sys
@@ -13,7 +13,7 @@ if str(CLUSTER) not in _sys.path:
 _GEN_FEEDBACK_FILE = CLUSTER / ".brain_gen_feedback.json"
 
 def engineer_一元化():
-    """预测维度活性不足，需建立因果链驱动的自适应前瞻引擎
+    """聚焦维度链数低需从海马体因果链提取高关联路径强化回响
     Returns dimension health analysis; feeds into next think() cycle.
     """
     from brain.share import write_chain as _wc, read_hip as _rh
@@ -21,10 +21,10 @@ def engineer_一元化():
     # 1) Always write the insight chain
     _wc({
         "src": "工程·一元化",
-        "rel": "活脉冲·#420",
+        "rel": "活脉冲·#428",
         "dst": "一元化",
         "dimension": "一元化",
-        "content": """预测维度活性不足，需建立因果链驱动的自适应前瞻引擎""",
+        "content": """聚焦维度链数低需从海马体因果链提取高关联路径强化回响""",
         "strength": 0.6
     })
 
@@ -47,9 +47,9 @@ def engineer_一元化():
         analysis["chain_count"] = my_count
         analysis["total_chains"] = total
         analysis["strength"] = round(my_count / max(max_count, 1), 2) if max_count > 0 else 0
-        analysis["insight"] = """预测维度活性不足，需建立因果链驱动的自适应前瞻引擎"""
+        analysis["insight"] = """聚焦维度链数低需从海马体因果链提取高关联路径强化回响"""
         analysis["weak"] = my_count < max_count * 0.65  # 低于最强65%即弱维(替代avg*0.85,解决均数通胀)
-        analysis["cycle"] = 420
+        analysis["cycle"] = 428
 
         # 3) Write analysis to shared feedback file for next think()
         try:

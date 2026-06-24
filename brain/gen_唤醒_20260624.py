@@ -1,6 +1,6 @@
 """
 
-Brain-Engineered: 唤醒 (cycle #392)
+Brain-Engineered: 唤醒 (cycle #423)
 Active sensor - analyzes dimension health on each load
 """
 import json, sys as _sys
@@ -13,7 +13,7 @@ if str(CLUSTER) not in _sys.path:
 _GEN_FEEDBACK_FILE = CLUSTER / ".brain_gen_feedback.json"
 
 def engineer_唤醒():
-    """唤醒零强度成系统盲点，需注入活力信号激活沉睡维度
+    """唤醒弱表明系统响应不足，需外部信号随机注入激活。
     Returns dimension health analysis; feeds into next think() cycle.
     """
     from brain.share import write_chain as _wc, read_hip as _rh
@@ -21,10 +21,10 @@ def engineer_唤醒():
     # 1) Always write the insight chain
     _wc({
         "src": "工程·唤醒",
-        "rel": "活脉冲·#392",
+        "rel": "活脉冲·#423",
         "dst": "唤醒",
         "dimension": "唤醒",
-        "content": """唤醒零强度成系统盲点，需注入活力信号激活沉睡维度""",
+        "content": """唤醒弱表明系统响应不足，需外部信号随机注入激活。""",
         "strength": 0.6
     })
 
@@ -47,9 +47,9 @@ def engineer_唤醒():
         analysis["chain_count"] = my_count
         analysis["total_chains"] = total
         analysis["strength"] = round(my_count / max(max_count, 1), 2) if max_count > 0 else 0
-        analysis["insight"] = """唤醒零强度成系统盲点，需注入活力信号激活沉睡维度"""
+        analysis["insight"] = """唤醒弱表明系统响应不足，需外部信号随机注入激活。"""
         analysis["weak"] = my_count < max_count * 0.65  # 低于最强65%即弱维(替代avg*0.85,解决均数通胀)
-        analysis["cycle"] = 392
+        analysis["cycle"] = 423
 
         # 3) Write analysis to shared feedback file for next think()
         try:
