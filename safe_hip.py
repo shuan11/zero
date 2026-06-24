@@ -180,8 +180,15 @@ def _read_hippocampus():
 
 
 def _async_sync_cwd(data):
-    """异步同步CWD副本 — 放入子进程，drvfs D状态不阻塞主线程。"""
+    """异步同步CWD副本 — 若CWD是到ext4的符号链则跳过（同一文件）,否则同步。"""
     try:
+        # 若CWD_HIP_FILE是符号链指向ext4 HIP → 同一文件，跳过
+        if os.path.islink(CWD_HIP_FILE):
+            _target = os.readlink(CWD_HIP_FILE)
+            if os.path.abspath(_target) == os.path.abspath(HIPPOCAMPUS_FILE):
+                return  # 符号链→ext4, 同一文件
+            if os.path.realpath(CWD_HIP_FILE) == os.path.abspath(HIPPOCAMPUS_FILE):
+                return  # 最终解析到同一文件
         # 序列化原数据，避免跨进程对象共享
         payload = json.dumps(data, ensure_ascii=False, indent=2)
         # 子进程执行CWD写入 — 即使卡D状态也只杀子进程
@@ -199,7 +206,17 @@ def _async_sync_cwd(data):
         pass  # 异步失败不阻断主流程
 
 
+def _safe_set_metadata(data):
+    """确保data有metadata键（防御性，防止并发写入破坏）"""
+    if isinstance(data, dict):
+        if "metadata" not in data or not isinstance(data["metadata"], dict):
+            data["metadata"] = {}
+        data["metadata"]["last_update"] = datetime.now().isoformat()
+        data["metadata"]["version"] = data["metadata"].get("version", 1)
+        data["metadata"]["total_chains"] = len(data.get("causal_chains", []))
+
 def _write_file(data):
+    _safe_set_metadata(data)
     tmp = HIPPOCAMPUS_FILE + ".tmp." + str(os.getpid())
     try:
         with open(tmp, "w", encoding="utf-8") as f:
@@ -208,6 +225,8 @@ def _write_file(data):
         os.rename(tmp, HIPPOCAMPUS_FILE)
         # 同步CWD副本 — 子进程异步执行，drvfs可能D状态不阻塞主线程
         _async_sync_cwd(data)
+        # 确保CWD→ext4符号链存在（防止被gen模块的rename破坏）
+        _ensure_cwd_symlink()
     except Exception:
         if os.path.exists(tmp):
             os.remove(tmp)
@@ -220,6 +239,26 @@ def _write_file(data):
             except Exception:
                 pass
         raise
+
+
+def _ensure_cwd_symlink():
+    """确保CWD_HIP_FILE是指向HIPPOCAMPUS_FILE的符号链。"""
+    try:
+        _target = os.path.abspath(HIPPOCAMPUS_FILE)
+        if os.path.islink(CWD_HIP_FILE):
+            if os.path.abspath(os.readlink(CWD_HIP_FILE)) == _target:
+                return  # 已存在且指向正确
+            os.unlink(CWD_HIP_FILE)  # 指向错误，删除重建
+        elif os.path.exists(CWD_HIP_FILE):
+            # 是普通文件 — 备份后替换为符号链
+            _bak = CWD_HIP_FILE + ".pre_symlink"
+            if not os.path.exists(_bak):
+                os.rename(CWD_HIP_FILE, _bak)
+            else:
+                os.remove(CWD_HIP_FILE)
+        os.symlink(_target, CWD_HIP_FILE)
+    except Exception:
+        pass  # 符号链非必需，不阻塞主流程
 
 
 def _acquire_lock(blocking=True, timeout=30):
@@ -413,6 +452,7 @@ def write_chain(chain):
     # ── 质量门: 拒绝模板/自观/空链 ──
     content = chain.get("content", "")
     rel = chain.get("rel", "")
+    # 内容层模板检测
     if content:
         _template_patterns = [
             r"管道自动检测弱维<", r"弱维互助:", r"自观.*daemon[#\d]*分析",
@@ -423,8 +463,15 @@ def write_chain(chain):
         for pat in _template_patterns:
             if re.search(pat, content):
                 return False
-    if rel and re.search(r"活脉冲·#\d+", rel):
-        return False
+    # rel层模板检测: 拒绝模板rel(内容已被注入到rel后rel足够长, 纯计数后缀=模板)
+    if rel:
+        _rel_template_patterns = [
+            r"^弱维自愈#", r"^反馈加强#", r"##$",
+            r"活脉冲·#\d+",
+        ]
+        for pat in _rel_template_patterns:
+            if re.search(pat, rel):
+                return False
 
     for k in list(chain.keys()):
         if k in ("source", "trust_score", "weight", "type"):
@@ -449,7 +496,7 @@ def write_chain(chain):
                 if chain.get("tags") and not c.get("tags"):
                     c["tags"] = chain["tags"]
                 c.setdefault("timestamp", datetime.now().isoformat())
-                data["metadata"]["last_update"] = datetime.now().isoformat()
+                _safe_set_metadata(data)
                 _write_file(data)
                 return True
 
@@ -467,7 +514,7 @@ def write_chain(chain):
                     if chain.get("tags") and not c.get("tags"):
                         c["tags"] = chain["tags"]
                     c.setdefault("timestamp", datetime.now().isoformat())
-                    data["metadata"]["last_update"] = datetime.now().isoformat()
+                    data.setdefault("metadata", {})["last_update"] = datetime.now().isoformat()
                     _write_file(data)
                     return True
 
@@ -531,6 +578,18 @@ def write_chains_batch(chains, max_dedup=500):
             if not isinstance(chain, dict):
                 continue
             normalized = _canonicalize_chain(chain)
+            # 质量门: 拒绝模板chain (同write_chain)
+            _qc_content = normalized.get("content", "")
+            _qc_rel = normalized.get("rel", "")
+            if _qc_content:
+                for _pat in [r"管道自动检测弱维<", r"弱维互助:", r"自观.*daemon[#\d]*分析",
+                             r"深析[←×]", r"#C\d+ (检查|镜像|cycle)", r"基因表达·#",
+                             r"^管道自动", r"弱维互相强化", r"因果链停滞",
+                             r"后处理检测到弱维<", r"^自愈:", r"活脉冲·#\d+", r"^巩固·"]:
+                    if re.search(_pat, _qc_content):
+                        continue  # 跳过模板chain
+            if _qc_rel and re.search(r"^(弱维自愈|反馈加强)#|##$|活脉冲·#\d+", _qc_rel):
+                continue  # 跳过模板chain
             key = (normalized.get("src",""), normalized.get("rel",""), normalized.get("dst",""),
                    normalized.get("content","")[:80])
             if key in existing_set:
@@ -571,7 +630,7 @@ def replace_all_chains(src, rel, dst, new_strength=None, new_tags=None,
                     c["content"] = new_content
                 changed += 1
         if changed:
-            data["metadata"]["last_update"] = datetime.now().isoformat()
+            data.setdefault("metadata", {})["last_update"] = datetime.now().isoformat()
             _write_file(data)
         return changed
     finally:
@@ -644,9 +703,10 @@ def normalize():
                 if n:
                     nodes[n]["chains"] = nodes[n].get("chains", 0) + 1
         data["nodes"] = nodes
-        data["metadata"]["total_chains"] = len(new_cats)
-        data["metadata"]["nodes"] = len(nodes)
-        data["metadata"]["last_update"] = datetime.now().isoformat()
+        meta = data.setdefault("metadata", {})
+        meta["total_chains"] = len(new_cats)
+        meta["nodes"] = len(nodes)
+        meta["last_update"] = datetime.now().isoformat()
         _write_file(data)
         return fixed
     finally:
@@ -674,8 +734,9 @@ def dedup():
             new_cats.append(c)
         if removed:
             data["causal_chains"] = new_cats
-            data["metadata"]["last_update"] = datetime.now().isoformat()
-            data["metadata"]["total_chains"] = len(new_cats)
+            meta = data.setdefault("metadata", {})
+            meta["last_update"] = datetime.now().isoformat()
+            meta["total_chains"] = len(new_cats)
             _write_file(data)
         return removed
     finally:

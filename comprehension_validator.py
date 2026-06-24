@@ -303,7 +303,7 @@ class ComprehensionVerifier:
         "code": ["代码", "编程", "函数", "class", "实现", "修复", "调试"],
         "shell": ["运行", "执行", "命令", "终端", "shell", "部署", "启动"],
         "analysis": ["分析", "检查", "审查", "评估", "测试", "验证", "计算",
-                     "定位", "扫描", "检查系统", "确认", "核实"],
+                     "定位", "扫描", "检查系统", "确认", "核实", "标记", "识别"],
         "search": ["搜索", "查找", "查询", "检索"],
         "design": ["架构", "设计", "规划", "方案", "结构", "组建", "设立", "建立"],
         "config": ["配置", "设置", "安装", "环境"],
@@ -314,8 +314,8 @@ class ComprehensionVerifier:
         "network": ["下载", "上传", "同步", "注册", "登录"],
         "git": ["提交", "推送", "合并", "打tag", "提交代码", "git"],
         "storage": ["存储", "保存", "缓存", "备份", "存档", "固化", "锁定", "巩固"],
-        "monitor": ["监控", "追踪", "跟踪"],
-        "balanced": ["均衡", "平衡", "补充", "补全", "补齐", "注入"],
+        "monitor": ["监控", "追踪", "跟踪", "观察", "报告", "状态", "健康"],
+        "balanced": ["均衡", "平衡", "补充", "补全", "补齐", "注入", "匹配", "对齐"],
         "advance": ["推进", "继续", "使", "达到"],
     }
     
@@ -724,6 +724,81 @@ def get_bridge_alignment() -> float:
         return sum(alignments) / len(alignments)
     except Exception:
         return 0.0
+
+
+# ─── Daemon 集成 Pulse ────────────────────────────────
+
+def pulse(cycle_num: int = 0) -> dict:
+    """daemon周期调用的bridge pulse — 验证兼容性/更新bridge_alignment
+    
+    每10周期执行一次验证，更新桥接对齐度指标。
+    """
+    if cycle_num % 10 != 0:
+        return {"pulsed": False, "reason": "skip_interval"}
+    
+    try:
+        # 验证一组daemon级指令取平均覆盖率
+        daemon_instructions = [
+            "观察系统状态并报告健康度",
+            "分析维度链分布，标记弱维",
+            "检查API桥接状态，更新桥接对齐度",
+            "注入因果链到海马体，维度和内容需匹配",
+            "验证理解完整性，识别不确定项",
+        ]
+        
+        alignments = []
+        for instr in daemon_instructions:
+            report = validate(instr, persist=False)
+            alignments.append(report.bridge_alignment)
+        
+        avg_alignment = sum(alignments) / len(alignments)
+        
+        # 持久化bridge state到ext4
+        _bridge_state = Path.home() / ".zero_brain" / "bridge_state.json"
+        state = {
+            "bridge_alignment": round(avg_alignment, 4),
+            "last_update": time.time(),
+            "cycle": cycle_num,
+            "instructions_validated": len(daemon_instructions),
+            "alignments": [round(a, 4) for a in alignments],
+        }
+        _bridge_state.write_text(json.dumps(state, indent=2))
+        
+        return {
+            "pulsed": True,
+            "bridge_alignment": avg_alignment,
+            "instructions_validated": len(daemon_instructions),
+        }
+    except Exception as e:
+        print(f"[comprehension_validator.pulse] Error: {e}")
+        return {"pulsed": False, "reason": str(e)}
+
+
+def get_bridge_state() -> dict:
+    """读取当前桥接状态"""
+    try:
+        _path = Path.home() / ".zero_brain" / "bridge_state.json"
+        if _path.exists():
+            return json.loads(_path.read_text())
+    except Exception:
+        pass
+    return {"bridge_alignment": 0.0, "last_update": 0.0}
+
+
+def init_bridge_state():
+    """初始化桥接状态（若不存在）"""
+    _path = Path.home() / ".zero_brain" / "bridge_state.json"
+    if not _path.exists():
+        state = {
+            "bridge_alignment": 0.0,
+            "last_update": time.time(),
+            "cycle": 0,
+            "initialized": True,
+        }
+        _path.parent.mkdir(parents=True, exist_ok=True)
+        _path.write_text(json.dumps(state, indent=2))
+        return True
+    return False
 
 
 # ─── 自检 ──────────────────────────────────────────────

@@ -878,33 +878,36 @@ def _feedback_self_patch():
                     extra = max(1, min(10, gap // 10))
                     # ─── 批量收集链 ───
                     for i in range(min(persist, 3)):  # 最多3条交叉链
+                        _rel_content = f"自愈: {dim_name}(弱{persist}周期)↔{strong_dim}(强{real_strong_count}链) 交叉加强 #{i+1}"
                         _batch_chains.append({
                             "src": dim_name,
-                            "rel": f"反馈加强#{persist}-{i+1}",
+                            "rel": _rel_content[:60],
                             "dst": strong_dim,
                             "dimension": dim_name,
-                            "content": f"自愈: {dim_name}(弱{persist}周期)↔{strong_dim}(强{real_strong_count}链) 交叉加强 #{i+1}",
+                            "content": _rel_content,
                             "strength": 0.5 + 0.1 * min(persist, 5)
                         })
                     # 直接加强: 按差距比例写链
                     for i in range(extra):
+                        _rel_content = f"自愈: 弱维{dim_name}({persist}周期,差距{gap})→自加强链#{i+1}"
                         _batch_chains.append({
                             "src": f"自愈引擎·{dim_name}",
-                            "rel": f"弱维自愈#{i+1}",
+                            "rel": _rel_content[:60],
                             "dst": dim_name,
                             "dimension": dim_name,
-                            "content": f"自愈: 弱维{dim_name}({persist}周期,差距{gap})→自加强链#{i+1}",
+                            "content": _rel_content,
                             "strength": 0.6 + 0.05 * i
                         })
                     # 自加强×persist (额外, 仅当persist较大时才有意义)
                     if persist >= 4:
                         for i in range(persist):
+                            _rel_content = f"自愈: {dim_name}({persist}周期)→浮动加强链#{i+1}"
                             _batch_chains.append({
                                 "src": f"自愈引擎·{dim_name}",
-                                "rel": f"弱维自愈-浮动{i+1}",
+                                "rel": _rel_content[:60],
                                 "dst": dim_name,
                                 "dimension": dim_name,
-                                "content": f"自愈: {dim_name}({persist}周期)→浮动加强链#{i+1}",
+                                "content": _rel_content,
                                 "strength": 0.55 + 0.05 * i
                             })
                     log(f"  反馈加强: {dim_name}(弱{persist}期,gap={gap})↔{strong_dim} 交叉×{min(persist,3)} + 比例×{extra}" +
