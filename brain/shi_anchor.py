@@ -13,6 +13,9 @@ if str(CLUSTER) not in sys.path:
 
 _HISTORY_FILE = CLUSTER / ".brain_shi_breath.json"
 
+# 理解验证电路 — P101 bridge_alignment
+_COMPREHENSION_CHECKED = {"cycle": 0}
+
 def _read_hip():
     try:
         from brain.share import read_hip as _rh
@@ -453,6 +456,47 @@ def breathe():
         _polish_self_reference(assessments)
     except Exception as e:
         pass
+    
+    # ——— P101: 理解验证电路（每10周期触发一次）———
+    try:
+        from comprehension_validator import validate, get_bridge_alignment
+        cycles = history.get("cycles", 0)
+        if cycles - _COMPREHENSION_CHECKED.get("cycle", 0) >= 10:
+            # 验证当前呼吸焦点指令
+            focus_instruction = (
+                f"师呼吸检查: 相位={phase}, "
+                f"最强维={list(assessments.keys())[:3] if assessments else '无'}, "
+                f"总链={total}"
+            )
+            report = validate(focus_instruction, persist=True)
+            _COMPREHENSION_CHECKED["cycle"] = cycles
+            _COMPREHENSION_CHECKED["last_align"] = report.bridge_alignment
+            _COMPREHENSION_CHECKED["last_coverage"] = report.coverage
+            align = get_bridge_alignment()
+            _COMPREHENSION_CHECKED["rolling_align"] = align
+            _log_line = (
+                f"[comprehension] 桥接对齐={report.bridge_alignment:.3f} "
+                f"(滚动平均={align:.3f}) "
+                f"理解={report.understood_count}/{report.total_count} "
+                f"周期={cycles}"
+            )
+            try:
+                log_path = CLUSTER / ".brain_daemon.log"
+                if log_path.exists():
+                    with open(log_path, "a") as f:
+                        f.write(f"  🧠 {time.strftime('[%H:%M:%S]')} {_log_line}\n")
+            except:
+                pass
+    except ImportError:
+        pass
+    except Exception as e:
+        try:
+            log_path = CLUSTER / ".brain_daemon.log"
+            if log_path.exists():
+                with open(log_path, "a") as f:
+                    f.write(f"  🧠 [comprehension] 验证失败: {e}\n")
+        except:
+            pass
     
     return {
         "phase": phase,
