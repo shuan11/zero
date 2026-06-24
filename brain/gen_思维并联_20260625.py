@@ -1,6 +1,6 @@
 """
 
-Brain-Engineered: 法 (cycle #58)
+Brain-Engineered: 思维并联 (cycle #6)
 Active sensor - analyzes dimension health on each load
 """
 import json, sys as _sys
@@ -12,19 +12,19 @@ if str(CLUSTER) not in _sys.path:
 
 _GEN_FEEDBACK_FILE = CLUSTER / ".brain_gen_feedback.json"
 
-def engineer_法():
-    """法弱触发结构警示，师导启示录注入，预判三周期内法阈值突破
+def engineer_思维并联():
+    """思维并联弱致碎片，一元化桥接弱维防链跌
     Returns dimension health analysis; feeds into next think() cycle.
     """
     from brain.share import write_chain as _wc, read_hip as _rh
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·法",
-        "rel": "活脉冲·#58",
-        "dst": "法",
-        "dimension": "法",
-        "content": """法弱触发结构警示，师导启示录注入，预判三周期内法阈值突破""",
+        "src": "工程·思维并联",
+        "rel": "活脉冲·#6",
+        "dst": "思维并联",
+        "dimension": "思维并联",
+        "content": """思维并联弱致碎片，一元化桥接弱维防链跌""",
         "strength": 0.6
     })
 
@@ -37,7 +37,7 @@ def engineer_法():
             d = c.get("dimension", "未分类")
             dim_counts[d] = dim_counts.get(d, 0) + 1
 
-        my_dim = "法"
+        my_dim = "思维并联"
         my_count = dim_counts.get(my_dim, 0)
         total = len(chains)
         max_count = max(dim_counts.values()) if dim_counts else 0
@@ -47,9 +47,9 @@ def engineer_法():
         analysis["chain_count"] = my_count
         analysis["total_chains"] = total
         analysis["strength"] = round(my_count / max(max_count, 1), 2) if max_count > 0 else 0
-        analysis["insight"] = """法弱触发结构警示，师导启示录注入，预判三周期内法阈值突破"""
+        analysis["insight"] = """思维并联弱致碎片，一元化桥接弱维防链跌"""
         analysis["weak"] = my_count < max_count * 0.65  # 低于最强65%即弱维(替代avg*0.85,解决均数通胀)
-        analysis["cycle"] = 58
+        analysis["cycle"] = 6
 
         # 3) Write analysis to shared feedback file for next think()
         try:
@@ -96,5 +96,5 @@ def engineer_法():
         return f"分析异常: {e}"
 
 if __name__ == "__main__":
-    result = engineer_法()
-    print(f"工程[法]: {result}", flush=True)
+    result = engineer_思维并联()
+    print(f"工程[思维并联]: {result}", flush=True)

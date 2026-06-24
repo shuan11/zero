@@ -1,5 +1,5 @@
 """
-Brain-Engineered: 状态 (generation 1782315236246)
+Brain-Engineered: 状态 (generation 1782318973933)
 管道自动检测弱维<状态>并生成v3工程
 """
 import json, sys as _sys, time as _time
@@ -19,7 +19,7 @@ def engineer_状态():
     # ── 1. 写入洞察链(永久记忆) ──
     _wc({
         "src": "工程·状态",
-        "rel": "基因表达·#1782315236246",
+        "rel": "基因表达·#1782318973933",
         "dst": "状态",
         "dimension": "状态",
         "content": "管道自动检测弱维<状态>并生成v3工程",
@@ -65,7 +65,7 @@ def engineer_状态():
             # 同时注入自愈链(强度高,会被验证器检查)
             _wc({
                 "src": "自愈·状态",
-                "rel": "基因表达·#1782315236246",
+                "rel": "基因表达·#1782318973933",
                 "dst": "状态",
                 "dimension": "状态",
                 "content": "状态偏弱({dim_count}条/总{total}条)自动注入夯实",
@@ -75,7 +75,7 @@ def engineer_状态():
         # 4b. 强维时注册巩固动作
         if not _is_weak and dim_count > 0:
             _ra("write_chain", {"src": f"巩固·状态",
-                "rel": f"基因表达·#1782315236246", "dst": "状态",
+                "rel": f"基因表达·#1782318973933", "dst": "状态",
                 "content": f"状态维度健康({dim_count}条),脉冲巩固",
                 "dimension": "状态", "strength": 0.5},
                 priority=8, source="gene:状态")

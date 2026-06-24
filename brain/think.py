@@ -638,22 +638,25 @@ def think(status, observations, depth="shallow"):
                         or any(_tp in c.get("rel", c.get("content", ""))
                                for _tp in ["##", "弱维自愈#", "反馈加强#"])
                     )
-                    # 对齐度 = 链覆盖度 × 维均衡度 × 链质量
+                    # 只读桥接状态（不写 — 由comprehension_validator pulse统一写入）
+                    _bs_write = _bs.get("bridge_alignment", 0.0)
                     _cov = min(1.0, _total / 10000)
                     _bal = min(1.0, _dim_count / 28) if _dim_count > 0 else 0.3
                     _qual = 1.0 - (_weak_count / max(1, _total)) if _total > 0 else 0.3
                     _new_align = (_cov * 0.25 + _bal * 0.35 + _qual * 0.4)
-                    # 平滑更新（避免大幅波动）
-                    _smoothed = _old_align * 0.6 + _new_align * 0.4
-                    _bs["bridge_alignment"] = round(_smoothed, 4)
-                    _bs["last_updated"] = time.time()
-                    _bs_file.write_text(json.dumps(_bs, indent=2))
-                    if _smoothed != _old_align:
-                        log(f"  桥接验证: {_smoothed:.4f} ({'↑' if _smoothed > _old_align else '↓'})")
-    except Exception as _bpe:
-        log(f"  桥接验证: {_bpe}")
-    
-    # 多视角信号注入
+                    log(f"  桥接度量: cov={_cov:.3f} bal={_bal:.3f} qual={_qual:.3f} → new={_new_align:.3f} | 文件={_bs_write:.3f}")
+                    # 持续3周期以上差距>0.2时告警（质量改善通知）
+                    if _bs_write - _new_align > 0.2:
+                        _weak_note = f"⚠️ 桥接对齐指标分歧: CV={_bs_write:.3f} vs HIP度量={_new_align:.3f}"
+                        if _weak_note not in observations:
+                            observations.append(_weak_note)
+                    # 将桥接对齐注入观察（使用CV pulse的值作为权威）
+                    observations.append(f"🔗 桥接对齐: {_bs_write:.3f}")
+                else:
+                    _bs_write = 0.0
+    except Exception:
+        _bs_write = 0.0
+        pass
     signals = _get_signal_context(status)
     signal_section = f"\n外部信号:\n{signals}\n" if signals else ""
     

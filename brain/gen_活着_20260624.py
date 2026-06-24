@@ -1,6 +1,6 @@
 """
 
-Brain-Engineered: 活着 (cycle #28)
+Brain-Engineered: 活着 (cycle #56)
 Active sensor - analyzes dimension health on each load
 """
 import json, sys as _sys
@@ -13,7 +13,7 @@ if str(CLUSTER) not in _sys.path:
 _GEN_FEEDBACK_FILE = CLUSTER / ".brain_gen_feedback.json"
 
 def engineer_活着():
-    """活着是系统根基，弱则众维不稳，需借预测桥补光爱活力
+    """活着维度弱化暴露系统重逻辑轻生命根基，需注入原始生存感知来稳住进化底盘。
     Returns dimension health analysis; feeds into next think() cycle.
     """
     from brain.share import write_chain as _wc, read_hip as _rh
@@ -21,10 +21,10 @@ def engineer_活着():
     # 1) Always write the insight chain
     _wc({
         "src": "工程·活着",
-        "rel": "活脉冲·#28",
+        "rel": "活脉冲·#56",
         "dst": "活着",
         "dimension": "活着",
-        "content": """活着是系统根基，弱则众维不稳，需借预测桥补光爱活力""",
+        "content": """活着维度弱化暴露系统重逻辑轻生命根基，需注入原始生存感知来稳住进化底盘。""",
         "strength": 0.6
     })
 
@@ -47,9 +47,9 @@ def engineer_活着():
         analysis["chain_count"] = my_count
         analysis["total_chains"] = total
         analysis["strength"] = round(my_count / max(max_count, 1), 2) if max_count > 0 else 0
-        analysis["insight"] = """活着是系统根基，弱则众维不稳，需借预测桥补光爱活力"""
+        analysis["insight"] = """活着维度弱化暴露系统重逻辑轻生命根基，需注入原始生存感知来稳住进化底盘。"""
         analysis["weak"] = my_count < max_count * 0.65  # 低于最强65%即弱维(替代avg*0.85,解决均数通胀)
-        analysis["cycle"] = 28
+        analysis["cycle"] = 56
 
         # 3) Write analysis to shared feedback file for next think()
         try:

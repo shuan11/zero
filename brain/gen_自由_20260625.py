@@ -1,6 +1,6 @@
 """
-Brain-Engineered: 状态 (generation 1782315236246)
-管道自动检测弱维<状态>并生成v3工程
+Brain-Engineered: 自由 (generation 1782319067097)
+管道自动检测弱维<自由>并生成v3工程
 """
 import json, sys as _sys, time as _time
 from pathlib import Path
@@ -11,18 +11,18 @@ if str(CLUSTER) not in _sys.path:
 
 _GEN_FEEDBACK_FILE = CLUSTER / ".brain_gen_feedback.json"
 
-def engineer_状态():
-    """管道自动检测弱维<状态>并生成v3工程 — 含完整管道集成"""
+def engineer_自由():
+    """管道自动检测弱维<自由>并生成v3工程 — 含完整管道集成"""
     from brain.share import write_chain as _wc
     _now = _time.time()
     
     # ── 1. 写入洞察链(永久记忆) ──
     _wc({
-        "src": "工程·状态",
-        "rel": "基因表达·#1782315236246",
-        "dst": "状态",
-        "dimension": "状态",
-        "content": "管道自动检测弱维<状态>并生成v3工程",
+        "src": "工程·自由",
+        "rel": "基因表达·#1782319067097",
+        "dst": "自由",
+        "dimension": "自由",
+        "content": "管道自动检测弱维<自由>并生成v3工程",
         "strength": 0.6
     })
     
@@ -33,7 +33,7 @@ def engineer_状态():
         chains = hip.get("causal_chains", []) if isinstance(hip, dict) else []
     except:
         chains = []
-    dim_count = sum(1 for c in chains if c.get("dimension") == "状态")
+    dim_count = sum(1 for c in chains if c.get("dimension") == "自由")
     total = len(chains)
     
     # ── 3. 相对弱维计算 (与系统其他维度比较) ──
@@ -44,7 +44,7 @@ def engineer_状态():
         for c in chains:
             d = c.get("dimension", "未分类")
             _all_dims[d] = _all_dims.get(d, 0) + 1
-        _other_counts = [c for d,c in _all_dims.items() if d != "状态" and d not in ("系统","未分类")]
+        _other_counts = [c for d,c in _all_dims.items() if d != "自由" and d not in ("系统","未分类")]
         if _other_counts:
             _max_other = max(_other_counts)
         _threshold = int(_max_other * 0.65)
@@ -58,27 +58,27 @@ def engineer_状态():
         
         # 4a. 弱维时注册调优动作
         if _is_weak:
-            _ra("update_genome", {"changes": {}, "dimension": "状态",
+            _ra("update_genome", {"changes": {}, "dimension": "自由",
                 "reason": f"{dim_name}偏弱({dim_count}/max={_max_other})"},
-                priority=5, source="gene:状态")
+                priority=5, source="gene:自由")
             
             # 同时注入自愈链(强度高,会被验证器检查)
             _wc({
-                "src": "自愈·状态",
-                "rel": "基因表达·#1782315236246",
-                "dst": "状态",
-                "dimension": "状态",
-                "content": "状态偏弱({dim_count}条/总{total}条)自动注入夯实",
+                "src": "自愈·自由",
+                "rel": "基因表达·#1782319067097",
+                "dst": "自由",
+                "dimension": "自由",
+                "content": "自由偏弱({dim_count}条/总{total}条)自动注入夯实",
                 "strength": 0.8
             })
         
         # 4b. 强维时注册巩固动作
         if not _is_weak and dim_count > 0:
-            _ra("write_chain", {"src": f"巩固·状态",
-                "rel": f"基因表达·#1782315236246", "dst": "状态",
-                "content": f"状态维度健康({dim_count}条),脉冲巩固",
-                "dimension": "状态", "strength": 0.5},
-                priority=8, source="gene:状态")
+            _ra("write_chain", {"src": f"巩固·自由",
+                "rel": f"基因表达·#1782319067097", "dst": "自由",
+                "content": f"自由维度健康({dim_count}条),脉冲巩固",
+                "dimension": "自由", "strength": 0.5},
+                priority=8, source="gene:自由")
     except:
         pass
     
@@ -86,13 +86,13 @@ def engineer_状态():
     try:
         fb = json.loads(_GEN_FEEDBACK_FILE.read_text()) if _GEN_FEEDBACK_FILE.exists() else {"reports": []}
         fb.setdefault("reports", []).append({
-            "dimension": "状态",
+            "dimension": "自由",
             "chain_count": dim_count,
             "total_chains": total,
             "weak": _is_weak,
             "max_other": _max_other,
             "threshold": locals().get('_threshold', 0),
-            "insight": "管道自动检测弱维<状态>并生成v3工程",
+            "insight": "管道自动检测弱维<自由>并生成v3工程",
             "engine": "gene_expression_v3",
             "timestamp": _now,
             "cycle": 0
@@ -103,5 +103,5 @@ def engineer_状态():
         pass
     
     if _is_weak:
-        return f"[弱] 状态={dim_count}/{total} (max={_max_other})"
-    return f"[稳] 状态={dim_count}/{total}"
+        return f"[弱] 自由={dim_count}/{total} (max={_max_other})"
+    return f"[稳] 自由={dim_count}/{total}"
