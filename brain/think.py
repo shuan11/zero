@@ -650,12 +650,21 @@ def think(status, observations, depth="shallow"):
     except:
         pass
 
+    # ── 师·呼吸锚: 每周期检测呼吸相位并产出引导链 ──
+    _breathe_section = ""
+    try:
+        from brain.shi_anchor import breathe as _breathe
+        _br = _breathe()
+        _breathe_section = f"\n🌬️ 师呼吸: 相位={_br['phase']} 惯性={_br['inertia_dims']}\n"
+    except:
+        pass
+
     prompt = f"""当前系统状态:
 {status_text}
 
 观察:
 {obs_text}
-{signal_section}{rules_section}{_weakest_section}{_goal_section}
+{signal_section}{rules_section}{_breathe_section}{_weakest_section}{_goal_section}
 最近一次洞察已记录，请勿重复相同内容。
 {"上次洞察: " + recent_insight if recent_insight else ""}
 以{depth_note}模式输出。只输出JSON格式，不允许任何额外文字。
