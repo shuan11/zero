@@ -364,6 +364,23 @@ def one_cycle(cycle_num):
     except Exception as _e:
         log(f"  自修补异常: {_e}")
     
+    # P101: 理解验证电路桥接（hot-load确保代码更新即时生效）
+    try:
+        _cv_path = CLUSTER / "comprehension_validator.py"
+        if _cv_path.exists():
+            _cv_code = _cv_path.read_text()
+            _cv_compiled = compile(_cv_code, str(_cv_path), "exec")
+            _cv_ns = {"__name__": "comprehension_validator", "__file__": str(_cv_path)}
+            exec(_cv_compiled, _cv_ns)
+            _cv_pulse = _cv_ns.get("pulse", lambda x: {"pulsed": False})
+            _cv_result = _cv_pulse(cycle_num)
+            if _cv_result.get("pulsed"):
+                _cv_align = _cv_result.get("bridge_alignment", 0)
+                log(f"  桥接验证: alignment={_cv_align:.4f} ✓")
+                obs.append(f"桥接对齐={_cv_align:.4f}")
+    except Exception as _cve:
+        log(f"  桥接验证异常: {_cve}")
+    
     # 协调器+验证器状态观察
     try:
         from brain.coordinator import get_coord_status
