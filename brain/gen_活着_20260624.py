@@ -1,5 +1,5 @@
 """
-Brain-Engineered: 活着 (generation 1782290789400)
+Brain-Engineered: 活着 (generation 1782292998182)
 管道自动检测弱维<活着>并生成v3工程
 """
 import json, sys as _sys, time as _time
@@ -19,7 +19,7 @@ def engineer_活着():
     # ── 1. 写入洞察链(永久记忆) ──
     _wc({
         "src": "工程·活着",
-        "rel": "基因表达·#1782290789400",
+        "rel": "基因表达·#1782292998182",
         "dst": "活着",
         "dimension": "活着",
         "content": "管道自动检测弱维<活着>并生成v3工程",
@@ -65,7 +65,7 @@ def engineer_活着():
             # 同时注入自愈链(强度高,会被验证器检查)
             _wc({
                 "src": "自愈·活着",
-                "rel": "基因表达·#1782290789400",
+                "rel": "基因表达·#1782292998182",
                 "dst": "活着",
                 "dimension": "活着",
                 "content": "活着偏弱({dim_count}条/总{total}条)自动注入夯实",
@@ -75,7 +75,7 @@ def engineer_活着():
         # 4b. 强维时注册巩固动作
         if not _is_weak and dim_count > 0:
             _ra("write_chain", {"src": f"巩固·活着",
-                "rel": f"基因表达·#1782290789400", "dst": "活着",
+                "rel": f"基因表达·#1782292998182", "dst": "活着",
                 "content": f"活着维度健康({dim_count}条),脉冲巩固",
                 "dimension": "活着", "strength": 0.5},
                 priority=8, source="gene:活着")

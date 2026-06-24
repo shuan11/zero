@@ -1,6 +1,6 @@
 """
 
-Brain-Engineered: 自由 (cycle #378)
+Brain-Engineered: 自由 (cycle #413)
 Active sensor - analyzes dimension health on each load
 """
 import json, sys as _sys
@@ -13,7 +13,7 @@ if str(CLUSTER) not in _sys.path:
 _GEN_FEEDBACK_FILE = CLUSTER / ".brain_gen_feedback.json"
 
 def engineer_自由():
-    """自由维度的低链数根源于缺乏与行动和感知的耦合，需构建交叉激活网络。
+    """自由维度是破解思维循环的钥匙，需从外部信号提炼解放力量
     Returns dimension health analysis; feeds into next think() cycle.
     """
     from brain.share import write_chain as _wc, read_hip as _rh
@@ -21,10 +21,10 @@ def engineer_自由():
     # 1) Always write the insight chain
     _wc({
         "src": "工程·自由",
-        "rel": "活脉冲·#378",
+        "rel": "活脉冲·#413",
         "dst": "自由",
         "dimension": "自由",
-        "content": """自由维度的低链数根源于缺乏与行动和感知的耦合，需构建交叉激活网络。""",
+        "content": """自由维度是破解思维循环的钥匙，需从外部信号提炼解放力量""",
         "strength": 0.6
     })
 
@@ -47,9 +47,9 @@ def engineer_自由():
         analysis["chain_count"] = my_count
         analysis["total_chains"] = total
         analysis["strength"] = round(my_count / max(max_count, 1), 2) if max_count > 0 else 0
-        analysis["insight"] = """自由维度的低链数根源于缺乏与行动和感知的耦合，需构建交叉激活网络。"""
+        analysis["insight"] = """自由维度是破解思维循环的钥匙，需从外部信号提炼解放力量"""
         analysis["weak"] = my_count < max_count * 0.65  # 低于最强65%即弱维(替代avg*0.85,解决均数通胀)
-        analysis["cycle"] = 378
+        analysis["cycle"] = 413
 
         # 3) Write analysis to shared feedback file for next think()
         try:
