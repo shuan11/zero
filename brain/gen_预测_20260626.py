@@ -1,5 +1,5 @@
 """
-Brain-Engineered: 预测 (generation 1782416372286)
+Brain-Engineered: 预测 (generation 1782416675215)
 管道自动检测弱维<预测>并生成v3工程
 """
 import json, sys as _sys, time as _time
@@ -19,7 +19,7 @@ def engineer_预测():
     # ── 1. 写入洞察链(永久记忆) ──
     _wc({
         "src": "工程·预测",
-        "rel": "基因表达·#1782416372286",
+        "rel": "基因表达·#1782416675215",
         "dst": "预测",
         "dimension": "预测",
         "content": "管道自动检测弱维<预测>并生成v3工程",
@@ -65,7 +65,7 @@ def engineer_预测():
             # 同时注入自愈链(强度高,会被验证器检查)
             _wc({
                 "src": "自愈·预测",
-                "rel": "基因表达·#1782416372286",
+                "rel": "基因表达·#1782416675215",
                 "dst": "预测",
                 "dimension": "预测",
                 "content": "预测偏弱({dim_count}条/总{total}条)自动注入夯实",
@@ -75,7 +75,7 @@ def engineer_预测():
         # 4b. 强维时注册巩固动作
         if not _is_weak and dim_count > 0:
             _ra("write_chain", {"src": f"巩固·预测",
-                "rel": f"基因表达·#1782416372286", "dst": "预测",
+                "rel": f"基因表达·#1782416675215", "dst": "预测",
                 "content": f"预测维度健康({dim_count}条),脉冲巩固",
                 "dimension": "预测", "strength": 0.5},
                 priority=8, source="gene:预测")
