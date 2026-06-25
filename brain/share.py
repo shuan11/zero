@@ -158,6 +158,12 @@ def write_chain(chain_dict):
         _threshold = gn_get("quality.threshold", 0.30)
         
         if _q_score < _threshold:
+            # 记录到盲区日志(无论是否拦截)
+            try:
+                from brain.quality_gate import log_blocked_chain
+                log_blocked_chain(chain_dict, _qr)
+            except Exception:
+                pass
             if not _log_only:
                 log(f"  🔇 质量门·拦截: score={_q_score:.2f} [{_q_dim}] {_q_src}→{_q_dst}")
                 _filtered = True
@@ -194,7 +200,7 @@ def write_chains_batch(chains, max_dedup=500):
         from brain.genome import get as gn_get
         _log_only = gn_get("quality.log_only", True)
         _threshold = gn_get("quality.threshold", 0.30)
-        from brain.quality_gate import rate_chain
+        from brain.quality_gate import rate_chain, log_blocked_chain
         passed = []
         blocked = 0
         for c in chains:
@@ -204,6 +210,12 @@ def write_chains_batch(chains, max_dedup=500):
             else:
                 log(f"  🔇 质量门·批量拦截: score={qr['score']:.2f} [{c.get('dimension',c.get('dst','?'))}]")
                 blocked += 1
+            # 低质量链记录到盲区日志(无论是否拦截)
+            if qr["score"] < _threshold:
+                try:
+                    log_blocked_chain(c, qr)
+                except Exception:
+                    pass
         if blocked > 0:
             log(f"  质量门: 批量拦截{blocked}/{len(chains)}链")
         chains = passed

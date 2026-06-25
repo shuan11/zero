@@ -16,6 +16,120 @@
 """
 
 import re
+import json
+from pathlib import Path
+from collections import Counter
+
+# ─── 持久化日志 ─────────────────────────────────────
+_BLOCKED_LOG_PATH = Path(__file__).resolve().parent.parent / "blocked_chains.json"
+_MAX_BLOCKED_LOG = 1000  # 循环缓冲上限
+
+
+def _load_blocked_log():
+    """读取被拦截链日志"""
+    if _BLOCKED_LOG_PATH.exists():
+        try:
+            with open(_BLOCKED_LOG_PATH) as f:
+                return json.load(f)
+        except (json.JSONDecodeError, OSError):
+            return []
+    return []
+
+
+def _save_blocked_log(entries):
+    """写入被拦截链日志(循环缓冲)"""
+    if len(entries) > _MAX_BLOCKED_LOG:
+        entries = entries[-_MAX_BLOCKED_LOG:]
+    try:
+        with open(_BLOCKED_LOG_PATH, 'w') as f:
+            json.dump(entries, f, ensure_ascii=False, indent=2)
+    except OSError:
+        pass
+
+
+def log_blocked_chain(chain: dict, rating: dict):
+    """将一条被拦截的链记录到持久日志
+    
+    Args:
+        chain: 原始链
+        rating: rate_chain()的评分结果
+    """
+    entry = {
+        "timestamp": __import__("datetime").datetime.now().isoformat(),
+        "chain": {
+            "src": chain.get("src", ""),
+            "rel": chain.get("rel", ""),
+            "dst": chain.get("dst", ""),
+            "content": chain.get("content", ""),
+            "dimension": chain.get("dimension", ""),
+        },
+        "rating": rating,
+    }
+    entries = _load_blocked_log()
+    entries.append(entry)
+    _save_blocked_log(entries)
+
+
+def analyze_blocked_clusters() -> dict:
+    """分析被拦截链的聚类盲区
+    
+    对blocked_log中的链按content/rel/dimension聚类,
+    发现可能的新维萌芽或系统性模板模式
+    
+    Returns:
+        {"total_blocked": N, "clusters": [{...}], "new_dim_candidates": [...]}
+    """
+    entries = _load_blocked_log()
+    if not entries:
+        return {"total_blocked": 0, "clusters": [], "new_dim_candidates": []}
+
+    # 按rel聚合(rel是二元关系,含关键pattern信息)
+    rel_counts = Counter()
+    dim_counts = Counter()
+    content_samples = {}
+
+    for e in entries:
+        c = e.get("chain", {})
+        rel = c.get("rel", "?")
+        dim = c.get("dimension", "?")
+        rel_counts[rel] += 1
+        dim_counts[dim] += 1
+        if rel not in content_samples and c.get("content"):
+            content_samples[rel] = c["content"][:150]
+
+    # 聚类: 出现≥3次的rel认为是模式
+    clusters = []
+    for rel, cnt in rel_counts.most_common(10):
+        if cnt >= 3:
+            clusters.append({
+                "pattern": rel,
+                "count": cnt,
+                "rate": round(cnt / len(entries), 3),
+                "sample_content": content_samples.get(rel, ""),
+            })
+
+    # 新维候选: dimension="?" 或 未知 且次数≥3
+    new_dim_candidates = []
+    for dim, cnt in dim_counts.most_common(5):
+        if dim in ("?", "", "unknown", "未分类") and cnt >= 3:
+            # 找这些链的conent共性
+            samples = []
+            for e in entries:
+                if e.get("chain", {}).get("dimension", "") == dim:
+                    c = e["chain"]
+                    samples.append(f"{c.get('src','')}→{c.get('dst','')}: {c.get('content','')[:80]}")
+            new_dim_candidates.append({
+                "dimension": dim,
+                "count": cnt,
+                "samples": samples[:5],
+            })
+
+    return {
+        "total_blocked": len(entries),
+        "clusters": clusters[:10],
+        "new_dim_candidates": new_dim_candidates[:3],
+        "by_dimension": dict(dim_counts.most_common(10)),
+    }
 
 # ─── 模板模式 ─────────────────────────────────────
 # 匹配自愈/自循环/系统自动生成的链
@@ -188,6 +302,11 @@ def filter_chains(chains: list, threshold: float = 0.30) -> dict:
             passed.append(chain)
         else:
             blocked.append((chain, rating))
+            # 记录拦截链到持久日志(异步安全)
+            try:
+                log_blocked_chain(chain, rating)
+            except Exception:
+                pass
 
     avg = sum(scores) / len(scores) if scores else 0
     return {
