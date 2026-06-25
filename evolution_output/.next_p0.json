@@ -1,6 +1,45 @@
 {
-  "p0": "P107: 弱维突破·合成",
-  "prev": "P106: 元递归突破",
-  "insight": "元递归引擎已集成。最弱三维: 合成(103)、维度盲区(91)、纪律(102)。合成是跨维综合能力，弱化导致跨维洞察无法收敛为统一行动",
-  "reason": "元递归引擎上线后将逐步改善所有弱维。合成维度103链为系统认知缝合能力，强化合成=提升系统整体一致性"
+  "p0": "P107",
+  "title": "P107: 焦点历史净化 — 消除'未知'污染，构建真实焦点闭环",
+  "context": "P106完成: 元递归突破 — 修复2个bug(空文件路径+always-true条件), 添加行为反馈闭环(元递归warn→写brain_next_focus.json→daemon消费强制切换焦点), 修复焦点路径错误(.brain_current_focus.json→.brain_focus.json). daemon目前cycle 653健康运行, 桥错误0, LOG_FAIL 0. 当前焦点:'师'(652). 海马体20091链/44维. 历史问题: 焦点历史条目中大量'未知'(因路径错误写入), 需逐步净化. 下一P0: 焦点历史轨迹净化+闭环验证.",
+  "phases": [
+    {
+      "phase": 1,
+      "action": "purge_unknown_from_history",
+      "target": "消除焦点历史中所有'未知'条目, 保留真实焦点轨迹",
+      "status": "pending"
+    },
+    {
+      "phase": 2,
+      "action": "verify_focus_switch_loop",
+      "target": "验证元递归→写brain_next_focus→daemon消费→焦点切换→元递归再评的完整闭环",
+      "status": "pending"
+    },
+    {
+      "phase": 3,
+      "action": "add_focus_trend_analysis",
+      "target": "添加焦点趋势分析: 切换频率/聚焦深度/惯性检测增强",
+      "status": "pending"
+    }
+  ],
+  "current_state": {
+    "hip_total": 20091,
+    "hip_dims": 44,
+    "bridge_alignment": 0.700,
+    "daemon_pid": 518918,
+    "daemon_cycle": 653,
+    "bridge_errors": 0,
+    "log_fail": 0,
+    "api_status": "available"
+  },
+  "handoff": {
+    "session": "20260625_021140",
+    "hip_total": 20091,
+    "hip_dims": 44,
+    "bridge_alignment": 0.700,
+    "daemon_pid": 518918,
+    "daemon_cycle": 653,
+    "api_status": "available",
+    "last_p0": "P106: 元递归突破 — 修复bug+行为反馈闭环+焦点路径修复"
+  }
 }
