@@ -254,7 +254,7 @@ def pulse(cycle_num=0):
 
     # 读取焦点历史
     focus_history = _read_json(CLUSTER / ".brain_focus_history.json", {"entries": []}).get("entries", [])
-    current_focus = _read_json(CLUSTER / ".brain_current_focus.json", {}).get("focus", "未知")
+    current_focus = _read_json(CLUSTER / ".brain_focus.json", {}).get("focus", "未知")
 
     # 读取当前维度链数
     try:

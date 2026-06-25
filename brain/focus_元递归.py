@@ -37,7 +37,7 @@ def pulse(cycle_num=0):
     msgs = []
 
     # ── 1. 自观: 读取当前焦点状态 ──
-    focus_info = _read_json(CLUSTER / ".brain_current_focus.json", {})
+    focus_info = _read_json(CLUSTER / ".brain_focus.json", {})
     current_focus = focus_info.get("focus", "未知")
     current_insight = focus_info.get("insight", "")
 
