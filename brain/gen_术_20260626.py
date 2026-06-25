@@ -1,6 +1,6 @@
 """
 
-Brain-Engineered: 术 (cycle #96)
+Brain-Engineered: 术 (cycle #135)
 Active sensor - analyzes dimension health on each load
 """
 import json, sys as _sys
@@ -13,7 +13,7 @@ if str(CLUSTER) not in _sys.path:
 _GEN_FEEDBACK_FILE = CLUSTER / ".brain_gen_feedback.json"
 
 def engineer_术():
-    """本地思考: 触类旁通(50)活跃 | 术(15)最弱 | 桥高对齐 | 直觉: 光爱x4爆发 系统x5爆发
+    """术弱导致主循环固化，强化术可突破盲区注入行动信号
     Returns dimension health analysis; feeds into next think() cycle.
     """
     from brain.share import write_chain as _wc, read_hip as _rh
@@ -21,10 +21,10 @@ def engineer_术():
     # 1) Always write the insight chain
     _wc({
         "src": "工程·术",
-        "rel": "活脉冲·#96",
+        "rel": "活脉冲·#135",
         "dst": "术",
         "dimension": "术",
-        "content": """本地思考: 触类旁通(50)活跃 | 术(15)最弱 | 桥高对齐 | 直觉: 光爱x4爆发 系统x5爆发""",
+        "content": """术弱导致主循环固化，强化术可突破盲区注入行动信号""",
         "strength": 0.6
     })
 
@@ -47,9 +47,9 @@ def engineer_术():
         analysis["chain_count"] = my_count
         analysis["total_chains"] = total
         analysis["strength"] = round(my_count / max(max_count, 1), 2) if max_count > 0 else 0
-        analysis["insight"] = """本地思考: 触类旁通(50)活跃 | 术(15)最弱 | 桥高对齐 | 直觉: 光爱x4爆发 系统x5爆发"""
+        analysis["insight"] = """术弱导致主循环固化，强化术可突破盲区注入行动信号"""
         analysis["weak"] = my_count < max_count * 0.65  # 低于最强65%即弱维(替代avg*0.85,解决均数通胀)
-        analysis["cycle"] = 96
+        analysis["cycle"] = 135
 
         # 3) Write analysis to shared feedback file for next think()
         try:
