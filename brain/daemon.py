@@ -1094,6 +1094,29 @@ def one_cycle(cycle_num):
     _mr_findings = meta_recursion_pulse(cycle_num) or []
     for _f in _mr_findings:
         log(f"  元递归引擎: {_f[:100]}")
+    # ★ P106: 行为反馈消费 — 读取元递归的行为修改指令并应用
+    _mods_file = CLUSTER / ".brain_behavior_mods.json"
+    if _mods_file.exists():
+        try:
+            _mods = json.loads(_mods_file.read_text())
+            _adjust = _mods.get("interval_adjust_secs", 0)
+            if _adjust != 0:
+                # 写 genome.json dynamic_interval
+                _genome_path = CLUSTER / ".genome.json"
+                if _genome_path.exists():
+                    _genome_data = json.loads(_genome_path.read_text())
+                    _current_interval = _genome_data.get("cycle", {}).get("dynamic_interval", 0)
+                    _new_interval = max(0, _current_interval + _adjust)
+                    _genome_data.setdefault("cycle", {})["dynamic_interval"] = _new_interval
+                    _genome_path.write_text(json.dumps(_genome_data, ensure_ascii=False, indent=2))
+                    _bust_genome_cache()
+                    log(f"  ⚡元递归行为: 间隔{'加速' if _adjust<0 else '减速'}{abs(_adjust)}s → {_new_interval}s ({_mods.get('reason','')})")
+            # 消费后删除
+            _mods_file.unlink()
+        except Exception as _mod_e:
+            log(f"  元递归行为消费异常: {_mod_e}")
+            try: _mods_file.unlink()
+            except: pass
     # 合成引擎·跨维综合（每周期: 收集→综合→执行→更新）
     _synth_msgs = synthesis_pulse(cycle_num) or []
     for _m in _synth_msgs:
