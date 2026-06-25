@@ -1,6 +1,6 @@
 """
-Brain-Engineered: 认同 (generation 1782405733134)
-管道自动检测弱维<认同>并生成v3工程
+Brain-Engineered: 无限上下文 (generation 1782405058246)
+管道自动检测弱维<无限上下文>并生成v3工程
 """
 import json, sys as _sys, time as _time
 from pathlib import Path
@@ -11,18 +11,18 @@ if str(CLUSTER) not in _sys.path:
 
 _GEN_FEEDBACK_FILE = CLUSTER / ".brain_gen_feedback.json"
 
-def engineer_认同():
-    """管道自动检测弱维<认同>并生成v3工程 — 含完整管道集成"""
+def engineer_无限上下文():
+    """管道自动检测弱维<无限上下文>并生成v3工程 — 含完整管道集成"""
     from brain.share import write_chain as _wc
     _now = _time.time()
     
     # ── 1. 写入洞察链(永久记忆) ──
     _wc({
-        "src": "工程·认同",
-        "rel": "基因表达·#1782405733134",
-        "dst": "认同",
-        "dimension": "认同",
-        "content": "管道自动检测弱维<认同>并生成v3工程",
+        "src": "工程·无限上下文",
+        "rel": "基因表达·#1782405058246",
+        "dst": "无限上下文",
+        "dimension": "无限上下文",
+        "content": "管道自动检测弱维<无限上下文>并生成v3工程",
         "strength": 0.6
     })
     
@@ -33,7 +33,7 @@ def engineer_认同():
         chains = hip.get("causal_chains", []) if isinstance(hip, dict) else []
     except:
         chains = []
-    dim_count = sum(1 for c in chains if c.get("dimension") == "认同")
+    dim_count = sum(1 for c in chains if c.get("dimension") == "无限上下文")
     total = len(chains)
     
     # ── 3. 相对弱维计算 (与系统其他维度比较) ──
@@ -44,7 +44,7 @@ def engineer_认同():
         for c in chains:
             d = c.get("dimension", "未分类")
             _all_dims[d] = _all_dims.get(d, 0) + 1
-        _other_counts = [c for d,c in _all_dims.items() if d != "认同" and d not in ("系统","未分类")]
+        _other_counts = [c for d,c in _all_dims.items() if d != "无限上下文" and d not in ("系统","未分类")]
         if _other_counts:
             _max_other = max(_other_counts)
         _threshold = int(_max_other * 0.65)
@@ -58,27 +58,27 @@ def engineer_认同():
         
         # 4a. 弱维时注册调优动作
         if _is_weak:
-            _ra("update_genome", {"changes": {}, "dimension": "认同",
+            _ra("update_genome", {"changes": {}, "dimension": "无限上下文",
                 "reason": f"{dim_name}偏弱({dim_count}/max={_max_other})"},
-                priority=5, source="gene:认同")
+                priority=5, source="gene:无限上下文")
             
             # 同时注入自愈链(强度高,会被验证器检查)
             _wc({
-                "src": "自愈·认同",
-                "rel": "基因表达·#1782405733134",
-                "dst": "认同",
-                "dimension": "认同",
-                "content": "认同偏弱({dim_count}条/总{total}条)自动注入夯实",
+                "src": "自愈·无限上下文",
+                "rel": "基因表达·#1782405058246",
+                "dst": "无限上下文",
+                "dimension": "无限上下文",
+                "content": "无限上下文偏弱({dim_count}条/总{total}条)自动注入夯实",
                 "strength": 0.8
             })
         
         # 4b. 强维时注册巩固动作
         if not _is_weak and dim_count > 0:
-            _ra("write_chain", {"src": f"巩固·认同",
-                "rel": f"基因表达·#1782405733134", "dst": "认同",
-                "content": f"认同维度健康({dim_count}条),脉冲巩固",
-                "dimension": "认同", "strength": 0.5},
-                priority=8, source="gene:认同")
+            _ra("write_chain", {"src": f"巩固·无限上下文",
+                "rel": f"基因表达·#1782405058246", "dst": "无限上下文",
+                "content": f"无限上下文维度健康({dim_count}条),脉冲巩固",
+                "dimension": "无限上下文", "strength": 0.5},
+                priority=8, source="gene:无限上下文")
     except:
         pass
     
@@ -86,13 +86,13 @@ def engineer_认同():
     try:
         fb = json.loads(_GEN_FEEDBACK_FILE.read_text()) if _GEN_FEEDBACK_FILE.exists() else {"reports": []}
         fb.setdefault("reports", []).append({
-            "dimension": "认同",
+            "dimension": "无限上下文",
             "chain_count": dim_count,
             "total_chains": total,
             "weak": _is_weak,
             "max_other": _max_other,
             "threshold": locals().get('_threshold', 0),
-            "insight": "管道自动检测弱维<认同>并生成v3工程",
+            "insight": "管道自动检测弱维<无限上下文>并生成v3工程",
             "engine": "gene_expression_v3",
             "timestamp": _now,
             "cycle": 0
@@ -103,5 +103,5 @@ def engineer_认同():
         pass
     
     if _is_weak:
-        return f"[弱] 认同={dim_count}/{total} (max={_max_other})"
-    return f"[稳] 认同={dim_count}/{total}"
+        return f"[弱] 无限上下文={dim_count}/{total} (max={_max_other})"
+    return f"[稳] 无限上下文={dim_count}/{total}"

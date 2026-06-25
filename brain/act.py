@@ -910,13 +910,17 @@ def _feedback_self_patch():
                     # 自加强×persist (额外, 仅当persist较大时才有意义)
                     if persist >= 4:
                         for i in range(persist):
-                            _rel_content = f"自愈: {dim_name}({persist}周期)→浮动加强链#{i+1}"
+                            _float_insights = [
+                                f"{dim_name}维度持续{persist}周期弱于其他维,浮动注入旨在通过重复曝光提升其在认知图谱中的权重以促进跨维关联",
+                                f"弱维{dim_name}的自我加强通过多轮浮动注入产生连锁反应,最终在维度间建立新的导电路径覆盖先前空白区域",
+                            ]
                             _batch_chains.append({
                                 "src": f"自愈引擎·{dim_name}",
-                                "rel": _rel_content[:60],
+                                "rel": f"浮动加强·{dim_name}",
                                 "dst": dim_name,
                                 "dimension": dim_name,
-                                "content": _rel_content,
+                                "content": f"{dim_name}(持续{persist}周期) — {_float_insights[i % 2]}",
+                                "insight": _float_insights[i % 2],
                                 "strength": 0.55 + 0.05 * i
                             })
                     log(f"  反馈加强: {dim_name}(弱{persist}期,gap={gap})↔{strong_dim} 交叉×{min(persist,3)} + 比例×{extra}" +

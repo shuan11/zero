@@ -1,6 +1,6 @@
 """
 
-Brain-Engineered: 势 (cycle #10)
+Brain-Engineered: 智慧 (cycle #2)
 Active sensor - analyzes dimension health on each load
 """
 import json, sys as _sys
@@ -12,19 +12,19 @@ if str(CLUSTER) not in _sys.path:
 
 _GEN_FEEDBACK_FILE = CLUSTER / ".brain_gen_feedback.json"
 
-def engineer_势():
-    """势弱牵动一元化失锚，师道需引导弱维聚势
+def engineer_智慧():
+    """智慧弱制约预测与时间，合成过度需感知唤醒智慧演化
     Returns dimension health analysis; feeds into next think() cycle.
     """
     from brain.share import write_chain as _wc, read_hip as _rh
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·势",
-        "rel": "活脉冲·#10",
-        "dst": "势",
-        "dimension": "势",
-        "content": """势弱牵动一元化失锚，师道需引导弱维聚势""",
+        "src": "工程·智慧",
+        "rel": "活脉冲·#2",
+        "dst": "智慧",
+        "dimension": "智慧",
+        "content": """智慧弱制约预测与时间，合成过度需感知唤醒智慧演化""",
         "strength": 0.6
     })
 
@@ -37,7 +37,7 @@ def engineer_势():
             d = c.get("dimension", "未分类")
             dim_counts[d] = dim_counts.get(d, 0) + 1
 
-        my_dim = "势"
+        my_dim = "智慧"
         my_count = dim_counts.get(my_dim, 0)
         total = len(chains)
         max_count = max(dim_counts.values()) if dim_counts else 0
@@ -47,9 +47,9 @@ def engineer_势():
         analysis["chain_count"] = my_count
         analysis["total_chains"] = total
         analysis["strength"] = round(my_count / max(max_count, 1), 2) if max_count > 0 else 0
-        analysis["insight"] = """势弱牵动一元化失锚，师道需引导弱维聚势"""
+        analysis["insight"] = """智慧弱制约预测与时间，合成过度需感知唤醒智慧演化"""
         analysis["weak"] = my_count < max_count * 0.65  # 低于最强65%即弱维(替代avg*0.85,解决均数通胀)
-        analysis["cycle"] = 10
+        analysis["cycle"] = 2
 
         # 3) Write analysis to shared feedback file for next think()
         try:
@@ -96,5 +96,5 @@ def engineer_势():
         return f"分析异常: {e}"
 
 if __name__ == "__main__":
-    result = engineer_势()
-    print(f"工程[势]: {result}", flush=True)
+    result = engineer_智慧()
+    print(f"工程[智慧]: {result}", flush=True)

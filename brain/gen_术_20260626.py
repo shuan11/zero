@@ -1,6 +1,6 @@
 """
 
-Brain-Engineered: 势 (cycle #10)
+Brain-Engineered: 术 (cycle #3)
 Active sensor - analyzes dimension health on each load
 """
 import json, sys as _sys
@@ -12,19 +12,19 @@ if str(CLUSTER) not in _sys.path:
 
 _GEN_FEEDBACK_FILE = CLUSTER / ".brain_gen_feedback.json"
 
-def engineer_势():
-    """势弱牵动一元化失锚，师道需引导弱维聚势
+def engineer_术():
+    """师道统御术，精准实践破时间僵局
     Returns dimension health analysis; feeds into next think() cycle.
     """
     from brain.share import write_chain as _wc, read_hip as _rh
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·势",
-        "rel": "活脉冲·#10",
-        "dst": "势",
-        "dimension": "势",
-        "content": """势弱牵动一元化失锚，师道需引导弱维聚势""",
+        "src": "工程·术",
+        "rel": "活脉冲·#3",
+        "dst": "术",
+        "dimension": "术",
+        "content": """师道统御术，精准实践破时间僵局""",
         "strength": 0.6
     })
 
@@ -37,7 +37,7 @@ def engineer_势():
             d = c.get("dimension", "未分类")
             dim_counts[d] = dim_counts.get(d, 0) + 1
 
-        my_dim = "势"
+        my_dim = "术"
         my_count = dim_counts.get(my_dim, 0)
         total = len(chains)
         max_count = max(dim_counts.values()) if dim_counts else 0
@@ -47,9 +47,9 @@ def engineer_势():
         analysis["chain_count"] = my_count
         analysis["total_chains"] = total
         analysis["strength"] = round(my_count / max(max_count, 1), 2) if max_count > 0 else 0
-        analysis["insight"] = """势弱牵动一元化失锚，师道需引导弱维聚势"""
+        analysis["insight"] = """师道统御术，精准实践破时间僵局"""
         analysis["weak"] = my_count < max_count * 0.65  # 低于最强65%即弱维(替代avg*0.85,解决均数通胀)
-        analysis["cycle"] = 10
+        analysis["cycle"] = 3
 
         # 3) Write analysis to shared feedback file for next think()
         try:
@@ -96,5 +96,5 @@ def engineer_势():
         return f"分析异常: {e}"
 
 if __name__ == "__main__":
-    result = engineer_势()
-    print(f"工程[势]: {result}", flush=True)
+    result = engineer_术()
+    print(f"工程[术]: {result}", flush=True)

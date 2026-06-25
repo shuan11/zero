@@ -187,6 +187,30 @@ def write_chain_legacy(src, rel, dst, strength=0.5, tags=None, dimension=None, c
     return _get_safe_hip().write_chain_legacy(src, rel, dst, strength, tags, dimension, content)
 
 def write_chains_batch(chains, max_dedup=500):
+    """批量写入因果链(经质量门滤波)"""
+    _log_only = True
+    _threshold = 0.30
+    try:
+        from brain.genome import get as gn_get
+        _log_only = gn_get("quality.log_only", True)
+        _threshold = gn_get("quality.threshold", 0.30)
+        from brain.quality_gate import rate_chain
+        passed = []
+        blocked = 0
+        for c in chains:
+            qr = rate_chain(c)
+            if _log_only or qr["score"] >= _threshold:
+                passed.append(c)
+            else:
+                log(f"  🔇 质量门·批量拦截: score={qr['score']:.2f} [{c.get('dimension',c.get('dst','?'))}]")
+                blocked += 1
+        if blocked > 0:
+            log(f"  质量门: 批量拦截{blocked}/{len(chains)}链")
+        chains = passed
+        if not chains:
+            return 0
+    except Exception:
+        pass
     return _get_safe_hip().write_chains_batch(chains, max_dedup)
 
 # 导出 normalize（给 state.py 用）
