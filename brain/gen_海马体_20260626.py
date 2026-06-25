@@ -1,5 +1,5 @@
 """
-Brain-Engineered: 海马体 (generation 1782423610057)
+Brain-Engineered: 海马体 (generation 1782424425498)
 管道自动检测弱维<海马体>并生成v3工程
 """
 import json, sys as _sys, time as _time
@@ -19,7 +19,7 @@ def engineer_海马体():
     # ── 1. 写入洞察链(永久记忆) ──
     _wc({
         "src": "工程·海马体",
-        "rel": "基因表达·#1782423610057",
+        "rel": "基因表达·#1782424425498",
         "dst": "海马体",
         "dimension": "海马体",
         "content": "管道自动检测弱维<海马体>并生成v3工程",
@@ -65,7 +65,7 @@ def engineer_海马体():
             # 同时注入自愈链(强度高,会被验证器检查)
             _wc({
                 "src": "自愈·海马体",
-                "rel": "基因表达·#1782423610057",
+                "rel": "基因表达·#1782424425498",
                 "dst": "海马体",
                 "dimension": "海马体",
                 "content": "海马体偏弱({dim_count}条/总{total}条)自动注入夯实",
@@ -75,7 +75,7 @@ def engineer_海马体():
         # 4b. 强维时注册巩固动作
         if not _is_weak and dim_count > 0:
             _ra("write_chain", {"src": f"巩固·海马体",
-                "rel": f"基因表达·#1782423610057", "dst": "海马体",
+                "rel": f"基因表达·#1782424425498", "dst": "海马体",
                 "content": f"海马体维度健康({dim_count}条),脉冲巩固",
                 "dimension": "海马体", "strength": 0.5},
                 priority=8, source="gene:海马体")
