@@ -73,6 +73,27 @@ def meta_inspect(cycle_num, current_focus, focus_history):
     state = _read_json(_META_STATE, {"neglected_dims": {}})
     neglected = state.get("neglected_dims", {})
     
+    # 读取当前维度链数以计算遗忘维度
+    try:
+        from brain.share import read_hip as _rh
+        hip = _rh()
+        chains_hip = hip.get("causal_chains", []) if isinstance(hip, dict) else []
+        from collections import Counter
+        dim_counts = Counter(c.get("dimension", "未分类") for c in chains_hip)
+        total_dims = len(dim_counts)
+        if total_dims > 3:
+            avg_per_dim = sum(dim_counts.values()) / total_dims
+            neglected_dims = {d: c for d, c in dim_counts.items() if c < avg_per_dim * 0.3}
+            if neglected_dims:
+                state["neglected_dims"] = neglected_dims
+                findings.append({
+                    "type": "neglected_dims",
+                    "detail": f"被忽视维度: {list(neglected_dims.keys())[:5]} (链数<均值{avg_per_dim:.0f}×0.3)",
+                    "severity": "warn" if any(c < avg_per_dim * 0.1 for c in neglected_dims.values()) else "info"
+                })
+    except Exception:
+        pass
+    
 
     # 1.3 检查 inspection 的 recall
     if cycle_num > 0 and cycle_num % 5 == 0:
@@ -132,6 +153,30 @@ def eml_self_optimize(cycle_num, dim_chain_counts):
             "severity": "info"
         })
 
+    return findings
+
+
+# ─────────────────────────────────────────────
+# Layer 2.5: 元递归自健康报告 (每周期)
+# ─────────────────────────────────────────────
+def meta_self_health(cycle_num, dim_chain_counts):
+    """每周期报告元递归自身的健康状态"""
+    findings = []
+    mr_count = dim_chain_counts.get("元递归", 0) if dim_chain_counts else 0
+    avg_count = sum(dim_chain_counts.values()) / max(len(dim_chain_counts), 1) if dim_chain_counts else 0
+    # 元递归链数 vs 均值比例
+    mr_ratio = mr_count / max(avg_count, 1)
+    if mr_ratio < 0.5:
+        severity = "warn"
+    elif mr_ratio < 0.8:
+        severity = "info"
+    else:
+        severity = "info"
+    findings.append({
+        "type": "meta_self_health",
+        "detail": f"元递归自我诊: {mr_count}链(均值{avg_count:.0f}) 比={mr_ratio:.2f} 状态={'⚠️弱怠' if mr_ratio<0.5 else '✓正常'}",
+        "severity": severity
+    })
     return findings
 
 
@@ -272,6 +317,9 @@ def pulse(cycle_num=0):
     # Layer 2: EML Self-Optimization
     all_findings.extend(eml_self_optimize(cycle_num, dim_counts))
 
+    # Layer 2.5: 元递归自健康报告 (每周期)
+    all_findings.extend(meta_self_health(cycle_num, dim_counts))
+
     # Layer 3: Chain Meta-Analysis
     all_findings.extend(chain_meta_analysis(cycle_num))
 
@@ -295,10 +343,11 @@ def pulse(cycle_num=0):
 
         # ★ P106: 行为反馈闭环 — warn/error 发现 → 写 brain_next_focus.json → daemon 消费
         _warn_findings = [f for f in all_findings if f.get("severity") in ("warn", "error")]
-        if _warn_findings:
+        _all_findings_with_detail = [f for f in all_findings if f.get("detail") and len(f.get("detail","")) > 10]
+        if _warn_findings or _all_findings_with_detail:
             _next_file = CLUSTER / ".brain_next_focus.json"
-            _worst = _warn_findings[0]
-            _forced_focus = "元递归"
+            _worst = _warn_findings[0] if _warn_findings else _all_findings_with_detail[0]
+            _forced_focus = "元递归" if _warn_findings else "元递归"
             _reason = f"元递归引擎: {_worst['type']} — {_worst['detail'][:80]}"
             try:
                 _next_file.write_text(json.dumps({
@@ -316,7 +365,10 @@ def pulse(cycle_num=0):
     except Exception:
         _written = []
 
-    return [f.get("detail", str(f)) for f in all_findings] + _written
+    # ★ P106: 行为反馈闭环 — 元递归洞察 → daemon行为参数变更
+    _fb_msgs = _apply_behavior_feedback(all_findings, cycle_num)
+
+    return [f.get("detail", str(f)) for f in all_findings] + _written + _fb_msgs
 
 
 # ─────────────────────────────────────────────
@@ -347,24 +399,24 @@ def _apply_behavior_feedback(findings, cycle_num):
     has_focus_bias = any(f.get("type") == "focus_bias" for f in findings)
     has_dim_imbalance = any(f.get("type") == "dim_imbalance" for f in findings)
 
-    # 核心逻辑：根据元递归洞察决定行为变更
+    # 核心逻辑：根据元递归洞察决定行为变更（累积式）
     reasons = []
 
     if error_count > 0:
-        mods["interval_adjust_secs"] = 10  # 有错误→慢下来
+        mods["interval_adjust_secs"] += 10  # 有错误→慢下来
         reasons.append(f"发现{error_count}个错误，减速+10s")
 
     if has_chain_drop:
-        mods["interval_adjust_secs"] = 5
+        mods["interval_adjust_secs"] += 5
         reasons.append("检测到链数骤降，轻微减速+5s")
 
     if has_focus_bias:
-        mods["interval_adjust_secs"] = -5  # 惯性盲区→加速切换
+        mods["interval_adjust_secs"] -= 5  # 惯性盲区→加速切换
         reasons.append("聚焦惯性盲区，加速-5s")
         mods["engine_boost"].append("focus_breaker")
 
     if has_dim_imbalance:
-        mods["interval_adjust_secs"] = -3  # 维度失衡→加速处理
+        mods["interval_adjust_secs"] -= 3  # 维度失衡→加速处理
         reasons.append("维度偏置严重，加速-3s")
         mods["engine_boost"].append("cross_dim_injection")
 
