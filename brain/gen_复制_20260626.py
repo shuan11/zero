@@ -1,9 +1,8 @@
 """
-
-Brain-Engineered: 复制 (cycle #174)
-Active sensor - analyzes dimension health on each load
+Brain-Engineered: 复制 (generation 1782427897367)
+管道自动检测弱维<复制>并生成v3工程
 """
-import json, sys as _sys
+import json, sys as _sys, time as _time
 from pathlib import Path
 
 CLUSTER = Path(__file__).resolve().parent.parent
@@ -13,88 +12,96 @@ if str(CLUSTER) not in _sys.path:
 _GEN_FEEDBACK_FILE = CLUSTER / ".brain_gen_feedback.json"
 
 def engineer_复制():
-    """复制持续弱维，师道呼吸锚可引导其耦合预测，宇宙轮将因复制补强而循环加速
-    Returns dimension health analysis; feeds into next think() cycle.
-    """
-    from brain.share import write_chain as _wc, read_hip as _rh
-
-    # 1) Always write the insight chain
+    """管道自动检测弱维<复制>并生成v3工程 — 含完整管道集成"""
+    from brain.share import write_chain as _wc
+    _now = _time.time()
+    
+    # ── 1. 写入洞察链(永久记忆) ──
     _wc({
         "src": "工程·复制",
-        "rel": "活脉冲·#174",
+        "rel": "基因表达·#1782427897367",
         "dst": "复制",
         "dimension": "复制",
-        "content": """复制持续弱维，师道呼吸锚可引导其耦合预测，宇宙轮将因复制补强而循环加速""",
+        "content": "管道自动检测弱维<复制>并生成v3工程",
         "strength": 0.6
     })
-
-    # 2) Read hippocampus and analyze dimension health
+    
+    # ── 2. 读取自身维度健康 ──
     try:
+        from brain.share import read_hip as _rh
         hip = _rh()
         chains = hip.get("causal_chains", []) if isinstance(hip, dict) else []
-        dim_counts = {}
+    except:
+        chains = []
+    dim_count = sum(1 for c in chains if c.get("dimension") == "复制")
+    total = len(chains)
+    
+    # ── 3. 相对弱维计算 (与系统其他维度比较) ──
+    _is_weak = False
+    _max_other = 0
+    try:
+        _all_dims = {}
         for c in chains:
             d = c.get("dimension", "未分类")
-            dim_counts[d] = dim_counts.get(d, 0) + 1
-
-        my_dim = "复制"
-        my_count = dim_counts.get(my_dim, 0)
-        total = len(chains)
-        max_count = max(dim_counts.values()) if dim_counts else 0
-
-        analysis = {}
-        analysis["dimension"] = my_dim
-        analysis["chain_count"] = my_count
-        analysis["total_chains"] = total
-        analysis["strength"] = round(my_count / max(max_count, 1), 2) if max_count > 0 else 0
-        analysis["insight"] = """复制持续弱维，师道呼吸锚可引导其耦合预测，宇宙轮将因复制补强而循环加速"""
-        analysis["weak"] = my_count < max_count * 0.65  # 低于最强65%即弱维(替代avg*0.85,解决均数通胀)
-        analysis["cycle"] = 174
-
-        # 3) Write analysis to shared feedback file for next think()
-        try:
-            existing = []
-            if _GEN_FEEDBACK_FILE.exists():
-                existing = json.loads(_GEN_FEEDBACK_FILE.read_text()).get("reports", [])
-            existing.append(analysis)
-            existing = existing[-50:]
-            _GEN_FEEDBACK_FILE.write_text(json.dumps({"reports": existing}, ensure_ascii=False, indent=2))
-        except Exception:
-            pass
-
-        # 4) Self-heal weak dimension: auto-generate reinforcing cross-links
-        if analysis.get("weak"):
-            try:
-                # 弱维互助网: 找最弱维度做交叉链（而非链接到强维，强维已足够）
-                sorted_dims = sorted(dim_counts.items(), key=lambda x: x[1])
-                peer_weak = [d for d, _ in sorted_dims[:5] if d and d not in ("未分类", "系统") and d != my_dim][:3]
-                for peer in peer_weak:
-                    pc = dim_counts.get(peer, 0)
-                    _wc({
-                        "src": my_dim,
-                        "rel": "弱维互助",
-                        "dst": peer,
-                        "dimension": my_dim,
-                        "content": "弱维互助: " + str(my_dim) + "(" + str(my_count) + ")↔" + str(peer) + "(" + str(pc) + ") 弱维互相强化",
-                        "strength": 0.6
-                    })
-                if peer_weak:
-                    analysis["self_healed"] = len(peer_weak)
-                # 5) Push focus rule: tell daemon to directly focus this weak dim
-                try:
-                    from brain.share import set_rule as _sr
-                    _sr("action.weak_dim", my_dim)
-                    analysis["focus_push"] = True
-                except Exception:
-                    pass
-            except Exception:
-                pass
-
-        status = f"[{'弱' if analysis['weak'] else '稳'}] {my_dim}={my_count}/{total}"
-        return status
-    except Exception as e:
-        return f"分析异常: {e}"
-
-if __name__ == "__main__":
-    result = engineer_复制()
-    print(f"工程[复制]: {result}", flush=True)
+            _all_dims[d] = _all_dims.get(d, 0) + 1
+        _other_counts = [c for d,c in _all_dims.items() if d != "复制" and d not in ("系统","未分类")]
+        if _other_counts:
+            _max_other = max(_other_counts)
+        _threshold = int(_max_other * 0.65)
+        _is_weak = dim_count < _threshold and dim_count > 0
+    except:
+        pass
+    
+    # ── 4. 动作注册(通过动作管道) ──
+    try:
+        from brain.action_registry import register_action as _ra
+        
+        # 4a. 弱维时注册调优动作
+        if _is_weak:
+            _ra("update_genome", {"changes": {}, "dimension": "复制",
+                "reason": f"{dim_name}偏弱({dim_count}/max={_max_other})"},
+                priority=5, source="gene:复制")
+            
+            # 同时注入自愈链(强度高,会被验证器检查)
+            _wc({
+                "src": "自愈·复制",
+                "rel": "基因表达·#1782427897367",
+                "dst": "复制",
+                "dimension": "复制",
+                "content": "复制偏弱({dim_count}条/总{total}条)自动注入夯实",
+                "strength": 0.8
+            })
+        
+        # 4b. 强维时注册巩固动作
+        if not _is_weak and dim_count > 0:
+            _ra("write_chain", {"src": f"巩固·复制",
+                "rel": f"基因表达·#1782427897367", "dst": "复制",
+                "content": f"复制维度健康({dim_count}条),脉冲巩固",
+                "dimension": "复制", "strength": 0.5},
+                priority=8, source="gene:复制")
+    except:
+        pass
+    
+    # ── 5. 更新反馈(供后处理合成器+协调器使用) ──
+    try:
+        fb = json.loads(_GEN_FEEDBACK_FILE.read_text()) if _GEN_FEEDBACK_FILE.exists() else {"reports": []}
+        fb.setdefault("reports", []).append({
+            "dimension": "复制",
+            "chain_count": dim_count,
+            "total_chains": total,
+            "weak": _is_weak,
+            "max_other": _max_other,
+            "threshold": locals().get('_threshold', 0),
+            "insight": "管道自动检测弱维<复制>并生成v3工程",
+            "engine": "gene_expression_v3",
+            "timestamp": _now,
+            "cycle": 0
+        })
+        fb["reports"] = fb["reports"][-200:]
+        _GEN_FEEDBACK_FILE.write_text(json.dumps(fb, ensure_ascii=False, indent=2))
+    except:
+        pass
+    
+    if _is_weak:
+        return f"[弱] 复制={dim_count}/{total} (max={_max_other})"
+    return f"[稳] 复制={dim_count}/{total}"

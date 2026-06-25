@@ -1,5 +1,5 @@
 """
-Brain-Engineered: 测试 (generation 1782416866745)
+Brain-Engineered: 测试 (generation 1782427568687)
 管道自动检测弱维<测试>并生成v3工程
 """
 import json, sys as _sys, time as _time
@@ -19,7 +19,7 @@ def engineer_测试():
     # ── 1. 写入洞察链(永久记忆) ──
     _wc({
         "src": "工程·测试",
-        "rel": "基因表达·#1782416866745",
+        "rel": "基因表达·#1782427568687",
         "dst": "测试",
         "dimension": "测试",
         "content": "管道自动检测弱维<测试>并生成v3工程",
@@ -65,7 +65,7 @@ def engineer_测试():
             # 同时注入自愈链(强度高,会被验证器检查)
             _wc({
                 "src": "自愈·测试",
-                "rel": "基因表达·#1782416866745",
+                "rel": "基因表达·#1782427568687",
                 "dst": "测试",
                 "dimension": "测试",
                 "content": "测试偏弱({dim_count}条/总{total}条)自动注入夯实",
@@ -75,7 +75,7 @@ def engineer_测试():
         # 4b. 强维时注册巩固动作
         if not _is_weak and dim_count > 0:
             _ra("write_chain", {"src": f"巩固·测试",
-                "rel": f"基因表达·#1782416866745", "dst": "测试",
+                "rel": f"基因表达·#1782427568687", "dst": "测试",
                 "content": f"测试维度健康({dim_count}条),脉冲巩固",
                 "dimension": "测试", "strength": 0.5},
                 priority=8, source="gene:测试")
