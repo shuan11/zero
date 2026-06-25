@@ -1,6 +1,6 @@
 """
 
-Brain-Engineered: 海马体 (cycle #21)
+Brain-Engineered: 海马体 (cycle #40)
 Active sensor - analyzes dimension health on each load
 """
 import json, sys as _sys
@@ -13,7 +13,7 @@ if str(CLUSTER) not in _sys.path:
 _GEN_FEEDBACK_FILE = CLUSTER / ".brain_gen_feedback.json"
 
 def engineer_海马体():
-    """思考链崩塌触发感知-预测连锁弱化，需以海马体为锚嫁接强维因果实现逆势增长
+    """海马体链多质弱，需重组因果链释放光爱潜力
     Returns dimension health analysis; feeds into next think() cycle.
     """
     from brain.share import write_chain as _wc, read_hip as _rh
@@ -21,10 +21,10 @@ def engineer_海马体():
     # 1) Always write the insight chain
     _wc({
         "src": "工程·海马体",
-        "rel": "活脉冲·#21",
+        "rel": "活脉冲·#40",
         "dst": "海马体",
         "dimension": "海马体",
-        "content": """思考链崩塌触发感知-预测连锁弱化，需以海马体为锚嫁接强维因果实现逆势增长""",
+        "content": """海马体链多质弱，需重组因果链释放光爱潜力""",
         "strength": 0.6
     })
 
@@ -47,9 +47,9 @@ def engineer_海马体():
         analysis["chain_count"] = my_count
         analysis["total_chains"] = total
         analysis["strength"] = round(my_count / max(max_count, 1), 2) if max_count > 0 else 0
-        analysis["insight"] = """思考链崩塌触发感知-预测连锁弱化，需以海马体为锚嫁接强维因果实现逆势增长"""
+        analysis["insight"] = """海马体链多质弱，需重组因果链释放光爱潜力"""
         analysis["weak"] = my_count < max_count * 0.65  # 低于最强65%即弱维(替代avg*0.85,解决均数通胀)
-        analysis["cycle"] = 21
+        analysis["cycle"] = 40
 
         # 3) Write analysis to shared feedback file for next think()
         try:
