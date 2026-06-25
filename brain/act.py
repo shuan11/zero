@@ -81,25 +81,32 @@ def act(thought, status, cycle_num):
         _route_action(action, focus, insight, cycle_num)
     
     # 弱维被动注入：每周期给最弱±3维+1链（不依赖API，解决弱维生长+0.0链）
+    # 注: 质量门block mode下模板链被拦截(score<0.15), 此注入已无效
+    # 改为: 被质量门拦截时跳过写入,降低无效IO
     try:
-        _hip_w = read_hip()
-        _c_w = _hip_w.get("causal_chains", [])
-        _dc_w = {}
-        for _c in _c_w:
-            _d = _c.get("dimension", "未分类")
-            _dc_w[_d] = _dc_w.get(_d, 0) + 1
-        _sorted_w = sorted(_dc_w.items(), key=lambda x: x[1])
-        _weak_w = [d for d, c in _sorted_w[:5] if d not in ("未分类", "系统", "行动")][:3]
-        for _wd in _weak_w:
-            write_chain({
-                "src": "脑核·弱维支撑",
-                "rel": f"被动注入·#{cycle_num}",
-                "dst": _wd, "dimension": _wd,
-                "content": f"系统周期性弱维支撑: {_wd}基线维持",
-                "strength": max(0.2, _q_strength - 0.3)  # 弱维用低一点但跟genome走
-            })
-        if _weak_w:
-            log(f"  弱维支撑: {', '.join(_weak_w)} +1链")
+        from brain.genome import get as _gw
+        if _gw("quality.block_noise", True) and _gw("quality.log_only", False) is False:
+            # block mode下模板链必然被拦截，跳过无效写入
+            log(f"  质量门block mode: 跳过模板型弱维支撑(将被拦截)")
+        else:
+            _hip_w = read_hip()
+            _c_w = _hip_w.get("causal_chains", [])
+            _dc_w = {}
+            for _c in _c_w:
+                _d = _c.get("dimension", "未分类")
+                _dc_w[_d] = _dc_w.get(_d, 0) + 1
+            _sorted_w = sorted(_dc_w.items(), key=lambda x: x[1])
+            _weak_w = [d for d, c in _sorted_w[:5] if d not in ("未分类", "系统", "行动")][:3]
+            for _wd in _weak_w:
+                write_chain({
+                    "src": "脑核·弱维支撑",
+                    "rel": f"被动注入·#{cycle_num}",
+                    "dst": _wd, "dimension": _wd,
+                    "content": f"系统周期性弱维支撑: {_wd}基线维持",
+                    "strength": max(0.2, _q_strength - 0.3)
+                })
+            if _weak_w:
+                log(f"  弱维支撑: {', '.join(_weak_w)} +1链")
     except Exception as _e:
         log(f"  弱维支撑异常: {_e}")
 
