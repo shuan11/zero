@@ -381,6 +381,19 @@ def update_metadata():
     hip = _get_safe_hip()
     hip._write_file(data)
 
+def record_dimension_自由(insight):
+    """由脑核提案注入的维度自由记录函数"""
+    from .share import write_chain
+    write_chain({
+        "src": "维度·自由",
+        "rel": "提案注入",
+        "dst": "自由",
+        "dimension": "自由",
+        "content": str(insight)[:100],
+        "strength": 0.65
+    })
+    return True
+
 def record_dimension_道45(insight):
     """由脑核提案注入的维度道→45记录函数"""
     from .share import write_chain
