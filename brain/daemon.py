@@ -282,7 +282,7 @@ def one_cycle(cycle_num):
     # 记录最近 _EFFECTIVE_MAX 次聚焦用于重复判定
     if not hasattr(one_cycle, '_last_focuses'):
         one_cycle._last_focuses = []
-    MAX_FOCUS_REPEAT = genome_get("focus.max_repeat", 2)  # 基因组可调
+    MAX_FOCUS_REPEAT = genome_get("focus.max_repeat", 6)  # 基因组可调（收敛态需更大持续力）
 
     # 意识状态同步（每周期）
     _sync_consciousness(cycle_num)
@@ -714,12 +714,12 @@ def one_cycle(cycle_num):
                 _weak_cnt = _current_chains.get(_rule_weak, 0)
                 _all_vals = sorted([v for d, v in _current_chains.items() if d not in ("未分类", "系统")])
                 _median = _all_vals[len(_all_vals)//2] if _all_vals else 0
-                if _weak_cnt < _median * 0.5:  # 真弱
+                if _weak_cnt < _median * 0.85:  # 真弱（抬升至0.85避免均衡态误清零）
                     _effective_max = 15  # 有限聚焦，非∞
-                else:  # 伪弱—已恢复，清除规则
-                    from brain.share import set_rule as _sr
-                    _sr("action.weak_dim", "")
-                    log(f"  📋 规则弱维[{_rule_weak}]={_weak_cnt}链≥中位数{_median}×0.5，清除规则")
+                else:  # 已接近中位数—保持聚焦，不切换
+                    # 不清除规则！在收敛态中链数差异<15%，继续深耕当前维度
+                    _effective_max = 10  # 保持聚焦至少10周期再考虑切换
+                    log(f"  📋 规则弱维[{_rule_weak}]={_weak_cnt}链(中位{_median}) 收敛态保持聚焦")
             except Exception as _e:
                 log(f"  ⚠ 规则检查异常: {_e}")
         
