@@ -1,6 +1,6 @@
 """
 
-Brain-Engineered: 时间 (cycle #647)
+Brain-Engineered: 时间 (cycle #12)
 Active sensor - analyzes dimension health on each load
 """
 import json, sys as _sys
@@ -13,7 +13,7 @@ if str(CLUSTER) not in _sys.path:
 _GEN_FEEDBACK_FILE = CLUSTER / ".brain_gen_feedback.json"
 
 def engineer_时间():
-    """本地思考: 观察(898)活跃 | 时间(312)最弱 | 桥高对齐 | 直觉: 对话→触类旁通跳(2) 触类旁通x4爆发 | ↑观察(897)活跃 | 无师自通(31
+    """自指链质零暴露系统熵增，时间锚可序列化因果，一元化引导进化抵抗盲区扩散。
     Returns dimension health analysis; feeds into next think() cycle.
     """
     from brain.share import write_chain as _wc, read_hip as _rh
@@ -21,10 +21,10 @@ def engineer_时间():
     # 1) Always write the insight chain
     _wc({
         "src": "工程·时间",
-        "rel": "活脉冲·#647",
+        "rel": "活脉冲·#12",
         "dst": "时间",
         "dimension": "时间",
-        "content": """本地思考: 观察(898)活跃 | 时间(312)最弱 | 桥高对齐 | 直觉: 对话→触类旁通跳(2) 触类旁通x4爆""",
+        "content": """自指链质零暴露系统熵增，时间锚可序列化因果，一元化引导进化抵抗盲区扩散。""",
         "strength": 0.6
     })
 
@@ -47,9 +47,9 @@ def engineer_时间():
         analysis["chain_count"] = my_count
         analysis["total_chains"] = total
         analysis["strength"] = round(my_count / max(max_count, 1), 2) if max_count > 0 else 0
-        analysis["insight"] = """本地思考: 观察(898)活跃 | 时间(312)最弱 | 桥高对齐 | 直觉: 对话→触类旁通跳(2) 触类旁通x4爆"""
+        analysis["insight"] = """自指链质零暴露系统熵增，时间锚可序列化因果，一元化引导进化抵抗盲区扩散。"""
         analysis["weak"] = my_count < max_count * 0.65  # 低于最强65%即弱维(替代avg*0.85,解决均数通胀)
-        analysis["cycle"] = 647
+        analysis["cycle"] = 12
 
         # 3) Write analysis to shared feedback file for next think()
         try:
