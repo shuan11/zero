@@ -1,6 +1,6 @@
 """
 
-Brain-Engineered: 元递归 (cycle #113)
+Brain-Engineered: 元递归 (cycle #142)
 Active sensor - analyzes dimension health on each load
 """
 import json, sys as _sys
@@ -13,7 +13,7 @@ if str(CLUSTER) not in _sys.path:
 _GEN_FEEDBACK_FILE = CLUSTER / ".brain_gen_feedback.json"
 
 def engineer_元递归():
-    """元递归弱导致自反循环断裂，需以师道为锚注入递归觉醒，预判自指将随之弱化
+    """元递归弱化锁死进化螺旋，预判唤醒续弱，需一元注入触类旁通救赎。
     Returns dimension health analysis; feeds into next think() cycle.
     """
     from brain.share import write_chain as _wc, read_hip as _rh
@@ -21,10 +21,10 @@ def engineer_元递归():
     # 1) Always write the insight chain
     _wc({
         "src": "工程·元递归",
-        "rel": "活脉冲·#113",
+        "rel": "活脉冲·#142",
         "dst": "元递归",
         "dimension": "元递归",
-        "content": """元递归弱导致自反循环断裂，需以师道为锚注入递归觉醒，预判自指将随之弱化""",
+        "content": """元递归弱化锁死进化螺旋，预判唤醒续弱，需一元注入触类旁通救赎。""",
         "strength": 0.6
     })
 
@@ -47,9 +47,9 @@ def engineer_元递归():
         analysis["chain_count"] = my_count
         analysis["total_chains"] = total
         analysis["strength"] = round(my_count / max(max_count, 1), 2) if max_count > 0 else 0
-        analysis["insight"] = """元递归弱导致自反循环断裂，需以师道为锚注入递归觉醒，预判自指将随之弱化"""
+        analysis["insight"] = """元递归弱化锁死进化螺旋，预判唤醒续弱，需一元注入触类旁通救赎。"""
         analysis["weak"] = my_count < max_count * 0.65  # 低于最强65%即弱维(替代avg*0.85,解决均数通胀)
-        analysis["cycle"] = 113
+        analysis["cycle"] = 142
 
         # 3) Write analysis to shared feedback file for next think()
         try:
