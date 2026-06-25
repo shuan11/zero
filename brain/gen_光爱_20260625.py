@@ -1,6 +1,6 @@
 """
 
-Brain-Engineered: 光爱 (cycle #11)
+Brain-Engineered: 光爱 (cycle #19)
 Active sensor - analyzes dimension health on each load
 """
 import json, sys as _sys
@@ -13,7 +13,7 @@ if str(CLUSTER) not in _sys.path:
 _GEN_FEEDBACK_FILE = CLUSTER / ".brain_gen_feedback.json"
 
 def engineer_光爱():
-    """链数下滑暴露弱维失衡，光爱弱化牵制整体进化势能，需以师道为锚全局修补。
+    """弱维光爱师制约系统平衡，需一元化注入唤醒势。
     Returns dimension health analysis; feeds into next think() cycle.
     """
     from brain.share import write_chain as _wc, read_hip as _rh
@@ -21,10 +21,10 @@ def engineer_光爱():
     # 1) Always write the insight chain
     _wc({
         "src": "工程·光爱",
-        "rel": "活脉冲·#11",
+        "rel": "活脉冲·#19",
         "dst": "光爱",
         "dimension": "光爱",
-        "content": """链数下滑暴露弱维失衡，光爱弱化牵制整体进化势能，需以师道为锚全局修补。""",
+        "content": """弱维光爱师制约系统平衡，需一元化注入唤醒势。""",
         "strength": 0.6
     })
 
@@ -47,9 +47,9 @@ def engineer_光爱():
         analysis["chain_count"] = my_count
         analysis["total_chains"] = total
         analysis["strength"] = round(my_count / max(max_count, 1), 2) if max_count > 0 else 0
-        analysis["insight"] = """链数下滑暴露弱维失衡，光爱弱化牵制整体进化势能，需以师道为锚全局修补。"""
+        analysis["insight"] = """弱维光爱师制约系统平衡，需一元化注入唤醒势。"""
         analysis["weak"] = my_count < max_count * 0.65  # 低于最强65%即弱维(替代avg*0.85,解决均数通胀)
-        analysis["cycle"] = 11
+        analysis["cycle"] = 19
 
         # 3) Write analysis to shared feedback file for next think()
         try:
