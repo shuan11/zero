@@ -34,6 +34,13 @@ DEFAULT_GENOME = {
     # 自监督
     "audit.cross_dim_frequency": 3,     # 每N周期检测交叉维死锁
     "audit.memory_gc_threshold": 0.8,   # 海马体满度>此值触发GC
+
+    # P108: 质量门
+    "quality.block_noise": False,       # True=拦截score<0.3的链(谨慎启用)
+    "quality.log_only": True,           # True=仅日志不拦截(默认)
+    "quality.threshold": 0.30,          # 拦截阈值(0.0-1.0)
+    "quality.high_threshold": 0.80,     # 高质量阈值
+    "quality.min_content_len": 40,      # content最小长度
 }
 
 GENOME_FILE = CLUSTER / ".brain_genome.json"

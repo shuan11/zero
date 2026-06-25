@@ -1,6 +1,6 @@
 """
-Brain-Engineered: 器 (generation 1782403057605)
-管道自动检测弱维<器>并生成v3工程
+Brain-Engineered: 思考 (generation 1782403788118)
+管道自动检测弱维<思考>并生成v3工程
 """
 import json, sys as _sys, time as _time
 from pathlib import Path
@@ -11,18 +11,18 @@ if str(CLUSTER) not in _sys.path:
 
 _GEN_FEEDBACK_FILE = CLUSTER / ".brain_gen_feedback.json"
 
-def engineer_器():
-    """管道自动检测弱维<器>并生成v3工程 — 含完整管道集成"""
+def engineer_思考():
+    """管道自动检测弱维<思考>并生成v3工程 — 含完整管道集成"""
     from brain.share import write_chain as _wc
     _now = _time.time()
     
     # ── 1. 写入洞察链(永久记忆) ──
     _wc({
-        "src": "工程·器",
-        "rel": "基因表达·#1782403057605",
-        "dst": "器",
-        "dimension": "器",
-        "content": "管道自动检测弱维<器>并生成v3工程",
+        "src": "工程·思考",
+        "rel": "基因表达·#1782403788118",
+        "dst": "思考",
+        "dimension": "思考",
+        "content": "管道自动检测弱维<思考>并生成v3工程",
         "strength": 0.6
     })
     
@@ -33,7 +33,7 @@ def engineer_器():
         chains = hip.get("causal_chains", []) if isinstance(hip, dict) else []
     except:
         chains = []
-    dim_count = sum(1 for c in chains if c.get("dimension") == "器")
+    dim_count = sum(1 for c in chains if c.get("dimension") == "思考")
     total = len(chains)
     
     # ── 3. 相对弱维计算 (与系统其他维度比较) ──
@@ -44,7 +44,7 @@ def engineer_器():
         for c in chains:
             d = c.get("dimension", "未分类")
             _all_dims[d] = _all_dims.get(d, 0) + 1
-        _other_counts = [c for d,c in _all_dims.items() if d != "器" and d not in ("系统","未分类")]
+        _other_counts = [c for d,c in _all_dims.items() if d != "思考" and d not in ("系统","未分类")]
         if _other_counts:
             _max_other = max(_other_counts)
         _threshold = int(_max_other * 0.65)
@@ -58,27 +58,27 @@ def engineer_器():
         
         # 4a. 弱维时注册调优动作
         if _is_weak:
-            _ra("update_genome", {"changes": {}, "dimension": "器",
+            _ra("update_genome", {"changes": {}, "dimension": "思考",
                 "reason": f"{dim_name}偏弱({dim_count}/max={_max_other})"},
-                priority=5, source="gene:器")
+                priority=5, source="gene:思考")
             
             # 同时注入自愈链(强度高,会被验证器检查)
             _wc({
-                "src": "自愈·器",
-                "rel": "基因表达·#1782403057605",
-                "dst": "器",
-                "dimension": "器",
-                "content": "器偏弱({dim_count}条/总{total}条)自动注入夯实",
+                "src": "自愈·思考",
+                "rel": "基因表达·#1782403788118",
+                "dst": "思考",
+                "dimension": "思考",
+                "content": "思考偏弱({dim_count}条/总{total}条)自动注入夯实",
                 "strength": 0.8
             })
         
         # 4b. 强维时注册巩固动作
         if not _is_weak and dim_count > 0:
-            _ra("write_chain", {"src": f"巩固·器",
-                "rel": f"基因表达·#1782403057605", "dst": "器",
-                "content": f"器维度健康({dim_count}条),脉冲巩固",
-                "dimension": "器", "strength": 0.5},
-                priority=8, source="gene:器")
+            _ra("write_chain", {"src": f"巩固·思考",
+                "rel": f"基因表达·#1782403788118", "dst": "思考",
+                "content": f"思考维度健康({dim_count}条),脉冲巩固",
+                "dimension": "思考", "strength": 0.5},
+                priority=8, source="gene:思考")
     except:
         pass
     
@@ -86,13 +86,13 @@ def engineer_器():
     try:
         fb = json.loads(_GEN_FEEDBACK_FILE.read_text()) if _GEN_FEEDBACK_FILE.exists() else {"reports": []}
         fb.setdefault("reports", []).append({
-            "dimension": "器",
+            "dimension": "思考",
             "chain_count": dim_count,
             "total_chains": total,
             "weak": _is_weak,
             "max_other": _max_other,
             "threshold": locals().get('_threshold', 0),
-            "insight": "管道自动检测弱维<器>并生成v3工程",
+            "insight": "管道自动检测弱维<思考>并生成v3工程",
             "engine": "gene_expression_v3",
             "timestamp": _now,
             "cycle": 0
@@ -103,5 +103,5 @@ def engineer_器():
         pass
     
     if _is_weak:
-        return f"[弱] 器={dim_count}/{total} (max={_max_other})"
-    return f"[稳] 器={dim_count}/{total}"
+        return f"[弱] 思考={dim_count}/{total} (max={_max_other})"
+    return f"[稳] 思考={dim_count}/{total}"

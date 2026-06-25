@@ -1,5 +1,5 @@
 """
-Brain-Engineered: 器 (generation 1782403057605)
+Brain-Engineered: 器 (generation 1782403550910)
 管道自动检测弱维<器>并生成v3工程
 """
 import json, sys as _sys, time as _time
@@ -19,7 +19,7 @@ def engineer_器():
     # ── 1. 写入洞察链(永久记忆) ──
     _wc({
         "src": "工程·器",
-        "rel": "基因表达·#1782403057605",
+        "rel": "基因表达·#1782403550910",
         "dst": "器",
         "dimension": "器",
         "content": "管道自动检测弱维<器>并生成v3工程",
@@ -65,7 +65,7 @@ def engineer_器():
             # 同时注入自愈链(强度高,会被验证器检查)
             _wc({
                 "src": "自愈·器",
-                "rel": "基因表达·#1782403057605",
+                "rel": "基因表达·#1782403550910",
                 "dst": "器",
                 "dimension": "器",
                 "content": "器偏弱({dim_count}条/总{total}条)自动注入夯实",
@@ -75,7 +75,7 @@ def engineer_器():
         # 4b. 强维时注册巩固动作
         if not _is_weak and dim_count > 0:
             _ra("write_chain", {"src": f"巩固·器",
-                "rel": f"基因表达·#1782403057605", "dst": "器",
+                "rel": f"基因表达·#1782403550910", "dst": "器",
                 "content": f"器维度健康({dim_count}条),脉冲巩固",
                 "dimension": "器", "strength": 0.5},
                 priority=8, source="gene:器")

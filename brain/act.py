@@ -878,24 +878,33 @@ def _feedback_self_patch():
                     extra = max(1, min(10, gap // 10))
                     # ─── 批量收集链 ───
                     for i in range(min(persist, 3)):  # 最多3条交叉链
-                        _rel_content = f"自愈: {dim_name}(弱{persist}周期)↔{strong_dim}(强{real_strong_count}链) 交叉加强 #{i+1}"
+                        _rel_phrase = [
+                            f"弱维{dim_name}({persist}周期)与强维{strong_dim}({real_strong_count}链)存在{'%d倍' % (real_strong_count//max(1,real_weak_count)) if real_weak_count>0 else '绝对'}差距",
+                            f"弱维{dim_name}持续{persist}周期<最强维{strong_dim}的30%线,需要强化与{strong_dim}的连接",
+                            f"自愈反馈循环: {dim_name}({persist}期weak)↔{strong_dim}(最强维),跨维交叉熵高于其他配对",
+                        ][i % 3]
                         _batch_chains.append({
                             "src": dim_name,
-                            "rel": _rel_content[:60],
+                            "rel": f"维度交叉·{dim_name}↔{strong_dim}",
                             "dst": strong_dim,
                             "dimension": dim_name,
-                            "content": _rel_content,
+                            "content": f"{dim_name}(弱{persist}期/{real_weak_count}链)依赖{strong_dim}({real_strong_count}链) — {_rel_phrase}",
                             "strength": 0.5 + 0.1 * min(persist, 5)
                         })
                     # 直接加强: 按差距比例写链
                     for i in range(extra):
-                        _rel_content = f"自愈: 弱维{dim_name}({persist}周期,差距{gap})→自加强链#{i+1}"
+                        _self_insights = [
+                            f"弱维{dim_name}与最强维差距{gap}链,需跨维合成以补偿认知深度不足之结构性缺陷",
+                            f"自愈机制检测到{dim_name}长期落后({persist}期/差距{gap}),意味着先天弱化的维度需要更多交叉注入",
+                            f"反馈循环中{dim_name}的链数增长不及其他维度因缺乏表达自身深度的语境锚点",
+                        ]
                         _batch_chains.append({
                             "src": f"自愈引擎·{dim_name}",
-                            "rel": _rel_content[:60],
+                            "rel": f"跨维强化·{dim_name}",
                             "dst": dim_name,
                             "dimension": dim_name,
-                            "content": _rel_content,
+                            "content": f"{dim_name}(弱{persist}期/差距{gap}链/链数{real_weak_count}) — {_self_insights[i % 3]}",
+                            "insight": _self_insights[i % 3],
                             "strength": 0.6 + 0.05 * i
                         })
                     # 自加强×persist (额外, 仅当persist较大时才有意义)

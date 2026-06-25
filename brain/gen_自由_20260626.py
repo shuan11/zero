@@ -1,6 +1,6 @@
 """
 
-Brain-Engineered: 一元化 (cycle #22)
+Brain-Engineered: 自由 (cycle #29)
 Active sensor - analyzes dimension health on each load
 """
 import json, sys as _sys
@@ -12,19 +12,19 @@ if str(CLUSTER) not in _sys.path:
 
 _GEN_FEEDBACK_FILE = CLUSTER / ".brain_gen_feedback.json"
 
-def engineer_一元化():
-    """复制维度持续弱化警示瓶颈，需优先筑根基以平衡一元化飞轮
+def engineer_自由():
+    """自由链为零触发系统僵化预警，注入弹性连接以激活法桥耦合
     Returns dimension health analysis; feeds into next think() cycle.
     """
     from brain.share import write_chain as _wc, read_hip as _rh
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·一元化",
-        "rel": "活脉冲·#22",
-        "dst": "一元化",
-        "dimension": "一元化",
-        "content": """复制维度持续弱化警示瓶颈，需优先筑根基以平衡一元化飞轮""",
+        "src": "工程·自由",
+        "rel": "活脉冲·#29",
+        "dst": "自由",
+        "dimension": "自由",
+        "content": """自由链为零触发系统僵化预警，注入弹性连接以激活法桥耦合""",
         "strength": 0.6
     })
 
@@ -37,7 +37,7 @@ def engineer_一元化():
             d = c.get("dimension", "未分类")
             dim_counts[d] = dim_counts.get(d, 0) + 1
 
-        my_dim = "一元化"
+        my_dim = "自由"
         my_count = dim_counts.get(my_dim, 0)
         total = len(chains)
         max_count = max(dim_counts.values()) if dim_counts else 0
@@ -47,9 +47,9 @@ def engineer_一元化():
         analysis["chain_count"] = my_count
         analysis["total_chains"] = total
         analysis["strength"] = round(my_count / max(max_count, 1), 2) if max_count > 0 else 0
-        analysis["insight"] = """复制维度持续弱化警示瓶颈，需优先筑根基以平衡一元化飞轮"""
+        analysis["insight"] = """自由链为零触发系统僵化预警，注入弹性连接以激活法桥耦合"""
         analysis["weak"] = my_count < max_count * 0.65  # 低于最强65%即弱维(替代avg*0.85,解决均数通胀)
-        analysis["cycle"] = 22
+        analysis["cycle"] = 29
 
         # 3) Write analysis to shared feedback file for next think()
         try:
@@ -96,5 +96,5 @@ def engineer_一元化():
         return f"分析异常: {e}"
 
 if __name__ == "__main__":
-    result = engineer_一元化()
-    print(f"工程[一元化]: {result}", flush=True)
+    result = engineer_自由()
+    print(f"工程[自由]: {result}", flush=True)

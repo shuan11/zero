@@ -1,0 +1,52 @@
+{
+ "行动": {
+  "count": 765,
+  "avg_score": 0.035,
+  "noise_rate": 0.975
+ },
+ "自由": {
+  "count": 618,
+  "avg_score": 0.079,
+  "noise_rate": 0.885
+ },
+ "聚焦": {
+  "count": 614,
+  "avg_score": 0.09,
+  "noise_rate": 0.878
+ },
+ "智慧": {
+  "count": 602,
+  "avg_score": 0.101,
+  "noise_rate": 0.87
+ },
+ "无限上下文": {
+  "count": 614,
+  "avg_score": 0.094,
+  "noise_rate": 0.863
+ },
+ "测试": {
+  "count": 601,
+  "avg_score": 0.096,
+  "noise_rate": 0.862
+ },
+ "活着": {
+  "count": 606,
+  "avg_score": 0.113,
+  "noise_rate": 0.853
+ },
+ "洞察循环": {
+  "count": 617,
+  "avg_score": 0.111,
+  "noise_rate": 0.836
+ },
+ "术": {
+  "count": 603,
+  "avg_score": 0.128,
+  "noise_rate": 0.823
+ },
+ "对抗稀释": {
+  "count": 617,
+  "avg_score": 0.134,
+  "noise_rate": 0.807
+ }
+}

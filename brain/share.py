@@ -140,7 +140,48 @@ def read_hip():
         return {"causal_chains": [], "metadata": {"version": 1, "last_update": "", "total_chains": 0}}
 
 def write_chain(chain_dict):
-    return _get_safe_hip().write_chain(chain_dict)
+    """写入因果链(经质量门)"""
+    # 质量评估
+    _q_score = None
+    _filtered = False
+    try:
+        from brain.quality_gate import rate_chain
+        from brain.genome import get as gn_get
+        _qr = rate_chain(chain_dict)
+        _q_score = _qr["score"]
+        _q_dim = chain_dict.get("dimension", chain_dict.get("dst", "?"))
+        _q_src = chain_dict.get("src", "?")[:40]
+        _q_dst = chain_dict.get("dst", "?")[:40]
+        
+        # 滤波模式: 拦截低质量链
+        _log_only = gn_get("quality.log_only", True)
+        _threshold = gn_get("quality.threshold", 0.30)
+        
+        if _q_score < _threshold:
+            if not _log_only:
+                log(f"  🔇 质量门·拦截: score={_q_score:.2f} [{_q_dim}] {_q_src}→{_q_dst}")
+                _filtered = True
+            else:
+                log(f"  🔇 质量门·噪声: score={_q_score:.2f} [{_q_dim}] {_q_src}→{_q_dst}")
+        elif _q_score >= 0.80:
+            log(f"  ✨ 质量门·优质: score={_q_score:.2f} [{_q_dim}] {_q_src}→{_q_dst}")
+    except Exception as e:
+        log(f"  ⚠ 质量门异常: {e}")
+        pass  # 质量门不应阻断写入
+    
+    if _filtered:
+        return None  # 拦截
+    
+    result = _get_safe_hip().write_chain(chain_dict)
+    # 写入后标记质量(如结果包含链)
+    if _q_score is not None and result:
+        try:
+            # 若返回链dict,附质量分
+            if isinstance(result, dict):
+                result["_quality_score"] = _q_score
+        except Exception:
+            pass
+    return result
 
 def write_chain_legacy(src, rel, dst, strength=0.5, tags=None, dimension=None, content=None):
     return _get_safe_hip().write_chain_legacy(src, rel, dst, strength, tags, dimension, content)
