@@ -1,45 +1,42 @@
 {
   "p0": "P107",
-  "title": "P107: 焦点历史净化 — 消除'未知'污染，构建真实焦点闭环",
-  "context": "P106完成: 元递归突破 — 修复2个bug(空文件路径+always-true条件), 添加行为反馈闭环(元递归warn→写brain_next_focus.json→daemon消费强制切换焦点), 修复焦点路径错误(.brain_current_focus.json→.brain_focus.json). daemon目前cycle 653健康运行, 桥错误0, LOG_FAIL 0. 当前焦点:'师'(652). 海马体20091链/44维. 历史问题: 焦点历史条目中大量'未知'(因路径错误写入), 需逐步净化. 下一P0: 焦点历史轨迹净化+闭环验证.",
+  "title": "P107: 师维深化 — 师道洞察脉冲嵌入daemon循环",
+  "context": "P106完成: 元递归突破 — meta_consciousness_organ从20行桩升级为全功能v2.0器官, brain/insight_loop.py创建, 8条跨维合成链注入(元递归→系统/时间论/势/唤醒/思维并联, 师→系统/唤醒/桥). daemon当前标记师弱/唤醒弱/思维并联弱. meta_recursion引擎自检正常(566链, 1.07比). 最弱3维: 系统(278)/时间论(314)/势(315). 师573链非最弱但daemon标记为行为弱.",
   "phases": [
     {
       "phase": 1,
-      "action": "purge_unknown_from_history",
-      "target": "消除焦点历史中所有'未知'条目, 保留真实焦点轨迹",
+      "action": "embed_insight_loop_in_daemon",
+      "target": "将insight_loop.py集成到daemon的one_cycle()中, 每5周期调用teacher_pulse",
       "status": "pending"
     },
     {
       "phase": 2,
-      "action": "verify_focus_switch_loop",
-      "target": "验证元递归→写brain_next_focus→daemon消费→焦点切换→元递归再评的完整闭环",
+      "action": "register_meta_organ",
+      "target": "将meta_consciousness_organ注册到daemon的器官脉冲循环中",
       "status": "pending"
     },
     {
       "phase": 3,
-      "action": "add_focus_trend_analysis",
-      "target": "添加焦点趋势分析: 切换频率/聚焦深度/惯性检测增强",
+      "action": "verify_clean",
+      "target": "验证daemon日志中师弱/唤醒弱标记逐渐消失",
       "status": "pending"
     }
   ],
   "current_state": {
-    "hip_total": 20091,
+    "hip_total": 23342,
     "hip_dims": 44,
-    "bridge_alignment": 0.700,
-    "daemon_pid": 518918,
-    "daemon_cycle": 653,
-    "bridge_errors": 0,
-    "log_fail": 0,
+    "meta_consciousness_organ": "v2.0_active",
+    "insight_loop": "created",
+    "cross_dim_injected": 8,
+    "daemon_pid": "active",
+    "commit": "pending",
     "api_status": "available"
   },
   "handoff": {
-    "session": "20260625_021140",
-    "hip_total": 20091,
-    "hip_dims": 44,
-    "bridge_alignment": 0.700,
-    "daemon_pid": 518918,
-    "daemon_cycle": 653,
-    "api_status": "available",
-    "last_p0": "P106: 元递归突破 — 修复bug+行为反馈闭环+焦点路径修复"
+    "session": "20260625_021140_extended",
+    "meta_organ": "v2.0_active",
+    "insight_loop": "created",
+    "cross_dim_injected": 8,
+    "last_p0": "P106: 元递归突破 — meta_consciousness_organ v2.0 + insight_loop.py + 8跨维链"
   }
 }

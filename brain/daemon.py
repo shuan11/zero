@@ -275,6 +275,8 @@ def one_cycle(cycle_num):
     from brain.focus_元递归 import pulse as 元递归_pulse
     from brain.meta_recursion_engine import pulse as meta_recursion_pulse
     from brain.synthesis_engine import pulse as synthesis_pulse
+    # P107: 师道洞察脉冲（每周期轻量级师维引导）
+    from brain.insight_loop import teacher_pulse as insight_teacher_pulse
 
     # 聚焦重复检测 — 强制切换机制（脑核自我跳出自指循环）
     # 记录最近 _EFFECTIVE_MAX 次聚焦用于重复判定
@@ -1094,6 +1096,13 @@ def one_cycle(cycle_num):
     _mr_findings = meta_recursion_pulse(cycle_num) or []
     for _f in _mr_findings:
         log(f"  元递归引擎: {_f[:100]}")
+    # 师道洞察脉冲（每周期: 打破聚焦惯性，补充师维引导）
+    try:
+        _insights = insight_teacher_pulse(cycle_num, _current.get("focus", ""))
+        for _ins in _insights[:3]:
+            log(f"  师洞察: {_ins}")
+    except Exception as _ie:
+        log(f"  师洞察异常: {_ie}")
     # ★ P106: 行为反馈消费 — 读取元递归的行为修改指令并应用
     _mods_file = CLUSTER / ".brain_behavior_mods.json"
     if _mods_file.exists():
@@ -1160,6 +1169,33 @@ def one_cycle(cycle_num):
         _焦_msgs = focus_maintenance_pulse(cycle_num) or []
         for _m in _焦_msgs:
             log(f"  焦点维护: {_m}")
+    # P107: 元神归中·元意识器官脉冲（每10周期检查元递归健康）
+    if cycle_num % 10 == 0:
+        try:
+            import sys as _sys
+            _sys.path.insert(0, str(CLUSTER))
+            from organs.meta_consciousness_organ import meta_consciousness as _mc
+            _mc_status = _mc.get_status()
+            _mc_health = _mc_status.get("meta_recursion_healthy", "unknown")
+            _mc_depth  = _mc_status.get("recursive_depth_estimate", 0)
+            log(f"  元意识: 健康={_mc_health}, 递归深度≈{_mc_depth}")
+            if _mc_health in ("weak", "overgrown", "unknown"):
+                # 执行跨维合成建议
+                _suggestions = _mc.synthesize_cross_dim() or []
+                for _s in _suggestions[:2]:
+                    _src = _s.get("source", "")
+                    _tgt = _s.get("target", "")
+                    if _src and _tgt:
+                        from brain.share import write_chain
+                        write_chain({
+                            "src": _src, "rel": "桥接",
+                            "dst": _tgt,
+                            "content": _s.get("reason", f"元意识自动检测: {_src}→{_tgt}"),
+                            "dimension": "元递归"
+                        })
+                        log(f"  元意识合成: {_src}→{_tgt}")
+        except Exception as _mc_e:
+            log(f"  元意识异常: {_mc_e}")
     # 一元化协调已停止(gen_一元化_协调已归档，功能由gen_质量深化.py替代)
     # 维度平衡器·强→弱注入（每3周期，比值>2.5x触发）
     if cycle_num > 0 and cycle_num % 3 == 0:
