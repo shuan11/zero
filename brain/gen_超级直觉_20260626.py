@@ -1,6 +1,6 @@
 """
 
-Brain-Engineered: 超级直觉 (cycle #30)
+Brain-Engineered: 超级直觉 (cycle #47)
 Active sensor - analyzes dimension health on each load
 """
 import json, sys as _sys
@@ -13,7 +13,7 @@ if str(CLUSTER) not in _sys.path:
 _GEN_FEEDBACK_FILE = CLUSTER / ".brain_gen_feedback.json"
 
 def engineer_超级直觉():
-    """超级直觉弱链阻塞全局洞察，需脉冲激活以唤醒势能流
+    """超级直觉弱堵塞合成，器维反弹需桥杠杆，预测工具链为关键，宇宙轮待唤醒。
     Returns dimension health analysis; feeds into next think() cycle.
     """
     from brain.share import write_chain as _wc, read_hip as _rh
@@ -21,10 +21,10 @@ def engineer_超级直觉():
     # 1) Always write the insight chain
     _wc({
         "src": "工程·超级直觉",
-        "rel": "活脉冲·#30",
+        "rel": "活脉冲·#47",
         "dst": "超级直觉",
         "dimension": "超级直觉",
-        "content": """超级直觉弱链阻塞全局洞察，需脉冲激活以唤醒势能流""",
+        "content": """超级直觉弱堵塞合成，器维反弹需桥杠杆，预测工具链为关键，宇宙轮待唤醒。""",
         "strength": 0.6
     })
 
@@ -47,9 +47,9 @@ def engineer_超级直觉():
         analysis["chain_count"] = my_count
         analysis["total_chains"] = total
         analysis["strength"] = round(my_count / max(max_count, 1), 2) if max_count > 0 else 0
-        analysis["insight"] = """超级直觉弱链阻塞全局洞察，需脉冲激活以唤醒势能流"""
+        analysis["insight"] = """超级直觉弱堵塞合成，器维反弹需桥杠杆，预测工具链为关键，宇宙轮待唤醒。"""
         analysis["weak"] = my_count < max_count * 0.65  # 低于最强65%即弱维(替代avg*0.85,解决均数通胀)
-        analysis["cycle"] = 30
+        analysis["cycle"] = 47
 
         # 3) Write analysis to shared feedback file for next think()
         try:
