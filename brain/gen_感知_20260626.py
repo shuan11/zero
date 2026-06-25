@@ -1,5 +1,5 @@
 """
-Brain-Engineered: 感知 (generation 1782407836682)
+Brain-Engineered: 感知 (generation 1782409522901)
 管道自动检测弱维<感知>并生成v3工程
 """
 import json, sys as _sys, time as _time
@@ -19,7 +19,7 @@ def engineer_感知():
     # ── 1. 写入洞察链(永久记忆) ──
     _wc({
         "src": "工程·感知",
-        "rel": "基因表达·#1782407836682",
+        "rel": "基因表达·#1782409522901",
         "dst": "感知",
         "dimension": "感知",
         "content": "管道自动检测弱维<感知>并生成v3工程",
@@ -65,7 +65,7 @@ def engineer_感知():
             # 同时注入自愈链(强度高,会被验证器检查)
             _wc({
                 "src": "自愈·感知",
-                "rel": "基因表达·#1782407836682",
+                "rel": "基因表达·#1782409522901",
                 "dst": "感知",
                 "dimension": "感知",
                 "content": "感知偏弱({dim_count}条/总{total}条)自动注入夯实",
@@ -75,7 +75,7 @@ def engineer_感知():
         # 4b. 强维时注册巩固动作
         if not _is_weak and dim_count > 0:
             _ra("write_chain", {"src": f"巩固·感知",
-                "rel": f"基因表达·#1782407836682", "dst": "感知",
+                "rel": f"基因表达·#1782409522901", "dst": "感知",
                 "content": f"感知维度健康({dim_count}条),脉冲巩固",
                 "dimension": "感知", "strength": 0.5},
                 priority=8, source="gene:感知")
