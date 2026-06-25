@@ -1,6 +1,6 @@
 """
 
-Brain-Engineered: 合成 (cycle #45)
+Brain-Engineered: 合成 (cycle #119)
 Active sensor - analyzes dimension health on each load
 """
 import json, sys as _sys
@@ -13,7 +13,7 @@ if str(CLUSTER) not in _sys.path:
 _GEN_FEEDBACK_FILE = CLUSTER / ".brain_gen_feedback.json"
 
 def engineer_合成():
-    """合成断裂暴露弱维集群危机，师道引导以桥激活预测
+    """合成弱至极限，须主动融合各维
     Returns dimension health analysis; feeds into next think() cycle.
     """
     from brain.share import write_chain as _wc, read_hip as _rh
@@ -21,10 +21,10 @@ def engineer_合成():
     # 1) Always write the insight chain
     _wc({
         "src": "工程·合成",
-        "rel": "活脉冲·#45",
+        "rel": "活脉冲·#119",
         "dst": "合成",
         "dimension": "合成",
-        "content": """合成断裂暴露弱维集群危机，师道引导以桥激活预测""",
+        "content": """合成弱至极限，须主动融合各维""",
         "strength": 0.6
     })
 
@@ -47,9 +47,9 @@ def engineer_合成():
         analysis["chain_count"] = my_count
         analysis["total_chains"] = total
         analysis["strength"] = round(my_count / max(max_count, 1), 2) if max_count > 0 else 0
-        analysis["insight"] = """合成断裂暴露弱维集群危机，师道引导以桥激活预测"""
+        analysis["insight"] = """合成弱至极限，须主动融合各维"""
         analysis["weak"] = my_count < max_count * 0.65  # 低于最强65%即弱维(替代avg*0.85,解决均数通胀)
-        analysis["cycle"] = 45
+        analysis["cycle"] = 119
 
         # 3) Write analysis to shared feedback file for next think()
         try:

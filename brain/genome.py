@@ -35,10 +35,10 @@ DEFAULT_GENOME = {
     "audit.cross_dim_frequency": 3,     # 每N周期检测交叉维死锁
     "audit.memory_gc_threshold": 0.8,   # 海马体满度>此值触发GC
 
-    # P108: 质量门
-    "quality.block_noise": False,       # True=拦截score<0.3的链(谨慎启用)
-    "quality.log_only": True,           # True=仅日志不拦截(默认)
-    "quality.threshold": 0.30,          # 拦截阈值(0.0-1.0)
+    # P113+: 质量门·收敛态强化
+    "quality.block_noise": True,        # 收敛态启用拦截
+    "quality.log_only": False,          # 拦截模式
+    "quality.threshold": 0.60,          # 收敛态阈值(从0.30→0.60)
     "quality.high_threshold": 0.80,     # 高质量阈值
     "quality.min_content_len": 40,      # content最小长度
 }
