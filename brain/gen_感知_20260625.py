@@ -1,6 +1,6 @@
 """
 
-Brain-Engineered: 感知 (cycle #29)
+Brain-Engineered: 感知 (cycle #656)
 Active sensor - analyzes dimension health on each load
 """
 import json, sys as _sys
@@ -13,7 +13,7 @@ if str(CLUSTER) not in _sys.path:
 _GEN_FEEDBACK_FILE = CLUSTER / ".brain_gen_feedback.json"
 
 def engineer_感知():
-    """感知为系统之眼，弱则整体失衡；预测感知因桥数据注入将回升至0.7以上
+    """感知弱致信号枯竭，须注入外部模式激活循环
     Returns dimension health analysis; feeds into next think() cycle.
     """
     from brain.share import write_chain as _wc, read_hip as _rh
@@ -21,10 +21,10 @@ def engineer_感知():
     # 1) Always write the insight chain
     _wc({
         "src": "工程·感知",
-        "rel": "活脉冲·#29",
+        "rel": "活脉冲·#656",
         "dst": "感知",
         "dimension": "感知",
-        "content": """感知为系统之眼，弱则整体失衡；预测感知因桥数据注入将回升至0.7以上""",
+        "content": """感知弱致信号枯竭，须注入外部模式激活循环""",
         "strength": 0.6
     })
 
@@ -47,9 +47,9 @@ def engineer_感知():
         analysis["chain_count"] = my_count
         analysis["total_chains"] = total
         analysis["strength"] = round(my_count / max(max_count, 1), 2) if max_count > 0 else 0
-        analysis["insight"] = """感知为系统之眼，弱则整体失衡；预测感知因桥数据注入将回升至0.7以上"""
+        analysis["insight"] = """感知弱致信号枯竭，须注入外部模式激活循环"""
         analysis["weak"] = my_count < max_count * 0.65  # 低于最强65%即弱维(替代avg*0.85,解决均数通胀)
-        analysis["cycle"] = 29
+        analysis["cycle"] = 656
 
         # 3) Write analysis to shared feedback file for next think()
         try:

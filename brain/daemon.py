@@ -274,6 +274,7 @@ def one_cycle(cycle_num):
     from brain.identity import VALID_DIMENSIONS
     from brain.focus_元递归 import pulse as 元递归_pulse
     from brain.meta_recursion_engine import pulse as meta_recursion_pulse
+    from brain.synthesis_engine import pulse as synthesis_pulse
 
     # 聚焦重复检测 — 强制切换机制（脑核自我跳出自指循环）
     # 记录最近 _EFFECTIVE_MAX 次聚焦用于重复判定
@@ -1093,6 +1094,10 @@ def one_cycle(cycle_num):
     _mr_findings = meta_recursion_pulse(cycle_num) or []
     for _f in _mr_findings:
         log(f"  元递归引擎: {_f[:100]}")
+    # 合成引擎·跨维综合（每周期: 收集→综合→执行→更新）
+    _synth_msgs = synthesis_pulse(cycle_num) or []
+    for _m in _synth_msgs:
+        log(f"  合成: {_m[:100]}")
     # engineer_法·递归规则修正（每7周期检测重复焦点+写修正链）
     _法引擎_msgs = engineer_法_pulse(cycle_num) or []
     for _m in _法引擎_msgs:

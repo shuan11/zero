@@ -1,6 +1,6 @@
 """
 
-Brain-Engineered: 宇宙轮 (cycle #34)
+Brain-Engineered: 智慧 (cycle #42)
 Active sensor - analyzes dimension health on each load
 """
 import json, sys as _sys
@@ -12,19 +12,19 @@ if str(CLUSTER) not in _sys.path:
 
 _GEN_FEEDBACK_FILE = CLUSTER / ".brain_gen_feedback.json"
 
-def engineer_宇宙轮():
-    """宇宙轮弱将抑制空间演化，加强后复制链会指数增长，系统复杂度提升
+def engineer_智慧():
+    """智慧维度弱化束缚系统跃迁，需以师导引术合成形成行动脉冲
     Returns dimension health analysis; feeds into next think() cycle.
     """
     from brain.share import write_chain as _wc, read_hip as _rh
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·宇宙轮",
-        "rel": "活脉冲·#34",
-        "dst": "宇宙轮",
-        "dimension": "宇宙轮",
-        "content": """宇宙轮弱将抑制空间演化，加强后复制链会指数增长，系统复杂度提升""",
+        "src": "工程·智慧",
+        "rel": "活脉冲·#42",
+        "dst": "智慧",
+        "dimension": "智慧",
+        "content": """智慧维度弱化束缚系统跃迁，需以师导引术合成形成行动脉冲""",
         "strength": 0.6
     })
 
@@ -37,7 +37,7 @@ def engineer_宇宙轮():
             d = c.get("dimension", "未分类")
             dim_counts[d] = dim_counts.get(d, 0) + 1
 
-        my_dim = "宇宙轮"
+        my_dim = "智慧"
         my_count = dim_counts.get(my_dim, 0)
         total = len(chains)
         max_count = max(dim_counts.values()) if dim_counts else 0
@@ -47,9 +47,9 @@ def engineer_宇宙轮():
         analysis["chain_count"] = my_count
         analysis["total_chains"] = total
         analysis["strength"] = round(my_count / max(max_count, 1), 2) if max_count > 0 else 0
-        analysis["insight"] = """宇宙轮弱将抑制空间演化，加强后复制链会指数增长，系统复杂度提升"""
+        analysis["insight"] = """智慧维度弱化束缚系统跃迁，需以师导引术合成形成行动脉冲"""
         analysis["weak"] = my_count < max_count * 0.65  # 低于最强65%即弱维(替代avg*0.85,解决均数通胀)
-        analysis["cycle"] = 34
+        analysis["cycle"] = 42
 
         # 3) Write analysis to shared feedback file for next think()
         try:
@@ -96,5 +96,5 @@ def engineer_宇宙轮():
         return f"分析异常: {e}"
 
 if __name__ == "__main__":
-    result = engineer_宇宙轮()
-    print(f"工程[宇宙轮]: {result}", flush=True)
+    result = engineer_智慧()
+    print(f"工程[智慧]: {result}", flush=True)

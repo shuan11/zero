@@ -320,6 +320,76 @@ def pulse(cycle_num=0):
 
 
 # ─────────────────────────────────────────────
+# P106: 行为反馈闭环 — 元递归洞察 → daemon行为参数变更
+# ─────────────────────────────────────────────
+def _apply_behavior_feedback(findings, cycle_num):
+    """根据元递归引擎发现，生成daemon行为修改指令"""
+    _mods_file = CLUSTER / ".brain_behavior_mods.json"
+
+    mods = {
+        "source": "meta_recursion_engine",
+        "cycle": cycle_num,
+        "timestamp": time.time(),
+        "interval_adjust_secs": 0,  # +慢/-快
+        "engine_boost": [],
+        "reason": "无修改"
+    }
+
+    if not findings:
+        # 无问题 → 重置动态间隔
+        _mods_file.write_text(json.dumps(mods, ensure_ascii=False))
+        return ["⏱ 行为反馈: 无问题，重置间隔"]
+
+    # 收集严重度标记
+    warn_count = sum(1 for f in findings if f.get("severity") == "warn")
+    error_count = sum(1 for f in findings if f.get("severity") == "error")
+    has_chain_drop = any(f.get("type") == "chain_drop" for f in findings)
+    has_focus_bias = any(f.get("type") == "focus_bias" for f in findings)
+    has_dim_imbalance = any(f.get("type") == "dim_imbalance" for f in findings)
+
+    # 核心逻辑：根据元递归洞察决定行为变更
+    reasons = []
+
+    if error_count > 0:
+        mods["interval_adjust_secs"] = 10  # 有错误→慢下来
+        reasons.append(f"发现{error_count}个错误，减速+10s")
+
+    if has_chain_drop:
+        mods["interval_adjust_secs"] = 5
+        reasons.append("检测到链数骤降，轻微减速+5s")
+
+    if has_focus_bias:
+        mods["interval_adjust_secs"] = -5  # 惯性盲区→加速切换
+        reasons.append("聚焦惯性盲区，加速-5s")
+        mods["engine_boost"].append("focus_breaker")
+
+    if has_dim_imbalance:
+        mods["interval_adjust_secs"] = -3  # 维度失衡→加速处理
+        reasons.append("维度偏置严重，加速-3s")
+        mods["engine_boost"].append("cross_dim_injection")
+
+    if warn_count >= 3 and mods["interval_adjust_secs"] == 0:
+        mods["interval_adjust_secs"] = 3
+        reasons.append(f"{warn_count}个警告，轻微减速+3s")
+
+    if not reasons:
+        mods["reason"] = "正常"
+    else:
+        mods["reason"] = "; ".join(reasons)
+
+    try:
+        _mods_file.write_text(json.dumps(mods, ensure_ascii=False, indent=2))
+        return [f"⚡行为反馈: {mods['reason']}"]
+    except Exception as e:
+        return [f"行为反馈写入异常: {e}"]
+
+
+# ─────────────────────────────────────────────
+# Modify pulse() to call behavior feedback
+# ─────────────────────────────────────────────
+
+
+# ─────────────────────────────────────────────
 # State file helpers (low-level)
 # ─────────────────────────────────────────────
 def _read_json_file(path, default=None):
