@@ -19,8 +19,14 @@ Layer 4: Mutation Rule Mutation (变异的变异)
   - 如果当前变异策略 N 周期无改进，改变变异策略本身
   - 记录策略变化历史
 
-所有 Layer 的输出通过 write_chain 写回海马体，
-并通过状态文件供 daemon 主循环消费。
+# 所有 Layer 的输出通过 write_chain 写回海马体，
+#并通过 brain_next_focus.json 改变 daemon 行为，形成螺旋反馈。
+#
+# v2.0 (P106): 修复2个bug + 添加行为反馈闭环 + 自指治理契约
+#   - Bugfix: _read_json_file返回整条json不是计数 (L89)
+#   - Bugfix: always-true条件 avg<0.7 or avg>0.0 (L112)
+#   - 新增: warn/error发现→写入brain_next_focus.json→daemon消费
+#   - 新增: 自指治理契约——元递归发现严重问题时设置行为约束
 """
 
 import json, os, time
@@ -86,7 +92,7 @@ def meta_inspect(cycle_num, current_focus, focus_history):
                     })
             except Exception:
                 pass
-        state["prev_chain_count"] = len(_read_json_file(CLUSTER / ".brain_chain_count_cache", 0))
+        state["prev_chain_count"] = _safe_extract_count(_read_json_file(CLUSTER / ".brain_chain_count_cache", 0))
 
     _write_json(_META_STATE, state)
 
@@ -109,7 +115,7 @@ def eml_self_optimize(cycle_num, dim_chain_counts):
     if len(predictions) >= 3:
         recent = predictions[-3:]
         avg_accuracy = sum(p.get("accuracy", 0) for p in recent) / len(recent)
-        if avg_accuracy < 0.7 or avg_accuracy > 0.0:
+        if 0 < avg_accuracy < 0.7:
             findings.append({
                 "type": "eml_bias",
                 "detail": f"EML最近3次预测平均准确率 {avg_accuracy:.1%}",
@@ -286,10 +292,31 @@ def pulse(cycle_num=0):
                     "strength": 0.9 if f["severity"] == "error" else 0.7,
                     "tags": ["元递归激活"]
                 })
-    except Exception:
-        pass
 
-    return [f.get("detail", str(f)) for f in all_findings]
+        # ★ P106: 行为反馈闭环 — warn/error 发现 → 写 brain_next_focus.json → daemon 消费
+        _warn_findings = [f for f in all_findings if f.get("severity") in ("warn", "error")]
+        if _warn_findings:
+            _next_file = CLUSTER / ".brain_next_focus.json"
+            _worst = _warn_findings[0]
+            _forced_focus = "元递归"
+            _reason = f"元递归引擎: {_worst['type']} — {_worst['detail'][:80]}"
+            try:
+                _next_file.write_text(json.dumps({
+                    "forced_focus": _forced_focus,
+                    "reason": _reason,
+                    "origin_focus": current_focus,
+                    "cycle": cycle_num,
+                    "timestamp": time.time()
+                }, ensure_ascii=False))
+                _written = [f"写brain_next_focus.json: {_reason}"[:100]]
+            except Exception as _e:
+                _written = [f"写brain_next_focus.json异常: {_e}"]
+        else:
+            _written = []
+    except Exception:
+        _written = []
+
+    return [f.get("detail", str(f)) for f in all_findings] + _written
 
 
 # ─────────────────────────────────────────────
@@ -301,6 +328,18 @@ def _read_json_file(path, default=None):
             return json.loads(path.read_text())
     except Exception:
         pass
+    return default
+
+def _safe_extract_count(data, default=0):
+    """从任意JSON结构中安全提取整数计数"""
+    if data is None:
+        return default
+    if isinstance(data, (int, float)):
+        return int(data)
+    if isinstance(data, dict):
+        return int(data.get("count", data.get("total", data.get("chain_count", default))))
+    if isinstance(data, (list, tuple)):
+        return len(data)
     return default
 
 
