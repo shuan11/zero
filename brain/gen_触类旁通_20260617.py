@@ -20,8 +20,8 @@ def engineer_触类旁通():
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·触类旁通",
-        "rel": "活脉冲·#31",
+        "src": "脑核·触类旁通",
+        "rel": "活脉冲#31",
         "dst": "触类旁通",
         "dimension": "触类旁通",
         "content": """弱维触类旁通与强维思维并联、一元化存在缺口，构建跨界映射可激活涌现。""",

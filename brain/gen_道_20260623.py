@@ -20,8 +20,8 @@ def engineer_道():
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·道",
-        "rel": "活脉冲·#107",
+        "src": "脑核·道",
+        "rel": "活脉冲#107",
         "dst": "道",
         "dimension": "道",
         "content": """道弱因缺乏载体，需结合心流与元神缓存机制构建行为指引链""",

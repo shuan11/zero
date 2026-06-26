@@ -20,8 +20,8 @@ def engineer_法():
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·法",
-        "rel": "活脉冲·#21",
+        "src": "脑核·法",
+        "rel": "活脉冲#21",
         "dst": "法",
         "dimension": "法",
         "content": """🔀 跳出(3次重复)弱维: 测试→法(-999链)""",

@@ -20,8 +20,8 @@ def engineer_测试():
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·测试",
-        "rel": "活脉冲·#1",
+        "src": "脑核·测试",
+        "rel": "活脉冲#1",
         "dst": "测试",
         "dimension": "测试",
         "content": """外部信号折射系统测试惯性，桥弱陷局部，须唤醒自通统合全局预判""",

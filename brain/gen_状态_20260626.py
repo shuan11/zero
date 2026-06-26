@@ -20,12 +20,12 @@ def engineer_状态():
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·状态",
-        "rel": "活脉冲·#33",
+        "src": "脑核·状态",
+        "rel": "活脉冲#33",
         "dst": "状态",
         "dimension": "状态",
         "content": """状态弱维需师道锚定防断裂""",
-        "insight": """自动补链: 工程传感器状态在cycle#33的维度健康评估。状态弱维需师道锚定防断裂""",
+        "insight": """师道洞察: 状态弱维需师道锚定防断裂。活脉冲需持续标记系统多维健康态""",
         "strength": 0.6
     })
 

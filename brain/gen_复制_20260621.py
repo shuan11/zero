@@ -20,8 +20,8 @@ def engineer_复制():
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·复制",
-        "rel": "活脉冲·#18",
+        "src": "脑核·复制",
+        "rel": "活脉冲#18",
         "dst": "复制",
         "dimension": "复制",
         "content": """复制链强度需质量门控，防止空洞复制""",

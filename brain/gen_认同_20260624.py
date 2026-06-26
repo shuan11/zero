@@ -20,8 +20,8 @@ def engineer_认同():
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·认同",
-        "rel": "活脉冲·#47",
+        "src": "脑核·认同",
+        "rel": "活脉冲#47",
         "dst": "认同",
         "dimension": "认同",
         "content": """认同弱将引发认知萎缩，须师道融合势与自由反制，否则预测链续降""",

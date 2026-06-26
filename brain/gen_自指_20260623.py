@@ -20,8 +20,8 @@ def engineer_自指():
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·自指",
-        "rel": "活脉冲·#124",
+        "src": "脑核·自指",
+        "rel": "活脉冲#124",
         "dst": "自指",
         "dimension": "自指",
         "content": """自指弱因外部信号未内化为自我循环，锚点对立统一可作为种子""",

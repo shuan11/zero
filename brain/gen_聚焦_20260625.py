@@ -20,8 +20,8 @@ def engineer_聚焦():
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·聚焦",
-        "rel": "活脉冲·#8",
+        "src": "脑核·聚焦",
+        "rel": "活脉冲#8",
         "dst": "聚焦",
         "dimension": "聚焦",
         "content": """聚焦弱牵制全局呼吸，预判其强化带动时间论与势回升，打破观察僵化""",

@@ -20,8 +20,8 @@ def engineer_势():
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·势",
-        "rel": "活脉冲·#48",
+        "src": "脑核·势",
+        "rel": "活脉冲#48",
         "dst": "势",
         "dimension": "势",
         "content": """🔀 跳出(16次重复)弱维: 洞察循环→势(-999链)""",

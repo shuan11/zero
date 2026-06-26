@@ -20,8 +20,8 @@ def engineer_一元化():
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·一元化",
-        "rel": "活脉冲·#104",
+        "src": "脑核·一元化",
+        "rel": "活脉冲#104",
         "dst": "一元化",
         "dimension": "一元化",
         "content": """自由维度链数极低，需注入基于选择约束的链生成机制""",

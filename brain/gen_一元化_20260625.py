@@ -20,8 +20,8 @@ def engineer_一元化():
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·一元化",
-        "rel": "活脉冲·#22",
+        "src": "脑核·一元化",
+        "rel": "活脉冲#22",
         "dst": "一元化",
         "dimension": "一元化",
         "content": """复制维度持续弱化警示瓶颈，需优先筑根基以平衡一元化飞轮""",

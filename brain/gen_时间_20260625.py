@@ -20,8 +20,8 @@ def engineer_时间():
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·时间",
-        "rel": "活脉冲·#11",
+        "src": "脑核·时间",
+        "rel": "活脉冲#11",
         "dst": "时间",
         "dimension": "时间",
         "content": """时间弱化是系统熵增预兆，师道介入可逆势锚定，预判桥将成下一个薄弱维""",

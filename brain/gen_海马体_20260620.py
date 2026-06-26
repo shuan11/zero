@@ -20,8 +20,8 @@ def engineer_海马体():
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·海马体",
-        "rel": "活脉冲·#2",
+        "src": "脑核·海马体",
+        "rel": "活脉冲#2",
         "dst": "海马体",
         "dimension": "海马体",
         "content": """光波粒二象性映射预测与测试，海马体弱维需注入波粒链""",

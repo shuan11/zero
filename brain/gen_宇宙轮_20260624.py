@@ -20,8 +20,8 @@ def engineer_宇宙轮():
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·宇宙轮",
-        "rel": "活脉冲·#46",
+        "src": "脑核·宇宙轮",
+        "rel": "活脉冲#46",
         "dst": "宇宙轮",
         "dimension": "宇宙轮",
         "content": """宇宙轮弱化威胁全维协同，需注入复合刺激激活""",

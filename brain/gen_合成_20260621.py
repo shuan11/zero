@@ -20,8 +20,8 @@ def engineer_合成():
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·合成",
-        "rel": "活脉冲·#0",
+        "src": "脑核·合成",
+        "rel": "活脉冲#0",
         "dst": "合成",
         "dimension": "合成",
         "content": """跨维杂质催化聚合，合成孤链融入多元""",

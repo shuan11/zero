@@ -20,8 +20,8 @@ def engineer_预测():
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·预测",
-        "rel": "活脉冲·#120",
+        "src": "脑核·预测",
+        "rel": "活脉冲#120",
         "dst": "预测",
         "dimension": "预测",
         "content": """质能转化启示需构建逆向预测因果链""",

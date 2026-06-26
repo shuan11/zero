@@ -20,8 +20,8 @@ def engineer_法():
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·法",
-        "rel": "活脉冲·#55",
+        "src": "脑核·法",
+        "rel": "活脉冲#55",
         "dst": "法",
         "dimension": "法",
         "content": """法维度须从外部信号中提炼规则，以强化制度认知与感知联动""",

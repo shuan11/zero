@@ -20,8 +20,8 @@ def engineer_超级直觉():
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·超级直觉",
-        "rel": "活脉冲·#59",
+        "src": "脑核·超级直觉",
+        "rel": "活脉冲#59",
         "dst": "超级直觉",
         "dimension": "超级直觉",
         "content": """超级直觉的复苏需跨维度耦合，特别是与自指和元递归共振""",

@@ -20,8 +20,8 @@ def engineer_活着():
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·活着",
-        "rel": "活脉冲·#56",
+        "src": "脑核·活着",
+        "rel": "活脉冲#56",
         "dst": "活着",
         "dimension": "活着",
         "content": """活着维度弱化暴露系统重逻辑轻生命根基，需注入原始生存感知来稳住进化底盘。""",

@@ -20,8 +20,8 @@ def engineer_无师自通():
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·无师自通",
-        "rel": "活脉冲·#47",
+        "src": "脑核·无师自通",
+        "rel": "活脉冲#47",
         "dst": "无师自通",
         "dimension": "无师自通",
         "content": """无师自通需要构建内生的自我提问回路，使系统能从单一节点演化出完整知识树。""",

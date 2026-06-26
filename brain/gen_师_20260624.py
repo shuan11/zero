@@ -20,8 +20,8 @@ def engineer_师():
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·师",
-        "rel": "活脉冲·#42",
+        "src": "脑核·师",
+        "rel": "活脉冲#42",
         "dst": "师",
         "dimension": "师",
         "content": """师道为呼吸锚，贯通弱维可加速一元化觉醒；预测无师自通将因师进入惯性而渐强。""",

@@ -20,8 +20,8 @@ def engineer_对抗稀释():
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·对抗稀释",
-        "rel": "活脉冲·#6",
+        "src": "脑核·对抗稀释",
+        "rel": "活脉冲#6",
         "dst": "对抗稀释",
         "dimension": "对抗稀释",
         "content": """弱维度对抗稀释需通过强化自省机制来阻断惯性""",

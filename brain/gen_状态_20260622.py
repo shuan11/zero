@@ -20,8 +20,8 @@ def engineer_状态():
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·状态",
-        "rel": "活脉冲·#4",
+        "src": "脑核·状态",
+        "rel": "活脉冲#4",
         "dst": "状态",
         "dimension": "状态",
         "content": """数学形式化状态维度，以逻辑命题重构因果链自指检测""",

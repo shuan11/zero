@@ -20,8 +20,8 @@ def engineer_感知():
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·感知",
-        "rel": "活脉冲·#44",
+        "src": "脑核·感知",
+        "rel": "活脉冲#44",
         "dst": "感知",
         "dimension": "感知",
         "content": """高原呼吸法映射感知训练：以节律呼吸驱动感知维度生长""",

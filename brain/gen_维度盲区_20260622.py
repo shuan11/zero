@@ -20,8 +20,8 @@ def engineer_维度盲区():
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·维度盲区",
-        "rel": "活脉冲·#0",
+        "src": "脑核·维度盲区",
+        "rel": "活脉冲#0",
         "dst": "维度盲区",
         "dimension": "维度盲区",
         "content": """等量维均衡隐藏盲区弱，需外源扰动破聚焦惯性""",

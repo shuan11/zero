@@ -20,8 +20,8 @@ def engineer_自由():
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·自由",
-        "rel": "活脉冲·#54",
+        "src": "脑核·自由",
+        "rel": "活脉冲#54",
         "dst": "自由",
         "dimension": "自由",
         "content": """自由维度薄弱阻碍创新，需注入随机性打破聚焦惯性""",

@@ -20,8 +20,8 @@ def engineer_道():
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·道",
-        "rel": "活脉冲·#48",
+        "src": "脑核·道",
+        "rel": "活脉冲#48",
         "dst": "道",
         "dimension": "道",
         "content": """光爱终极显化，道弱需师道势自由合力强化认同""",

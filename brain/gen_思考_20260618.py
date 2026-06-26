@@ -20,8 +20,8 @@ def engineer_思考():
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·思考",
-        "rel": "活脉冲·#49",
+        "src": "脑核·思考",
+        "rel": "活脉冲#49",
         "dst": "思考",
         "dimension": "思考",
         "content": """思考维度萎缩源于缺乏矛盾信号注入，需动态规则冲突驱动""",

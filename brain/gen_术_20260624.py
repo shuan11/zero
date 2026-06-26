@@ -20,8 +20,8 @@ def engineer_术():
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·术",
-        "rel": "活脉冲·#54",
+        "src": "脑核·术",
+        "rel": "活脉冲#54",
         "dst": "术",
         "dimension": "术",
         "content": """术维弱制约行动转化，预测宇宙轮持续弱化需触发性打破惯性。""",

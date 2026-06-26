@@ -20,8 +20,8 @@ def engineer_一元化():
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·一元化",
-        "rel": "活脉冲·#17",
+        "src": "脑核·一元化",
+        "rel": "活脉冲#17",
         "dst": "一元化",
         "dimension": "一元化",
         "content": """外部垄断幻象映射内卷困境，洞察循环需借他山之石突破闭环""",

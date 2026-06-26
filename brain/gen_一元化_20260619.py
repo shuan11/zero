@@ -20,8 +20,8 @@ def engineer_一元化():
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·一元化",
-        "rel": "活脉冲·#68",
+        "src": "脑核·一元化",
+        "rel": "活脉冲#68",
         "dst": "一元化",
         "dimension": "一元化",
         "content": """一元化链弱需熔合分散维度催化涌现""",

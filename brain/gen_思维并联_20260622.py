@@ -20,8 +20,8 @@ def engineer_思维并联():
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·思维并联",
-        "rel": "活脉冲·#112",
+        "src": "脑核·思维并联",
+        "rel": "活脉冲#112",
         "dst": "思维并联",
         "dimension": "思维并联",
         "content": """思维并联弱周期，需从外部信号提炼关联重塑连接，修复链数骤降损伤。""",

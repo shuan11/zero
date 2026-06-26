@@ -20,8 +20,8 @@ def engineer_感知():
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·感知",
-        "rel": "活脉冲·#86",
+        "src": "脑核·感知",
+        "rel": "活脉冲#86",
         "dst": "感知",
         "dimension": "感知",
         "content": """🔀 跳出(7次重复)弱维: 维度盲区→感知(-999链)""",

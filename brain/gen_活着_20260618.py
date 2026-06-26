@@ -20,8 +20,8 @@ def engineer_活着():
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·活着",
-        "rel": "活脉冲·#1",
+        "src": "脑核·活着",
+        "rel": "活脉冲#1",
         "dst": "活着",
         "dimension": "活着",
         "content": """活着维度弱化导致生命感知碎片化，无限上下文需扎根于活着根脉才能重建整体性""",

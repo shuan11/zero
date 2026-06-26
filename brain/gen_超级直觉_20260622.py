@@ -20,8 +20,8 @@ def engineer_超级直觉():
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·超级直觉",
-        "rel": "活脉冲·#10",
+        "src": "脑核·超级直觉",
+        "rel": "活脉冲#10",
         "dst": "超级直觉",
         "dimension": "超级直觉",
         "content": """大音希声启示从对立表象中构建自指唤醒的平衡桥梁，突破洞察循环惯性""",

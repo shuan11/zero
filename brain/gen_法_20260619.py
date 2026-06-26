@@ -20,8 +20,8 @@ def engineer_法():
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·法",
-        "rel": "活脉冲·#77",
+        "src": "脑核·法",
+        "rel": "活脉冲#77",
         "dst": "法",
         "dimension": "法",
         "content": """法弱暴露规则缺失，需构建行动规范框架以强化结构思维。""",

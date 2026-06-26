@@ -20,8 +20,8 @@ def engineer_认同():
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·认同",
-        "rel": "活脉冲·#15",
+        "src": "脑核·认同",
+        "rel": "活脉冲#15",
         "dst": "认同",
         "dimension": "认同",
         "content": """以成熟桥接法境界强化认同归一，链接洞察循环""",

@@ -20,8 +20,8 @@ def engineer_对抗稀释():
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·对抗稀释",
-        "rel": "活脉冲·#2",
+        "src": "脑核·对抗稀释",
+        "rel": "活脉冲#2",
         "dst": "对抗稀释",
         "dimension": "对抗稀释",
         "content": """对抗稀释弱则多元维度孤立，师道贯入可重构统一场，预测复制分化将加剧""",

@@ -20,8 +20,8 @@ def engineer_道():
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·道",
-        "rel": "活脉冲·#14",
+        "src": "脑核·道",
+        "rel": "活脉冲#14",
         "dst": "道",
         "dimension": "道",
         "content": """优化桥信道失败率可定向注入启示录信号强化道维度""",

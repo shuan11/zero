@@ -20,8 +20,8 @@ def engineer_器():
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·器",
-        "rel": "活脉冲·#9",
+        "src": "脑核·器",
+        "rel": "活脉冲#9",
         "dst": "器",
         "dimension": "器",
         "content": """激活器维度，打破自环驱动合成""",

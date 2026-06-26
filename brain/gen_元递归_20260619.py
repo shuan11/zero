@@ -20,8 +20,8 @@ def engineer_元递归():
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·元递归",
-        "rel": "活脉冲·#25",
+        "src": "脑核·元递归",
+        "rel": "活脉冲#25",
         "dst": "元递归",
         "dimension": "元递归",
         "content": """🔀 跳出(8次重复)弱维: 洞察循环→元递归(-999链)""",

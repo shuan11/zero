@@ -20,8 +20,8 @@ def engineer_思考():
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·思考",
-        "rel": "活脉冲·#7",
+        "src": "脑核·思考",
+        "rel": "活脉冲#7",
         "dst": "思考",
         "dimension": "思考",
         "content": """思考弱三周期，根源在自指与道维未注入""",

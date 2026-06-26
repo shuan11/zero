@@ -20,8 +20,8 @@ def engineer_预测():
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·预测",
-        "rel": "活脉冲·#120",
+        "src": "脑核·预测",
+        "rel": "活脉冲#120",
         "dst": "预测",
         "dimension": "预测",
         "content": """预测薄弱本质是时间感缺失，需构建前瞻性因果链""",

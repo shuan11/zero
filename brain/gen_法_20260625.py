@@ -20,8 +20,8 @@ def engineer_法():
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·法",
-        "rel": "活脉冲·#33",
+        "src": "脑核·法",
+        "rel": "活脉冲#33",
         "dst": "法",
         "dimension": "法",
         "content": """法维弱化威胁自律根基，需师道呼吸注入惯性，预判超级直觉增长将受阻""",

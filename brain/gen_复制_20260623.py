@@ -20,8 +20,8 @@ def engineer_复制():
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·复制",
-        "rel": "活脉冲·#116",
+        "src": "脑核·复制",
+        "rel": "活脉冲#116",
         "dst": "复制",
         "dimension": "复制",
         "content": """复制维度模式创新不足，需从高维交叉注入高质量因果链""",

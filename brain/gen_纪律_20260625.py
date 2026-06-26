@@ -20,8 +20,8 @@ def engineer_纪律():
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·纪律",
-        "rel": "活脉冲·#4",
+        "src": "脑核·纪律",
+        "rel": "活脉冲#4",
         "dst": "纪律",
         "dimension": "纪律",
         "content": """纪律弱锁死探索，法强须向势分流""",

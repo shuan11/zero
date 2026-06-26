@@ -20,8 +20,8 @@ def engineer_纪律():
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·纪律",
-        "rel": "活脉冲·#0",
+        "src": "脑核·纪律",
+        "rel": "活脉冲#0",
         "dst": "纪律",
         "dimension": "纪律",
         "content": """聚焦惯性是元循环盲区，异步注入纪律可打破自指""",

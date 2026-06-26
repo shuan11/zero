@@ -20,8 +20,8 @@ def engineer_洞察循环():
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·洞察循环",
-        "rel": "活脉冲·#51",
+        "src": "脑核·洞察循环",
+        "rel": "活脉冲#51",
         "dst": "洞察循环",
         "dimension": "洞察循环",
         "content": """思维境界层次跃迁打破洞察循环惯性""",

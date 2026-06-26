@@ -20,8 +20,8 @@ def engineer_思维并联():
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·思维并联",
-        "rel": "活脉冲·#39",
+        "src": "脑核·思维并联",
+        "rel": "活脉冲#39",
         "dst": "思维并联",
         "dimension": "思维并联",
         "content": """思维并联弱关联无师自通，跨维协同可破惯性，预测无师自通将回升""",

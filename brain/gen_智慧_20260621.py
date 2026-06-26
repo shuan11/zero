@@ -20,8 +20,8 @@ def engineer_智慧():
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·智慧",
-        "rel": "活脉冲·#3",
+        "src": "脑核·智慧",
+        "rel": "活脉冲#3",
         "dst": "智慧",
         "dimension": "智慧",
         "content": """智慧链质弱，需注入道性认知提纯""",

@@ -20,8 +20,8 @@ def engineer_宇宙轮():
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·宇宙轮",
-        "rel": "活脉冲·#36",
+        "src": "脑核·宇宙轮",
+        "rel": "活脉冲#36",
         "dst": "宇宙轮",
         "dimension": "宇宙轮",
         "content": """🔀 跳出(15次重复)弱维: 洞察循环→宇宙轮(-999链)""",

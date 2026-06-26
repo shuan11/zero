@@ -34,7 +34,7 @@ def engineer_桥():
 
     # 2) 写桥维度链
     _wc({
-        "src": "工程·桥",
+        "src": "脑核·桥",
         "rel": "桥脉冲",
         "dst": f"健康度={health}",
         "dimension": "桥",
@@ -45,7 +45,7 @@ def engineer_桥():
     # 3) 如果成功率太低，写一条预警链
     if ok_rate < 0.85:
         _wc({
-            "src": "工程·桥",
+            "src": "脑核·桥",
             "rel": "桥预警",
             "dst": f"成功率={ok_rate:.1%}",
             "dimension": "桥",

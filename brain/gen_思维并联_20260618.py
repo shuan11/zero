@@ -17,7 +17,7 @@ def engineer_思维并联():
     """
     from brain.share import write_chain as _wc, read_hip as _rh
 
-    _wc({"src": "工程·思维并联", "rel": "自动传感器", "dst": "思维并联", "dimension": "思维并联", "content": "自动补缺:思维并联维度传感器", "strength": 0.3})
+    _wc({"src": "脑核·思维并联", "rel": "自动传感器", "dst": "思维并联", "dimension": "思维并联", "content": "自动补缺:思维并联维度传感器", "strength": 0.3})
 
     hip = _rh()
     chains = hip.get("causal_chains", [])

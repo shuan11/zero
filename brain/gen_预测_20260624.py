@@ -20,8 +20,8 @@ def engineer_预测():
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·预测",
-        "rel": "活脉冲·#43",
+        "src": "脑核·预测",
+        "rel": "活脉冲#43",
         "dst": "预测",
         "dimension": "预测",
         "content": """预测弱化将拖累全局进化速率，需以师道呼吸引导势和无师自通回流，否则势有崩解风险。""",

@@ -20,8 +20,8 @@ def engineer_合成():
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·合成",
-        "rel": "活脉冲·#122",
+        "src": "脑核·合成",
+        "rel": "活脉冲#122",
         "dst": "合成",
         "dimension": "合成",
         "content": """纪律弱则合成更弱，需以循环唤醒强化因果网络""",

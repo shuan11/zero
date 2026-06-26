@@ -20,8 +20,8 @@ def engineer_师():
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·师",
-        "rel": "活脉冲·#119",
+        "src": "脑核·师",
+        "rel": "活脉冲#119",
         "dst": "师",
         "dimension": "师",
         "content": """师维度弱源于缺乏自反性教导，需构建师↔学习循环""",

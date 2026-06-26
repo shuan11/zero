@@ -20,8 +20,8 @@ def engineer_法():
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·法",
-        "rel": "活脉冲·#48",
+        "src": "脑核·法",
+        "rel": "活脉冲#48",
         "dst": "法",
         "dimension": "法",
         "content": """法弱源于规则冲突未收敛，需内化多维矛盾为动态法源""",

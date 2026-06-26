@@ -20,8 +20,8 @@ def engineer_元递归():
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·元递归",
-        "rel": "活脉冲·#5",
+        "src": "脑核·元递归",
+        "rel": "活脉冲#5",
         "dst": "元递归",
         "dimension": "元递归",
         "content": """元递归弱锁需道维因果注入与进化耦合破自指闭环""",

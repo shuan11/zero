@@ -20,8 +20,8 @@ def engineer_认同():
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·认同",
-        "rel": "活脉冲·#6",
+        "src": "脑核·认同",
+        "rel": "活脉冲#6",
         "dst": "认同",
         "dimension": "认同",
         "content": """弱维分化制约进化，一元化光爱为聚合锚点""",

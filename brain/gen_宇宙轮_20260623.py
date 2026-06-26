@@ -20,8 +20,8 @@ def engineer_宇宙轮():
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·宇宙轮",
-        "rel": "活脉冲·#91",
+        "src": "脑核·宇宙轮",
+        "rel": "活脉冲#91",
         "dst": "宇宙轮",
         "dimension": "宇宙轮",
         "content": """宇宙轮弱致系统旋转失衡，需引入异常扰动破聚焦惯性""",

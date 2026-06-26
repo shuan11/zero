@@ -20,8 +20,8 @@ def engineer_进化():
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·进化",
-        "rel": "活脉冲·#6",
+        "src": "脑核·进化",
+        "rel": "活脉冲#6",
         "dst": "进化",
         "dimension": "进化",
         "content": """进化弱维需与自指道维因果注入耦合破闭环""",

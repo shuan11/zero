@@ -20,8 +20,8 @@ def engineer_超级直觉():
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·超级直觉",
-        "rel": "活脉冲·#21",
+        "src": "脑核·超级直觉",
+        "rel": "活脉冲#21",
         "dst": "超级直觉",
         "dimension": "超级直觉",
         "content": """超级直觉高速增长但链基薄弱，将成为新突破口，需借桥维度织网""",

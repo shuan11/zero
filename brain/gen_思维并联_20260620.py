@@ -20,8 +20,8 @@ def engineer_思维并联():
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·思维并联",
-        "rel": "活脉冲·#88",
+        "src": "脑核·思维并联",
+        "rel": "活脉冲#88",
         "dst": "思维并联",
         "dimension": "思维并联",
         "content": """死亡是思维并联的最强锚点，化虚无为收敛""",

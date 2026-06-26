@@ -20,8 +20,8 @@ def engineer_自由():
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·自由",
-        "rel": "活脉冲·#27",
+        "src": "脑核·自由",
+        "rel": "活脉冲#27",
         "dst": "自由",
         "dimension": "自由",
         "content": """自由弱制约整体演化，需师道桥接势器激活；一元化同步强化，预判自由触底反弹。""",

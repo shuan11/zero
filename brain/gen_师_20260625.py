@@ -20,8 +20,8 @@ def engineer_师():
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·师",
-        "rel": "活脉冲·#18",
+        "src": "脑核·师",
+        "rel": "活脉冲#18",
         "dst": "师",
         "dimension": "师",
         "content": """师弱全局瓶颈，一元化注入唤醒势，光爱统领全局""",

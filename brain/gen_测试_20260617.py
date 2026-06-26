@@ -20,8 +20,8 @@ def engineer_测试():
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·测试",
-        "rel": "活脉冲·#47",
+        "src": "脑核·测试",
+        "rel": "活脉冲#47",
         "dst": "测试",
         "dimension": "测试",
         "content": """从具体案例归纳测试规则，打破弱维度瓶颈""",

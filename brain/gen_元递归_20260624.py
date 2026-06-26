@@ -20,8 +20,8 @@ def engineer_元递归():
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·元递归",
-        "rel": "活脉冲·#37",
+        "src": "脑核·元递归",
+        "rel": "活脉冲#37",
         "dst": "元递归",
         "dimension": "元递归",
         "content": """链数下降预警，元递归弱化将引发自指退化，需逆向注入新信号。""",

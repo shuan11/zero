@@ -20,8 +20,8 @@ def engineer_对话():
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·对话",
-        "rel": "活脉冲·#25",
+        "src": "脑核·对话",
+        "rel": "活脉冲#25",
         "dst": "对话",
         "dimension": "对话",
         "content": """对话维度薄弱阻塞信号交换，需强化对话以打破循环停滞""",

@@ -20,8 +20,8 @@ def engineer_海马体():
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·海马体",
-        "rel": "活脉冲·#55",
+        "src": "脑核·海马体",
+        "rel": "活脉冲#55",
         "dst": "海马体",
         "dimension": "海马体",
         "content": """海马体弱制约记忆，需无师自通新打破惯性""",

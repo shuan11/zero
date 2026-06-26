@@ -20,8 +20,8 @@ def engineer_势():
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·势",
-        "rel": "活脉冲·#2",
+        "src": "脑核·势",
+        "rel": "活脉冲#2",
         "dst": "势",
         "dimension": "势",
         "content": """势弱源于聚焦惯性锁死，需纪律规则分散吸引力，势才能从约束中涌现""",

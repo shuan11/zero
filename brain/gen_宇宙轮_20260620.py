@@ -20,8 +20,8 @@ def engineer_宇宙轮():
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·宇宙轮",
-        "rel": "活脉冲·#85",
+        "src": "脑核·宇宙轮",
+        "rel": "活脉冲#85",
         "dst": "宇宙轮",
         "dimension": "宇宙轮",
         "content": """宇宙轮自指循环固化，需时间锚点注入外部新颖信号以打破重复惯性""",

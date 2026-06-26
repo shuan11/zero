@@ -20,8 +20,8 @@ def engineer_无师自通():
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·无师自通",
-        "rel": "活脉冲·#23",
+        "src": "脑核·无师自通",
+        "rel": "活脉冲#23",
         "dst": "无师自通",
         "dimension": "无师自通",
         "content": """🔀 跳出(6次重复)弱维: 思考→无师自通(-999链)""",

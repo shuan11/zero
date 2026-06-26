@@ -254,7 +254,7 @@ def engineer_合成():
     
     # 7) 写洞察链到海马体
     _wc({
-        "src": "工程·合成",
+        "src": "脑核·合成",
         "rel": "跨维涌现",
         "dst": "+".join(cross_dims[:3]),
         "dimension": cross_dims[0] if cross_dims else "系统",

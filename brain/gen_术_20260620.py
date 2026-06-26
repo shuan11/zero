@@ -20,8 +20,8 @@ def engineer_术():
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·术",
-        "rel": "活脉冲·#56",
+        "src": "脑核·术",
+        "rel": "活脉冲#56",
         "dst": "术",
         "dimension": "术",
         "content": """外部启示催动术维度规则提炼，感知联动强化制度意识。""",

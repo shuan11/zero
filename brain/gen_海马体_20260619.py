@@ -20,8 +20,8 @@ def engineer_海马体():
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·海马体",
-        "rel": "活脉冲·#65",
+        "src": "脑核·海马体",
+        "rel": "活脉冲#65",
         "dst": "海马体",
         "dimension": "海马体",
         "content": """海马体是打破聚焦惯性的枢纽，强化其与对抗稀释的耦合可激活弱维度再生循环""",

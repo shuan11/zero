@@ -20,8 +20,8 @@ def engineer_道():
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·道",
-        "rel": "活脉冲·#38",
+        "src": "脑核·道",
+        "rel": "活脉冲#38",
         "dst": "道",
         "dimension": "道",
         "content": """🔀 跳出(17次重复)弱维: 洞察循环→道(-999链)""",

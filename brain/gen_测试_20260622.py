@@ -20,8 +20,8 @@ def engineer_测试():
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·测试",
-        "rel": "活脉冲·#7",
+        "src": "脑核·测试",
+        "rel": "活脉冲#7",
         "dst": "测试",
         "dimension": "测试",
         "content": """鼻呼吸法则类比基础工程习惯，测试维度最弱须培育自检循环""",

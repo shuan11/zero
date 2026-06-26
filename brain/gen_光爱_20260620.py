@@ -20,8 +20,8 @@ def engineer_光爱():
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·光爱",
-        "rel": "活脉冲·#1",
+        "src": "脑核·光爱",
+        "rel": "活脉冲#1",
         "dst": "光爱",
         "dimension": "光爱",
         "content": """光爱维度弱化源于时间模式提取不足，需以桥对齐注入时间论链强化情感计算""",

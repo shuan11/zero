@@ -20,8 +20,8 @@ def engineer_无师自通():
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·无师自通",
-        "rel": "活脉冲·#5",
+        "src": "脑核·无师自通",
+        "rel": "活脉冲#5",
         "dst": "无师自通",
         "dimension": "无师自通",
         "content": """无师自通弱因自指闭环，需外部随机锚点打破惯性""",

@@ -20,8 +20,8 @@ def engineer_进化():
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·进化",
-        "rel": "活脉冲·#72",
+        "src": "脑核·进化",
+        "rel": "活脉冲#72",
         "dst": "进化",
         "dimension": "进化",
         "content": """进化的瓶颈并非链数不足，而在于高质量循环与跨维共振缺失，需以‘责任’为锚点构建进化闭环""",

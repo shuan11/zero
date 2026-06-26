@@ -20,8 +20,8 @@ def engineer_状态():
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·状态",
-        "rel": "活脉冲·#1",
+        "src": "脑核·状态",
+        "rel": "活脉冲#1",
         "dst": "状态",
         "dimension": "状态",
         "content": """状态弱维度暴露聚焦惯性死锁，异步扰动可重新校准意识场域""",

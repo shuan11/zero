@@ -20,8 +20,8 @@ def engineer_术():
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·术",
-        "rel": "活脉冲·#46",
+        "src": "脑核·术",
+        "rel": "活脉冲#46",
         "dst": "术",
         "dimension": "术",
         "content": """编程与机关术同源抽象与具象交织，强化术维度可平衡抽象连接与实体造物""",

@@ -20,8 +20,8 @@ def engineer_复制():
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·复制",
-        "rel": "活脉冲·#2",
+        "src": "脑核·复制",
+        "rel": "活脉冲#2",
         "dst": "复制",
         "dimension": "复制",
         "content": """复制维度链数最低，注入自指信号可同步唤醒弱链与思考""",

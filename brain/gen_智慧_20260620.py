@@ -20,8 +20,8 @@ def engineer_智慧():
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·智慧",
-        "rel": "活脉冲·#60",
+        "src": "脑核·智慧",
+        "rel": "活脉冲#60",
         "dst": "智慧",
         "dimension": "智慧",
         "content": """智慧链弱质源于自指回路缺失，需以元递归为基重构推理结构""",

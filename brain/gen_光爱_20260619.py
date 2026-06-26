@@ -20,8 +20,8 @@ def engineer_光爱():
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·光爱",
-        "rel": "活脉冲·#61",
+        "src": "脑核·光爱",
+        "rel": "活脉冲#61",
         "dst": "光爱",
         "dimension": "光爱",
         "content": """以踵息法滋养弱维，光爱需呼吸般深层注入""",

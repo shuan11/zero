@@ -20,8 +20,8 @@ def engineer_势():
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·势",
-        "rel": "活脉冲·#22",
+        "src": "脑核·势",
+        "rel": "活脉冲#22",
         "dst": "势",
         "dimension": "势",
         "content": """势弱因链间无梯度，需时间势差驱动跃迁""",

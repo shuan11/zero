@@ -20,8 +20,8 @@ def engineer_思考():
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·思考",
-        "rel": "活脉冲·#70",
+        "src": "脑核·思考",
+        "rel": "活脉冲#70",
         "dst": "思考",
         "dimension": "思考",
         "content": """思考之弱源于闭锁循环，以‘空’为镜引入外部扰动可破壁""",

@@ -20,8 +20,8 @@ def engineer_时间():
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·时间",
-        "rel": "活脉冲·#84",
+        "src": "脑核·时间",
+        "rel": "活脉冲#84",
         "dst": "时间",
         "dimension": "时间",
         "content": """时间弱维与维度盲区互为表里，通过时间锚点打破循环可同步强化二元""",

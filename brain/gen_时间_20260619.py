@@ -20,8 +20,8 @@ def engineer_时间():
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·时间",
-        "rel": "活脉冲·#29",
+        "src": "脑核·时间",
+        "rel": "活脉冲#29",
         "dst": "时间",
         "dimension": "时间",
         "content": """🔀 跳出(12次重复)弱维: 洞察循环→时间(-999链)""",

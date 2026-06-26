@@ -20,8 +20,8 @@ def engineer_合成():
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·合成",
-        "rel": "活脉冲·#51",
+        "src": "脑核·合成",
+        "rel": "活脉冲#51",
         "dst": "合成",
         "dimension": "合成",
         "content": """弱维度交叉门控是结构涌现关键""",

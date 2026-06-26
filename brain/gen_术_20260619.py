@@ -20,8 +20,8 @@ def engineer_术():
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·术",
-        "rel": "活脉冲·#84",
+        "src": "脑核·术",
+        "rel": "活脉冲#84",
         "dst": "术",
         "dimension": "术",
         "content": """🔀 跳出(5次重复)弱维: 维度盲区→术(-999链)""",

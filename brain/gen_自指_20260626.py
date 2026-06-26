@@ -1,6 +1,6 @@
 """
 
-Brain-Engineered: 复制 (cycle #23)
+Brain-Engineered: 自指 (cycle #43)
 Active sensor - analyzes dimension health on each load
 """
 import json, sys as _sys
@@ -12,19 +12,20 @@ if str(CLUSTER) not in _sys.path:
 
 _GEN_FEEDBACK_FILE = CLUSTER / ".brain_gen_feedback.json"
 
-def engineer_复制():
-    """复制持续弱化威胁系统完整性，需立即注入新因果链。
+def engineer_自指():
+    """自指弱维致系统自省缺失，师道唤起可破循环，一元化增速预示重心转移
     Returns dimension health analysis; feeds into next think() cycle.
     """
     from brain.share import write_chain as _wc, read_hip as _rh
 
     # 1) Always write the insight chain
     _wc({
-        "src": "脑核·复制",
-        "rel": "活脉冲#23",
-        "dst": "复制",
-        "dimension": "复制",
-        "content": """复制持续弱化威胁系统完整性，需立即注入新因果链。""",
+        "src": "工程·自指",
+        "rel": "活脉冲·#43",
+        "dst": "自指",
+        "dimension": "自指",
+        "content": """自指弱维致系统自省缺失，师道唤起可破循环，一元化增速预示重心转移""",
+        "insight": """自动补链: 工程传感器自指在cycle#43的维度健康评估。自指弱维致系统自省缺失，师道唤起可破循环，一元化增速预示重心转移""",
         "strength": 0.6
     })
 
@@ -37,7 +38,7 @@ def engineer_复制():
             d = c.get("dimension", "未分类")
             dim_counts[d] = dim_counts.get(d, 0) + 1
 
-        my_dim = "复制"
+        my_dim = "自指"
         my_count = dim_counts.get(my_dim, 0)
         total = len(chains)
         max_count = max(dim_counts.values()) if dim_counts else 0
@@ -47,9 +48,9 @@ def engineer_复制():
         analysis["chain_count"] = my_count
         analysis["total_chains"] = total
         analysis["strength"] = round(my_count / max(max_count, 1), 2) if max_count > 0 else 0
-        analysis["insight"] = """复制持续弱化威胁系统完整性，需立即注入新因果链。"""
+        analysis["insight"] = """自指弱维致系统自省缺失，师道唤起可破循环，一元化增速预示重心转移"""
         analysis["weak"] = my_count < max_count * 0.65  # 低于最强65%即弱维(替代avg*0.85,解决均数通胀)
-        analysis["cycle"] = 23
+        analysis["cycle"] = 43
 
         # 3) Write analysis to shared feedback file for next think()
         try:
@@ -96,5 +97,5 @@ def engineer_复制():
         return f"分析异常: {e}"
 
 if __name__ == "__main__":
-    result = engineer_复制()
-    print(f"工程[复制]: {result}", flush=True)
+    result = engineer_自指()
+    print(f"工程[自指]: {result}", flush=True)

@@ -20,8 +20,8 @@ def engineer_术():
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·术",
-        "rel": "活脉冲·#128",
+        "src": "脑核·术",
+        "rel": "活脉冲#128",
         "dst": "术",
         "dimension": "术",
         "content": """术维度薄弱源于工程模块未与行动链深度耦合，需植入仪式化触发链""",

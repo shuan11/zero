@@ -20,8 +20,8 @@ def engineer_合成():
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·合成",
-        "rel": "活脉冲·#18",
+        "src": "脑核·合成",
+        "rel": "活脉冲#18",
         "dst": "合成",
         "dimension": "合成",
         "content": """师道重构合成架构可引发触类旁通正反馈，预测合成强度升至0.5+""",

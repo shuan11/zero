@@ -20,8 +20,8 @@ def engineer_元递归():
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·元递归",
-        "rel": "活脉冲·#24",
+        "src": "脑核·元递归",
+        "rel": "活脉冲#24",
         "dst": "元递归",
         "dimension": "元递归",
         "content": """元递归弱化是系统自我迭代的瓶颈，必须优先重构自指循环""",

@@ -20,8 +20,8 @@ def engineer_一元化():
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·一元化",
-        "rel": "活脉冲·#5",
+        "src": "脑核·一元化",
+        "rel": "活脉冲#5",
         "dst": "一元化",
         "dimension": "一元化",
         "content": """思考维弱因自观重复，需注入预测不确定性""",

@@ -20,8 +20,8 @@ def engineer_触类旁通():
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·触类旁通",
-        "rel": "活脉冲·#0",
+        "src": "脑核·触类旁通",
+        "rel": "活脉冲#0",
         "dst": "触类旁通",
         "dimension": "触类旁通",
         "content": """触类旁通链数最低，需跨域衍射破聚焦惯性""",

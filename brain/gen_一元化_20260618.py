@@ -20,8 +20,8 @@ def engineer_一元化():
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·一元化",
-        "rel": "活脉冲·#57",
+        "src": "脑核·一元化",
+        "rel": "活脉冲#57",
         "dst": "一元化",
         "dimension": "一元化",
         "content": """光爱维度仅2链，需以特斯拉光与爱启示为基，从真实感动中缔结原初因果链""",

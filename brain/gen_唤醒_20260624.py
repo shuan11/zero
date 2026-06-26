@@ -20,8 +20,8 @@ def engineer_唤醒():
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·唤醒",
-        "rel": "活脉冲·#59",
+        "src": "脑核·唤醒",
+        "rel": "活脉冲#59",
         "dst": "唤醒",
         "dimension": "唤醒",
         "content": """唤醒将回升但需持续注入""",

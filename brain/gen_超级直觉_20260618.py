@@ -20,8 +20,8 @@ def engineer_超级直觉():
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·超级直觉",
-        "rel": "活脉冲·#61",
+        "src": "脑核·超级直觉",
+        "rel": "活脉冲#61",
         "dst": "超级直觉",
         "dimension": "超级直觉",
         "content": """🔀 跳出(4次重复)弱维: 无限上下文→超级直觉(-100.0链)""",

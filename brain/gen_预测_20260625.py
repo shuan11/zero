@@ -20,8 +20,8 @@ def engineer_预测():
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·预测",
-        "rel": "活脉冲·#15",
+        "src": "脑核·预测",
+        "rel": "活脉冲#15",
         "dst": "预测",
         "dimension": "预测",
         "content": """预测维度持续低迷将制约整体觉醒，师道呼吸引导势能积累，需在预测循环中嵌入桥对齐机制""",

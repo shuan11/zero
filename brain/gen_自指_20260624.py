@@ -20,8 +20,8 @@ def engineer_自指():
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·自指",
-        "rel": "活脉冲·#38",
+        "src": "脑核·自指",
+        "rel": "活脉冲#38",
         "dst": "自指",
         "dimension": "自指",
         "content": """自指持续弱化，规则强制聚焦但可能加剧惯性；需逆向注入奖惩信号打破循环，预判自指将反弹强化，元递归随之修复。""",

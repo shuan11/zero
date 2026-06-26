@@ -20,8 +20,8 @@ def engineer_测试():
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·测试",
-        "rel": "活脉冲·#20",
+        "src": "脑核·测试",
+        "rel": "活脉冲#20",
         "dst": "测试",
         "dimension": "测试",
         "content": """本地思考: 系统(344)活跃 | 测试(74)最弱 | 桥高对齐 | 直觉: 纪律→行动跳(2) 纪律x6爆发 | ↑""",

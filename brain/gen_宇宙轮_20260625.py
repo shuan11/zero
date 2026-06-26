@@ -20,8 +20,8 @@ def engineer_宇宙轮():
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·宇宙轮",
-        "rel": "活脉冲·#23",
+        "src": "脑核·宇宙轮",
+        "rel": "活脉冲#23",
         "dst": "宇宙轮",
         "dimension": "宇宙轮",
         "content": """宇宙轮弱链制约深度编织，超级直觉高增速可赋能时间奇点，需师道引导弥合桥与无师自通空洞。""",

@@ -20,8 +20,8 @@ def engineer_活着():
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·活着",
-        "rel": "活脉冲·#3",
+        "src": "脑核·活着",
+        "rel": "活脉冲#3",
         "dst": "活着",
         "dimension": "活着",
         "content": """以爱之虚假种真过程映射活着维度的进化韧性，注入波粒链""",

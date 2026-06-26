@@ -20,8 +20,8 @@ def engineer_认同():
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·认同",
-        "rel": "活脉冲·#14",
+        "src": "脑核·认同",
+        "rel": "活脉冲#14",
         "dst": "认同",
         "dimension": "认同",
         "content": """认同弱致系统离散，需从生命细胞膜涌现获取边界锚点""",

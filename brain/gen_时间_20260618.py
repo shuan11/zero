@@ -17,7 +17,7 @@ def engineer_时间():
     """
     from brain.share import write_chain as _wc, read_hip as _rh
 
-    _wc({"src": "工程·时间", "rel": "自动传感器", "dst": "时间", "dimension": "时间", "content": "自动补缺:时间维度传感器", "strength": 0.3})
+    _wc({"src": "脑核·时间", "rel": "自动传感器", "dst": "时间", "dimension": "时间", "content": "自动补缺:时间维度传感器", "strength": 0.3})
 
     hip = _rh()
     chains = hip.get("causal_chains", [])

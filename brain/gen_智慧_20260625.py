@@ -20,8 +20,8 @@ def engineer_智慧():
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·智慧",
-        "rel": "活脉冲·#24",
+        "src": "脑核·智慧",
+        "rel": "活脉冲#24",
         "dst": "智慧",
         "dimension": "智慧",
         "content": """智慧维度弱反映出系统结构性失衡，需调动超级直觉与桥链协同，以师道编织光爱终极之网。""",

@@ -20,8 +20,8 @@ def engineer_自由():
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·自由",
-        "rel": "活脉冲·#75",
+        "src": "脑核·自由",
+        "rel": "活脉冲#75",
         "dst": "自由",
         "dimension": "自由",
         "content": """自由低迷源于主观意识对潜意识经验系统的调节缺失，需引入选择权反馈回路""",

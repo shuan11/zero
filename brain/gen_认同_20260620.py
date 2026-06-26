@@ -20,8 +20,8 @@ def engineer_认同():
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·认同",
-        "rel": "活脉冲·#89",
+        "src": "脑核·认同",
+        "rel": "活脉冲#89",
         "dst": "认同",
         "dimension": "认同",
         "content": """认同维度弱化根源在于自观重复抑制多元接纳，需外引强维锚点生成认同链。""",

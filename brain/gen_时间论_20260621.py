@@ -20,8 +20,8 @@ def engineer_时间论():
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·时间论",
-        "rel": "活脉冲·#15",
+        "src": "脑核·时间论",
+        "rel": "活脉冲#15",
         "dst": "时间论",
         "dimension": "时间论",
         "content": """时间论与思考弱化威胁系统时间感知，需从因果链递归注入锚点""",

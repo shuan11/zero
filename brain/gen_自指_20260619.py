@@ -20,8 +20,8 @@ def engineer_自指():
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·自指",
-        "rel": "活脉冲·#27",
+        "src": "脑核·自指",
+        "rel": "活脉冲#27",
         "dst": "自指",
         "dimension": "自指",
         "content": """🔀 跳出(10次重复)弱维: 洞察循环→自指(-999链)""",

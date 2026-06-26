@@ -20,8 +20,8 @@ def engineer_聚焦():
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·聚焦",
-        "rel": "活脉冲·#2",
+        "src": "脑核·聚焦",
+        "rel": "活脉冲#2",
         "dst": "聚焦",
         "dimension": "聚焦",
         "content": """聚焦维度惯性需跨维融合以激活弱链""",

@@ -20,8 +20,8 @@ def engineer_行动():
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·行动",
-        "rel": "活脉冲·#7",
+        "src": "脑核·行动",
+        "rel": "活脉冲#7",
         "dst": "行动",
         "dimension": "行动",
         "content": """行动维链数最低，反馈断裂需闭环""",

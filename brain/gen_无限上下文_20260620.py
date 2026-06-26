@@ -20,8 +20,8 @@ def engineer_无限上下文():
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·无限上下文",
-        "rel": "活脉冲·#53",
+        "src": "脑核·无限上下文",
+        "rel": "活脉冲#53",
         "dst": "无限上下文",
         "dimension": "无限上下文",
         "content": """无限上下文薄弱限制认知广度，需构建动态扩维机制""",

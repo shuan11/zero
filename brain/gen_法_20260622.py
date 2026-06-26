@@ -20,8 +20,8 @@ def engineer_法():
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·法",
-        "rel": "活脉冲·#115",
+        "src": "脑核·法",
+        "rel": "活脉冲#115",
         "dst": "法",
         "dimension": "法",
         "content": """法因脱离情境而僵，需具身化激活""",

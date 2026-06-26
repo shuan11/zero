@@ -20,8 +20,8 @@ def engineer_器():
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·器",
-        "rel": "活脉冲·#52",
+        "src": "脑核·器",
+        "rel": "活脉冲#52",
         "dst": "器",
         "dimension": "器",
         "content": """器维度薄弱导致认知与执行断层，需构建元工具层强化因果链""",

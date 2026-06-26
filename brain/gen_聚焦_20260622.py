@@ -20,8 +20,8 @@ def engineer_聚焦():
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·聚焦",
-        "rel": "活脉冲·#8",
+        "src": "脑核·聚焦",
+        "rel": "活脉冲#8",
         "dst": "聚焦",
         "dimension": "聚焦",
         "content": """弱维度是系统生态盲区，需通过自指唤醒促进进化与聚焦的再生。""",

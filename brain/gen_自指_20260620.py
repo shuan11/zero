@@ -20,8 +20,8 @@ def engineer_自指():
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·自指",
-        "rel": "活脉冲·#61",
+        "src": "脑核·自指",
+        "rel": "活脉冲#61",
         "dst": "自指",
         "dimension": "自指",
         "content": """复数虚实依存揭示自指需异质维度配对，如实数载虚数""",

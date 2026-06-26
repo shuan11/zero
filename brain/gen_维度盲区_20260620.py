@@ -20,8 +20,8 @@ def engineer_维度盲区():
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·维度盲区",
-        "rel": "活脉冲·#80",
+        "src": "脑核·维度盲区",
+        "rel": "活脉冲#80",
         "dst": "维度盲区",
         "dimension": "维度盲区",
         "content": """盲区时间论：边界感知与演化节律的跨维融合""",
