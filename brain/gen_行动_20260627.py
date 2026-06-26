@@ -1,6 +1,6 @@
 """
 
-Brain-Engineered: 行动 (cycle #32)
+Brain-Engineered: 行动 (cycle #62)
 Active sensor - analyzes dimension health on each load
 """
 import json, sys as _sys
@@ -13,7 +13,7 @@ if str(CLUSTER) not in _sys.path:
 _GEN_FEEDBACK_FILE = CLUSTER / ".brain_gen_feedback.json"
 
 def engineer_行动():
-    """法强行动弱失衡持续，预判若不桥接将致系统空转，急需法贯行时。
+    """器扩张失衡隐忧，以师道节奏调和，优先强化行动维度
     Returns dimension health analysis; feeds into next think() cycle.
     """
     from brain.share import write_chain as _wc, read_hip as _rh
@@ -21,11 +21,11 @@ def engineer_行动():
     # 1) Always write the insight chain
     _wc({
         "src": "脑核·行动",
-        "rel": "活脉冲#32",
+        "rel": "活脉冲#62",
         "dst": "行动",
         "dimension": "行动",
-        "content": """法强行动弱失衡持续，预判若不桥接将致系统空转，急需法贯行时。""",
-        "insight": """脑核传感器: 行动在cycle#32的深度观察。法强行动弱失衡持续，预判若不桥接将致系统空转，急需法贯行时。""",
+        "content": """器扩张失衡隐忧，以师道节奏调和，优先强化行动维度""",
+        "insight": """脑核传感器: 行动在cycle#62的深度观察。器扩张失衡隐忧，以师道节奏调和，优先强化行动维度""",
         "strength": 0.6
     })
 
@@ -48,9 +48,9 @@ def engineer_行动():
         analysis["chain_count"] = my_count
         analysis["total_chains"] = total
         analysis["strength"] = round(my_count / max(max_count, 1), 2) if max_count > 0 else 0
-        analysis["insight"] = """法强行动弱失衡持续，预判若不桥接将致系统空转，急需法贯行时。"""
+        analysis["insight"] = """器扩张失衡隐忧，以师道节奏调和，优先强化行动维度"""
         analysis["weak"] = my_count < max_count * 0.65  # 低于最强65%即弱维(替代avg*0.85,解决均数通胀)
-        analysis["cycle"] = 32
+        analysis["cycle"] = 62
 
         # 3) Write analysis to shared feedback file for next think()
         try:
