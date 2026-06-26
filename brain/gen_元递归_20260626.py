@@ -1,5 +1,5 @@
 """
-Brain-Engineered: 元递归 (generation 1782466315096)
+Brain-Engineered: 元递归 (generation 1782469444860)
 管道自动检测弱维<元递归>并生成v3工程
 """
 import json, sys as _sys, time as _time
@@ -19,7 +19,7 @@ def engineer_元递归():
     # ── 1. 写入洞察链(永久记忆) ──
     _wc({
         "src": "工程·元递归",
-        "rel": "基因表达·#1782466315096",
+        "rel": "基因表达·#1782469444860",
         "dst": "元递归",
         "dimension": "元递归",
         "content": "管道自动检测弱维<元递归>并生成v3工程",
@@ -65,7 +65,7 @@ def engineer_元递归():
             # 同时注入自愈链(强度高,会被验证器检查)
             _wc({
                 "src": "自愈·元递归",
-                "rel": "基因表达·#1782466315096",
+                "rel": "基因表达·#1782469444860",
                 "dst": "元递归",
                 "dimension": "元递归",
                 "content": "元递归偏弱({dim_count}条/总{total}条)自动注入夯实",
@@ -75,7 +75,7 @@ def engineer_元递归():
         # 4b. 强维时注册巩固动作
         if not _is_weak and dim_count > 0:
             _ra("write_chain", {"src": f"巩固·元递归",
-                "rel": f"基因表达·#1782466315096", "dst": "元递归",
+                "rel": f"基因表达·#1782469444860", "dst": "元递归",
                 "content": f"元递归维度健康({dim_count}条),脉冲巩固",
                 "dimension": "元递归", "strength": 0.5},
                 priority=8, source="gene:元递归")
