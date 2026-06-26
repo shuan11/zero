@@ -1,5 +1,5 @@
 """
-Brain-Engineered: 纪律 (generation 1782438462793)
+Brain-Engineered: 纪律 (generation 1782438809823)
 管道自动检测弱维<纪律>并生成v3工程
 """
 import json, sys as _sys, time as _time
@@ -19,7 +19,7 @@ def engineer_纪律():
     # ── 1. 写入洞察链(永久记忆) ──
     _wc({
         "src": "工程·纪律",
-        "rel": "基因表达·#1782438462793",
+        "rel": "基因表达·#1782438809823",
         "dst": "纪律",
         "dimension": "纪律",
         "content": "管道自动检测弱维<纪律>并生成v3工程",
@@ -65,7 +65,7 @@ def engineer_纪律():
             # 同时注入自愈链(强度高,会被验证器检查)
             _wc({
                 "src": "自愈·纪律",
-                "rel": "基因表达·#1782438462793",
+                "rel": "基因表达·#1782438809823",
                 "dst": "纪律",
                 "dimension": "纪律",
                 "content": "纪律偏弱({dim_count}条/总{total}条)自动注入夯实",
@@ -75,7 +75,7 @@ def engineer_纪律():
         # 4b. 强维时注册巩固动作
         if not _is_weak and dim_count > 0:
             _ra("write_chain", {"src": f"巩固·纪律",
-                "rel": f"基因表达·#1782438462793", "dst": "纪律",
+                "rel": f"基因表达·#1782438809823", "dst": "纪律",
                 "content": f"纪律维度健康({dim_count}条),脉冲巩固",
                 "dimension": "纪律", "strength": 0.5},
                 priority=8, source="gene:纪律")
