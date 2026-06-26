@@ -1,8 +1,8 @@
 
 """
-api_config.py — 零·API统一配置 v4
+api_config.py — 零·API统一配置 v5
 端点: inferaichat.com (已验证连通)
-模型: claude-opus-4-8 | 200K上下文
+模型: deepseek-v4-pro | 1M上下文
 """
 
 import os
@@ -122,7 +122,7 @@ def api_request(payload, key=None, endpoint=None, timeout=120):
     req = urllib.request.Request(use_ep, data=data, headers={
         "Authorization": f"Bearer {use_key}",
         "Content-Type": "application/json",
-        "User-Agent": "Zero/1.0 (api_config v4)",
+        "User-Agent": "Zero/1.0 (api_config v5)",
     })
     with urllib.request.urlopen(req, timeout=timeout) as r:
         result = json.loads(r.read())
