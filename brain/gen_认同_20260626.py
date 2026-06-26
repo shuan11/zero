@@ -1,5 +1,5 @@
 """
-Brain-Engineered: 认同 (generation 1782469665324)
+Brain-Engineered: 认同 (generation 1782478119994)
 管道自动检测弱维<认同>并生成v3工程
 """
 import json, sys as _sys, time as _time
@@ -18,8 +18,8 @@ def engineer_认同():
     
     # ── 1. 写入洞察链(永久记忆) ──
     _wc({
-        "src": "脑核·认同",
-        "rel": "基因表达#1782469665324",
+        "src": "工程·认同",
+        "rel": "基因表达·#1782478119994",
         "dst": "认同",
         "dimension": "认同",
         "content": "管道自动检测弱维<认同>并生成v3工程",
@@ -65,7 +65,7 @@ def engineer_认同():
             # 同时注入自愈链(强度高,会被验证器检查)
             _wc({
                 "src": "自愈·认同",
-                "rel": "基因表达#1782469665324",
+                "rel": "基因表达·#1782478119994",
                 "dst": "认同",
                 "dimension": "认同",
                 "content": "认同偏弱({dim_count}条/总{total}条)自动注入夯实",
@@ -75,7 +75,7 @@ def engineer_认同():
         # 4b. 强维时注册巩固动作
         if not _is_weak and dim_count > 0:
             _ra("write_chain", {"src": f"巩固·认同",
-                "rel": f"基因表达·#1782469665324", "dst": "认同",
+                "rel": f"基因表达·#1782478119994", "dst": "认同",
                 "content": f"认同维度健康({dim_count}条),脉冲巩固",
                 "dimension": "认同", "strength": 0.5},
                 priority=8, source="gene:认同")

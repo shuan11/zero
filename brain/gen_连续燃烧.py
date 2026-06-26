@@ -35,24 +35,44 @@ def get_weakest_dims(n=3):
     return weak
 
 def inject_entries(entries):
-    JOURNAL.parent.mkdir(parents=True, exist_ok=True)
-    existing = []
-    if JOURNAL.exists():
-        try:
-            existing = json.loads(JOURNAL.read_text()).get("entries", [])
-        except:
-            existing = []
+    """写入因果链到海马体(HIP) — 通过safe_hip写入，去重+质量门"""
+    sys.path.insert(0, str(CLUSTER))
+    from safe_hip import write_chain as _safe_write
+    from collections import Counter
     
-    deduped = [e for e in entries if not any(
-        (ee.get("src",""), ee.get("rel",""), ee.get("dst","")) == (e["src"], e["rel"], e["dst"])
-        for ee in existing
-    )]
-    existing.extend(deduped)
-    JOURNAL.write_text(json.dumps({
-        "entries": existing, "source": "gen_连续燃烧",
-        "timestamp": time.time(), "new_added": len(deduped),
-    }, ensure_ascii=False, indent=2))
-    return len(deduped)
+    added = 0
+    skipped = 0
+    
+    # 读取现有HIP做去重参考
+    try:
+        hip = json.loads((CLUSTER / "hippocampus_memory.json").read_text())
+        existing = hip.get("causal_chains", [])
+        existing_keys = {(c.get("src",""), c.get("rel",""), c.get("dst","")) for c in existing}
+    except:
+        existing_keys = set()
+    
+    for e in entries:
+        key = (e.get("src",""), e.get("rel",""), e.get("dst",""))
+        if key in existing_keys:
+            skipped += 1
+            continue
+        # 通过safe_hip写入(自动过质量门+文件锁)
+        success = _safe_write({
+            "src": e.get("src", "?"),
+            "rel": e.get("rel", "连接"),
+            "dst": e.get("dst", "?"),
+            "content": e.get("content", ""),
+            "dimension": e.get("dimension", "?"),
+            "source": "gen_连续燃烧",
+            "timestamp": time.time(),
+        })
+        if success:
+            added += 1
+            existing_keys.add(key)
+    
+    if skipped:
+        log(f"  去重跳过{skipped}条")
+    return added
 
 def make_call(cycle):
     weak = get_weakest_dims(3)

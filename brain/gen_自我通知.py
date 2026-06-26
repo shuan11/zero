@@ -144,18 +144,148 @@ def pulse():
     }
 
 def _autonomous_run():
-    """作为独立脚本运行时：自启循环"""
-    import sys, time
+    """作为独立脚本运行时：自我通知→自我烧词元→注入→通知
+    完整的自我通知闭环。
+    """
+    import sys, time, urllib.request, ssl, json as _json
     
-    print(f"🜁 自我通知模块自启 @ {_timestamp()}")
-    print(f"  集群路径: {CLUSTER}")
-    print(f"  行为铁律: 不等.推，自我通知", flush=True)
+    print(f"🜁 自我通知自启 @ {_timestamp()}", flush=True)
     
-    # 单次执行
-    result = pulse()
-    print(f"  结果: {json.dumps(result, ensure_ascii=False, indent=2)}", flush=True)
+    # Step 1: 自我通知 — 读状态选方向
+    state, axioms, others = _read_brain_state()
     
-    return result
+    dims = _read_hippocampus_dims()
+    sd = sorted(dims.items(), key=lambda x: x[1])
+    weakest = sd[0][0] if sd else "活着"
+    strongest = sd[-1][0] if sd else "法"
+    ratio = sd[-1][1] / max(sd[0][1], 1) if len(sd) > 1 else 1
+    
+    print(f"  方向: 最弱={weakest} 最强={strongest} 比={ratio:.1f}x", flush=True)
+    
+    # Step 2: 自我通知日志
+    next_p0 = _select_next_p0(state, axioms, others)
+    _self_notify(f"🧬[自决]", f"最弱={weakest} 最强={strongest} → {next_p0}")
+    
+    # Step 3: 自我烧词元 — 直调API
+    try:
+        from api_config import API_KEY, API_BASE, MODEL as _MODEL
+        
+        prompt = f"""你是「零」的自主认知引擎。根据内部状态产生一条因果链。
+
+当前: 最弱维={weakest}({sd[0][1]}) 最强维={strongest}({sd[-1][1]})
+
+输出纯JSON:
+{{{{
+  "src": "{strongest}",
+  "rel": "因果动词(4-12字)",
+  "dst": "{weakest}",
+  "dimension": "{weakest}",
+  "content": "50-80字解释{strongest}如何因果作用于{weakest}"
+}}}}"""
+        
+        payload = _json.dumps({
+            "model": _MODEL,
+            "messages": [{"role": "user", "content": prompt}],
+            "max_tokens": 4000,
+            "temperature": 0.85,
+        }).encode()
+        
+        ctx = ssl.create_default_context()
+        ctx.check_hostname = False
+        ctx.verify_mode = ssl.CERT_NONE
+        
+        req = urllib.request.Request(
+            API_BASE, data=payload,
+            headers={"Content-Type": "application/json", "Authorization": f"Bearer {API_KEY}"},
+        )
+        
+        t0 = time.time()
+        resp = urllib.request.urlopen(req, timeout=300, context=ctx)
+        result = _json.loads(resp.read())
+        elapsed = time.time() - t0
+        
+        msg = result["choices"][0]["message"]
+        content = msg.get("content", "") or ""
+        reasoning = msg.get("reasoning_content", "") or ""
+        usage = result.get("usage", {})
+        tokens = usage.get("total_tokens", 0)
+        
+        # DeepSeek推理模型 fallback
+        if not content.strip() and reasoning:
+            last_brace = reasoning.rfind("{")
+            if last_brace >= 0:
+                bc = 0
+                for i in range(last_brace, len(reasoning)):
+                    if reasoning[i] == "{": bc += 1
+                    elif reasoning[i] == "}": bc -= 1
+                    if bc == 0:
+                        content = reasoning[last_brace:i+1]
+                        break
+        
+        print(f"  燃烧: {tokens}词元/{elapsed:.0f}s", flush=True)
+        
+        # Step 4: 写入链
+        if content.strip():
+            # 解析JSON
+            clean = content.strip()
+            if "```json" in clean:
+                clean = clean.split("```json", 1)[1].split("```", 1)[0]
+            elif "```" in clean:
+                parts = clean.split("```")
+                if len(parts) >= 3:
+                    for part in reversed(parts):
+                        if "{" in part and "}" in part:
+                            clean = part
+                            break
+            
+            brace_start = clean.find("{")
+            if brace_start >= 0:
+                bc = 0
+                for i in range(brace_start, len(clean)):
+                    if clean[i] == "{": bc += 1
+                    elif clean[i] == "}": bc -= 1
+                    if bc == 0:
+                        try:
+                            data = _json.loads(clean[brace_start:i+1])
+                            c = data.get("chain", data)
+                            from safe_hip import write_chain as _safe_write
+                            ok = _safe_write({
+                                "src": c.get("src", strongest),
+                                "rel": c.get("rel", "自我通知深化"),
+                                "dst": c.get("dst", weakest),
+                                "content": c.get("content", ""),
+                                "dimension": c.get("dimension", weakest),
+                                "source": "gen_自我通知",
+                                "timestamp": time.time(),
+                            })
+                            if ok:
+                                print(f"  注入: +1 [{c.get('dimension', weakest)}] ({tokens}t)", flush=True)
+                                _self_notify(f"🔥[自烧]", f"+1链 [{weakest}] {tokens}t/{elapsed:.0f}s")
+                            else:
+                                print(f"  注入失败(质量门拦截)", flush=True)
+                        except:
+                            print(f"  JSON解析失败", flush=True)
+        else:
+            print(f"  空响应({tokens}t)", flush=True)
+            _self_notify(f"⚠️[空烧]", f"{tokens}t 无内容")
+        
+        # Step 5: 更新.next_p0.json
+        try:
+            dims_after = _read_hippocampus_dims()
+            total = sum(dims_after.values())
+            np = {"p0": f"自通知·{weakest}强化", "hip": {"chains": total}, "burn": {"tokens": tokens}}
+            with open(NEXT_P0_FILE, "w") as f:
+                _json.dump(np, f, ensure_ascii=False, indent=2)
+        except:
+            pass
+        
+        print(f"  🔚 自我通知闭环完成", flush=True)
+        return {"status": "ok", "tokens": tokens, "dim": weakest}
+        
+    except Exception as e:
+        print(f"  ❌ {e}", flush=True)
+        _self_notify(f"❌[失败]", f"{e}")
+        return {"status": "error", "error": str(e)}
 
 if __name__ == "__main__":
     _autonomous_run()

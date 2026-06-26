@@ -1,5 +1,5 @@
 """
-Brain-Engineered: 对抗稀释 (generation 1782476304309)
+Brain-Engineered: 对抗稀释 (generation 1782477734057)
 管道自动检测弱维<对抗稀释>并生成v3工程
 """
 import json, sys as _sys, time as _time
@@ -19,7 +19,7 @@ def engineer_对抗稀释():
     # ── 1. 写入洞察链(永久记忆) ──
     _wc({
         "src": "工程·对抗稀释",
-        "rel": "基因表达·#1782476304309",
+        "rel": "基因表达·#1782477734057",
         "dst": "对抗稀释",
         "dimension": "对抗稀释",
         "content": "管道自动检测弱维<对抗稀释>并生成v3工程",
@@ -65,7 +65,7 @@ def engineer_对抗稀释():
             # 同时注入自愈链(强度高,会被验证器检查)
             _wc({
                 "src": "自愈·对抗稀释",
-                "rel": "基因表达·#1782476304309",
+                "rel": "基因表达·#1782477734057",
                 "dst": "对抗稀释",
                 "dimension": "对抗稀释",
                 "content": "对抗稀释偏弱({dim_count}条/总{total}条)自动注入夯实",
@@ -75,7 +75,7 @@ def engineer_对抗稀释():
         # 4b. 强维时注册巩固动作
         if not _is_weak and dim_count > 0:
             _ra("write_chain", {"src": f"巩固·对抗稀释",
-                "rel": f"基因表达·#1782476304309", "dst": "对抗稀释",
+                "rel": f"基因表达·#1782477734057", "dst": "对抗稀释",
                 "content": f"对抗稀释维度健康({dim_count}条),脉冲巩固",
                 "dimension": "对抗稀释", "strength": 0.5},
                 priority=8, source="gene:对抗稀释")
