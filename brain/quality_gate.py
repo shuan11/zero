@@ -280,7 +280,7 @@ def rate_chain(chain: dict) -> dict:
     }
 
 
-def filter_chains(chains: list, threshold: float = 0.30) -> dict:
+def filter_chains(chains: list, threshold: float = 0.50) -> dict:
     """批量过滤链
 
     Args:

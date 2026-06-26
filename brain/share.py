@@ -181,7 +181,7 @@ def write_chain(chain_dict):
         
         # 滤波模式: 拦截低质量链
         _log_only = gn_get("quality.log_only", True)
-        _threshold = gn_get("quality.threshold", 0.30)
+        _threshold = gn_get("quality.threshold", 0.50)
         
         if _q_score < _threshold:
             # 记录到盲区日志(无论是否拦截)
@@ -221,11 +221,11 @@ def write_chain_legacy(src, rel, dst, strength=0.5, tags=None, dimension=None, c
 def write_chains_batch(chains, max_dedup=500):
     """批量写入因果链(经质量门滤波)"""
     _log_only = True
-    _threshold = 0.30
+    _threshold = 0.50
     try:
         from brain.genome import get as gn_get
         _log_only = gn_get("quality.log_only", True)
-        _threshold = gn_get("quality.threshold", 0.30)
+        _threshold = gn_get("quality.threshold", 0.50)
         from brain.quality_gate import rate_chain, log_blocked_chain
         passed = []
         blocked = 0

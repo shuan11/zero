@@ -38,7 +38,7 @@ DEFAULT_GENOME = {
     # P113+: 质量门·收敛态强化
     "quality.block_noise": True,        # 收敛态启用拦截
     "quality.log_only": False,          # 拦截模式
-    "quality.threshold": 0.60,          # 收敛态阈值(从0.30→0.60)
+    "quality.threshold": 0.70,          # 收敛态阈值(提升至0.70匹配avg_strength)
     "quality.high_threshold": 0.80,     # 高质量阈值
     "quality.min_content_len": 40,      # content最小长度
 }
