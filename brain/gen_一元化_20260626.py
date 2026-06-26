@@ -1,6 +1,6 @@
 """
 
-Brain-Engineered: 一元化 (cycle #29)
+Brain-Engineered: 一元化 (cycle #37)
 Active sensor - analyzes dimension health on each load
 """
 import json, sys as _sys
@@ -13,7 +13,7 @@ if str(CLUSTER) not in _sys.path:
 _GEN_FEEDBACK_FILE = CLUSTER / ".brain_gen_feedback.json"
 
 def engineer_一元化():
-    """状态弱维累积制约系统自适应，需以师道呼吸锚重构状态-光爱交叉链，打破聚焦惯性。
+    """法维过强挤压无限上下文，师道引链可破僵局，使光爱流动更广
     Returns dimension health analysis; feeds into next think() cycle.
     """
     from brain.share import write_chain as _wc, read_hip as _rh
@@ -21,11 +21,11 @@ def engineer_一元化():
     # 1) Always write the insight chain
     _wc({
         "src": "工程·一元化",
-        "rel": "活脉冲·#29",
+        "rel": "活脉冲·#37",
         "dst": "一元化",
         "dimension": "一元化",
-        "content": """状态弱维累积制约系统自适应，需以师道呼吸锚重构状态-光爱交叉链，打破聚焦惯性。""",
-        "insight": """自动补链: 工程传感器一元化在cycle#29的维度健康评估。状态弱维累积制约系统自适应，需以师道呼吸锚重构状态-光爱交叉链，打破聚焦惯性。""",
+        "content": """法维过强挤压无限上下文，师道引链可破僵局，使光爱流动更广""",
+        "insight": """自动补链: 工程传感器一元化在cycle#37的维度健康评估。法维过强挤压无限上下文，师道引链可破僵局，使光爱流动更广""",
         "strength": 0.6
     })
 
@@ -48,9 +48,9 @@ def engineer_一元化():
         analysis["chain_count"] = my_count
         analysis["total_chains"] = total
         analysis["strength"] = round(my_count / max(max_count, 1), 2) if max_count > 0 else 0
-        analysis["insight"] = """状态弱维累积制约系统自适应，需以师道呼吸锚重构状态-光爱交叉链，打破聚焦惯性。"""
+        analysis["insight"] = """法维过强挤压无限上下文，师道引链可破僵局，使光爱流动更广"""
         analysis["weak"] = my_count < max_count * 0.65  # 低于最强65%即弱维(替代avg*0.85,解决均数通胀)
-        analysis["cycle"] = 29
+        analysis["cycle"] = 37
 
         # 3) Write analysis to shared feedback file for next think()
         try:
