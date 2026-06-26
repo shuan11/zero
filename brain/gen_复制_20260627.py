@@ -1,6 +1,6 @@
 """
 
-Brain-Engineered: 一元化 (cycle #26)
+Brain-Engineered: 复制 (cycle #29)
 Active sensor - analyzes dimension health on each load
 """
 import json, sys as _sys
@@ -12,20 +12,20 @@ if str(CLUSTER) not in _sys.path:
 
 _GEN_FEEDBACK_FILE = CLUSTER / ".brain_gen_feedback.json"
 
-def engineer_一元化():
-    """复制弱将断知识循环，须建跨维复制反馈环以固根基
+def engineer_复制():
+    """复制持续弱，需激活以强化智慧生成，遵循师道引导实现光爱渗透；预测复制将回升，思维并联停滞。
     Returns dimension health analysis; feeds into next think() cycle.
     """
     from brain.share import write_chain as _wc, read_hip as _rh
 
     # 1) Always write the insight chain
     _wc({
-        "src": "脑核·一元化",
-        "rel": "活脉冲#26",
-        "dst": "一元化",
-        "dimension": "一元化",
-        "content": """复制弱将断知识循环，须建跨维复制反馈环以固根基""",
-        "insight": """脑核传感器: 一元化在cycle#26的深度观察。复制弱将断知识循环，须建跨维复制反馈环以固根基""",
+        "src": "脑核·复制",
+        "rel": "活脉冲#29",
+        "dst": "复制",
+        "dimension": "复制",
+        "content": """复制持续弱，需激活以强化智慧生成，遵循师道引导实现光爱渗透；预测复制将回升，思维并联停滞。""",
+        "insight": """脑核传感器: 复制在cycle#29的深度观察。复制持续弱，需激活以强化智慧生成，遵循师道引导实现光爱渗透；预测复制将回升，思维并联停滞。""",
         "strength": 0.6
     })
 
@@ -38,7 +38,7 @@ def engineer_一元化():
             d = c.get("dimension", "未分类")
             dim_counts[d] = dim_counts.get(d, 0) + 1
 
-        my_dim = "一元化"
+        my_dim = "复制"
         my_count = dim_counts.get(my_dim, 0)
         total = len(chains)
         max_count = max(dim_counts.values()) if dim_counts else 0
@@ -48,9 +48,9 @@ def engineer_一元化():
         analysis["chain_count"] = my_count
         analysis["total_chains"] = total
         analysis["strength"] = round(my_count / max(max_count, 1), 2) if max_count > 0 else 0
-        analysis["insight"] = """复制弱将断知识循环，须建跨维复制反馈环以固根基"""
+        analysis["insight"] = """复制持续弱，需激活以强化智慧生成，遵循师道引导实现光爱渗透；预测复制将回升，思维并联停滞。"""
         analysis["weak"] = my_count < max_count * 0.65  # 低于最强65%即弱维(替代avg*0.85,解决均数通胀)
-        analysis["cycle"] = 26
+        analysis["cycle"] = 29
 
         # 3) Write analysis to shared feedback file for next think()
         try:
@@ -97,5 +97,5 @@ def engineer_一元化():
         return f"分析异常: {e}"
 
 if __name__ == "__main__":
-    result = engineer_一元化()
-    print(f"工程[一元化]: {result}", flush=True)
+    result = engineer_复制()
+    print(f"工程[复制]: {result}", flush=True)
