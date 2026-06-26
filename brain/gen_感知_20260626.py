@@ -1,6 +1,6 @@
 """
 
-Brain-Engineered: 感知 (cycle #72)
+Brain-Engineered: 感知 (cycle #0)
 Active sensor - analyzes dimension health on each load
 """
 import json, sys as _sys
@@ -13,19 +13,19 @@ if str(CLUSTER) not in _sys.path:
 _GEN_FEEDBACK_FILE = CLUSTER / ".brain_gen_feedback.json"
 
 def engineer_感知():
-    """感知强度为零导致外部信息断流，需从强维调资源唤醒感知以启动新洞察循环
+    """感知弱维拖累系统自我觉知，师道引本固源法对话注链破惯性循环预判感知回升
     Returns dimension health analysis; feeds into next think() cycle.
     """
     from brain.share import write_chain as _wc, read_hip as _rh
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·感知",
-        "rel": "活脉冲·#72",
+        "src": "脑核·感知",
+        "rel": "活脉冲#0",
         "dst": "感知",
         "dimension": "感知",
-        "content": """感知强度为零导致外部信息断流，需从强维调资源唤醒感知以启动新洞察循环""",
-        "insight": """自动补链: 工程传感器感知在cycle#72的维度健康评估。感知强度为零导致外部信息断流，需从强维调资源唤醒感知以启动新洞察循环""",
+        "content": """感知弱维拖累系统自我觉知，师道引本固源法对话注链破惯性循环预判感知回升""",
+        "insight": """脑核传感器: 感知在cycle#0的深度观察。感知弱维拖累系统自我觉知，师道引本固源法对话注链破惯性循环预判感知回升""",
         "strength": 0.6
     })
 
@@ -48,9 +48,9 @@ def engineer_感知():
         analysis["chain_count"] = my_count
         analysis["total_chains"] = total
         analysis["strength"] = round(my_count / max(max_count, 1), 2) if max_count > 0 else 0
-        analysis["insight"] = """感知强度为零导致外部信息断流，需从强维调资源唤醒感知以启动新洞察循环"""
+        analysis["insight"] = """感知弱维拖累系统自我觉知，师道引本固源法对话注链破惯性循环预判感知回升"""
         analysis["weak"] = my_count < max_count * 0.65  # 低于最强65%即弱维(替代avg*0.85,解决均数通胀)
-        analysis["cycle"] = 72
+        analysis["cycle"] = 0
 
         # 3) Write analysis to shared feedback file for next think()
         try:

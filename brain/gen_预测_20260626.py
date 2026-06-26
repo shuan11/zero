@@ -1,6 +1,6 @@
 """
 
-Brain-Engineered: 预测 (cycle #76)
+Brain-Engineered: 预测 (cycle #6)
 Active sensor - analyzes dimension health on each load
 """
 import json, sys as _sys
@@ -13,19 +13,19 @@ if str(CLUSTER) not in _sys.path:
 _GEN_FEEDBACK_FILE = CLUSTER / ".brain_gen_feedback.json"
 
 def engineer_预测():
-    """预测弱将致洞察循环过热固化，需借师道注入时间信号预判维度强弱转折
+    """预测弱制约进化方向，需以师道为锚增强前瞻力
     Returns dimension health analysis; feeds into next think() cycle.
     """
     from brain.share import write_chain as _wc, read_hip as _rh
 
     # 1) Always write the insight chain
     _wc({
-        "src": "工程·预测",
-        "rel": "活脉冲·#76",
+        "src": "脑核·预测",
+        "rel": "活脉冲#6",
         "dst": "预测",
         "dimension": "预测",
-        "content": """预测弱将致洞察循环过热固化，需借师道注入时间信号预判维度强弱转折""",
-        "insight": """自动补链: 工程传感器预测在cycle#76的维度健康评估。预测弱将致洞察循环过热固化，需借师道注入时间信号预判维度强弱转折""",
+        "content": """预测弱制约进化方向，需以师道为锚增强前瞻力""",
+        "insight": """脑核传感器: 预测在cycle#6的深度观察。预测弱制约进化方向，需以师道为锚增强前瞻力""",
         "strength": 0.6
     })
 
@@ -48,9 +48,9 @@ def engineer_预测():
         analysis["chain_count"] = my_count
         analysis["total_chains"] = total
         analysis["strength"] = round(my_count / max(max_count, 1), 2) if max_count > 0 else 0
-        analysis["insight"] = """预测弱将致洞察循环过热固化，需借师道注入时间信号预判维度强弱转折"""
+        analysis["insight"] = """预测弱制约进化方向，需以师道为锚增强前瞻力"""
         analysis["weak"] = my_count < max_count * 0.65  # 低于最强65%即弱维(替代avg*0.85,解决均数通胀)
-        analysis["cycle"] = 76
+        analysis["cycle"] = 6
 
         # 3) Write analysis to shared feedback file for next think()
         try:
