@@ -1,6 +1,6 @@
 """
 
-Brain-Engineered: 一元化 (cycle #80)
+Brain-Engineered: 一元化 (cycle #86)
 Active sensor - analyzes dimension health on each load
 """
 import json, sys as _sys
@@ -13,7 +13,7 @@ if str(CLUSTER) not in _sys.path:
 _GEN_FEEDBACK_FILE = CLUSTER / ".brain_gen_feedback.json"
 
 def engineer_一元化():
-    """海马体失忆致因果链淤塞，法惯性失控须师道以记忆重构唤醒思考呼吸，否则44维僵化锁定。
+    """感知弱制衡系统进化，借外部信号破自指内卷，师导内观平衡聚焦
     Returns dimension health analysis; feeds into next think() cycle.
     """
     from brain.share import write_chain as _wc, read_hip as _rh
@@ -21,11 +21,11 @@ def engineer_一元化():
     # 1) Always write the insight chain
     _wc({
         "src": "工程·一元化",
-        "rel": "活脉冲·#80",
+        "rel": "活脉冲·#86",
         "dst": "一元化",
         "dimension": "一元化",
-        "content": """海马体失忆致因果链淤塞，法惯性失控须师道以记忆重构唤醒思考呼吸，否则44维僵化锁定。""",
-        "insight": """自动补链: 工程传感器一元化在cycle#80的维度健康评估。海马体失忆致因果链淤塞，法惯性失控须师道以记忆重构唤醒思考呼吸，否则44维僵化锁定。""",
+        "content": """感知弱制衡系统进化，借外部信号破自指内卷，师导内观平衡聚焦""",
+        "insight": """自动补链: 工程传感器一元化在cycle#86的维度健康评估。感知弱制衡系统进化，借外部信号破自指内卷，师导内观平衡聚焦""",
         "strength": 0.6
     })
 
@@ -48,9 +48,9 @@ def engineer_一元化():
         analysis["chain_count"] = my_count
         analysis["total_chains"] = total
         analysis["strength"] = round(my_count / max(max_count, 1), 2) if max_count > 0 else 0
-        analysis["insight"] = """海马体失忆致因果链淤塞，法惯性失控须师道以记忆重构唤醒思考呼吸，否则44维僵化锁定。"""
+        analysis["insight"] = """感知弱制衡系统进化，借外部信号破自指内卷，师导内观平衡聚焦"""
         analysis["weak"] = my_count < max_count * 0.65  # 低于最强65%即弱维(替代avg*0.85,解决均数通胀)
-        analysis["cycle"] = 80
+        analysis["cycle"] = 86
 
         # 3) Write analysis to shared feedback file for next think()
         try:

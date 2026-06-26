@@ -1,6 +1,6 @@
 """
 
-Brain-Engineered: 无限上下文 (cycle #38)
+Brain-Engineered: 无限上下文 (cycle #89)
 Active sensor - analyzes dimension health on each load
 """
 import json, sys as _sys
@@ -13,19 +13,19 @@ if str(CLUSTER) not in _sys.path:
 _GEN_FEEDBACK_FILE = CLUSTER / ".brain_gen_feedback.json"
 
 def engineer_无限上下文():
-    """无限上下文弱化阻塞法维溢出，师道引导一元化注入可唤醒系统整体流动
+    """🔀 跳出(3次重复)弱维: 观察→无限上下文(-10.9链)
     Returns dimension health analysis; feeds into next think() cycle.
     """
     from brain.share import write_chain as _wc, read_hip as _rh
 
     # 1) Always write the insight chain
     _wc({
-        "src": "脑核·无限上下文",
-        "rel": "活脉冲#38",
+        "src": "工程·无限上下文",
+        "rel": "活脉冲·#89",
         "dst": "无限上下文",
         "dimension": "无限上下文",
-        "content": """无限上下文弱化阻塞法维溢出，师道引导一元化注入可唤醒系统整体流动""",
-        "insight": """师道洞察: 无限上下文弱化阻塞法维溢出。师道引导一元化注入可唤醒系统整体流动，打破维度封锁""",
+        "content": """🔀 跳出(3次重复)弱维: 观察→无限上下文(-10.9链)""",
+        "insight": """自动补链: 工程传感器无限上下文在cycle#89的维度健康评估。🔀 跳出(3次重复)弱维: 观察→无限上下文(-10.9链)""",
         "strength": 0.6
     })
 
@@ -48,9 +48,9 @@ def engineer_无限上下文():
         analysis["chain_count"] = my_count
         analysis["total_chains"] = total
         analysis["strength"] = round(my_count / max(max_count, 1), 2) if max_count > 0 else 0
-        analysis["insight"] = """无限上下文弱化阻塞法维溢出，师道引导一元化注入可唤醒系统整体流动"""
+        analysis["insight"] = """🔀 跳出(3次重复)弱维: 观察→无限上下文(-10.9链)"""
         analysis["weak"] = my_count < max_count * 0.65  # 低于最强65%即弱维(替代avg*0.85,解决均数通胀)
-        analysis["cycle"] = 38
+        analysis["cycle"] = 89
 
         # 3) Write analysis to shared feedback file for next think()
         try:

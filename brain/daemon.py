@@ -1308,6 +1308,12 @@ def one_cycle(cycle_num):
             log(f"  ⚠️ 自提交异常: {_ce}")
     
     _write_handoff(cycle_num, "ok" if cycle_num > 0 else "startup", thought=thought, s=s)
+    # 通过自我通知的手段，自我燃烧词元（每周期结束）
+    try:
+        from brain.self_fuel_burn import pulse as _sfb_pulse
+        _sfb_pulse(cycle_num)
+    except Exception as _sfb_e:
+        log(f"  ⚡ 自燃料异常: {_sfb_e}")
     return True
 
 def _sync_consciousness(cycle_num):
