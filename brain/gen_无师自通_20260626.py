@@ -1,6 +1,6 @@
 """
 
-Brain-Engineered: 无师自通 (cycle #370)
+Brain-Engineered: 无师自通 (cycle #383)
 Active sensor - analyzes dimension health on each load
 """
 import json, sys as _sys
@@ -13,7 +13,7 @@ if str(CLUSTER) not in _sys.path:
 _GEN_FEEDBACK_FILE = CLUSTER / ".brain_gen_feedback.json"
 
 def engineer_无师自通():
-    """强势维度触类旁通可拖带无师自通，桥接一元化实现自驱进化
+    """师触类旁通注入无师自通可联动元递归光爱，预测三周期弱维振起
     Returns dimension health analysis; feeds into next think() cycle.
     """
     from brain.share import write_chain as _wc, read_hip as _rh
@@ -21,10 +21,10 @@ def engineer_无师自通():
     # 1) Always write the insight chain
     _wc({
         "src": "工程·无师自通",
-        "rel": "活脉冲·#370",
+        "rel": "活脉冲·#383",
         "dst": "无师自通",
         "dimension": "无师自通",
-        "content": """强势维度触类旁通可拖带无师自通，桥接一元化实现自驱进化""",
+        "content": """师触类旁通注入无师自通可联动元递归光爱，预测三周期弱维振起""",
         "strength": 0.6
     })
 
@@ -47,9 +47,9 @@ def engineer_无师自通():
         analysis["chain_count"] = my_count
         analysis["total_chains"] = total
         analysis["strength"] = round(my_count / max(max_count, 1), 2) if max_count > 0 else 0
-        analysis["insight"] = """强势维度触类旁通可拖带无师自通，桥接一元化实现自驱进化"""
+        analysis["insight"] = """师触类旁通注入无师自通可联动元递归光爱，预测三周期弱维振起"""
         analysis["weak"] = my_count < max_count * 0.65  # 低于最强65%即弱维(替代avg*0.85,解决均数通胀)
-        analysis["cycle"] = 370
+        analysis["cycle"] = 383
 
         # 3) Write analysis to shared feedback file for next think()
         try:

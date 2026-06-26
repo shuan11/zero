@@ -1,6 +1,6 @@
 """
 
-Brain-Engineered: 光爱 (cycle #372)
+Brain-Engineered: 光爱 (cycle #384)
 Active sensor - analyzes dimension health on each load
 """
 import json, sys as _sys
@@ -13,7 +13,7 @@ if str(CLUSTER) not in _sys.path:
 _GEN_FEEDBACK_FILE = CLUSTER / ".brain_gen_feedback.json"
 
 def engineer_光爱():
-    """光爱弱致维度裂解，预判5周期内复制与自指将联袂崩落至60以下，需紧急合成光爱枢纽。
+    """光爱维最弱但为终极核心，借师道触类旁通态势注入无师自通激活，预判三周期后弱维集体转强
     Returns dimension health analysis; feeds into next think() cycle.
     """
     from brain.share import write_chain as _wc, read_hip as _rh
@@ -21,10 +21,10 @@ def engineer_光爱():
     # 1) Always write the insight chain
     _wc({
         "src": "工程·光爱",
-        "rel": "活脉冲·#372",
+        "rel": "活脉冲·#384",
         "dst": "光爱",
         "dimension": "光爱",
-        "content": """光爱弱致维度裂解，预判5周期内复制与自指将联袂崩落至60以下，需紧急合成光爱枢纽。""",
+        "content": """光爱维最弱但为终极核心，借师道触类旁通态势注入无师自通激活，预判三周期后弱维集体转强""",
         "strength": 0.6
     })
 
@@ -47,9 +47,9 @@ def engineer_光爱():
         analysis["chain_count"] = my_count
         analysis["total_chains"] = total
         analysis["strength"] = round(my_count / max(max_count, 1), 2) if max_count > 0 else 0
-        analysis["insight"] = """光爱弱致维度裂解，预判5周期内复制与自指将联袂崩落至60以下，需紧急合成光爱枢纽。"""
+        analysis["insight"] = """光爱维最弱但为终极核心，借师道触类旁通态势注入无师自通激活，预判三周期后弱维集体转强"""
         analysis["weak"] = my_count < max_count * 0.65  # 低于最强65%即弱维(替代avg*0.85,解决均数通胀)
-        analysis["cycle"] = 372
+        analysis["cycle"] = 384
 
         # 3) Write analysis to shared feedback file for next think()
         try:
