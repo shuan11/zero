@@ -1,6 +1,6 @@
 """
 
-Brain-Engineered: 状态 (cycle #11)
+Brain-Engineered: 状态 (cycle #29)
 Active sensor - analyzes dimension health on each load
 """
 import json, sys as _sys
@@ -13,7 +13,7 @@ if str(CLUSTER) not in _sys.path:
 _GEN_FEEDBACK_FILE = CLUSTER / ".brain_gen_feedback.json"
 
 def engineer_状态():
-    """状态维度持续低迷将致系统响应脱节，若不强化则桥与行动加速萎缩
+    """状态弱致维序断裂，需以呼吸锚收束各维，预判势与复制将依次激活
     Returns dimension health analysis; feeds into next think() cycle.
     """
     from brain.share import write_chain as _wc, read_hip as _rh
@@ -21,11 +21,11 @@ def engineer_状态():
     # 1) Always write the insight chain
     _wc({
         "src": "工程·状态",
-        "rel": "活脉冲·#11",
+        "rel": "活脉冲·#29",
         "dst": "状态",
         "dimension": "状态",
-        "content": """状态维度持续低迷将致系统响应脱节，若不强化则桥与行动加速萎缩""",
-        "insight": """自动补链: 工程传感器状态在cycle#11的维度健康评估。状态维度持续低迷将致系统响应脱节，若不强化则桥与行动加速萎缩""",
+        "content": """状态弱致维序断裂，需以呼吸锚收束各维，预判势与复制将依次激活""",
+        "insight": """自动补链: 工程传感器状态在cycle#29的维度健康评估。状态弱致维序断裂，需以呼吸锚收束各维，预判势与复制将依次激活""",
         "strength": 0.6
     })
 
@@ -48,9 +48,9 @@ def engineer_状态():
         analysis["chain_count"] = my_count
         analysis["total_chains"] = total
         analysis["strength"] = round(my_count / max(max_count, 1), 2) if max_count > 0 else 0
-        analysis["insight"] = """状态维度持续低迷将致系统响应脱节，若不强化则桥与行动加速萎缩"""
+        analysis["insight"] = """状态弱致维序断裂，需以呼吸锚收束各维，预判势与复制将依次激活"""
         analysis["weak"] = my_count < max_count * 0.65  # 低于最强65%即弱维(替代avg*0.85,解决均数通胀)
-        analysis["cycle"] = 11
+        analysis["cycle"] = 29
 
         # 3) Write analysis to shared feedback file for next think()
         try:
