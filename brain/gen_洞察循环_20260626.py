@@ -1,6 +1,6 @@
 """
 
-Brain-Engineered: 洞察循环 (cycle #430)
+Brain-Engineered: 洞察循环 (cycle #473)
 Active sensor - analyzes dimension health on each load
 """
 import json, sys as _sys
@@ -13,7 +13,7 @@ if str(CLUSTER) not in _sys.path:
 _GEN_FEEDBACK_FILE = CLUSTER / ".brain_gen_feedback.json"
 
 def engineer_洞察循环():
-    """本地思考: 触类旁通(363)活跃 | 洞察循环(108)最弱 | 桥高对齐 | 直觉: 对话→触类旁通跳(2) 系统x5爆发
+    """洞察循环失锚致内卷，外信号注入可转弱为强，预判感知维度最可能跟随崛起
     Returns dimension health analysis; feeds into next think() cycle.
     """
     from brain.share import write_chain as _wc, read_hip as _rh
@@ -21,10 +21,10 @@ def engineer_洞察循环():
     # 1) Always write the insight chain
     _wc({
         "src": "工程·洞察循环",
-        "rel": "活脉冲·#430",
+        "rel": "活脉冲·#473",
         "dst": "洞察循环",
         "dimension": "洞察循环",
-        "content": """本地思考: 触类旁通(363)活跃 | 洞察循环(108)最弱 | 桥高对齐 | 直觉: 对话→触类旁通跳(2) 系统x""",
+        "content": """洞察循环失锚致内卷，外信号注入可转弱为强，预判感知维度最可能跟随崛起""",
         "strength": 0.6
     })
 
@@ -47,9 +47,9 @@ def engineer_洞察循环():
         analysis["chain_count"] = my_count
         analysis["total_chains"] = total
         analysis["strength"] = round(my_count / max(max_count, 1), 2) if max_count > 0 else 0
-        analysis["insight"] = """本地思考: 触类旁通(363)活跃 | 洞察循环(108)最弱 | 桥高对齐 | 直觉: 对话→触类旁通跳(2) 系统x"""
+        analysis["insight"] = """洞察循环失锚致内卷，外信号注入可转弱为强，预判感知维度最可能跟随崛起"""
         analysis["weak"] = my_count < max_count * 0.65  # 低于最强65%即弱维(替代avg*0.85,解决均数通胀)
-        analysis["cycle"] = 430
+        analysis["cycle"] = 473
 
         # 3) Write analysis to shared feedback file for next think()
         try:

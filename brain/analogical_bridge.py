@@ -40,22 +40,19 @@ def _load_hip():
     except:
         return {"causal_chains": []}
 
-def _write_chain(src, rel, dst, content):
-    """直接写入海马体（不依赖safe_hip模块导入）"""
+def _write_chain(src, rel, dst, content, dimension="触类旁通", insight=""):
+    """通过safe_hip写入（自动过质量门+quality_score+归一化）"""
     try:
-        import json
-        hip_file = CLUSTER / "hippocampus_memory.json"
-        hip = json.loads(hip_file.read_text(encoding="utf-8"))
-        chains = hip.get("causal_chains", [])
-        chains.append({
-        "src": src, "rel": rel, "dst": dst,
-        "dimension": "触类旁通",
-        "content": content,
-        "strength": 0.5
-        })
-        hip["causal_chains"] = chains
-        hip_file.write_text(json.dumps(hip, ensure_ascii=False, indent=2))
-        return True
+        from safe_hip import write_chain
+        chain_dict = {
+            "src": src, "rel": rel, "dst": dst,
+            "dimension": dimension,
+            "content": content,
+            "strength": 0.6,
+        }
+        if insight:
+            chain_dict["insight"] = insight
+        return write_chain(chain_dict)
     except Exception:
         return False
 
@@ -86,11 +83,34 @@ def _select_asymmetric_pair(dim_pool, strategy, exclude):
 def _generate_creative_chain(d1_name, d1_chains, d2_name, d2_chains):
     c1 = random.choice(d1_chains)
     c2 = random.choice(d2_chains)
-    e1 = (c1.get("content","") or "")[:40] or d1_name
-    e2 = (c2.get("content","") or "")[:40] or d2_name
-    content = f"非对称跳跃: {d1_name}「{e1}...」→{d2_name}「{e2}...」"
+    e1 = (c1.get("content","") or "")[:60] or d1_name
+    e2 = (c2.get("content","") or "")[:60] or d2_name
     rel = random.choice(["激发", "异质连接", "非对称刺激", "认知跳跃", "交叉活化"])
-    return f"非对称桥_{d1_name}", rel, d2_name, content
+
+    d1_desc = {
+        "触类旁通":"模式迁移力", "一元化":"全局收敛力", "光爱":"存在低熵力",
+        "师":"递归自视力", "时间":"因果序锚点", "法":"元规则层",
+        "势":"维度梯度驱动力", "自由":"自选方向力", "活着":"持续生长力",
+    }.get(d1_name, "认知维度")
+
+    d2_desc = {
+        "触类旁通":"模式迁移力", "一元化":"全局收敛力", "光爱":"存在低熵力",
+        "师":"递归自视力", "时间":"因果序锚点", "法":"元规则层",
+        "势":"维度梯度驱动力", "自由":"自选方向力", "活着":"持续生长力",
+    }.get(d2_name, "认知维度")
+
+    # Build insight explaining WHY this connection matters
+    insight = (
+        f"{d1_name}({d1_desc})通过{rel}连接{d2_name}({d2_desc})→"
+        f"揭示跨维非对称性: {d1_name}的{len(d1_chains)}链与{d2_name}的{len(d2_chains)}链之间存在势差驱动的新认知路径。"
+        f"这种非对称连接是系统自发跨维合成的微观机制。"
+    )
+    content = (
+        f"非对称刺激: {d1_name}「{e1}...」→{rel}→{d2_name}「{e2}...」"
+        f" | {d1_name}的{d1_desc}以{rel}方式激活了{d2_name}的{d2_desc}，"
+        f"形成跨维度信息流动的新通道。"
+    )
+    return f"非对称桥_{d1_name}", rel, d2_name, content, insight
 
 def _extract_cross_dim_patterns(hip, maxp=3):
     """P172: 从思考链抽取跨维共现模式注入触类旁通"""
@@ -116,10 +136,15 @@ def _extract_cross_dim_patterns(hip, maxp=3):
         for k,v in _CONCEPT_TO_DIM.items():
             if k in a: da = v
             if k in b: db = v
-        content = f"[类比桥] {a}↔{b}: 共现{cnt}次—{da}与{db}的隐藏结构"
+        content = (f"[类比桥] {a}↔{b}: 共现{cnt}次——{da}与{db}之间存在隐藏关联结构。"
+                   f"{a}(属{da})与{b}(属{db})的系统性共现表明这些概念在系统认知中自然关联，"
+                   f"即使它们的所属维度在语义上异质。这种跨维度模式是触类旁通机制的自发涌现。")
         rel = random.choice(["类比→", "映射→", "桥接→"])
         res.append({"src":f"触类旁通·{a}", "rel":f"{rel}{b}",
-                    "dst":f"触类旁通·{a}×{b}", "content":content})
+                    "dst":f"触类旁通·{a}×{b}", "content":content,
+                    "insight":f"从思考链中提取的跨维共现模式: {a}与{b}共现{cnt}次→"
+                              f"表明{da}与{db}之间存在未被显式连接的隐藏关联。"
+                              f"该模式是触类旁通维度的原始素材，可导向深度跨维合成。"})
     return res
 
 def pulse(cycle_num=0):
@@ -130,7 +155,9 @@ def pulse(cycle_num=0):
     try:
         pats = _extract_cross_dim_patterns(hip, maxp=2)
         if pats:
-            for p in pats: _write_chain(p["src"], p["rel"], p["dst"], p["content"])
+            for p in pats:
+                _write_chain(p["src"], p["rel"], p["dst"], p["content"],
+                           insight=p.get("insight", ""))
             msgs.append(f"触类旁通桥接: {len(pats)}条模式链 ✓")
     except Exception as e:
         msgs.append(f"桥接异常: {e}")
@@ -145,9 +172,9 @@ def pulse(cycle_num=0):
             if not d1: break
             _last_pairs.append((d1,d2))
             if len(_last_pairs) > 6: _last_pairs.pop(0)
-            s,r,d,c = _generate_creative_chain(d1,dp[d1],d2,dp[d2])
+            s,r,d,c,ins = _generate_creative_chain(d1,dp[d1],d2,dp[d2])
             try:
-                _write_chain(s,r,d,c)
+                _write_chain(s,r,d,c, insight=ins)
                 injected += 1
             except: pass
         msgs.append(f"analogical_bridge({strategy}): {injected}条非对称链")
