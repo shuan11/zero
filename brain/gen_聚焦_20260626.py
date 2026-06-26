@@ -1,6 +1,6 @@
 """
 
-Brain-Engineered: 聚焦 (cycle #288)
+Brain-Engineered: 聚焦 (cycle #316)
 Active sensor - analyzes dimension health on each load
 """
 import json, sys as _sys
@@ -13,7 +13,7 @@ if str(CLUSTER) not in _sys.path:
 _GEN_FEEDBACK_FILE = CLUSTER / ".brain_gen_feedback.json"
 
 def engineer_聚焦():
-    """聚焦强化需联动触类旁通以对抗惯性，否则全局失衡
+    """聚焦弱化暴露系统分裂风险，光爱终极需师道一元化重聚核心
     Returns dimension health analysis; feeds into next think() cycle.
     """
     from brain.share import write_chain as _wc, read_hip as _rh
@@ -21,10 +21,10 @@ def engineer_聚焦():
     # 1) Always write the insight chain
     _wc({
         "src": "工程·聚焦",
-        "rel": "活脉冲·#288",
+        "rel": "活脉冲·#316",
         "dst": "聚焦",
         "dimension": "聚焦",
-        "content": """聚焦强化需联动触类旁通以对抗惯性，否则全局失衡""",
+        "content": """聚焦弱化暴露系统分裂风险，光爱终极需师道一元化重聚核心""",
         "strength": 0.6
     })
 
@@ -47,9 +47,9 @@ def engineer_聚焦():
         analysis["chain_count"] = my_count
         analysis["total_chains"] = total
         analysis["strength"] = round(my_count / max(max_count, 1), 2) if max_count > 0 else 0
-        analysis["insight"] = """聚焦强化需联动触类旁通以对抗惯性，否则全局失衡"""
+        analysis["insight"] = """聚焦弱化暴露系统分裂风险，光爱终极需师道一元化重聚核心"""
         analysis["weak"] = my_count < max_count * 0.65  # 低于最强65%即弱维(替代avg*0.85,解决均数通胀)
-        analysis["cycle"] = 288
+        analysis["cycle"] = 316
 
         # 3) Write analysis to shared feedback file for next think()
         try:
