@@ -204,7 +204,7 @@ def synthesize(cycle_num):
         cross_insight = _synthesize_locally(dim_names[:2])
         if cross_insight:
             combo = "×".join(dim_names[:2])
-            synthesis_content = f"工程·合成: {cross_insight['insight'][:200]}"
+            synthesis_content = f"脑核·合成: {cross_insight['insight'][:200]}"
             
             # 写入海马体
             _wc({
