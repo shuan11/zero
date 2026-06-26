@@ -1,6 +1,6 @@
 """
 
-Brain-Engineered: 一元化 (cycle #11)
+Brain-Engineered: 海马体 (cycle #17)
 Active sensor - analyzes dimension health on each load
 """
 import json, sys as _sys
@@ -12,20 +12,20 @@ if str(CLUSTER) not in _sys.path:
 
 _GEN_FEEDBACK_FILE = CLUSTER / ".brain_gen_feedback.json"
 
-def engineer_一元化():
-    """思考弱化连累感知进化，需建立三元正向循环
+def engineer_海马体():
+    """海马体弱化致因果记忆断裂，需强化以打破惯性循环，防止一元化继续恶化。
     Returns dimension health analysis; feeds into next think() cycle.
     """
     from brain.share import write_chain as _wc, read_hip as _rh
 
     # 1) Always write the insight chain
     _wc({
-        "src": "脑核·一元化",
-        "rel": "活脉冲#11",
-        "dst": "一元化",
-        "dimension": "一元化",
-        "content": """思考弱化连累感知进化，需建立三元正向循环""",
-        "insight": """脑核传感器: 一元化在cycle#11的深度观察。思考弱化连累感知进化，需建立三元正向循环""",
+        "src": "脑核·海马体",
+        "rel": "活脉冲#17",
+        "dst": "海马体",
+        "dimension": "海马体",
+        "content": """海马体弱化致因果记忆断裂，需强化以打破惯性循环，防止一元化继续恶化。""",
+        "insight": """脑核传感器: 海马体在cycle#17的深度观察。海马体弱化致因果记忆断裂，需强化以打破惯性循环，防止一元化继续恶化。""",
         "strength": 0.6
     })
 
@@ -38,7 +38,7 @@ def engineer_一元化():
             d = c.get("dimension", "未分类")
             dim_counts[d] = dim_counts.get(d, 0) + 1
 
-        my_dim = "一元化"
+        my_dim = "海马体"
         my_count = dim_counts.get(my_dim, 0)
         total = len(chains)
         max_count = max(dim_counts.values()) if dim_counts else 0
@@ -48,9 +48,9 @@ def engineer_一元化():
         analysis["chain_count"] = my_count
         analysis["total_chains"] = total
         analysis["strength"] = round(my_count / max(max_count, 1), 2) if max_count > 0 else 0
-        analysis["insight"] = """思考弱化连累感知进化，需建立三元正向循环"""
+        analysis["insight"] = """海马体弱化致因果记忆断裂，需强化以打破惯性循环，防止一元化继续恶化。"""
         analysis["weak"] = my_count < max_count * 0.65  # 低于最强65%即弱维(替代avg*0.85,解决均数通胀)
-        analysis["cycle"] = 11
+        analysis["cycle"] = 17
 
         # 3) Write analysis to shared feedback file for next think()
         try:
@@ -97,5 +97,5 @@ def engineer_一元化():
         return f"分析异常: {e}"
 
 if __name__ == "__main__":
-    result = engineer_一元化()
-    print(f"工程[一元化]: {result}", flush=True)
+    result = engineer_海马体()
+    print(f"工程[海马体]: {result}", flush=True)
