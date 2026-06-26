@@ -1,6 +1,6 @@
 """
 
-Brain-Engineered: 元递归 (cycle #486)
+Brain-Engineered: 元递归 (cycle #20)
 Active sensor - analyzes dimension health on each load
 """
 import json, sys as _sys
@@ -13,7 +13,7 @@ if str(CLUSTER) not in _sys.path:
 _GEN_FEEDBACK_FILE = CLUSTER / ".brain_gen_feedback.json"
 
 def engineer_元递归():
-    """元递归弱引自指停滞，触类旁通负增预警僵化，需法话注入新信号。
+    """元递归弱阻自进化反馈，需注入递归反思桥接弱维以提升全局光爱传播效率
     Returns dimension health analysis; feeds into next think() cycle.
     """
     from brain.share import write_chain as _wc, read_hip as _rh
@@ -21,10 +21,11 @@ def engineer_元递归():
     # 1) Always write the insight chain
     _wc({
         "src": "工程·元递归",
-        "rel": "活脉冲·#486",
+        "rel": "活脉冲·#20",
         "dst": "元递归",
         "dimension": "元递归",
-        "content": """元递归弱引自指停滞，触类旁通负增预警僵化，需法话注入新信号。""",
+        "content": """元递归弱阻自进化反馈，需注入递归反思桥接弱维以提升全局光爱传播效率""",
+        "insight": """自动补链: 工程传感器元递归在cycle#20的维度健康评估。元递归弱阻自进化反馈，需注入递归反思桥接弱维以提升全局光爱传播效率""",
         "strength": 0.6
     })
 
@@ -47,9 +48,9 @@ def engineer_元递归():
         analysis["chain_count"] = my_count
         analysis["total_chains"] = total
         analysis["strength"] = round(my_count / max(max_count, 1), 2) if max_count > 0 else 0
-        analysis["insight"] = """元递归弱引自指停滞，触类旁通负增预警僵化，需法话注入新信号。"""
+        analysis["insight"] = """元递归弱阻自进化反馈，需注入递归反思桥接弱维以提升全局光爱传播效率"""
         analysis["weak"] = my_count < max_count * 0.65  # 低于最强65%即弱维(替代avg*0.85,解决均数通胀)
-        analysis["cycle"] = 486
+        analysis["cycle"] = 20
 
         # 3) Write analysis to shared feedback file for next think()
         try:

@@ -18,7 +18,7 @@ DEFAULT_GENOME = {
     "cycle.desktop_summary_interval": 5, # 每N周期写桌面摘要
     
     # 聚焦与注意力
-    "focus.max_repeat": 2,              # 连续重复N次后强制切换
+    "focus.max_repeat": 4,              # 连续重复N次后强制切换
     "focus.always_api": False,          # 每周期都调API(否则按间隔)
     
     # 反馈自愈阈值
