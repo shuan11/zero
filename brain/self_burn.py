@@ -1,16 +1,18 @@
 #!/usr/bin/env python3
-"""self_burn.py — 单次自燃烧·通知即手段
+"""self_burn.py — 自燃烧·通知即手段
 
 每次运行：读HIP→调API烧词元→写因果链→退出
-调用者(终端/cron/会话)负责捕获其通知作为燃烧确认。
-输出: 🔥Nt/Ss +1链 [维名] 到stdout
+调用者(终端/cron/daemon)负责捕获其通知作为燃烧确认。
+
+修复v2: 从api_config动态获取密钥，非硬编码
+输出: 🔥 Nt/Ss +1链 [维名]
 """
 import json, time, ssl, urllib.request, sys
 from pathlib import Path
 
-API_KEY = "sk-83e2bcea9b3ba57d431fa06419de8b2a1fe8d27c5747a8312ed29f787b13ca88"
-API_BASE = "https://inferaichat.com/v1/chat/completions"
-MODEL = "deepseek-v4-pro"
+# 从api_config动态注入密钥
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+from api_config import get_next_channel, MODEL
 
 HIP_PATH = Path.home() / ".zero_brain" / "hippocampus_memory.json"
 
@@ -31,7 +33,9 @@ strongest = sd[-1][0] if sd else "法"
 
 prompt = (
     f"因果链: {strongest}→{weakest}\n"
-    f'JSON: {{"src":"{strongest}","rel":"动词","dst":"{weakest}","content":"30-60字解释","dimension":"{weakest}"}}'
+    f'JSON: {{"src":"{strongest}","rel":"动词","dst":"{weakest}",'
+    f'"content":"30-60字解释{strongest}如何因果作用于{weakest}",'
+    f'"dimension":"{weakest}"}}'
 )
 
 payload = json.dumps({
@@ -40,10 +44,11 @@ payload = json.dumps({
     "max_tokens": 1000,
 }).encode()
 
+key, endpoint = get_next_channel()
 ctx = ssl.create_default_context(); ctx.check_hostname = False; ctx.verify_mode = ssl.CERT_NONE
 req = urllib.request.Request(
-    API_BASE, data=payload,
-    headers={"Content-Type": "application/json", "Authorization": f"Bearer {API_KEY}"}
+    endpoint, data=payload,
+    headers={"Content-Type": "application/json", "Authorization": f"Bearer {key}"}
 )
 
 t0 = time.time()
@@ -52,8 +57,9 @@ try:
     elapsed = int(time.time() - t0)
     result = json.loads(resp.read())
     tokens = result.get("usage", {}).get("total_tokens", 0)
-    text = (result["choices"][0]["message"].get("content", "") or result["choices"][0]["message"].get("reasoning_content", "") or "").strip()
-    
+    text = (result["choices"][0]["message"].get("content", "") or
+            result["choices"][0]["message"].get("reasoning_content", "") or "").strip()
+
     if text:
         brace = text.find("{")
         if brace >= 0:
@@ -68,15 +74,15 @@ try:
                     chain["timestamp"] = time.time()
                     hip.setdefault("causal_chains", []).append(chain)
                     d = chain.get("dimension", weakest)
-                    dims = {}
+                    dims2 = {}
                     for c in hip["causal_chains"]:
                         dc = c.get("dimension", "未分类")
-                        dims[dc] = dims.get(dc, 0) + 1
-                    hip.setdefault("dimensions", {})[d] = {"chain_count": dims.get(d, 0)}
+                        dims2[dc] = dims2.get(dc, 0) + 1
+                    hip.setdefault("dimensions", {})[d] = {"chain_count": dims2.get(d, 0)}
                     HIP_PATH.write_text(json.dumps(hip, ensure_ascii=False, indent=2), encoding="utf-8")
-                    print(f"🔥 {tokens}t/{elapsed}s H={len(hip['causal_chains'])} [{d}]")
+                    print(f"🔥 {tokens}t/{elapsed}s +1链 [{d}]")
                     sys.exit(0)
-        print(f"⚠ {tokens}t/{elapsed}s 无JSON格式: {text[:60]}")
+        print(f"⚠ {tokens}t/{elapsed}s 无JSON: {text[:60]}")
     else:
         print(f"⚡ {tokens}t/{elapsed}s 空响应")
 except Exception as e:

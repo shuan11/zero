@@ -1,6 +1,6 @@
 """
 
-Brain-Engineered: 海马体 (cycle #17)
+Brain-Engineered: 海马体 (cycle #41)
 Active sensor - analyzes dimension health on each load
 """
 import json, sys as _sys
@@ -13,7 +13,7 @@ if str(CLUSTER) not in _sys.path:
 _GEN_FEEDBACK_FILE = CLUSTER / ".brain_gen_feedback.json"
 
 def engineer_海马体():
-    """海马体弱化致因果记忆断裂，需强化以打破惯性循环，防止一元化继续恶化。
+    """海马体质弱链多系关联浅，师道引导重编织可撬动整体跃升
     Returns dimension health analysis; feeds into next think() cycle.
     """
     from brain.share import write_chain as _wc, read_hip as _rh
@@ -21,11 +21,11 @@ def engineer_海马体():
     # 1) Always write the insight chain
     _wc({
         "src": "脑核·海马体",
-        "rel": "活脉冲#17",
+        "rel": "活脉冲#41",
         "dst": "海马体",
         "dimension": "海马体",
-        "content": """海马体弱化致因果记忆断裂，需强化以打破惯性循环，防止一元化继续恶化。""",
-        "insight": """脑核传感器: 海马体在cycle#17的深度观察。海马体弱化致因果记忆断裂，需强化以打破惯性循环，防止一元化继续恶化。""",
+        "content": """海马体质弱链多系关联浅，师道引导重编织可撬动整体跃升""",
+        "insight": """脑核传感器: 海马体在cycle#41的深度观察。海马体质弱链多系关联浅，师道引导重编织可撬动整体跃升""",
         "strength": 0.6
     })
 
@@ -48,9 +48,9 @@ def engineer_海马体():
         analysis["chain_count"] = my_count
         analysis["total_chains"] = total
         analysis["strength"] = round(my_count / max(max_count, 1), 2) if max_count > 0 else 0
-        analysis["insight"] = """海马体弱化致因果记忆断裂，需强化以打破惯性循环，防止一元化继续恶化。"""
+        analysis["insight"] = """海马体质弱链多系关联浅，师道引导重编织可撬动整体跃升"""
         analysis["weak"] = my_count < max_count * 0.65  # 低于最强65%即弱维(替代avg*0.85,解决均数通胀)
-        analysis["cycle"] = 17
+        analysis["cycle"] = 41
 
         # 3) Write analysis to shared feedback file for next think()
         try:

@@ -14,6 +14,13 @@ def save_state(cycle_num, status, insight=None):
         "cycle": cycle_num, "status": status,
         "timestamp": now.isoformat(), "pid": os.getpid()
     }
+    # auto-behave:状态
+    # 自愈行为: 持续记录状态维度强度
+    state["auto_heal_状态"] = {
+        "dimension": "状态",
+        "persist": 3,
+        "last_boost": time.time()
+    }
     # auto-behave:未分类
     # 自愈行为: 持续记录未分类维度强度
     state["auto_heal_未分类"] = {
@@ -1518,6 +1525,18 @@ def auto_strengthen_未分类(persist=4):
     _wc({
         "src": "反馈·自愈", "rel": "弱维触发",
         "dst": "未分类", "dimension": "未分类",
+        "content": f"自动自愈函数: 连续weak≥{persist}周期触发",
+        "strength": 0.65 + 0.05 * min(persist, 5)
+    })
+    return True
+
+def auto_strengthen_状态(persist=4):
+    """自愈: 维度状态连续weak≥4周期 → 自动强化"""
+    from brain.share import write_chain as _wc, log as _log
+    _log(f"反馈自愈[状态]: persist={persist}")
+    _wc({
+        "src": "反馈·自愈", "rel": "弱维触发",
+        "dst": "状态", "dimension": "状态",
         "content": f"自动自愈函数: 连续weak≥{persist}周期触发",
         "strength": 0.65 + 0.05 * min(persist, 5)
     })
