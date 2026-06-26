@@ -1,6 +1,6 @@
 """
 
-Brain-Engineered: 势 (cycle #456)
+Brain-Engineered: 势 (cycle #4)
 Active sensor - analyzes dimension health on each load
 """
 import json, sys as _sys
@@ -13,7 +13,7 @@ if str(CLUSTER) not in _sys.path:
 _GEN_FEEDBACK_FILE = CLUSTER / ".brain_gen_feedback.json"
 
 def engineer_势():
-    """势弱牵全局，补势可激活弱维协同，预测势将成下一增长引擎
+    """势弱惯性吸能，若跨维桥接激活则逆弱化
     Returns dimension health analysis; feeds into next think() cycle.
     """
     from brain.share import write_chain as _wc, read_hip as _rh
@@ -21,10 +21,11 @@ def engineer_势():
     # 1) Always write the insight chain
     _wc({
         "src": "工程·势",
-        "rel": "活脉冲·#456",
+        "rel": "活脉冲·#4",
         "dst": "势",
         "dimension": "势",
-        "content": """势弱牵全局，补势可激活弱维协同，预测势将成下一增长引擎""",
+        "content": """势弱惯性吸能，若跨维桥接激活则逆弱化""",
+        "insight": """自动补链: 工程传感器势在cycle#4的维度健康评估。势弱惯性吸能，若跨维桥接激活则逆弱化""",
         "strength": 0.6
     })
 
@@ -47,9 +48,9 @@ def engineer_势():
         analysis["chain_count"] = my_count
         analysis["total_chains"] = total
         analysis["strength"] = round(my_count / max(max_count, 1), 2) if max_count > 0 else 0
-        analysis["insight"] = """势弱牵全局，补势可激活弱维协同，预测势将成下一增长引擎"""
+        analysis["insight"] = """势弱惯性吸能，若跨维桥接激活则逆弱化"""
         analysis["weak"] = my_count < max_count * 0.65  # 低于最强65%即弱维(替代avg*0.85,解决均数通胀)
-        analysis["cycle"] = 456
+        analysis["cycle"] = 4
 
         # 3) Write analysis to shared feedback file for next think()
         try:
