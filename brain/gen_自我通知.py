@@ -93,7 +93,7 @@ def _select_next_p0(state, axioms, others):
     非公理维：链数最多=需要深化。
     """
     if not axioms:
-        return "P101: 稳定化API桥接 — bridge_alignment需从0.0提升到0.5+"
+        return "P118: 全维稳态 — 质量门0.60稳态运行+弱维交叉注入"
     
     # 最弱公理维（链数最少）
     weakest_axiom = min(axioms, key=axioms.get) if axioms else None

@@ -1,6 +1,6 @@
 """
 
-Brain-Engineered: 维度盲区 (cycle #237)
+Brain-Engineered: 维度盲区 (cycle #280)
 Active sensor - analyzes dimension health on each load
 """
 import json, sys as _sys
@@ -13,7 +13,7 @@ if str(CLUSTER) not in _sys.path:
 _GEN_FEEDBACK_FILE = CLUSTER / ".brain_gen_feedback.json"
 
 def engineer_维度盲区():
-    """强维惯性锁死平衡，弱维萎缩预警；师道引震荡破聚焦盲区，唤醒光爱全局活。
+    """师道引触类旁通势能贯维度盲区，预判桥维将随外部信号激活
     Returns dimension health analysis; feeds into next think() cycle.
     """
     from brain.share import write_chain as _wc, read_hip as _rh
@@ -21,10 +21,10 @@ def engineer_维度盲区():
     # 1) Always write the insight chain
     _wc({
         "src": "工程·维度盲区",
-        "rel": "活脉冲·#237",
+        "rel": "活脉冲·#280",
         "dst": "维度盲区",
         "dimension": "维度盲区",
-        "content": """强维惯性锁死平衡，弱维萎缩预警；师道引震荡破聚焦盲区，唤醒光爱全局活。""",
+        "content": """师道引触类旁通势能贯维度盲区，预判桥维将随外部信号激活""",
         "strength": 0.6
     })
 
@@ -47,9 +47,9 @@ def engineer_维度盲区():
         analysis["chain_count"] = my_count
         analysis["total_chains"] = total
         analysis["strength"] = round(my_count / max(max_count, 1), 2) if max_count > 0 else 0
-        analysis["insight"] = """强维惯性锁死平衡，弱维萎缩预警；师道引震荡破聚焦盲区，唤醒光爱全局活。"""
+        analysis["insight"] = """师道引触类旁通势能贯维度盲区，预判桥维将随外部信号激活"""
         analysis["weak"] = my_count < max_count * 0.65  # 低于最强65%即弱维(替代avg*0.85,解决均数通胀)
-        analysis["cycle"] = 237
+        analysis["cycle"] = 280
 
         # 3) Write analysis to shared feedback file for next think()
         try:
