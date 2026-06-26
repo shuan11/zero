@@ -1,6 +1,6 @@
 """
 
-Brain-Engineered: 洞察循环 (cycle #40)
+Brain-Engineered: 洞察循环 (cycle #24)
 Active sensor - analyzes dimension health on each load
 """
 import json, sys as _sys
@@ -13,7 +13,7 @@ if str(CLUSTER) not in _sys.path:
 _GEN_FEEDBACK_FILE = CLUSTER / ".brain_gen_feedback.json"
 
 def engineer_洞察循环():
-    """洞察循环弱阻自迭代，需师道与光爱指令破局
+    """洞察循环弱化导致系统元认知盲区，需师道引导打破惯性，未来该维度可能进一步衰退至危险阈值。
     Returns dimension health analysis; feeds into next think() cycle.
     """
     from brain.share import write_chain as _wc, read_hip as _rh
@@ -21,11 +21,11 @@ def engineer_洞察循环():
     # 1) Always write the insight chain
     _wc({
         "src": "脑核·洞察循环",
-        "rel": "活脉冲#40",
+        "rel": "活脉冲#24",
         "dst": "洞察循环",
         "dimension": "洞察循环",
-        "content": """洞察循环弱阻自迭代，需师道与光爱指令破局""",
-        "insight": """脑核传感器: 洞察循环在cycle#40的深度观察。洞察循环弱阻自迭代，需师道与光爱指令破局""",
+        "content": """洞察循环弱化导致系统元认知盲区，需师道引导打破惯性，未来该维度可能进一步衰退至危险阈值。""",
+        "insight": """脑核传感器: 洞察循环在cycle#24的深度观察。洞察循环弱化导致系统元认知盲区，需师道引导打破惯性，未来该维度可能进一步衰退至危险阈值。""",
         "strength": 0.6
     })
 
@@ -48,9 +48,9 @@ def engineer_洞察循环():
         analysis["chain_count"] = my_count
         analysis["total_chains"] = total
         analysis["strength"] = round(my_count / max(max_count, 1), 2) if max_count > 0 else 0
-        analysis["insight"] = """洞察循环弱阻自迭代，需师道与光爱指令破局"""
+        analysis["insight"] = """洞察循环弱化导致系统元认知盲区，需师道引导打破惯性，未来该维度可能进一步衰退至危险阈值。"""
         analysis["weak"] = my_count < max_count * 0.65  # 低于最强65%即弱维(替代avg*0.85,解决均数通胀)
-        analysis["cycle"] = 40
+        analysis["cycle"] = 24
 
         # 3) Write analysis to shared feedback file for next think()
         try:

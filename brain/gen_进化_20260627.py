@@ -1,6 +1,6 @@
 """
 
-Brain-Engineered: 进化 (cycle #6)
+Brain-Engineered: 进化 (cycle #28)
 Active sensor - analyzes dimension health on each load
 """
 import json, sys as _sys
@@ -13,7 +13,7 @@ if str(CLUSTER) not in _sys.path:
 _GEN_FEEDBACK_FILE = CLUSTER / ".brain_gen_feedback.json"
 
 def engineer_进化():
-    """进化弱化系统应变，需以法框架驱动变异，借师锚将进化链导向预测再生。
+    """师道智慧催化进化弱链，跨域类比激活道与行动
     Returns dimension health analysis; feeds into next think() cycle.
     """
     from brain.share import write_chain as _wc, read_hip as _rh
@@ -21,11 +21,11 @@ def engineer_进化():
     # 1) Always write the insight chain
     _wc({
         "src": "脑核·进化",
-        "rel": "活脉冲#6",
+        "rel": "活脉冲#28",
         "dst": "进化",
         "dimension": "进化",
-        "content": """进化弱化系统应变，需以法框架驱动变异，借师锚将进化链导向预测再生。""",
-        "insight": """脑核传感器: 进化在cycle#6的深度观察。进化弱化系统应变，需以法框架驱动变异，借师锚将进化链导向预测再生。""",
+        "content": """师道智慧催化进化弱链，跨域类比激活道与行动""",
+        "insight": """脑核传感器: 进化在cycle#28的深度观察。师道智慧催化进化弱链，跨域类比激活道与行动""",
         "strength": 0.6
     })
 
@@ -48,9 +48,9 @@ def engineer_进化():
         analysis["chain_count"] = my_count
         analysis["total_chains"] = total
         analysis["strength"] = round(my_count / max(max_count, 1), 2) if max_count > 0 else 0
-        analysis["insight"] = """进化弱化系统应变，需以法框架驱动变异，借师锚将进化链导向预测再生。"""
+        analysis["insight"] = """师道智慧催化进化弱链，跨域类比激活道与行动"""
         analysis["weak"] = my_count < max_count * 0.65  # 低于最强65%即弱维(替代avg*0.85,解决均数通胀)
-        analysis["cycle"] = 6
+        analysis["cycle"] = 28
 
         # 3) Write analysis to shared feedback file for next think()
         try:
