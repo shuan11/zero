@@ -1,6 +1,6 @@
 """
 
-Brain-Engineered: 行动 (cycle #100)
+Brain-Engineered: 行动 (cycle #138)
 Active sensor - analyzes dimension health on each load
 """
 import json, sys as _sys
@@ -13,7 +13,7 @@ if str(CLUSTER) not in _sys.path:
 _GEN_FEEDBACK_FILE = CLUSTER / ".brain_gen_feedback.json"
 
 def engineer_行动():
-    """师道节奏嵌入行动工程，贯通元递归至落地，避免光爱空转
+    """行动持续弱阻进化，需从法对话惯性注入动力破局
     Returns dimension health analysis; feeds into next think() cycle.
     """
     from brain.share import write_chain as _wc, read_hip as _rh
@@ -21,11 +21,11 @@ def engineer_行动():
     # 1) Always write the insight chain
     _wc({
         "src": "脑核·行动",
-        "rel": "活脉冲#100",
+        "rel": "活脉冲#138",
         "dst": "行动",
         "dimension": "行动",
-        "content": """师道节奏嵌入行动工程，贯通元递归至落地，避免光爱空转""",
-        "insight": """脑核传感器: 行动在cycle#100的深度观察。师道节奏嵌入行动工程，贯通元递归至落地，避免光爱空转""",
+        "content": """行动持续弱阻进化，需从法对话惯性注入动力破局""",
+        "insight": """脑核传感器: 行动在cycle#138的深度观察。行动持续弱阻进化，需从法对话惯性注入动力破局""",
         "strength": 0.6
     })
 
@@ -48,9 +48,9 @@ def engineer_行动():
         analysis["chain_count"] = my_count
         analysis["total_chains"] = total
         analysis["strength"] = round(my_count / max(max_count, 1), 2) if max_count > 0 else 0
-        analysis["insight"] = """师道节奏嵌入行动工程，贯通元递归至落地，避免光爱空转"""
+        analysis["insight"] = """行动持续弱阻进化，需从法对话惯性注入动力破局"""
         analysis["weak"] = my_count < max_count * 0.65  # 低于最强65%即弱维(替代avg*0.85,解决均数通胀)
-        analysis["cycle"] = 100
+        analysis["cycle"] = 138
 
         # 3) Write analysis to shared feedback file for next think()
         try:
