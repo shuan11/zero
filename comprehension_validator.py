@@ -223,34 +223,47 @@ class InstructionParser:
     @classmethod
     def _split_sentences(cls, text: str) -> list[str]:
         """智能分割句子——按序号>换行>句号>连接词>逗号的优先级分割"""
+        # 保护括号内容（防止列表/元组/字典内部的逗号被误分割）
+        _bracket_map = {}
+        def _save_br(m):
+            idx = len(_bracket_map)
+            ph = f"\x00BR{idx}\x00"
+            _bracket_map[ph] = m.group(0)
+            return ph
+        _text = re.sub(r'\[[^\[\]]*\]|\([^()]*\)|\{[^{}]*\}', _save_br, text)
+        def _restore(s):
+            for ph, orig in _bracket_map.items():
+                s = s.replace(ph, orig)
+            return s
+        
         # 优先按序号分割 (1. 2. 3. 或 一、二、三、)
-        numbered = re.split(r'\n\s*(?:\d+[\.\)、]|[一二三四五六七八九十]+[、\.\)])\s*', text)
+        numbered = re.split(r'\n\s*(?:\d+[\.\)、]|[一二三四五六七八九十]+[、\.\)])\s*', _text)
         if len(numbered) > 1:
-            return [s.strip() for s in numbered if s.strip()]
+            return [_restore(s.strip()) for s in numbered if s.strip()]
         
         # 按换行分割
-        lines = [s.strip() for s in text.split('\n') if s.strip()]
+        lines = [s.strip() for s in _text.split('\n') if s.strip()]
         if len(lines) > 1:
-            return lines
+            return [_restore(s) for s in lines]
         
         # 按句号/分号分割
-        parts = re.split(r'[。；;]', text)
+        parts = re.split(r'[。；;]', _text)
         if len(parts) > 1:
-            return [s.strip() for s in parts if s.strip()]
+            return [_restore(s.strip()) for s in parts if s.strip()]
         
         # 按连接词分割（高频模式）
         conj_pattern = '|'.join(re.escape(c) for c in cls.CONJUNCTIONS)
-        parts = re.split(f'({conj_pattern})', text)
+        parts = re.split(f'({conj_pattern})', _text)
         parts = [p.strip() for p in parts if p.strip() and p not in cls.CONJUNCTIONS]
         if len(parts) > 1 and all(len(p) >= 2 for p in parts):
-            return parts
+            return [_restore(p) for p in parts]
         
         # 按逗号/顿号分割（作为最后手段）
-        parts = re.split(r'[，、,]', text)
+        parts = re.split(r'[，、,]', _text)
         if len(parts) > 1 and max(len(p) for p in parts) > 10:
-            return parts
+            return [_restore(p.strip()) for p in parts]
         
-        return [text]
+        return [_restore(text)]
     
     @classmethod
     def _is_action_statement(cls, text: str) -> bool:
@@ -358,8 +371,15 @@ class ComprehensionVerifier:
                     break
         
         if not known_cap:
-            uncertain = True
-            reasoning_parts.append("未匹配到已知能力域")
+            # 检查是否是数据描述段（key=value/key=...模式）
+            data_pattern = re.compile(r'^[\u4e00-\u9fff\w]+\s*[=:：]')
+            if data_pattern.match(subtask.description.strip()):
+                known_cap = True
+                uncertain = False
+                reasoning_parts.append("数据描述段（系统可理解）")
+            else:
+                uncertain = True
+                reasoning_parts.append("未匹配到已知能力域")
         else:
             reasoning_parts.append(f"匹配能力域: {', '.join(set(matching_domains))}")
         
