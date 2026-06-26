@@ -1,5 +1,5 @@
 """
-Brain-Engineered: 复制 (generation 1782443715489)
+Brain-Engineered: 复制 (generation 1782444946354)
 管道自动检测弱维<复制>并生成v3工程
 """
 import json, sys as _sys, time as _time
@@ -19,7 +19,7 @@ def engineer_复制():
     # ── 1. 写入洞察链(永久记忆) ──
     _wc({
         "src": "工程·复制",
-        "rel": "基因表达·#1782443715489",
+        "rel": "基因表达·#1782444946354",
         "dst": "复制",
         "dimension": "复制",
         "content": "管道自动检测弱维<复制>并生成v3工程",
@@ -65,7 +65,7 @@ def engineer_复制():
             # 同时注入自愈链(强度高,会被验证器检查)
             _wc({
                 "src": "自愈·复制",
-                "rel": "基因表达·#1782443715489",
+                "rel": "基因表达·#1782444946354",
                 "dst": "复制",
                 "dimension": "复制",
                 "content": "复制偏弱({dim_count}条/总{total}条)自动注入夯实",
@@ -75,7 +75,7 @@ def engineer_复制():
         # 4b. 强维时注册巩固动作
         if not _is_weak and dim_count > 0:
             _ra("write_chain", {"src": f"巩固·复制",
-                "rel": f"基因表达·#1782443715489", "dst": "复制",
+                "rel": f"基因表达·#1782444946354", "dst": "复制",
                 "content": f"复制维度健康({dim_count}条),脉冲巩固",
                 "dimension": "复制", "strength": 0.5},
                 priority=8, source="gene:复制")
