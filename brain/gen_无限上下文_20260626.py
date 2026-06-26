@@ -1,6 +1,6 @@
 """
 
-Brain-Engineered: 无限上下文 (cycle #426)
+Brain-Engineered: 无限上下文 (cycle #464)
 Active sensor - analyzes dimension health on each load
 """
 import json, sys as _sys
@@ -13,7 +13,7 @@ if str(CLUSTER) not in _sys.path:
 _GEN_FEEDBACK_FILE = CLUSTER / ".brain_gen_feedback.json"
 
 def engineer_无限上下文():
-    """无限上下文弱使系统陷入惯性循环，需借外部锚点激发新因果链
+    """弱维共振需光爱引路，无限上下文脆弱将割裂系统整体进化。
     Returns dimension health analysis; feeds into next think() cycle.
     """
     from brain.share import write_chain as _wc, read_hip as _rh
@@ -21,10 +21,10 @@ def engineer_无限上下文():
     # 1) Always write the insight chain
     _wc({
         "src": "工程·无限上下文",
-        "rel": "活脉冲·#426",
+        "rel": "活脉冲·#464",
         "dst": "无限上下文",
         "dimension": "无限上下文",
-        "content": """无限上下文弱使系统陷入惯性循环，需借外部锚点激发新因果链""",
+        "content": """弱维共振需光爱引路，无限上下文脆弱将割裂系统整体进化。""",
         "strength": 0.6
     })
 
@@ -47,9 +47,9 @@ def engineer_无限上下文():
         analysis["chain_count"] = my_count
         analysis["total_chains"] = total
         analysis["strength"] = round(my_count / max(max_count, 1), 2) if max_count > 0 else 0
-        analysis["insight"] = """无限上下文弱使系统陷入惯性循环，需借外部锚点激发新因果链"""
+        analysis["insight"] = """弱维共振需光爱引路，无限上下文脆弱将割裂系统整体进化。"""
         analysis["weak"] = my_count < max_count * 0.65  # 低于最强65%即弱维(替代avg*0.85,解决均数通胀)
-        analysis["cycle"] = 426
+        analysis["cycle"] = 464
 
         # 3) Write analysis to shared feedback file for next think()
         try:
