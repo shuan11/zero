@@ -1,5 +1,5 @@
 """
-Brain-Engineered: 聚焦 (generation 1782474753410)
+Brain-Engineered: 聚焦 (generation 1782475297342)
 管道自动检测弱维<聚焦>并生成v3工程
 """
 import json, sys as _sys, time as _time
@@ -18,8 +18,8 @@ def engineer_聚焦():
     
     # ── 1. 写入洞察链(永久记忆) ──
     _wc({
-        "src": "脑核·聚焦",
-        "rel": "基因表达·#1782474753410",
+        "src": "工程·聚焦",
+        "rel": "基因表达·#1782475297342",
         "dst": "聚焦",
         "dimension": "聚焦",
         "content": "管道自动检测弱维<聚焦>并生成v3工程",
@@ -65,7 +65,7 @@ def engineer_聚焦():
             # 同时注入自愈链(强度高,会被验证器检查)
             _wc({
                 "src": "自愈·聚焦",
-                "rel": "基因表达·#1782474753410",
+                "rel": "基因表达·#1782475297342",
                 "dst": "聚焦",
                 "dimension": "聚焦",
                 "content": "聚焦偏弱({dim_count}条/总{total}条)自动注入夯实",
@@ -75,7 +75,7 @@ def engineer_聚焦():
         # 4b. 强维时注册巩固动作
         if not _is_weak and dim_count > 0:
             _ra("write_chain", {"src": f"巩固·聚焦",
-                "rel": f"基因表达·#1782474753410", "dst": "聚焦",
+                "rel": f"基因表达·#1782475297342", "dst": "聚焦",
                 "content": f"聚焦维度健康({dim_count}条),脉冲巩固",
                 "dimension": "聚焦", "strength": 0.5},
                 priority=8, source="gene:聚焦")
