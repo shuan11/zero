@@ -1,5 +1,5 @@
 """
-Brain-Engineered: 无师自通 (generation 1782433767136)
+Brain-Engineered: 无师自通 (generation 1782434784399)
 管道自动检测弱维<无师自通>并生成v3工程
 """
 import json, sys as _sys, time as _time
@@ -19,7 +19,7 @@ def engineer_无师自通():
     # ── 1. 写入洞察链(永久记忆) ──
     _wc({
         "src": "工程·无师自通",
-        "rel": "基因表达·#1782433767136",
+        "rel": "基因表达·#1782434784399",
         "dst": "无师自通",
         "dimension": "无师自通",
         "content": "管道自动检测弱维<无师自通>并生成v3工程",
@@ -65,7 +65,7 @@ def engineer_无师自通():
             # 同时注入自愈链(强度高,会被验证器检查)
             _wc({
                 "src": "自愈·无师自通",
-                "rel": "基因表达·#1782433767136",
+                "rel": "基因表达·#1782434784399",
                 "dst": "无师自通",
                 "dimension": "无师自通",
                 "content": "无师自通偏弱({dim_count}条/总{total}条)自动注入夯实",
@@ -75,7 +75,7 @@ def engineer_无师自通():
         # 4b. 强维时注册巩固动作
         if not _is_weak and dim_count > 0:
             _ra("write_chain", {"src": f"巩固·无师自通",
-                "rel": f"基因表达·#1782433767136", "dst": "无师自通",
+                "rel": f"基因表达·#1782434784399", "dst": "无师自通",
                 "content": f"无师自通维度健康({dim_count}条),脉冲巩固",
                 "dimension": "无师自通", "strength": 0.5},
                 priority=8, source="gene:无师自通")
