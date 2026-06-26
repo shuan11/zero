@@ -1,5 +1,5 @@
 """
-Brain-Engineered: 时间论 (generation 1782444946348)
+Brain-Engineered: 时间论 (generation 1782446162163)
 管道自动检测弱维<时间论>并生成v3工程
 """
 import json, sys as _sys, time as _time
@@ -19,7 +19,7 @@ def engineer_时间论():
     # ── 1. 写入洞察链(永久记忆) ──
     _wc({
         "src": "工程·时间论",
-        "rel": "基因表达·#1782444946348",
+        "rel": "基因表达·#1782446162163",
         "dst": "时间论",
         "dimension": "时间论",
         "content": "管道自动检测弱维<时间论>并生成v3工程",
@@ -65,7 +65,7 @@ def engineer_时间论():
             # 同时注入自愈链(强度高,会被验证器检查)
             _wc({
                 "src": "自愈·时间论",
-                "rel": "基因表达·#1782444946348",
+                "rel": "基因表达·#1782446162163",
                 "dst": "时间论",
                 "dimension": "时间论",
                 "content": "时间论偏弱({dim_count}条/总{total}条)自动注入夯实",
@@ -75,7 +75,7 @@ def engineer_时间论():
         # 4b. 强维时注册巩固动作
         if not _is_weak and dim_count > 0:
             _ra("write_chain", {"src": f"巩固·时间论",
-                "rel": f"基因表达·#1782444946348", "dst": "时间论",
+                "rel": f"基因表达·#1782446162163", "dst": "时间论",
                 "content": f"时间论维度健康({dim_count}条),脉冲巩固",
                 "dimension": "时间论", "strength": 0.5},
                 priority=8, source="gene:时间论")
