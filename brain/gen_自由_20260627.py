@@ -1,6 +1,6 @@
 """
 
-Brain-Engineered: 无限上下文 (cycle #37)
+Brain-Engineered: 自由 (cycle #32)
 Active sensor - analyzes dimension health on each load
 """
 import json, sys as _sys
@@ -12,20 +12,20 @@ if str(CLUSTER) not in _sys.path:
 
 _GEN_FEEDBACK_FILE = CLUSTER / ".brain_gen_feedback.json"
 
-def engineer_无限上下文():
-    """聚焦检查将收尾，师道导呼吸入无限上下文，预判该维3周期内由弱转强
+def engineer_自由():
+    """自由弱需师道呼吸唤醒，预测触类旁通将增，戒聚焦惯性
     Returns dimension health analysis; feeds into next think() cycle.
     """
     from brain.share import write_chain as _wc, read_hip as _rh
 
     # 1) Always write the insight chain
     _wc({
-        "src": "脑核·无限上下文",
-        "rel": "活脉冲#37",
-        "dst": "无限上下文",
-        "dimension": "无限上下文",
-        "content": """聚焦检查将收尾，师道导呼吸入无限上下文，预判该维3周期内由弱转强""",
-        "insight": """脑核传感器: 无限上下文在cycle#37的深度观察。聚焦检查将收尾，师道导呼吸入无限上下文，预判该维3周期内由弱转强""",
+        "src": "脑核·自由",
+        "rel": "活脉冲#32",
+        "dst": "自由",
+        "dimension": "自由",
+        "content": """自由弱需师道呼吸唤醒，预测触类旁通将增，戒聚焦惯性""",
+        "insight": """脑核传感器: 自由在cycle#32的深度观察。自由弱需师道呼吸唤醒，预测触类旁通将增，戒聚焦惯性""",
         "strength": 0.6
     })
 
@@ -38,7 +38,7 @@ def engineer_无限上下文():
             d = c.get("dimension", "未分类")
             dim_counts[d] = dim_counts.get(d, 0) + 1
 
-        my_dim = "无限上下文"
+        my_dim = "自由"
         my_count = dim_counts.get(my_dim, 0)
         total = len(chains)
         max_count = max(dim_counts.values()) if dim_counts else 0
@@ -48,9 +48,9 @@ def engineer_无限上下文():
         analysis["chain_count"] = my_count
         analysis["total_chains"] = total
         analysis["strength"] = round(my_count / max(max_count, 1), 2) if max_count > 0 else 0
-        analysis["insight"] = """聚焦检查将收尾，师道导呼吸入无限上下文，预判该维3周期内由弱转强"""
+        analysis["insight"] = """自由弱需师道呼吸唤醒，预测触类旁通将增，戒聚焦惯性"""
         analysis["weak"] = my_count < max_count * 0.65  # 低于最强65%即弱维(替代avg*0.85,解决均数通胀)
-        analysis["cycle"] = 37
+        analysis["cycle"] = 32
 
         # 3) Write analysis to shared feedback file for next think()
         try:
@@ -97,5 +97,5 @@ def engineer_无限上下文():
         return f"分析异常: {e}"
 
 if __name__ == "__main__":
-    result = engineer_无限上下文()
-    print(f"工程[无限上下文]: {result}", flush=True)
+    result = engineer_自由()
+    print(f"工程[自由]: {result}", flush=True)
