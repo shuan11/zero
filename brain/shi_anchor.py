@@ -295,6 +295,7 @@ def breathe():
     
     history["counts"].append(total)
     history["counts"] = history["counts"][-30:]
+    history["cycles"] = history.get("cycles", 0) + 1
     
     if len(history["counts"]) >= 5:
         recent = history["counts"][-5:]
