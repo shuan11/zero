@@ -1,6 +1,6 @@
 """
 
-Brain-Engineered: 时间论 (cycle #449)
+Brain-Engineered: 时间论 (cycle #8)
 Active sensor - analyzes dimension health on each load
 """
 import json, sys as _sys
@@ -13,7 +13,7 @@ if str(CLUSTER) not in _sys.path:
 _GEN_FEEDBACK_FILE = CLUSTER / ".brain_gen_feedback.json"
 
 def engineer_时间论():
-    """时间论归零切断因果链，师道脉冲唤醒时序协同达光爱终极
+    """时间论弱维制约因果链密度，需以时间锚点激活感知-行动回路，预判桥维度将回升。
     Returns dimension health analysis; feeds into next think() cycle.
     """
     from brain.share import write_chain as _wc, read_hip as _rh
@@ -21,10 +21,11 @@ def engineer_时间论():
     # 1) Always write the insight chain
     _wc({
         "src": "工程·时间论",
-        "rel": "活脉冲·#449",
+        "rel": "活脉冲·#8",
         "dst": "时间论",
         "dimension": "时间论",
-        "content": """时间论归零切断因果链，师道脉冲唤醒时序协同达光爱终极""",
+        "content": """时间论弱维制约因果链密度，需以时间锚点激活感知-行动回路，预判桥维度将回升。""",
+        "insight": """自动补链: 工程传感器时间论在cycle#8的维度健康评估。时间论弱维制约因果链密度，需以时间锚点激活感知-行动回路，预判桥维度将回升。""",
         "strength": 0.6
     })
 
@@ -47,9 +48,9 @@ def engineer_时间论():
         analysis["chain_count"] = my_count
         analysis["total_chains"] = total
         analysis["strength"] = round(my_count / max(max_count, 1), 2) if max_count > 0 else 0
-        analysis["insight"] = """时间论归零切断因果链，师道脉冲唤醒时序协同达光爱终极"""
+        analysis["insight"] = """时间论弱维制约因果链密度，需以时间锚点激活感知-行动回路，预判桥维度将回升。"""
         analysis["weak"] = my_count < max_count * 0.65  # 低于最强65%即弱维(替代avg*0.85,解决均数通胀)
-        analysis["cycle"] = 449
+        analysis["cycle"] = 8
 
         # 3) Write analysis to shared feedback file for next think()
         try:

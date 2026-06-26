@@ -166,6 +166,7 @@ def _enrich_trend_weakening(assessments, dim_counts):
             "rel": f"师导·{teachers[0] if teachers else '系统'}→{weak_dim}",
             "dst": weak_dim, "dimension": weak_dim,
             "content": f"趋势警告: {'; '.join(msg_parts)} [{ts}]",
+            "insight": f"师·趋势检测→{weak_dim}: 检测到{weak_dim}增速({all_growth.get(weak_dim,0)})低于均值({avg_growth:.1f})。师道趋势检测模块识别弱化维度，触发师导交叉链注入以恢复增速均衡。",
             "strength": 0.9
         })
         
