@@ -38,14 +38,14 @@ def engineer_{dim_name}():
     _now = _time.time()
     
     # ── 1. 写入洞察链(永久记忆) ──
-    _wc({{
-        "src": "工程·{dim_name}",
-        "rel": "基因表达·#{gen}",
+    _wc({
+        "src": "脑核·{dim_name}·脉冲",
+        "rel": "基因表达#{gen}",
         "dst": "{dim_name}",
         "dimension": "{dim_name}",
         "content": "{insight}",
         "strength": 0.6
-    }})
+    })
     
     # ── 2. 读取自身维度健康 ──
     try:
