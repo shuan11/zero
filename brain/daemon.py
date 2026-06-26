@@ -384,7 +384,9 @@ def one_cycle(cycle_num):
     except Exception as _ae:
         log(f"  P147加速异常: {_ae}")
 
-    # 从gen_*反馈自动修补弱维（每周期）
+    # 从gen_*反馈自动修补弱维（每周期）— 热加载以即时生效代码修改
+    import importlib as _il, brain.act as _ba_mod
+    _il.reload(_ba_mod)
     from brain.act import _feedback_self_patch as _gen_patch
     try:
         _gen_patch()

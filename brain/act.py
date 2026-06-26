@@ -851,8 +851,8 @@ def _feedback_self_patch():
                             state_injected = True
                             log(f"  反馈自愈: {dim_name}→state.py ✓")
             
-            # (B) 持续weak≥2周期 → 收集链→批量写（代替逐条write_chain 200+次IO）
-            if persist >= 2 and best_strong:
+            # (B) 持续weak≥1周期 → 收集链→批量写（代替逐条write_chain 200+次IO）
+            if persist >= 1 and best_strong:
                 strong_dim = best_strong.get("dimension", "")
                 if strong_dim and strong_dim != dim_name:
                     strong_count = best_strong.get("chain_count", 0)
@@ -882,10 +882,10 @@ def _feedback_self_patch():
                                 _local_counts[_d] = max(_local_counts.get(_d, 0), _r.get("chain_count", 0))
                         weak_count = _local_counts.get(dim_name, 500)
                         gap = strong_count - weak_count
-                    # 差距比例链: 每10链差距写1条加强链,最少1条,最多10条
-                    extra = max(1, min(10, gap // 10))
+                    # 🔥 P128b: 差距比例链,每5链差距写1条,最少3条最多15条
+                    extra = max(3, min(15, gap // 5))  # 🔥 P128b: 从gap//10→gap//5, min从10→15
                     # ─── 批量收集链 ───
-                    for i in range(min(persist, 3)):  # 最多3条交叉链
+                    for i in range(min(persist + 1, 5)):  # 🔥 P128b: 从最多3条→5条交叉链
                         _rel_phrase = [
                             f"弱维{dim_name}({persist}周期)与强维{strong_dim}({real_strong_count}链)存在{'%d倍' % (real_strong_count//max(1,real_weak_count)) if real_weak_count>0 else '绝对'}差距",
                             f"弱维{dim_name}持续{persist}周期<最强维{strong_dim}的30%线,需要强化与{strong_dim}的连接",
