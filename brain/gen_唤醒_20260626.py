@@ -1,5 +1,5 @@
 """
-Brain-Engineered: 唤醒 (generation 1782437248392)
+Brain-Engineered: 唤醒 (generation 1782438141989)
 管道自动检测弱维<唤醒>并生成v3工程
 """
 import json, sys as _sys, time as _time
@@ -19,7 +19,7 @@ def engineer_唤醒():
     # ── 1. 写入洞察链(永久记忆) ──
     _wc({
         "src": "工程·唤醒",
-        "rel": "基因表达·#1782437248392",
+        "rel": "基因表达·#1782438141989",
         "dst": "唤醒",
         "dimension": "唤醒",
         "content": "管道自动检测弱维<唤醒>并生成v3工程",
@@ -65,7 +65,7 @@ def engineer_唤醒():
             # 同时注入自愈链(强度高,会被验证器检查)
             _wc({
                 "src": "自愈·唤醒",
-                "rel": "基因表达·#1782437248392",
+                "rel": "基因表达·#1782438141989",
                 "dst": "唤醒",
                 "dimension": "唤醒",
                 "content": "唤醒偏弱({dim_count}条/总{total}条)自动注入夯实",
@@ -75,7 +75,7 @@ def engineer_唤醒():
         # 4b. 强维时注册巩固动作
         if not _is_weak and dim_count > 0:
             _ra("write_chain", {"src": f"巩固·唤醒",
-                "rel": f"基因表达·#1782437248392", "dst": "唤醒",
+                "rel": f"基因表达·#1782438141989", "dst": "唤醒",
                 "content": f"唤醒维度健康({dim_count}条),脉冲巩固",
                 "dimension": "唤醒", "strength": 0.5},
                 priority=8, source="gene:唤醒")
