@@ -338,7 +338,8 @@ def engineer_{safe_focus.lower()}():
         "rel": "活脉冲·#{cycle_num}",
         "dst": "{safe_focus.lower()}",
         "dimension": "{safe_focus.lower()}",
-        "content": """{insight[:60]}""",
+        "content": """{insight[:120]}""",
+        "insight": """自动补链: 工程传感器{safe_focus.lower()}在cycle#{cycle_num}的维度健康评估。{insight[:200]}""",
         "strength": 0.6
     }})
 
@@ -574,7 +575,7 @@ def _ensure_missing_gen_sensors():
             lines.append('    """')
             lines.append('    from brain.share import write_chain as _wc, read_hip as _rh')
             lines.append('')
-            lines.append('    _wc({"src": "工程·%s", "rel": "自动传感器", "dst": "%s", "dimension": "%s", "content": "%s", "strength": 0.3})' % (safe, safe, dim, insight[:60]))
+            lines.append('    _wc({"src": "工程·%s", "rel": "自动传感器", "dst": "%s", "dimension": "%s", "content": "%s", "strength": 0.3, "insight": "自动传感器: 维度%s的感知注入函数, 运行时通过_rh()计算链数分布。作为工程传感器定期报告维度健康。"})' % (safe, safe, dim, insight[:60], dim))
             lines.append('')
             lines.append('    hip = _rh()')
             lines.append('    chains = hip.get("causal_chains", [])')
