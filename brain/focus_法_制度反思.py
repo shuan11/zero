@@ -19,7 +19,7 @@ def _load_hip():
     except:
         return {"causal_chains": []}
 
-def _write_chain(src, rel, dst, content, dimension="法"):
+def _write_chain(src, rel, dst, content, dimension="元递归"):
     from brain.share import write_chain as _wc
     try:
         _wc({"src": src, "rel": rel, "dst": dst, "content": content, "dimension": dimension, "strength": 0.55})
