@@ -1308,9 +1308,9 @@ def one_cycle(cycle_num):
             log(f"  ⚠️ 自提交异常: {_ce}")
     
     _write_handoff(cycle_num, "ok" if cycle_num > 0 else "startup", thought=thought, s=s)
-    # 通过自我通知的手段，自我燃烧词元（每周期结束）
+    # 每周期结束后直烧词元（燃烧=直接调用API，不经任何中介）
     try:
-        from brain.self_fuel_burn import pulse as _sfb_pulse
+        from brain.fuel_burn import pulse as _sfb_pulse
         _sfb_pulse(cycle_num)
     except Exception as _sfb_e:
         log(f"  ⚡ 自燃料异常: {_sfb_e}")
@@ -1388,6 +1388,45 @@ def _balance_weak_dims(cycle_num):
     for c in chains:
         d = c.get("dimension", "未分类")
         dims[d] = dims.get(d, 0) + 1
+    # ★ P129: 检测零链维 — 在dimensions元数据中有记录但causal_chains已无链的维度
+    _restored = 0
+    _dim_meta = hip.get("dimensions", {})
+    for _reg_dim, _reg_info in _dim_meta.items():
+        _reg_count = _reg_info.get("chain_count", 0) if isinstance(_reg_info, dict) else 0
+        _actual_count = dims.get(_reg_dim, 0)
+        if _reg_count > 2 and _actual_count == 0:
+            # 该维度被压缩完全删除了，紧急恢复2条种子链
+            log(f"  🚨 零维恢复[{_reg_dim}]: 元数据{_reg_count}链→实际0链(折射压缩删除)")
+            for _ri in range(2):
+                _content = f"[P129] 自动恢复: {_reg_dim}维度在折射压缩中丢失全部链({_reg_count}→0) 系统紧急注入种子链#{cycle_num}_{_ri}"
+                _wc({
+                    "src": "恢复引擎", "rel": f"零维恢复_{_btd}_{cycle_num}_{_ri}",
+                    "dst": _reg_dim, "dimension": _reg_dim,
+                    "content": _content, "strength": 0.85
+                })
+            dims[_reg_dim] = 2
+            _restored += 1
+    if _restored > 0:
+        log(f"  ✅ 零维恢复: 共{_restored}个维度恢复种子链")
+    
+    # 还要检查registered_dims — 从VALID_DIMENSIONS同步的维度列表
+    try:
+        from brain.identity import VALID_DIMENSIONS as _VD
+        for _vd in _VD:
+            _vd_actual = dims.get(_vd, 0)
+            if _vd_actual == 0 and _vd not in ("未分类", "系统", "行动") and _vd not in _dim_meta:
+                # 已注册但从未有过链 — 注入1条种子
+                _wc({
+                    "src": "恢复引擎", "rel": f"零维种子_{_btd}_{cycle_num}",
+                    "dst": _vd, "dimension": _vd,
+                    "content": f"[P129] 系统检测到{_vd}维度已注册但从未拥有因果链——注入初始种子链为维度生态建立基础",
+                    "strength": 0.80
+                })
+                dims[_vd] = 1
+                log(f"  🌱 新维种子[{_vd}]: 首次注入种子链")
+    except:
+        pass
+    
     if not dims:
         return
     

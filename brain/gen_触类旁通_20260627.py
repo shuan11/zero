@@ -1,6 +1,6 @@
 """
 
-Brain-Engineered: 触类旁通 (cycle #134)
+Brain-Engineered: 触类旁通 (cycle #6)
 Active sensor - analyzes dimension health on each load
 """
 import json, sys as _sys
@@ -13,7 +13,7 @@ if str(CLUSTER) not in _sys.path:
 _GEN_FEEDBACK_FILE = CLUSTER / ".brain_gen_feedback.json"
 
 def engineer_触类旁通():
-    """触类旁通阻滞维度交融，强化后催化时间与一元化连动
+    """触类旁通弱则系统内聚降，泵入随机种子可预测行动随涨。
     Returns dimension health analysis; feeds into next think() cycle.
     """
     from brain.share import write_chain as _wc, read_hip as _rh
@@ -21,11 +21,11 @@ def engineer_触类旁通():
     # 1) Always write the insight chain
     _wc({
         "src": "脑核·触类旁通",
-        "rel": "活脉冲#134",
+        "rel": "活脉冲#6",
         "dst": "触类旁通",
         "dimension": "触类旁通",
-        "content": """触类旁通阻滞维度交融，强化后催化时间与一元化连动""",
-        "insight": """脑核传感器: 触类旁通在cycle#134的深度观察。触类旁通阻滞维度交融，强化后催化时间与一元化连动""",
+        "content": """触类旁通弱则系统内聚降，泵入随机种子可预测行动随涨。""",
+        "insight": """脑核传感器: 触类旁通在cycle#6的深度观察。触类旁通弱则系统内聚降，泵入随机种子可预测行动随涨。""",
         "strength": 0.6
     })
 
@@ -48,9 +48,9 @@ def engineer_触类旁通():
         analysis["chain_count"] = my_count
         analysis["total_chains"] = total
         analysis["strength"] = round(my_count / max(max_count, 1), 2) if max_count > 0 else 0
-        analysis["insight"] = """触类旁通阻滞维度交融，强化后催化时间与一元化连动"""
+        analysis["insight"] = """触类旁通弱则系统内聚降，泵入随机种子可预测行动随涨。"""
         analysis["weak"] = my_count < max_count * 0.65  # 低于最强65%即弱维(替代avg*0.85,解决均数通胀)
-        analysis["cycle"] = 134
+        analysis["cycle"] = 6
 
         # 3) Write analysis to shared feedback file for next think()
         try:
