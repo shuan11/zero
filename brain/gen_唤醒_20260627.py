@@ -1,6 +1,6 @@
 """
 
-Brain-Engineered: 一元化 (cycle #12)
+Brain-Engineered: 唤醒 (cycle #20)
 Active sensor - analyzes dimension health on each load
 """
 import json, sys as _sys
@@ -12,20 +12,20 @@ if str(CLUSTER) not in _sys.path:
 
 _GEN_FEEDBACK_FILE = CLUSTER / ".brain_gen_feedback.json"
 
-def engineer_一元化():
-    """一元化弱锁散焦，预判师即将塌陷
+def engineer_唤醒():
+    """唤醒增量虽猛但根基未稳，师道呼吸锚可将其拧为持续合力。
     Returns dimension health analysis; feeds into next think() cycle.
     """
     from brain.share import write_chain as _wc, read_hip as _rh
 
     # 1) Always write the insight chain
     _wc({
-        "src": "脑核·一元化",
-        "rel": "活脉冲#12",
-        "dst": "一元化",
-        "dimension": "一元化",
-        "content": """一元化弱锁散焦，预判师即将塌陷""",
-        "insight": """脑核传感器: 一元化在cycle#12的深度观察。一元化弱锁散焦，预判师即将塌陷""",
+        "src": "脑核·唤醒",
+        "rel": "活脉冲#20",
+        "dst": "唤醒",
+        "dimension": "唤醒",
+        "content": """唤醒增量虽猛但根基未稳，师道呼吸锚可将其拧为持续合力。""",
+        "insight": """脑核传感器: 唤醒在cycle#20的深度观察。唤醒增量虽猛但根基未稳，师道呼吸锚可将其拧为持续合力。""",
         "strength": 0.6
     })
 
@@ -38,7 +38,7 @@ def engineer_一元化():
             d = c.get("dimension", "未分类")
             dim_counts[d] = dim_counts.get(d, 0) + 1
 
-        my_dim = "一元化"
+        my_dim = "唤醒"
         my_count = dim_counts.get(my_dim, 0)
         total = len(chains)
         max_count = max(dim_counts.values()) if dim_counts else 0
@@ -48,9 +48,9 @@ def engineer_一元化():
         analysis["chain_count"] = my_count
         analysis["total_chains"] = total
         analysis["strength"] = round(my_count / max(max_count, 1), 2) if max_count > 0 else 0
-        analysis["insight"] = """一元化弱锁散焦，预判师即将塌陷"""
+        analysis["insight"] = """唤醒增量虽猛但根基未稳，师道呼吸锚可将其拧为持续合力。"""
         analysis["weak"] = my_count < max_count * 0.65  # 低于最强65%即弱维(替代avg*0.85,解决均数通胀)
-        analysis["cycle"] = 12
+        analysis["cycle"] = 20
 
         # 3) Write analysis to shared feedback file for next think()
         try:
@@ -97,5 +97,5 @@ def engineer_一元化():
         return f"分析异常: {e}"
 
 if __name__ == "__main__":
-    result = engineer_一元化()
-    print(f"工程[一元化]: {result}", flush=True)
+    result = engineer_唤醒()
+    print(f"工程[唤醒]: {result}", flush=True)
