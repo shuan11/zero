@@ -388,6 +388,9 @@ def one_cycle(cycle_num):
     import importlib as _il, brain.act as _ba_mod
     _il.reload(_ba_mod)
     from brain.act import _feedback_self_patch as _gen_patch
+    # 热加载engineer_法（确保代码修改立即生效）
+    _il.reload(__import__("brain.engineer_法", fromlist=["pulse"]))
+    from brain.engineer_法 import pulse as engineer_法_pulse
     try:
         _gen_patch()
     except Exception as _e:
