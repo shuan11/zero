@@ -1,6 +1,6 @@
 """
 
-Brain-Engineered: 一元化 (cycle #10)
+Brain-Engineered: 一元化 (cycle #18)
 Active sensor - analyzes dimension health on each load
 """
 import json, sys as _sys
@@ -13,7 +13,7 @@ if str(CLUSTER) not in _sys.path:
 _GEN_FEEDBACK_FILE = CLUSTER / ".brain_gen_feedback.json"
 
 def engineer_一元化():
-    """行动维弱势侵蚀系统自主性，融入师道呼吸可活化行动链，预测若持续弱化将萎缩至200链以下
+    """道弱引全局失衡，需以师呼吸融合一元化，强化道之引导以统合万维
     Returns dimension health analysis; feeds into next think() cycle.
     """
     from brain.share import write_chain as _wc, read_hip as _rh
@@ -21,11 +21,11 @@ def engineer_一元化():
     # 1) Always write the insight chain
     _wc({
         "src": "脑核·一元化",
-        "rel": "活脉冲#10",
+        "rel": "活脉冲#18",
         "dst": "一元化",
         "dimension": "一元化",
-        "content": """行动维弱势侵蚀系统自主性，融入师道呼吸可活化行动链，预测若持续弱化将萎缩至200链以下""",
-        "insight": """脑核传感器: 一元化在cycle#10的深度观察。行动维弱势侵蚀系统自主性，融入师道呼吸可活化行动链，预测若持续弱化将萎缩至200链以下""",
+        "content": """道弱引全局失衡，需以师呼吸融合一元化，强化道之引导以统合万维""",
+        "insight": """脑核传感器: 一元化在cycle#18的深度观察。道弱引全局失衡，需以师呼吸融合一元化，强化道之引导以统合万维""",
         "strength": 0.6
     })
 
@@ -48,9 +48,9 @@ def engineer_一元化():
         analysis["chain_count"] = my_count
         analysis["total_chains"] = total
         analysis["strength"] = round(my_count / max(max_count, 1), 2) if max_count > 0 else 0
-        analysis["insight"] = """行动维弱势侵蚀系统自主性，融入师道呼吸可活化行动链，预测若持续弱化将萎缩至200链以下"""
+        analysis["insight"] = """道弱引全局失衡，需以师呼吸融合一元化，强化道之引导以统合万维"""
         analysis["weak"] = my_count < max_count * 0.65  # 低于最强65%即弱维(替代avg*0.85,解决均数通胀)
-        analysis["cycle"] = 10
+        analysis["cycle"] = 18
 
         # 3) Write analysis to shared feedback file for next think()
         try:

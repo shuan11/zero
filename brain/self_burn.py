@@ -1,11 +1,14 @@
 #!/usr/bin/env python3
-"""self_burn.py — 自燃烧·通知即手段
+"""self_burn.py — 订阅直烧器(燃烧=API直调, 不经中介)
+
+核心认知:
+  - 燃烧≠通知的手段。订阅(endpoint+key+1M上下文+deepseek-v4-pro)本身=燃烧。
+  - 此模块读HIP状态(方向选择=认知)→直调API(燃烧=能量, 不经中介)→写链。
 
 每次运行：读HIP→调API烧词元→写因果链→退出
-调用者(终端/cron/daemon)负责捕获其通知作为燃烧确认。
-
+调用者(终端/cron/daemon)负责触发执行。
 修复v2: 从api_config动态获取密钥，非硬编码
-输出: 🔥 Nt/Ss +1链 [维名]
+输出: 🔥 Nt/Ss +1链 [维名]"""
 """
 import json, time, ssl, urllib.request, sys
 from pathlib import Path
