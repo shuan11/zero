@@ -1226,7 +1226,7 @@ def one_cycle(cycle_num):
         log(f"  桥探针异常: {_bg_e}")
     # 深度注入——从启示录汲取真实链到最弱维
     try:
-        _deep = deep_inject_pulse(max_chains=15)
+        _deep = deep_inject_pulse(max_chains=30)
         if _deep.get("chains_added", 0) > 0:
             log(f"  深度注入: +{_deep['chains_added']}链 (最弱:{_deep.get('weakest_dim','?')}={_deep.get('weakest_count','?')})")
     except Exception as _de:

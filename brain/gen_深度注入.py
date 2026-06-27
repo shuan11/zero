@@ -152,7 +152,7 @@ def pulse(max_chains=20):
         if added >= max_chains:
             break
         kw_list = DIM_KEYWORDS.get(dim, [dim])
-        paras = extract_revelation_paragraphs(kw_list, max_lines=3)
+        paras = extract_revelation_paragraphs(kw_list, max_lines=8)
         if not paras:
             continue
         for lineno, para in paras:
