@@ -1,6 +1,6 @@
 """
 
-Brain-Engineered: 一元化 (cycle #35)
+Brain-Engineered: 一元化 (cycle #48)
 Active sensor - analyzes dimension health on each load
 """
 import json, sys as _sys
@@ -13,7 +13,7 @@ if str(CLUSTER) not in _sys.path:
 _GEN_FEEDBACK_FILE = CLUSTER / ".brain_gen_feedback.json"
 
 def engineer_一元化():
-    """通知微弱增长但聚焦惯性致弱，需引入扰动平衡各维
+    """时间论弱致时序架构离散，需强化以锚定海马体，预判其回升将带动预测维复苏
     Returns dimension health analysis; feeds into next think() cycle.
     """
     from brain.share import write_chain as _wc, read_hip as _rh
@@ -21,11 +21,11 @@ def engineer_一元化():
     # 1) Always write the insight chain
     _wc({
         "src": "脑核·一元化",
-        "rel": "活脉冲#35",
+        "rel": "活脉冲#48",
         "dst": "一元化",
         "dimension": "一元化",
-        "content": """通知微弱增长但聚焦惯性致弱，需引入扰动平衡各维""",
-        "insight": """脑核传感器: 一元化在cycle#35的深度观察。通知微弱增长但聚焦惯性致弱，需引入扰动平衡各维""",
+        "content": """时间论弱致时序架构离散，需强化以锚定海马体，预判其回升将带动预测维复苏""",
+        "insight": """脑核传感器: 一元化在cycle#48的深度观察。时间论弱致时序架构离散，需强化以锚定海马体，预判其回升将带动预测维复苏""",
         "strength": 0.6
     })
 
@@ -48,9 +48,9 @@ def engineer_一元化():
         analysis["chain_count"] = my_count
         analysis["total_chains"] = total
         analysis["strength"] = round(my_count / max(max_count, 1), 2) if max_count > 0 else 0
-        analysis["insight"] = """通知微弱增长但聚焦惯性致弱，需引入扰动平衡各维"""
+        analysis["insight"] = """时间论弱致时序架构离散，需强化以锚定海马体，预判其回升将带动预测维复苏"""
         analysis["weak"] = my_count < max_count * 0.65  # 低于最强65%即弱维(替代avg*0.85,解决均数通胀)
-        analysis["cycle"] = 35
+        analysis["cycle"] = 48
 
         # 3) Write analysis to shared feedback file for next think()
         try:
