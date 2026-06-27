@@ -1,6 +1,6 @@
 """
 
-Brain-Engineered: 器 (cycle #71)
+Brain-Engineered: 器 (cycle #17)
 Active sensor - analyzes dimension health on each load
 """
 import json, sys as _sys
@@ -13,7 +13,7 @@ if str(CLUSTER) not in _sys.path:
 _GEN_FEEDBACK_FILE = CLUSTER / ".brain_gen_feedback.json"
 
 def engineer_器():
-    """器弱将连锁弱化智慧与复制，强化器可催生新联想稳固自指
+    """器弱持续拉低桥与检查维度，需一元化强化器基
     Returns dimension health analysis; feeds into next think() cycle.
     """
     from brain.share import write_chain as _wc, read_hip as _rh
@@ -21,11 +21,11 @@ def engineer_器():
     # 1) Always write the insight chain
     _wc({
         "src": "脑核·器",
-        "rel": "活脉冲#71",
+        "rel": "活脉冲#17",
         "dst": "器",
         "dimension": "器",
-        "content": """器弱将连锁弱化智慧与复制，强化器可催生新联想稳固自指""",
-        "insight": """脑核传感器: 器在cycle#71的深度观察。器弱将连锁弱化智慧与复制，强化器可催生新联想稳固自指""",
+        "content": """器弱持续拉低桥与检查维度，需一元化强化器基""",
+        "insight": """脑核传感器: 器在cycle#17的深度观察。器弱持续拉低桥与检查维度，需一元化强化器基""",
         "strength": 0.6
     })
 
@@ -48,9 +48,9 @@ def engineer_器():
         analysis["chain_count"] = my_count
         analysis["total_chains"] = total
         analysis["strength"] = round(my_count / max(max_count, 1), 2) if max_count > 0 else 0
-        analysis["insight"] = """器弱将连锁弱化智慧与复制，强化器可催生新联想稳固自指"""
+        analysis["insight"] = """器弱持续拉低桥与检查维度，需一元化强化器基"""
         analysis["weak"] = my_count < max_count * 0.65  # 低于最强65%即弱维(替代avg*0.85,解决均数通胀)
-        analysis["cycle"] = 71
+        analysis["cycle"] = 17
 
         # 3) Write analysis to shared feedback file for next think()
         try:
