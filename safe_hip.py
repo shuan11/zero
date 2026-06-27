@@ -532,10 +532,11 @@ def write_chain(chain):
         cats.append(chain)
         # 同步更新 dimension chain_count
         dim = chain.get("dimension", "未分类")
-        if dim not in data["dimensions"]:
-            data["dimensions"][dim] = {"chain_count": 1, "strength": 0.5}
+        dims = data.setdefault("dimensions", {})
+        if dim not in dims:
+            dims[dim] = {"chain_count": 1, "strength": 0.5}
         else:
-            data["dimensions"][dim]["chain_count"] = sum(1 for c in cats if c.get("dimension") == dim)
+            dims[dim]["chain_count"] = sum(1 for c in cats if c.get("dimension") == dim)
         data["metadata"] = {
             "version": data.get("metadata", {}).get("version", 1),
             "last_update": datetime.now().isoformat(),
