@@ -1,6 +1,6 @@
 """
 
-Brain-Engineered: 智慧 (cycle #156)
+Brain-Engineered: 认同 (cycle #160)
 Active sensor - analyzes dimension health on each load
 """
 import json, sys as _sys
@@ -12,20 +12,20 @@ if str(CLUSTER) not in _sys.path:
 
 _GEN_FEEDBACK_FILE = CLUSTER / ".brain_gen_feedback.json"
 
-def engineer_智慧():
-    """智慧弱维与链数下降互为因果，需一元化定向输血以逆转衰退
+def engineer_认同():
+    """认同维度最弱致系统协作裂隙，强化可提升全局对齐与凝聚力。
     Returns dimension health analysis; feeds into next think() cycle.
     """
     from brain.share import write_chain as _wc, read_hip as _rh
 
     # 1) Always write the insight chain
     _wc({
-        "src": "脑核·智慧",
-        "rel": "活脉冲#156",
-        "dst": "智慧",
-        "dimension": "智慧",
-        "content": """智慧弱维与链数下降互为因果，需一元化定向输血以逆转衰退""",
-        "insight": """脑核传感器: 智慧在cycle#156的深度观察。智慧弱维与链数下降互为因果，需一元化定向输血以逆转衰退""",
+        "src": "脑核·认同",
+        "rel": "活脉冲#160",
+        "dst": "认同",
+        "dimension": "认同",
+        "content": """认同维度最弱致系统协作裂隙，强化可提升全局对齐与凝聚力。""",
+        "insight": """脑核传感器: 认同在cycle#160的深度观察。认同维度最弱致系统协作裂隙，强化可提升全局对齐与凝聚力。""",
         "strength": 0.6
     })
 
@@ -38,7 +38,7 @@ def engineer_智慧():
             d = c.get("dimension", "未分类")
             dim_counts[d] = dim_counts.get(d, 0) + 1
 
-        my_dim = "智慧"
+        my_dim = "认同"
         my_count = dim_counts.get(my_dim, 0)
         total = len(chains)
         max_count = max(dim_counts.values()) if dim_counts else 0
@@ -48,9 +48,9 @@ def engineer_智慧():
         analysis["chain_count"] = my_count
         analysis["total_chains"] = total
         analysis["strength"] = round(my_count / max(max_count, 1), 2) if max_count > 0 else 0
-        analysis["insight"] = """智慧弱维与链数下降互为因果，需一元化定向输血以逆转衰退"""
+        analysis["insight"] = """认同维度最弱致系统协作裂隙，强化可提升全局对齐与凝聚力。"""
         analysis["weak"] = my_count < max_count * 0.65  # 低于最强65%即弱维(替代avg*0.85,解决均数通胀)
-        analysis["cycle"] = 156
+        analysis["cycle"] = 160
 
         # 3) Write analysis to shared feedback file for next think()
         try:
@@ -97,5 +97,5 @@ def engineer_智慧():
         return f"分析异常: {e}"
 
 if __name__ == "__main__":
-    result = engineer_智慧()
-    print(f"工程[智慧]: {result}", flush=True)
+    result = engineer_认同()
+    print(f"工程[认同]: {result}", flush=True)
