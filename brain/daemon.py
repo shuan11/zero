@@ -271,6 +271,7 @@ def one_cycle(cycle_num):
     from brain.gen_平衡器 import pulse as balancer_pulse
     from brain.gen_弱维加速 import pulse as weak_accel_pulse
     from brain.gen_桥健康探针 import pulse as bridge_health_pulse
+    from brain.gen_深度注入 import pulse as deep_inject_pulse
     from brain.engineer_法 import pulse as engineer_法_pulse
     from brain.goal import pulse as goal_pulse, check_goal_progress
     from brain.identity import VALID_DIMENSIONS
@@ -1223,6 +1224,13 @@ def one_cycle(cycle_num):
             log(f"  桥探针: {_bg_msg}")
     except Exception as _bg_e:
         log(f"  桥探针异常: {_bg_e}")
+    # 深度注入——从启示录汲取真实链到最弱维
+    try:
+        _deep = deep_inject_pulse(max_chains=15)
+        if _deep.get("chains_added", 0) > 0:
+            log(f"  深度注入: +{_deep['chains_added']}链 (最弱:{_deep.get('weakest_dim','?')}={_deep.get('weakest_count','?')})")
+    except Exception as _de:
+        log(f"  深度注入异常: {_de}")
     # 跨维合成脉冲（每5周期合成最强维度交叉）
     _syn_msgs = cross_synthesis_pulse(cycle_num) or []
     for _m in _syn_msgs:
