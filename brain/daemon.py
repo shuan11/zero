@@ -270,6 +270,7 @@ def one_cycle(cycle_num):
     # gen_一元化_协调已归档(archive_gen/), 功能由gen_质量深化.py替代
     from brain.gen_平衡器 import pulse as balancer_pulse
     from brain.gen_弱维加速 import pulse as weak_accel_pulse
+    from brain.gen_桥健康探针 import pulse as bridge_health_pulse
     from brain.engineer_法 import pulse as engineer_法_pulse
     from brain.goal import pulse as goal_pulse, check_goal_progress
     from brain.identity import VALID_DIMENSIONS
@@ -1215,6 +1216,13 @@ def one_cycle(cycle_num):
             log(f"  法折射: {_weak_msg}")
     except Exception as _we:
         log(f"  法折射异常: {_we}")
+    # 桥健康探针——TCP心跳检测API端点（每300秒自动冷却）
+    try:
+        _bg_msg = bridge_health_pulse(cycle_num)
+        if _bg_msg:
+            log(f"  桥探针: {_bg_msg}")
+    except Exception as _bg_e:
+        log(f"  桥探针异常: {_bg_e}")
     # 跨维合成脉冲（每5周期合成最强维度交叉）
     _syn_msgs = cross_synthesis_pulse(cycle_num) or []
     for _m in _syn_msgs:
