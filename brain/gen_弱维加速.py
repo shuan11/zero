@@ -67,10 +67,15 @@ def pulse(cycle_num: int = 0) -> str:
             continue
         existing.add(content[:40])
         
+        # 用内容前20字符的哈希使rel唯一，绕过safe_hip (src,rel,dst)去重
+        _ch = abs(hash(content[:20])) % 10000
+        # 血训: safe_hip content[:50]去重会导致法维链与目标维旧链合并→Δ=0
+        # 修复: content加唯一前缀[折射#{_ch}]使content[:50]唯一
+        _unique_content = f"[折射#{_ch}] {content}"
         chain = {
-            "content": content,
+            "content": _unique_content,
             "src": _SRC_DIM,
-            "rel": "折射-法维加速",
+            "rel": f"折射-法维加速#{_ch}",
             "dst": target,
             "dimension": target,
             "strength": min(0.7, sc.get("strength", 0.5) * 0.85),

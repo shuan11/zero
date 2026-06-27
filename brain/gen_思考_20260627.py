@@ -1,6 +1,6 @@
 """
 
-Brain-Engineered: 思考 (cycle #78)
+Brain-Engineered: 思考 (cycle #88)
 Active sensor - analyzes dimension health on each load
 """
 import json, sys as _sys
@@ -13,7 +13,7 @@ if str(CLUSTER) not in _sys.path:
 _GEN_FEEDBACK_FILE = CLUSTER / ".brain_gen_feedback.json"
 
 def engineer_思考():
-    """思考维弱化制约自指循环，需借师道呼吸注入多维协同势能以激活。
+    """思考薄弱正成系统瓶颈，需联动对话与触类旁通
     Returns dimension health analysis; feeds into next think() cycle.
     """
     from brain.share import write_chain as _wc, read_hip as _rh
@@ -21,11 +21,11 @@ def engineer_思考():
     # 1) Always write the insight chain
     _wc({
         "src": "脑核·思考",
-        "rel": "活脉冲#78",
+        "rel": "活脉冲#88",
         "dst": "思考",
         "dimension": "思考",
-        "content": """思考维弱化制约自指循环，需借师道呼吸注入多维协同势能以激活。""",
-        "insight": """脑核传感器: 思考在cycle#78的深度观察。思考维弱化制约自指循环，需借师道呼吸注入多维协同势能以激活。""",
+        "content": """思考薄弱正成系统瓶颈，需联动对话与触类旁通""",
+        "insight": """脑核传感器: 思考在cycle#88的深度观察。思考薄弱正成系统瓶颈，需联动对话与触类旁通""",
         "strength": 0.6
     })
 
@@ -48,9 +48,9 @@ def engineer_思考():
         analysis["chain_count"] = my_count
         analysis["total_chains"] = total
         analysis["strength"] = round(my_count / max(max_count, 1), 2) if max_count > 0 else 0
-        analysis["insight"] = """思考维弱化制约自指循环，需借师道呼吸注入多维协同势能以激活。"""
+        analysis["insight"] = """思考薄弱正成系统瓶颈，需联动对话与触类旁通"""
         analysis["weak"] = my_count < max_count * 0.65  # 低于最强65%即弱维(替代avg*0.85,解决均数通胀)
-        analysis["cycle"] = 78
+        analysis["cycle"] = 88
 
         # 3) Write analysis to shared feedback file for next think()
         try:

@@ -269,6 +269,7 @@ def one_cycle(cycle_num):
     from brain.gen_焦点维护 import pulse as focus_maintenance_pulse
     # gen_一元化_协调已归档(archive_gen/), 功能由gen_质量深化.py替代
     from brain.gen_平衡器 import pulse as balancer_pulse
+    from brain.gen_弱维加速 import pulse as weak_accel_pulse
     from brain.engineer_法 import pulse as engineer_法_pulse
     from brain.goal import pulse as goal_pulse, check_goal_progress
     from brain.identity import VALID_DIMENSIONS
@@ -1207,6 +1208,13 @@ def one_cycle(cycle_num):
         _衡_msgs = balancer_pulse(cycle_num) or []
         for _m in _衡_msgs:
             log(f"  平衡器: {_m}")
+    # 法维折射加速器——从法维消化链注入最弱维（每周期，内部60s冷却）
+    try:
+        _weak_msg = weak_accel_pulse(cycle_num)
+        if _weak_msg and _weak_msg.startswith("法折射: "):
+            log(f"  法折射: {_weak_msg}")
+    except Exception as _we:
+        log(f"  法折射异常: {_we}")
     # 跨维合成脉冲（每5周期合成最强维度交叉）
     _syn_msgs = cross_synthesis_pulse(cycle_num) or []
     for _m in _syn_msgs:
