@@ -12,9 +12,11 @@ from brain.share import write_chain, read_hip, log
 CLUSTER = Path(__file__).resolve().parent.parent
 
 # 折射策略：每次从TOP_N过密维抽取链，注入BOTTOM_N稀疏维
+# 保护：链数<PROTECT_THRESHOLD的维不做折射目标(防止稀释弱维)
 TOP_N = 3
 BOTTOM_N = 6
 INJECT_PER_CYCLE = 6
+PROTECT_THRESHOLD = 20
 
 def _dim_density(hip):
     """返回维度→链数排序"""
@@ -31,9 +33,13 @@ def _refraction_route(dims):
     if not sorted_dims:
         return []
     dense = sorted_dims[:TOP_N]
-    sparse = sorted_dims[-BOTTOM_N:]
-    # 过滤掉稀疏维中的系统保留维（未分类）
-    sparse = [(d, c) for d, c in sparse if d != "未分类"]
+    # 过滤掉稀疏维中的保护维(链数<阈值)和系统保留维
+    sparse_all = sorted_dims[-BOTTOM_N:]
+    sparse = [(d, c) for d, c in sparse_all if d != "未分类" and c >= PROTECT_THRESHOLD]
+    # 如果全部被过滤, 用最弱但≥阈值的维补上
+    if not sparse:
+        eligible = [(d, c) for d, c in sorted_dims if d != "未分类" and c >= PROTECT_THRESHOLD]
+        sparse = eligible[-BOTTOM_N:] if len(eligible) >= BOTTOM_N else eligible
     if not sparse or not dense:
         return []
     # 配对：每个过密维→一个稀疏维

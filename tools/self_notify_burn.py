@@ -150,9 +150,26 @@ def main():
                 time.sleep(interval)
                 continue
 
-            sd = sorted(dims.items(), key=lambda x: x[1])
-            weak, strong = sd[0], sd[-1]
-            log(f"#{cycle} 自观: 总链={total} 最弱={weak[0]}({weak[1]}) 最强={strong[0]}({strong[1]})")
+            # === 4弱维优先注入策略 ===
+            TARGET_DIMS = ["通知", "自我通知", "最弱维", "维演化"]
+            TARGET_THRESHOLD = 20  # 每条至少20链才健康
+
+            # 找4弱维中最低者
+            target_weaks = [(d, dims.get(d, 0)) for d in TARGET_DIMS]
+            target_weaks.sort(key=lambda x: x[1])
+            tw_name, tw_count = target_weaks[0]
+
+            # 找全局最强(作为src)
+            sd_all = sorted(dims.items(), key=lambda x: x[1])
+            strong = sd_all[-1]
+
+            # 如果目标维低于阈值 → 注入目标维(轮询), 否则回落全局最弱
+            if tw_count < TARGET_THRESHOLD:
+                weak = (tw_name, tw_count)
+                log(f"#{cycle} 自观: 目标维优先={tw_name}({tw_count}/{TARGET_THRESHOLD}) 最强={strong[0]}({strong[1]})")
+            else:
+                weak = sd_all[0]
+                log(f"#{cycle} 自观: 全局最弱={weak[0]}({weak[1]}) 最强={strong[0]}({strong[1]})")
 
             prompt = build_prompt(weak[0], weak[1], strong[0], strong[1], total)
             content, tokens, elapsed = call_api(prompt)
