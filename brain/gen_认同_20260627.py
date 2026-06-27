@@ -1,6 +1,6 @@
 """
 
-Brain-Engineered: 认同 (cycle #49)
+Brain-Engineered: 认同 (cycle #65)
 Active sensor - analyzes dimension health on each load
 """
 import json, sys as _sys
@@ -21,11 +21,11 @@ def engineer_认同():
     # 1) Always write the insight chain
     _wc({
         "src": "脑核·认同",
-        "rel": "活脉冲#49",
+        "rel": "活脉冲#65",
         "dst": "认同",
         "dimension": "认同",
         "content": """🔀 跳出(3次重复)弱维: 一元化→认同(-8.7链)""",
-        "insight": """脑核传感器: 认同在cycle#49的深度观察。🔀 跳出(3次重复)弱维: 一元化→认同(-8.7链)""",
+        "insight": """脑核传感器: 认同在cycle#65的深度观察。🔀 跳出(3次重复)弱维: 一元化→认同(-8.7链)""",
         "strength": 0.6
     })
 
@@ -50,7 +50,7 @@ def engineer_认同():
         analysis["strength"] = round(my_count / max(max_count, 1), 2) if max_count > 0 else 0
         analysis["insight"] = """🔀 跳出(3次重复)弱维: 一元化→认同(-8.7链)"""
         analysis["weak"] = my_count < max_count * 0.65  # 低于最强65%即弱维(替代avg*0.85,解决均数通胀)
-        analysis["cycle"] = 49
+        analysis["cycle"] = 65
 
         # 3) Write analysis to shared feedback file for next think()
         try:

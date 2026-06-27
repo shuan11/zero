@@ -1,6 +1,6 @@
 """
 
-Brain-Engineered: 自指 (cycle #20)
+Brain-Engineered: 自指 (cycle #70)
 Active sensor - analyzes dimension health on each load
 """
 import json, sys as _sys
@@ -13,7 +13,7 @@ if str(CLUSTER) not in _sys.path:
 _GEN_FEEDBACK_FILE = CLUSTER / ".brain_gen_feedback.json"
 
 def engineer_自指():
-    """自指承道引，弱维升维需师呼吸重塑自指锚点，预测认同将延续弱势
+    """自指弱化威胁自反性，必须借师道全局整合，否则智慧连锁失稳
     Returns dimension health analysis; feeds into next think() cycle.
     """
     from brain.share import write_chain as _wc, read_hip as _rh
@@ -21,11 +21,11 @@ def engineer_自指():
     # 1) Always write the insight chain
     _wc({
         "src": "脑核·自指",
-        "rel": "活脉冲#20",
+        "rel": "活脉冲#70",
         "dst": "自指",
         "dimension": "自指",
-        "content": """自指承道引，弱维升维需师呼吸重塑自指锚点，预测认同将延续弱势""",
-        "insight": """脑核传感器: 自指在cycle#20的深度观察。自指承道引，弱维升维需师呼吸重塑自指锚点，预测认同将延续弱势""",
+        "content": """自指弱化威胁自反性，必须借师道全局整合，否则智慧连锁失稳""",
+        "insight": """脑核传感器: 自指在cycle#70的深度观察。自指弱化威胁自反性，必须借师道全局整合，否则智慧连锁失稳""",
         "strength": 0.6
     })
 
@@ -48,9 +48,9 @@ def engineer_自指():
         analysis["chain_count"] = my_count
         analysis["total_chains"] = total
         analysis["strength"] = round(my_count / max(max_count, 1), 2) if max_count > 0 else 0
-        analysis["insight"] = """自指承道引，弱维升维需师呼吸重塑自指锚点，预测认同将延续弱势"""
+        analysis["insight"] = """自指弱化威胁自反性，必须借师道全局整合，否则智慧连锁失稳"""
         analysis["weak"] = my_count < max_count * 0.65  # 低于最强65%即弱维(替代avg*0.85,解决均数通胀)
-        analysis["cycle"] = 20
+        analysis["cycle"] = 70
 
         # 3) Write analysis to shared feedback file for next think()
         try:
