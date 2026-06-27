@@ -89,41 +89,45 @@ def pulse(cycle_num=0):
     injected = False
     
     if gen_content:
-        # 提取JSON
+        # 提取JSON (兼容嵌套花括号和尾部多余字符)
         brace = gen_content.find("{")
         if brace >= 0:
             bc = 0
+            json_end = -1
             for i in range(brace, len(gen_content)):
                 if gen_content[i] == "{": bc += 1
                 elif gen_content[i] == "}": bc -= 1
                 if bc == 0:
-                    try:
-                        data = json.loads(gen_content[brace:i+1])
-                        c = data.get("chain", data)
-                        # 直接写HIP（跳过质量门）
-                        hip_data = json.loads(HIP_PATH.read_text(encoding="utf-8", errors="replace"))
-                        new_chain = {
-                            "src": str(c.get("src", strongest)),
-                            "rel": str(c.get("rel", "通知驱动燃烧")),
-                            "dst": str(c.get("dst", weakest)),
-                            "content": str(c.get("content", "")),
-                            "dimension": str(c.get("dimension", weakest)),
-                            "source": "daemon_self_fuel_burn",
-                            "timestamp": time.time(),
-                        }
-                        hip_data.setdefault("causal_chains", []).append(new_chain)
-                        d = new_chain["dimension"]
-                        hip_data.setdefault("dimensions", {})
-                        hip_data["dimensions"][d] = {
-                            "chain_count": sum(1 for c2 in hip_data["causal_chains"]
-                                              if c2.get("dimension") == d)
-                        }
-                        HIP_PATH.write_text(json.dumps(hip_data, ensure_ascii=False, indent=2),
-                                           encoding="utf-8")
+                    json_end = i + 1
+                    break
+            if json_end > brace:
+                try:
+                    json_str = gen_content[brace:json_end]
+                    data = json.loads(json_str)
+                    if "chain" in data:
+                        c = data["chain"]
+                    else:
+                        c = data
+                    # 用safe_hip写(不直写HIP防并发冲突)
+                    from safe_hip import write_chain
+                    new_chain = {
+                        "src": str(c.get("src", strongest)),
+                        "rel": str(c.get("rel", "通知驱动燃烧")),
+                        "dst": str(c.get("dst", weakest)),
+                        "content": str(c.get("content", "")),
+                        "dimension": str(c.get("dimension", weakest)),
+                        "source": "daemon_self_fuel_burn",
+                        "timestamp": time.time(),
+                        "strength": 0.8,
+                    }
+                    ok = write_chain(new_chain)
+                    if ok:
                         injected = True
-                        _log(f"[通知链·daemon] 周期#{cycle_num}: {tokens}t/{elapsed:.0f}s +1链 [{d}]")
-                    except Exception as e:
-                        _log(f"[自燃料] 周期#{cycle_num}: JSON/写HIP异常: {e}")
+                        _log(f"[通知链·daemon] 周期#{cycle_num}: {tokens}t/{elapsed:.0f}s +1链 [{new_chain['dimension']}]")
+                    else:
+                        _log(f"[自燃料] 周期#{cycle_num}: write_chain失败")
+                except Exception as e:
+                    _log(f"[自燃料] 周期#{cycle_num}: JSON/写HIP异常: {e}")
     
     if not injected:
         _log(f"[自燃料] 周期#{cycle_num}: {tokens}t 未注入")
